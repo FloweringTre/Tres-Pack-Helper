@@ -17,7 +17,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-GlobalTrackingValues="*res://scripts/global_tracking_values.gd"
+GlobalScripts="*res://scripts/global_scripts.gd"
+ErrorManager="*res://scripts/error_manager.gd"
 
 [display]
 
