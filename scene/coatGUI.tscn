@@ -1,0 +1,297 @@
+[gd_scene load_steps=16 format=3 uid="uid://dum14k8byt87m"]
+
+[ext_resource type="Script" path="res://scripts/coat_gui.gd" id="1_bgw28"]
+[ext_resource type="Texture2D" uid="uid://8f0rfohmniwa" path="res://assets/menuUI.png" id="2_ypuxh"]
+[ext_resource type="Texture2D" uid="uid://dm1bh2yywotao" path="res://assets/icon.png" id="3_2qsf6"]
+[ext_resource type="Theme" uid="uid://clxftkhcliti8" path="res://assets/UI_theme.tres" id="4_gvril"]
+[ext_resource type="Theme" path="res://assets/UI_theme_dark.tres" id="5_0f6da"]
+[ext_resource type="PackedScene" uid="uid://b3cou3ndcs75h" path="res://scene/error_message.tscn" id="6_m2onb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kx556"]
+atlas = ExtResource("2_ypuxh")
+region = Rect2(58, 10, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ror28"]
+atlas = ExtResource("2_ypuxh")
+region = Rect2(178, 1, 12, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jop8w"]
+atlas = ExtResource("2_ypuxh")
+region = Rect2(178, 35, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2l2ur"]
+atlas = ExtResource("2_ypuxh")
+region = Rect2(178, 17, 12, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5h1pk"]
+atlas = ExtResource("2_ypuxh")
+region = Rect2(178, 51, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7qkcx"]
+atlas = ExtResource("2_ypuxh")
+region = Rect2(161, 2, 14, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ug12d"]
+atlas = ExtResource("2_ypuxh")
+region = Rect2(161, 36, 14, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yfjb1"]
+atlas = ExtResource("2_ypuxh")
+region = Rect2(161, 18, 14, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_scopy"]
+atlas = ExtResource("2_ypuxh")
+region = Rect2(161, 52, 14, 11)
+
+[node name="coatGUI" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bgw28")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -214.0
+offset_top = -150.5
+offset_right = 214.0
+offset_bottom = 150.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_kx556")
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -204.0
+offset_top = 9.0
+offset_right = 204.0
+offset_bottom = 76.0
+grow_horizontal = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 72
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="NinePatchRect/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+texture = ExtResource("3_2qsf6")
+
+[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_gvril")
+text = "Add a Legacy Coat"
+
+[node name="TextureRect2" type="TextureRect" parent="NinePatchRect/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+texture = ExtResource("3_2qsf6")
+flip_h = true
+
+[node name="Hbox" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/Hbox"]
+layout_mode = 2
+theme = ExtResource("4_gvril")
+text = "Texture Artist"
+horizontal_alignment = 2
+
+[node name="artistText" type="TextEdit" parent="NinePatchRect/VBoxContainer/Hbox"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+placeholder_text = "Who made the coat texture?"
+
+[node name="HelperLabel" type="Label" parent="NinePatchRect/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+text = "This is where the new pack folder will be made."
+horizontal_alignment = 1
+
+[node name="Hbox2" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/Hbox2"]
+layout_mode = 2
+theme = ExtResource("4_gvril")
+text = "Inspiration"
+horizontal_alignment = 2
+
+[node name="inspoText" type="TextEdit" parent="NinePatchRect/VBoxContainer/Hbox2"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+placeholder_text = "My IRL horse || SSO || N/a"
+
+[node name="Hbox3" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/Hbox3"]
+layout_mode = 2
+theme = ExtResource("4_gvril")
+text = "Coat Name"
+horizontal_alignment = 2
+
+[node name="coatText" type="TextEdit" parent="NinePatchRect/VBoxContainer/Hbox3"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+placeholder_text = "kiwi_the_wonder_paint"
+
+[node name="HelperLabel2" type="Label" parent="NinePatchRect/VBoxContainer"]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+theme = ExtResource("5_0f6da")
+theme_override_colors/font_color = Color(0.0235294, 0.396078, 0.490196, 1)
+text = "The above name needs to only include lower case letters, numbers, 
+and underscore -> _ <- characters."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Hbox6" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/Hbox6"]
+layout_mode = 2
+theme = ExtResource("4_gvril")
+text = "Base Colors:"
+horizontal_alignment = 2
+
+[node name="HelperLabel3" type="Label" parent="NinePatchRect/VBoxContainer/Hbox6"]
+custom_minimum_size = Vector2(175, 20)
+layout_mode = 2
+theme = ExtResource("5_0f6da")
+theme_override_colors/font_color = Color(0.0229786, 0.395317, 0.490622, 1)
+text = "Hold CTRL to select multiple -->"
+vertical_alignment = 2
+autowrap_mode = 2
+
+[node name="Hbox5" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/Hbox5"]
+layout_mode = 2
+theme = ExtResource("4_gvril")
+text = "Obtained by Breeding?"
+horizontal_alignment = 2
+
+[node name="breedingCheckBox" type="CheckBox" parent="NinePatchRect/VBoxContainer/Hbox5"]
+layout_mode = 2
+button_pressed = true
+
+[node name="breedingLabel" type="Label" parent="NinePatchRect/VBoxContainer/Hbox5"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("5_0f6da")
+theme_override_colors/font_color = Color(0.305882, 0.270588, 0.133333, 1)
+theme_override_font_sizes/font_size = 32
+text = "Yes"
+
+[node name="Hbox4" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/Hbox4"]
+layout_mode = 2
+theme = ExtResource("4_gvril")
+text = "Lapis Cyclable?"
+horizontal_alignment = 2
+
+[node name="lapisCheckBox" type="CheckBox" parent="NinePatchRect/VBoxContainer/Hbox4"]
+unique_name_in_owner = true
+layout_mode = 2
+button_pressed = true
+
+[node name="lapisLabel" type="Label" parent="NinePatchRect/VBoxContainer/Hbox4"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("5_0f6da")
+theme_override_colors/font_color = Color(0.305882, 0.270588, 0.133333, 1)
+theme_override_font_sizes/font_size = 32
+text = "Yes"
+
+[node name="baseColorsItemList" type="ItemList" parent="NinePatchRect"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 28)
+layout_mode = 2
+offset_left = 326.0
+offset_top = 156.5
+offset_right = 406.0
+offset_bottom = 290.5
+size_flags_horizontal = 4
+size_flags_vertical = 4
+select_mode = 1
+allow_reselect = true
+allow_search = false
+auto_height = true
+item_count = 7
+item_0/text = "Black"
+item_1/text = "Brown"
+item_2/text = "Chestnut"
+item_3/text = "Creamy"
+item_4/text = "Dark Brown"
+item_5/text = "Gray"
+item_6/text = "White"
+
+[node name="backButton" type="TextureButton" parent="NinePatchRect"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 8.0
+offset_top = 266.5
+offset_right = 20.0
+offset_bottom = 280.5
+scale = Vector2(2, 2)
+texture_normal = SubResource("AtlasTexture_ror28")
+texture_pressed = SubResource("AtlasTexture_jop8w")
+texture_hover = SubResource("AtlasTexture_2l2ur")
+texture_disabled = SubResource("AtlasTexture_5h1pk")
+
+[node name="confirmButton" type="TextureButton" parent="NinePatchRect"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -34.0
+offset_top = -33.0
+offset_right = -20.0
+offset_bottom = -19.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(2, 2)
+texture_normal = SubResource("AtlasTexture_7qkcx")
+texture_pressed = SubResource("AtlasTexture_ug12d")
+texture_hover = SubResource("AtlasTexture_yfjb1")
+texture_disabled = SubResource("AtlasTexture_scopy")
+
+[node name="errorMessage" parent="." instance=ExtResource("6_m2onb")]
+layout_mode = 1
+
+[connection signal="text_changed" from="NinePatchRect/VBoxContainer/Hbox/artistText" to="." method="_on_artist_text_text_changed"]
+[connection signal="text_changed" from="NinePatchRect/VBoxContainer/Hbox2/inspoText" to="." method="_on_inspo_text_text_changed"]
+[connection signal="text_changed" from="NinePatchRect/VBoxContainer/Hbox3/coatText" to="." method="_on_coat_text_text_changed"]
+[connection signal="pressed" from="NinePatchRect/VBoxContainer/Hbox5/breedingCheckBox" to="." method="_on_breeding_check_box_pressed"]
+[connection signal="pressed" from="NinePatchRect/VBoxContainer/Hbox4/lapisCheckBox" to="." method="_on_lapis_check_box_pressed"]
+[connection signal="pressed" from="NinePatchRect/backButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="NinePatchRect/confirmButton" to="." method="_on_confirm_button_pressed"]
