@@ -62,9 +62,10 @@ func new_pack_setup(directory : String) -> void: #Build a new pack
 
 func old_pack_setup(directory : String) -> void: #Open an existing pack
 	directory_root = directory
-	report_file_path = join_paths(directory_root, "TRE.S_PACK_HELPER_REPORT.json")
-	jsons_root = join_paths(directory_root, "jsons/")
-	textures_root = join_paths(directory_root, "textures/")
+	report_file_path = join_paths(directory_root, "TRE.S_PACK_HELPER_REPORT.txt")
+	instructions_file_path = join_paths(directory_root, "INSTRUCTIONS.txt")
+	jsons_root = join_paths(directory_root, "jsons")
+	textures_root = join_paths(directory_root, "textures")
 	setup_report()
 	set_up_instructions()
 	if !check_folder(jsons_root):
@@ -75,6 +76,12 @@ func old_pack_setup(directory : String) -> void: #Open an existing pack
 
 func check_folder(path : String): #does a folder exist
 	if DirAccess.open(path):
+		return true
+	else:
+		return false
+
+func check_file_exists(path : String): #is there already a file here?
+	if FileAccess.file_exists(path):
 		return true
 	else:
 		return false
@@ -139,14 +146,17 @@ func setup_report() -> void:
 	if ErrorManager.is_error:
 		return
 	else:
-		var file = FileAccess.open(report_file_path, FileAccess.WRITE_READ)
-		if !file:
-			ErrorManager.is_error = true
-			ErrorManager.error_print("Unable to set up the report document - check the file path location." )
-			return
+		if check_file_exists(report_file_path):
+			report("I opened back up this pack folder")
 		else:
-			file.store_string("This document will log all creations made by Tre's Pack Helper application.\n\n" )
-			file.close()
+			var file = FileAccess.open(report_file_path, FileAccess.WRITE_READ)
+			if !file:
+				ErrorManager.is_error = true
+				ErrorManager.error_print("Unable to set up the report document - check the file path location." )
+				return
+			else:
+				file.store_string("This document will log all creations made by Tre's Pack Helper application.\n\n" )
+				file.close()
 	report("I set up the report document.")
 
 func report(reporting_text : String):
@@ -168,16 +178,23 @@ func set_up_instructions() -> void:
 	if ErrorManager.is_error:
 		return
 	else:
-		var file = FileAccess.open(instructions_file_path, FileAccess.WRITE_READ)
-		if !file:
-			ErrorManager.is_error = true
-			ErrorManager.error_print("Unable to set up the instructions document - check the file path location.")
-			return
-		else:
-			file.store_string("This document will tell you the names of each texture to add and where to add them.\n \
-	Please understand, your pack will not function if the textures are not correctly named or placed in the wrong folders.\n\n" )
+		if check_file_exists(instructions_file_path):
+			var date_time = Time.get_datetime_string_from_system(false, true)
+			var file = FileAccess.open(instructions_file_path, FileAccess.READ_WRITE)
+			file.seek_end()
+			file.store_string("\n\n~~~~~~~~~ Pack has been reopened for editing at " + date_time + " ~~~~~~~~~\n")
 			file.close()
-	report("I set up the INSTRUCTIONS.txt document")
+		else:
+			var file = FileAccess.open(instructions_file_path, FileAccess.WRITE_READ)
+			if !file:
+				ErrorManager.is_error = true
+				ErrorManager.error_print("Unable to set up the instructions document - check the file path location.")
+				return
+			else:
+				file.store_string("This document will tell you the names of each texture to add and where to add them.\n \
+	Please understand, your pack will not function if the textures are not correctly named or placed in the wrong folders.\n\n" )
+				file.close()
+				report("I set up the INSTRUCTIONS.txt document")
 
 func instructions(item : String, texture_name : String, path : String):
 	if ErrorManager.is_error:
@@ -186,7 +203,7 @@ func instructions(item : String, texture_name : String, path : String):
 		var file = FileAccess.open(instructions_file_path, FileAccess.READ_WRITE)
 		var string_1 = "\nADD NEW " + item.to_upper() + "\n"# ADD NEW COAT
 		var string_2 = "~~Name the Texture: " + texture_name + ".png" + "\n"# ~~Name Texture: kiwi_wonder_pony.png
-		var string_3 = "~~Save Texture in: " + path # ~~Save to: folder/path/way
+		var string_3 = "~~Save Texture in: " + path + "\n" # ~~Save to: folder/path/way
 		var instruction_string = string_1 + string_2 + string_3
 		if !file:
 			ErrorManager.is_error = true
