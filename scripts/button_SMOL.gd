@@ -16,7 +16,7 @@ func _on_button_button_up() -> void:
 	$textContainer.position.y = 2
 
 func _on_button_button_down() -> void:
-	$textContainer.position.y = 7
+	$textContainer.position.y = 4.5
 
 func set_disabled() -> void:
 	$Button.disabled = true
