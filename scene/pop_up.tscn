@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://bpgiy2j33slge"]
+[gd_scene load_steps=18 format=3 uid="uid://bpgiy2j33slge"]
 
 [ext_resource type="Texture2D" uid="uid://8f0rfohmniwa" path="res://assets/menuUI.png" id="1_6x5xs"]
 [ext_resource type="Script" path="res://scripts/pop_up.gd" id="2_0cii8"]
+[ext_resource type="Theme" uid="uid://dm4jlnbmnj4eb" path="res://assets/UI_theme_dark.tres" id="3_kx8fm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vlar3"]
 atlas = ExtResource("1_6x5xs")
@@ -116,6 +117,37 @@ text = "Error Message goes here."
 horizontal_alignment = 1
 autowrap_mode = 2
 
+[node name="yesOrNoLabel" type="HSplitContainer" parent="."]
+custom_minimum_size = Vector2(172, 0)
+layout_mode = 2
+offset_left = 7.0
+offset_top = 101.0
+offset_right = 179.0
+offset_bottom = 115.0
+theme_override_constants/separation = 0
+dragger_visibility = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="yesOrNoLabel"]
+layout_mode = 2
+
+[node name="noLabel" type="Label" parent="yesOrNoLabel/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("3_kx8fm")
+text = "back"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="yesOrNoLabel"]
+layout_mode = 2
+alignment = 2
+
+[node name="yesLabel" type="Label" parent="yesOrNoLabel/HBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+theme = SubResource("Theme_65ef0")
+text = "Start New Coat"
+horizontal_alignment = 2
+
 [node name="yesOrNo" type="HBoxContainer" parent="."]
 layout_mode = 2
 offset_left = 7.0
@@ -123,7 +155,8 @@ offset_top = 117.0
 offset_right = 122.0
 offset_bottom = 131.0
 scale = Vector2(1.5, 1.5)
-theme_override_constants/separation = 88
+theme_override_constants/separation = 81
+alignment = 1
 
 [node name="backButton" type="TextureButton" parent="yesOrNo"]
 unique_name_in_owner = true
@@ -142,6 +175,7 @@ texture_hover = SubResource("AtlasTexture_jifrg")
 texture_disabled = SubResource("AtlasTexture_nan3c")
 
 [node name="continue" type="HBoxContainer" parent="."]
+visible = false
 custom_minimum_size = Vector2(120, 14)
 layout_mode = 2
 offset_left = 59.0

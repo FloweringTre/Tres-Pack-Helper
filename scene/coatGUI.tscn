@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dum14k8byt87m"]
+[gd_scene load_steps=21 format=3 uid="uid://dum14k8byt87m"]
 
 [ext_resource type="Script" path="res://scripts/coat_gui.gd" id="1_bgw28"]
 [ext_resource type="Texture2D" uid="uid://8f0rfohmniwa" path="res://assets/menuUI.png" id="2_ypuxh"]
@@ -10,6 +10,7 @@
 [ext_resource type="Theme" uid="uid://db3wwmhf400fw" path="res://assets/UI_theme_dark_big.tres" id="6_duviu"]
 [ext_resource type="PackedScene" uid="uid://b3cou3ndcs75h" path="res://scene/error_message.tscn" id="6_m2onb"]
 [ext_resource type="PackedScene" uid="uid://cdigxro282sfm" path="res://scene/checkAlert.tscn" id="9_edoao"]
+[ext_resource type="PackedScene" uid="uid://bpgiy2j33slge" path="res://scene/pop_up.tscn" id="10_75oqe"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kx556"]
 atlas = ExtResource("2_ypuxh")
@@ -375,6 +376,9 @@ texture_disabled = SubResource("AtlasTexture_scopy")
 
 [node name="errorMessage" parent="." instance=ExtResource("6_m2onb")]
 visible = false
+layout_mode = 1
+
+[node name="popUP" parent="." instance=ExtResource("10_75oqe")]
 layout_mode = 1
 
 [node name="checkPath" parent="." instance=ExtResource("9_edoao")]

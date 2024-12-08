@@ -18,15 +18,19 @@ signal new_coat_saved
 
 func _ready() -> void:
 	ErrorManager.error_alert.connect(on_error)
+	$errorMessage.error_continue.connect(on_error_continue)
 	%n_aButton.button_pressed.connect(on_NA_button)
 	%nameCheck.button_pressed.connect(on_name_check)
+	new_coat_saved.connect(on_new_coat_saved)
+	$popUP.deny.connect(on_popup_back)
+	$popUP.confirm.connect(on_popup_confirmed)
 
 func on_error() -> void:
 	%confirmButton.disabled = true
 	%backButton.disabled = true
 
 func on_error_continue() -> void:
-	%confirmButton.disabled = true
+	%confirmButton.disabled = false
 	%backButton.disabled = false
 
 func _on_back_button_pressed() -> void:
@@ -153,6 +157,7 @@ func _on_chestnut_check_box_7_pressed() -> void:
 		basecolors.append("chestnut")
 
 func _on_confirm_button_pressed() -> void:
+	GlobalScripts.setup_coats()
 	on_name_check()
 	GlobalScripts.setup_coats()
 	var file_name = %coatText.text + ".json"
@@ -183,4 +188,19 @@ func _on_confirm_button_pressed() -> void:
 	
 	else:
 		ErrorManager.error_print("I couldn't save the new coat. Check the folder pathways.")
-	
+
+func on_new_coat_saved() -> void:
+	var title = "Complete!"
+	var message = "Successfully added " + %coatText.text + " to the pack folder. What do you want to do now?"
+	var no_label = "Go Back"
+	var yes_label = "Start New Coat"
+	$popUP.pop_yesNo(title, message, no_label, yes_label)
+	%confirmButton.disabled = true
+	%backButton.disabled = true
+
+func on_popup_back() -> void:
+	%confirmButton.disabled = false
+	%backButton.disabled = false
+
+func on_popup_confirmed() -> void:
+	get_tree().reload_current_scene()
