@@ -1,12 +1,19 @@
 [gd_scene load_steps=9 format=3 uid="uid://b3cou3ndcs75h"]
 
 [ext_resource type="Texture2D" uid="uid://8f0rfohmniwa" path="res://assets/menuUI.png" id="1_nfgc6"]
-[ext_resource type="Script" path="res://scene/error_message.gd" id="2_2t50p"]
-[ext_resource type="Theme" path="res://assets/UI_theme_dark.tres" id="2_7osul"]
+[ext_resource type="Script" path="res://scripts/error_message.gd" id="2_2t50p"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vlar3"]
 atlas = ExtResource("1_nfgc6")
 region = Rect2(10, 10, 28, 28)
+
+[sub_resource type="Theme" id="Theme_65ef0"]
+default_font_size = 16
+HSlider/icons/grabber = null
+HSlider/icons/grabber_disabled = null
+HSlider/icons/grabber_highlight = null
+Label/colors/font_color = Color(0.305882, 0.270588, 0.133333, 1)
+LineEdit/icons/clear = null
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5er8k"]
 atlas = ExtResource("1_nfgc6")
@@ -25,7 +32,6 @@ atlas = ExtResource("1_nfgc6")
 region = Rect2(134, 51, 7, 12)
 
 [node name="errorMessage" type="NinePatchRect"]
-visible = false
 z_index = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -63,7 +69,7 @@ theme_override_constants/separation = 4
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("2_7osul")
+theme = SubResource("Theme_65ef0")
 theme_override_colors/font_color = Color(0.189345, 0.418238, 0.742626, 1)
 text = "Oops! We have a problem!"
 horizontal_alignment = 1
@@ -72,7 +78,7 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 90)
 layout_mode = 2
-theme = ExtResource("2_7osul")
+theme = SubResource("Theme_65ef0")
 text = "Error Message goes here."
 horizontal_alignment = 1
 autowrap_mode = 2
@@ -83,7 +89,7 @@ alignment = 2
 
 [node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme = ExtResource("2_7osul")
+theme = SubResource("Theme_65ef0")
 theme_override_colors/font_color = Color(0.14401, 0.482904, 0.456316, 1)
 text = "Lets try that again..."
 horizontal_alignment = 1
