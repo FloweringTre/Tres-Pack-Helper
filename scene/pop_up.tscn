@@ -105,7 +105,7 @@ unique_name_in_owner = true
 layout_mode = 2
 theme = SubResource("Theme_65ef0")
 theme_override_colors/font_color = Color(0.189345, 0.418238, 0.742626, 1)
-text = "Oops! We have a problem!"
+text = "Pop Up Title"
 horizontal_alignment = 1
 
 [node name="popUpText" type="Label" parent="VBoxContainer"]
@@ -113,7 +113,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 90)
 layout_mode = 2
 theme = SubResource("Theme_65ef0")
-text = "Error Message goes here."
+text = "pop up message goes here"
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -145,7 +145,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 theme = SubResource("Theme_65ef0")
-text = "Start New Coat"
+text = "forward"
 horizontal_alignment = 2
 
 [node name="yesOrNo" type="HBoxContainer" parent="."]
@@ -201,6 +201,11 @@ texture_pressed = SubResource("AtlasTexture_u6lj1")
 texture_hover = SubResource("AtlasTexture_pby4t")
 texture_disabled = SubResource("AtlasTexture_vk1f2")
 stretch_mode = 6
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(176, 23, 10, 23)
+width = 1.0
+default_color = Color(0.811765, 0.67451, 0.490196, 1)
 
 [connection signal="pressed" from="yesOrNo/backButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="yesOrNo/confirmButton" to="." method="_on_confirm_button_pressed"]

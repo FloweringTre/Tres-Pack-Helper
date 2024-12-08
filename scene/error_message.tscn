@@ -103,4 +103,9 @@ texture_pressed = SubResource("AtlasTexture_u6lj1")
 texture_hover = SubResource("AtlasTexture_pby4t")
 texture_disabled = SubResource("AtlasTexture_vk1f2")
 
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(176, 23, 10, 23)
+width = 1.0
+default_color = Color(0.811765, 0.67451, 0.490196, 1)
+
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/continueButton" to="." method="_on_continue_button_pressed"]
