@@ -1,11 +1,16 @@
-[gd_scene load_steps=16 format=3 uid="uid://c7f637oqram5g"]
+[gd_scene load_steps=21 format=3 uid="uid://c7f637oqram5g"]
 
 [ext_resource type="Script" path="res://scripts/starting_gui.gd" id="1_3an53"]
 [ext_resource type="Texture2D" uid="uid://8f0rfohmniwa" path="res://assets/menuUI.png" id="1_lx5dw"]
 [ext_resource type="Theme" uid="uid://clxftkhcliti8" path="res://assets/UI_theme.tres" id="2_em82s"]
 [ext_resource type="Texture2D" uid="uid://dm1bh2yywotao" path="res://assets/icon.png" id="3_kp27u"]
 [ext_resource type="PackedScene" uid="uid://bicshr65lr0n1" path="res://scene/button.tscn" id="5_1lo41"]
+[ext_resource type="Theme" uid="uid://cf6ttsgxwgavd" path="res://assets/UI_theme_blue.tres" id="5_o5bxr"]
+[ext_resource type="PackedScene" uid="uid://cp0jrapb6x6a2" path="res://scene/buttonSMOL.tscn" id="5_uwvmr"]
 [ext_resource type="PackedScene" uid="uid://b3cou3ndcs75h" path="res://scene/error_message.tscn" id="6_iaop6"]
+[ext_resource type="Theme" uid="uid://dix1yxdlw8hbv" path="res://assets/UI_theme_smol.tres" id="7_0bqte"]
+[ext_resource type="Theme" uid="uid://db3wwmhf400fw" path="res://assets/UI_theme_dark_big.tres" id="7_7bhpy"]
+[ext_resource type="PackedScene" uid="uid://cdigxro282sfm" path="res://scene/checkAlert.tscn" id="9_xnwmn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kx556"]
 atlas = ExtResource("1_lx5dw")
@@ -61,10 +66,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -214.0
-offset_top = -150.5
-offset_right = 214.0
-offset_bottom = 150.5
+offset_left = -304.0
+offset_top = -167.5
+offset_right = 304.0
+offset_bottom = 167.5
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("AtlasTexture_kx556")
@@ -74,6 +79,7 @@ patch_margin_right = 4
 patch_margin_bottom = 4
 
 [node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect"]
+custom_minimum_size = Vector2(513, 0)
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -84,23 +90,23 @@ offset_right = 204.0
 offset_bottom = 76.0
 grow_horizontal = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
+[node name="TitleContainer" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 80
+theme_override_constants/separation = 130
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="NinePatchRect/VBoxContainer/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="NinePatchRect/VBoxContainer/TitleContainer"]
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
 texture = ExtResource("3_kp27u")
 
-[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/TitleContainer"]
 layout_mode = 2
 theme = ExtResource("2_em82s")
 theme_override_colors/font_color = Color(0.178263, 0.423711, 0.665043, 1)
 text = "Tre's Pack Helper"
 
-[node name="TextureRect2" type="TextureRect" parent="NinePatchRect/VBoxContainer/HBoxContainer"]
+[node name="TextureRect2" type="TextureRect" parent="NinePatchRect/VBoxContainer/TitleContainer"]
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
 texture = ExtResource("3_kp27u")
@@ -117,15 +123,20 @@ text = "File Location:"
 horizontal_alignment = 2
 
 [node name="locationText" type="TextEdit" parent="NinePatchRect/VBoxContainer/Hbox"]
-custom_minimum_size = Vector2(270, 0)
+custom_minimum_size = Vector2(360, 0)
 layout_mode = 2
 placeholder_text = "C:\\Users\\[YOU]\\Desktop"
+
+[node name="pathOpenButton" parent="NinePatchRect/VBoxContainer/Hbox" instance=ExtResource("5_uwvmr")]
+unique_name_in_owner = true
+layout_mode = 2
+button_text = "Test Path"
 
 [node name="HelperLabel" type="Label" parent="NinePatchRect/VBoxContainer"]
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
-theme_override_colors/font_color = Color(0.0235294, 0.396078, 0.490196, 1)
-text = "This is where the new pack folder will be made."
+theme = ExtResource("5_o5bxr")
+text = "This is where the new pack folder will be made or where the folder will be opened from."
 horizontal_alignment = 1
 
 [node name="Hbox2" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
@@ -139,27 +150,62 @@ text = "Pack Name:"
 horizontal_alignment = 2
 
 [node name="folderNametext" type="TextEdit" parent="NinePatchRect/VBoxContainer/Hbox2"]
-custom_minimum_size = Vector2(270, 0)
+custom_minimum_size = Vector2(360, 0)
 layout_mode = 2
 
-[node name="HelperLabel2" type="Label" parent="NinePatchRect/VBoxContainer"]
+[node name="nameCheck" parent="NinePatchRect/VBoxContainer/Hbox2" instance=ExtResource("5_uwvmr")]
+unique_name_in_owner = true
+layout_mode = 2
+button_text = "Clean"
+
+[node name="Stage1BoxContainer" type="VBoxContainer" parent="NinePatchRect/VBoxContainer"]
+layout_mode = 2
+
+[node name="HelperLabel2" type="Label" parent="NinePatchRect/VBoxContainer/Stage1BoxContainer"]
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
-theme_override_colors/font_color = Color(0.0235294, 0.396078, 0.490196, 1)
-text = "This is what the new pack folder will be named"
+theme = ExtResource("5_o5bxr")
+text = "This is what the new pack folder will be named or the folder that will be opened.
+The name needs to only include lower case letters, numbers, and underscores. 
+The 'Clean' button will ensure it is java compliant for you!"
 horizontal_alignment = 1
 
-[node name="HelperLabel3" type="Label" parent="NinePatchRect/VBoxContainer"]
-visible = false
+[node name="HelperLabel4" type="Label" parent="NinePatchRect/VBoxContainer/Stage1BoxContainer"]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+theme = ExtResource("7_0bqte")
+text = "Each pack needs to have a unique name... so keep that in mind while naming this pack!"
+horizontal_alignment = 1
+
+[node name="HelperLabel3" type="Label" parent="NinePatchRect/VBoxContainer/Stage1BoxContainer"]
 custom_minimum_size = Vector2(0, 56)
 layout_mode = 2
+theme = ExtResource("7_7bhpy")
 text = "Press the check mark below to generate or open your pack folder and get started on the process!"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="Stage2BoxContainer" type="VBoxContainer" parent="NinePatchRect/VBoxContainer"]
+[node name="HelperLabel5" type="Label" parent="NinePatchRect/VBoxContainer/Stage1BoxContainer"]
+custom_minimum_size = Vector2(522, 42)
 layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("7_0bqte")
+theme_override_colors/font_color = Color(0.493728, 0.364523, 0.227402, 1)
+text = "Press the buttons above to gain a checkmark on each line to proceed..."
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="Stage2BoxContainer" type="VBoxContainer" parent="NinePatchRect/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Stage2Text2" type="Label" parent="NinePatchRect/VBoxContainer/Stage2BoxContainer"]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+theme = ExtResource("7_0bqte")
+horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="Stage2Text" type="Label" parent="NinePatchRect/VBoxContainer/Stage2BoxContainer"]
 custom_minimum_size = Vector2(0, 28)
@@ -172,66 +218,72 @@ autowrap_mode = 2
 [node name="HelperLabel3" type="Label" parent="NinePatchRect/VBoxContainer/Stage2BoxContainer"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
-theme_override_colors/font_color = Color(0.0235294, 0.396078, 0.490196, 1)
+theme = ExtResource("5_o5bxr")
 text = "What json files would you like to make?"
 horizontal_alignment = 1
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/Stage2BoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/Stage2BoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 40
+theme_override_constants/separation = 30
+alignment = 1
 
-[node name="SPACER" type="Label" parent="NinePatchRect/VBoxContainer/Stage2BoxContainer/HBoxContainer3"]
-layout_mode = 2
-
-[node name="coatsButton" parent="NinePatchRect/VBoxContainer/Stage2BoxContainer/HBoxContainer3" instance=ExtResource("5_1lo41")]
+[node name="coatsButton" parent="NinePatchRect/VBoxContainer/Stage2BoxContainer/HBoxContainer" instance=ExtResource("5_1lo41")]
 unique_name_in_owner = true
 layout_mode = 2
 button_text = "Coats"
 
-[node name="SPACER2" type="Label" parent="NinePatchRect/VBoxContainer/Stage2BoxContainer/HBoxContainer3"]
-custom_minimum_size = Vector2(118, 0)
-layout_mode = 2
-
-[node name="tackButton" parent="NinePatchRect/VBoxContainer/Stage2BoxContainer/HBoxContainer3" instance=ExtResource("5_1lo41")]
+[node name="tackButton" parent="NinePatchRect/VBoxContainer/Stage2BoxContainer/HBoxContainer" instance=ExtResource("5_1lo41")]
 unique_name_in_owner = true
 layout_mode = 2
 button_text = "Tack"
 
-[node name="SPACER3" type="Label" parent="NinePatchRect/VBoxContainer/Stage2BoxContainer/HBoxContainer3"]
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect"]
-layout_mode = 0
-offset_left = 8.0
-offset_top = 266.5
-offset_right = 142.0
-offset_bottom = 280.5
-scale = Vector2(2, 2)
-
-[node name="backButton" type="TextureButton" parent="NinePatchRect/HBoxContainer"]
+[node name="backButton" type="TextureButton" parent="NinePatchRect"]
 unique_name_in_owner = true
 layout_mode = 2
+offset_left = 14.0
+offset_top = 300.0
+offset_right = 26.0
+offset_bottom = 314.0
+scale = Vector2(2, 2)
 texture_normal = SubResource("AtlasTexture_bvqpb")
 texture_pressed = SubResource("AtlasTexture_swcsf")
 texture_hover = SubResource("AtlasTexture_5a3py")
 texture_disabled = SubResource("AtlasTexture_8xqp5")
 
-[node name="Container" type="Container" parent="NinePatchRect/HBoxContainer"]
-custom_minimum_size = Vector2(171, 0)
-layout_mode = 2
-
-[node name="confirmButton" type="TextureButton" parent="NinePatchRect/HBoxContainer"]
+[node name="confirmButton" type="TextureButton" parent="NinePatchRect"]
 unique_name_in_owner = true
 layout_mode = 2
+offset_left = 572.0
+offset_top = 300.5
+offset_right = 586.0
+offset_bottom = 314.5
+scale = Vector2(2, 2)
 texture_normal = SubResource("AtlasTexture_7qkcx")
 texture_pressed = SubResource("AtlasTexture_ug12d")
 texture_hover = SubResource("AtlasTexture_yfjb1")
 texture_disabled = SubResource("AtlasTexture_scopy")
 
 [node name="errorMessage" parent="." instance=ExtResource("6_iaop6")]
+visible = false
 layout_mode = 1
+
+[node name="checkPathLOCA" parent="." instance=ExtResource("9_xnwmn")]
+layout_mode = 0
+offset_left = 187.0
+offset_top = -121.0
+offset_right = 203.0
+offset_bottom = -105.0
+scale = Vector2(1.5, 1.5)
+
+[node name="checkPathFOLD" parent="." instance=ExtResource("9_xnwmn")]
+layout_mode = 0
+offset_left = 187.0
+offset_top = -52.0
+offset_right = 203.0
+offset_bottom = -36.0
+scale = Vector2(1.5, 1.5)
 
 [connection signal="text_changed" from="NinePatchRect/VBoxContainer/Hbox/locationText" to="." method="_on_location_text_text_changed"]
 [connection signal="text_changed" from="NinePatchRect/VBoxContainer/Hbox2/folderNametext" to="." method="_on_folder_nametext_text_changed"]
-[connection signal="pressed" from="NinePatchRect/HBoxContainer/backButton" to="." method="_on_back_button_pressed"]
-[connection signal="pressed" from="NinePatchRect/HBoxContainer/confirmButton" to="." method="_on_confirm_button_pressed"]
+[connection signal="pressed" from="NinePatchRect/backButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="NinePatchRect/confirmButton" to="." method="_on_confirm_button_pressed"]
