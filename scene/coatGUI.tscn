@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dum14k8byt87m"]
+[gd_scene load_steps=22 format=3 uid="uid://dum14k8byt87m"]
 
 [ext_resource type="Script" path="res://scripts/coat_gui.gd" id="1_bgw28"]
 [ext_resource type="Texture2D" uid="uid://8f0rfohmniwa" path="res://assets/menuUI.png" id="2_ypuxh"]
@@ -9,6 +9,7 @@
 [ext_resource type="Theme" uid="uid://cf6ttsgxwgavd" path="res://assets/UI_theme_blue.tres" id="5_sgdhu"]
 [ext_resource type="Theme" uid="uid://db3wwmhf400fw" path="res://assets/UI_theme_dark_big.tres" id="6_duviu"]
 [ext_resource type="PackedScene" uid="uid://b3cou3ndcs75h" path="res://scene/error_message.tscn" id="6_m2onb"]
+[ext_resource type="Theme" uid="uid://dix1yxdlw8hbv" path="res://assets/UI_theme_smol.tres" id="9_200ey"]
 [ext_resource type="PackedScene" uid="uid://cdigxro282sfm" path="res://scene/checkAlert.tscn" id="9_edoao"]
 [ext_resource type="PackedScene" uid="uid://bpgiy2j33slge" path="res://scene/pop_up.tscn" id="10_75oqe"]
 
@@ -345,6 +346,15 @@ theme = ExtResource("5_0f6da")
 text = "Chestnut
 "
 
+[node name="HelperLabel5" type="Label" parent="NinePatchRect/VBoxContainer"]
+custom_minimum_size = Vector2(522, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("9_200ey")
+theme_override_colors/font_color = Color(0.493728, 0.364523, 0.227402, 1)
+text = "Return to the main menu"
+vertical_alignment = 2
+
 [node name="backButton" type="TextureButton" parent="NinePatchRect"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -378,7 +388,10 @@ texture_disabled = SubResource("AtlasTexture_scopy")
 visible = false
 layout_mode = 1
 
-[node name="popUP" parent="." instance=ExtResource("10_75oqe")]
+[node name="popUP_Saved" parent="." instance=ExtResource("10_75oqe")]
+layout_mode = 1
+
+[node name="popUP2_Dupe" parent="." instance=ExtResource("10_75oqe")]
 layout_mode = 1
 
 [node name="checkPath" parent="." instance=ExtResource("9_edoao")]

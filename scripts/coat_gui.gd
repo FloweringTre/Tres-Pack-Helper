@@ -13,6 +13,8 @@ var chestnut_coat : bool = false
 var artist : bool = false
 var inspo : bool = false
 var coat_name : bool = false
+var file_name : String
+var path : String
 
 signal new_coat_saved
 
@@ -22,8 +24,10 @@ func _ready() -> void:
 	%n_aButton.button_pressed.connect(on_NA_button)
 	%nameCheck.button_pressed.connect(on_name_check)
 	new_coat_saved.connect(on_new_coat_saved)
-	$popUP.deny.connect(on_popup_back)
-	$popUP.confirm.connect(on_popup_confirmed)
+	$popUP_Saved.deny.connect(on_popup_saved_back)
+	$popUP_Saved.confirm.connect(on_popup_saved_confirmed)
+	$popUP2_Dupe.deny.connect(on_popup_dupe_back)
+	$popUP2_Dupe.confirm.connect(on_popup_dupe_confirmed)
 
 func on_error() -> void:
 	%confirmButton.disabled = true
@@ -159,12 +163,17 @@ func _on_chestnut_check_box_7_pressed() -> void:
 func _on_confirm_button_pressed() -> void:
 	GlobalScripts.setup_coats()
 	on_name_check()
-	GlobalScripts.setup_coats()
-	var file_name = %coatText.text + ".json"
-	var path = GlobalScripts.join_paths(GlobalScripts.jsons_root, "coats")
+	file_name = %coatText.text + ".json"
+	path = GlobalScripts.join_paths(GlobalScripts.jsons_root, "coats")
 	path = GlobalScripts.join_paths(path, file_name)
-	var file = FileAccess.open(path, FileAccess.WRITE)
 	
+	if GlobalScripts.check_file_exists(path):
+		coat_exists()
+	else:
+		save_coat()
+
+func save_coat() -> void:
+	var file = FileAccess.open(path, FileAccess.WRITE)
 	if file:
 		var models = {
 			"legacy" = "legacy/" + %coatText.text + ".png"
@@ -183,24 +192,40 @@ func _on_confirm_button_pressed() -> void:
 		file.store_string(string_1)
 		file.close()
 		GlobalScripts.instructions("coat", %coatText.text, GlobalScripts.join_paths(GlobalScripts.textures_root, "coats/legacy") )
-		GlobalScripts.report("I saved the new coat file, " + %coatText.text + ", to " + path + " and updated the Instructions document.")
+		GlobalScripts.report("I saved the new coat, " + %coatText.text + ", to " + path + " and updated the Instructions document.")
 		new_coat_saved.emit()
 	
 	else:
-		ErrorManager.error_print("I couldn't save the new coat. Check the folder pathways.")
+		ErrorManager.error_print("I couldn't save the new coat. The ./json/coat/ folder wouldn't open. Check to see if it exists.")
+
+func coat_exists() -> void:
+	var title = "This coat already exists!"
+	var message = "There already exists a coat named '" + %coatText.text + "'. \nWhat do you want to do?"
+	var no_label = "Go Back"
+	var yes_label = "Overwrite it"
+	$popUP2_Dupe.pop_yesNo(title, message, no_label, yes_label)
+	%confirmButton.disabled = true
+	%backButton.disabled = true
+
+func on_popup_dupe_back() -> void:
+	%confirmButton.disabled = false
+	%backButton.disabled = false
+
+func on_popup_dupe_confirmed() -> void:
+	save_coat()
 
 func on_new_coat_saved() -> void:
 	var title = "Complete!"
 	var message = "Successfully added " + %coatText.text + " to the pack folder. What do you want to do now?"
 	var no_label = "Go Back"
 	var yes_label = "Start New Coat"
-	$popUP.pop_yesNo(title, message, no_label, yes_label)
+	$popUP_Saved.pop_yesNo(title, message, no_label, yes_label)
 	%confirmButton.disabled = true
 	%backButton.disabled = true
 
-func on_popup_back() -> void:
+func on_popup_saved_back() -> void:
 	%confirmButton.disabled = false
 	%backButton.disabled = false
 
-func on_popup_confirmed() -> void:
+func on_popup_saved_confirmed() -> void:
 	get_tree().reload_current_scene()
