@@ -32,10 +32,20 @@ func _ready() -> void:
 func on_error() -> void:
 	%confirmButton.disabled = true
 	%backButton.disabled = true
+	%artistText.editable = false
+	%inspoText.editable = false
+	%coatText.editable = false
+	%n_aButton.set_disabled()
+	%nameCheck.set_disabled()
 
 func on_error_continue() -> void:
 	%confirmButton.disabled = false
 	%backButton.disabled = false
+	%artistText.editable = true
+	%inspoText.editable = true
+	%coatText.editable = true
+	%n_aButton.reenable_button()
+	%nameCheck.reenable_button()
 
 func _on_back_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scene/startingGUI.tscn")
@@ -191,8 +201,8 @@ func save_coat() -> void:
 		
 		file.store_string(string_1)
 		file.close()
-		GlobalScripts.instructions("coat", %coatText.text, GlobalScripts.join_paths(GlobalScripts.textures_root, "coats/legacy") )
-		GlobalScripts.report("I saved the new coat, " + %coatText.text + ", to " + path + " and updated the Instructions document.")
+		GlobalScripts.instructions_coat(%coatText.text, GlobalScripts.join_paths(GlobalScripts.textures_root, "coats/legacy") )
+		GlobalScripts.report("I saved the new coat, " + %coatText.text + ", to " + path)
 		new_coat_saved.emit()
 	
 	else:
@@ -206,26 +216,46 @@ func coat_exists() -> void:
 	$popUP2_Dupe.pop_yesNo(title, message, no_label, yes_label)
 	%confirmButton.disabled = true
 	%backButton.disabled = true
+	%artistText.editable = false
+	%inspoText.editable = false
+	%coatText.editable = false
+	%n_aButton.set_disabled()
+	%nameCheck.set_disabled()
 
 func on_popup_dupe_back() -> void:
 	%confirmButton.disabled = false
 	%backButton.disabled = false
+	%artistText.editable = true
+	%inspoText.editable = true
+	%coatText.editable = true
+	%n_aButton.reenable_button()
+	%nameCheck.reenable_button()
 
 func on_popup_dupe_confirmed() -> void:
 	save_coat()
 
 func on_new_coat_saved() -> void:
 	var title = "Complete!"
-	var message = "Successfully added " + %coatText.text + " to the pack folder. What do you want to do now?"
+	var message = "Successfully added '" + %coatText.text + "' to the pack folder. \nWhat do you want to do now?"
 	var no_label = "Go Back"
 	var yes_label = "Start New Coat"
 	$popUP_Saved.pop_yesNo(title, message, no_label, yes_label)
 	%confirmButton.disabled = true
 	%backButton.disabled = true
+	%artistText.editable = false
+	%inspoText.editable = false
+	%coatText.editable = false
+	%n_aButton.set_disabled()
+	%nameCheck.set_disabled()
 
 func on_popup_saved_back() -> void:
 	%confirmButton.disabled = false
 	%backButton.disabled = false
+	%artistText.editable = true
+	%inspoText.editable = true
+	%coatText.editable = true
+	%n_aButton.reenable_button()
+	%nameCheck.reenable_button()
 
 func on_popup_saved_confirmed() -> void:
 	get_tree().reload_current_scene()

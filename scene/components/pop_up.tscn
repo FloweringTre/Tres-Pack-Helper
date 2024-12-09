@@ -1,7 +1,7 @@
 [gd_scene load_steps=18 format=3 uid="uid://bpgiy2j33slge"]
 
 [ext_resource type="Texture2D" uid="uid://8f0rfohmniwa" path="res://assets/menuUI.png" id="1_6x5xs"]
-[ext_resource type="Script" path="res://scripts/pop_up.gd" id="2_0cii8"]
+[ext_resource type="Script" path="res://scripts/components/pop_up.gd" id="2_0cii8"]
 [ext_resource type="Theme" uid="uid://dm4jlnbmnj4eb" path="res://assets/UI_theme_dark.tres" id="3_kx8fm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vlar3"]

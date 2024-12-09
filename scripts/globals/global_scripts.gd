@@ -40,6 +40,20 @@ func text_clean(text : String): #takes strings and makes them acceptable for jav
 			temp_n += "_"
 		else:
 			pass
+	if temp_n.begins_with("_"):
+		temp_n.erase(0)
+	if temp_n.ends_with("_"):
+		temp_n.erase(-1)
+	return temp_n
+
+func to_alphanumeric(text : String): #returns alphanumeric values only
+	var temp_n = "" 
+	text = text.to_lower()
+	for char in text:
+		if (char >= "a" and char <= "z") or (char >= "0" and char <= "9"):
+			temp_n += char
+		else:
+			pass
 	return temp_n
 
 func join_paths(root_path : String, folder : String): #joins two values to a correct file path
@@ -196,15 +210,16 @@ func set_up_instructions() -> void:
 				file.close()
 				report("I set up the INSTRUCTIONS.txt document")
 
-func instructions(item : String, texture_name : String, path : String):
+func instructions_coat(texture_name : String, path : String):
 	if ErrorManager.is_error:
 		return
 	else:
 		var file = FileAccess.open(instructions_file_path, FileAccess.READ_WRITE)
-		var string_1 = "\nADD NEW " + item.to_upper() + "\n"# ADD NEW COAT
-		var string_2 = "~~Name the Texture: " + texture_name + ".png" + "\n"# ~~Name Texture: kiwi_wonder_pony.png
-		var string_3 = "~~Save Texture in: " + path + "\n" # ~~Save to: folder/path/way
-		var instruction_string = string_1 + string_2 + string_3
+		var string_1 = "\nADD A NEW COAT TEXTURE\n"# ADD NEW COAT
+		var string_2 = "~Coat :" + texture_name + "\n"
+		var string_3 = "~~Name the texture: " + texture_name + ".png" + "\n"# ~~Name Texture: kiwi_wonder_pony.png
+		var string_4 = "~~Place the texture in: " + path + "\n" # ~~Save to: folder/path/way
+		var instruction_string = string_1 + string_2 + string_3 + string_4
 		if !file:
 			ErrorManager.is_error = true
 			ErrorManager.error_print("Unable to save instructions. Please check to see if the folder pathway still exists." )
@@ -213,3 +228,24 @@ func instructions(item : String, texture_name : String, path : String):
 			file.seek_end()
 			file.store_string(instruction_string)
 			file.close()
+			report("I updated the instruction document with information for " + texture_name)
+
+func instructions_tack(type : String, item : String, tack_textures : String , path : String):
+	if ErrorManager.is_error:
+		return
+	else:
+		var file = FileAccess.open(instructions_file_path, FileAccess.READ_WRITE)
+		var string_1 = "\nADD NEW" + type.to_upper() + " TEXTURES\n"# ADD NEW COAT
+		var string_2 = "~" + type + " :" + item + "\n"
+		var string_3 = "~~Name the following textures as specified below: \n"# instructions
+		var string_4 = "~~Save ALL these textures in: " + path + "\n" # ~~Save to: folder/path/way
+		var instruction_string = string_1 + string_2 + string_3 + tack_textures + string_4
+		if !file:
+			ErrorManager.is_error = true
+			ErrorManager.error_print("Unable to save instructions. Please check to see if the folder pathway still exists." )
+			return
+		else:
+			file.seek_end()
+			file.store_string(instruction_string)
+			file.close()
+			report("I updated the instruction document with information for " + item)
