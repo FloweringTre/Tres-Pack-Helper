@@ -1,0 +1,535 @@
+[gd_scene load_steps=22 format=3 uid="uid://c2mcpghq36d4e"]
+
+[ext_resource type="Script" path="res://scripts/tack_menu_gui.gd" id="1_7ssmw"]
+[ext_resource type="Texture2D" uid="uid://8f0rfohmniwa" path="res://assets/menuUI.png" id="2_ch7cg"]
+[ext_resource type="Texture2D" uid="uid://dm1bh2yywotao" path="res://assets/icon.png" id="3_np7ds"]
+[ext_resource type="Theme" uid="uid://clxftkhcliti8" path="res://assets/UI_theme.tres" id="4_tkq3h"]
+[ext_resource type="PackedScene" uid="uid://cp0jrapb6x6a2" path="res://scene/components/buttonSMOL.tscn" id="5_nykae"]
+[ext_resource type="Theme" uid="uid://cf6ttsgxwgavd" path="res://assets/UI_theme_blue.tres" id="6_63gio"]
+[ext_resource type="PackedScene" uid="uid://bicshr65lr0n1" path="res://scene/components/button.tscn" id="6_ibjxg"]
+[ext_resource type="Theme" uid="uid://dm4jlnbmnj4eb" path="res://assets/UI_theme_dark.tres" id="8_xsab8"]
+[ext_resource type="PackedScene" uid="uid://eexrhh8cyqwa" path="res://scene/components/buttonLONG.tscn" id="9_5u002"]
+[ext_resource type="Theme" uid="uid://dix1yxdlw8hbv" path="res://assets/UI_theme_smol.tres" id="9_56vof"]
+[ext_resource type="PackedScene" uid="uid://b3cou3ndcs75h" path="res://scene/components/error_message.tscn" id="10_551ul"]
+[ext_resource type="PackedScene" uid="uid://bpgiy2j33slge" path="res://scene/components/pop_up.tscn" id="11_71188"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kx556"]
+atlas = ExtResource("2_ch7cg")
+region = Rect2(58, 10, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2dryr"]
+atlas = ExtResource("2_ch7cg")
+region = Rect2(161, 2, 14, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o0agg"]
+atlas = ExtResource("2_ch7cg")
+region = Rect2(161, 36, 14, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m7vgm"]
+atlas = ExtResource("2_ch7cg")
+region = Rect2(161, 18, 14, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_00yw3"]
+atlas = ExtResource("2_ch7cg")
+region = Rect2(161, 52, 14, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ror28"]
+atlas = ExtResource("2_ch7cg")
+region = Rect2(178, 1, 12, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jop8w"]
+atlas = ExtResource("2_ch7cg")
+region = Rect2(178, 35, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2l2ur"]
+atlas = ExtResource("2_ch7cg")
+region = Rect2(178, 17, 12, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5h1pk"]
+atlas = ExtResource("2_ch7cg")
+region = Rect2(178, 51, 12, 12)
+
+[node name="tackmenuGUI" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7ssmw")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -304.0
+offset_top = -167.5
+offset_right = 304.0
+offset_bottom = 167.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_kx556")
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect"]
+custom_minimum_size = Vector2(513, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -204.0
+offset_top = 9.0
+offset_right = 204.0
+offset_bottom = 76.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="TitleContainer" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 115
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="NinePatchRect/VBoxContainer/TitleContainer"]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+texture = ExtResource("3_np7ds")
+
+[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/TitleContainer"]
+layout_mode = 2
+theme = ExtResource("4_tkq3h")
+theme_override_colors/font_color = Color(0.178263, 0.423711, 0.665043, 1)
+text = "Create New Tack Items"
+
+[node name="TextureRect2" type="TextureRect" parent="NinePatchRect/VBoxContainer/TitleContainer"]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+texture = ExtResource("3_np7ds")
+flip_h = true
+
+[node name="HelperLabel2" type="Label" parent="NinePatchRect/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme = ExtResource("8_xsab8")
+text = "You can choose to make a whole set of items at once or just one item at a time!"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="setsBoxContainer" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="NinePatchRect/VBoxContainer/setsBoxContainer"]
+layout_mode = 2
+columns = 3
+
+[node name="full_set" parent="NinePatchRect/VBoxContainer/setsBoxContainer/GridContainer" instance=ExtResource("6_ibjxg")]
+unique_name_in_owner = true
+layout_mode = 2
+button_text = "Full Set"
+
+[node name="saddle_set" parent="NinePatchRect/VBoxContainer/setsBoxContainer/GridContainer" instance=ExtResource("6_ibjxg")]
+unique_name_in_owner = true
+layout_mode = 2
+button_text = "Saddle Set"
+
+[node name="extras_set" parent="NinePatchRect/VBoxContainer/setsBoxContainer/GridContainer" instance=ExtResource("6_ibjxg")]
+unique_name_in_owner = true
+layout_mode = 2
+button_text = "Extras Set"
+
+[node name="Spacer" type="Label" parent="NinePatchRect/VBoxContainer"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="Line2D" type="Line2D" parent="NinePatchRect/VBoxContainer/Spacer"]
+position = Vector2(20.3425, 3)
+scale = Vector2(3.0766, 1)
+points = PackedVector2Array(176.296, 2, -1, 2)
+width = 1.0
+default_color = Color(0.811765, 0.67451, 0.490196, 1)
+
+[node name="BoxContainer" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="defaults" type="VBoxContainer" parent="NinePatchRect/VBoxContainer/BoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/BoxContainer/defaults"]
+layout_mode = 2
+theme = ExtResource("6_63gio")
+text = "      Set Default Coin Costs"
+horizontal_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/BoxContainer/defaults"]
+layout_mode = 2
+alignment = 2
+
+[node name="GridContainer2" type="GridContainer" parent="NinePatchRect/VBoxContainer/BoxContainer/defaults/HBoxContainer2"]
+layout_mode = 2
+columns = 3
+
+[node name="saddleBox" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/BoxContainer/defaults/HBoxContainer2/GridContainer2"]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/BoxContainer/defaults/HBoxContainer2/GridContainer2/saddleBox"]
+layout_mode = 2
+text = "Saddles:"
+
+[node name="saddleSpinBox" type="SpinBox" parent="NinePatchRect/VBoxContainer/BoxContainer/defaults/HBoxContainer2/GridContainer2/saddleBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("4_tkq3h")
+min_value = 1.0
+max_value = 64.0
+value = 16.0
+alignment = 1
+
+[node name="bridleBox" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/BoxContainer/defaults/HBoxContainer2/GridContainer2"]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/BoxContainer/defaults/HBoxContainer2/GridContainer2/bridleBox"]
+layout_mode = 2
+text = "Bridles:"
+
+[node name="bridleSpinBox" type="SpinBox" parent="NinePatchRect/VBoxContainer/BoxContainer/defaults/HBoxContainer2/GridContainer2/bridleBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("4_tkq3h")
+min_value = 1.0
+max_value = 64.0
+value = 5.0
+alignment = 1
+
+[node name="blanketBox" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/BoxContainer/defaults/HBoxContainer2/GridContainer2"]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/BoxContainer/defaults/HBoxContainer2/GridContainer2/blanketBox"]
+layout_mode = 2
+text = "Saddle Blankets:"
+
+[node name="blanketSpinBox" type="SpinBox" parent="NinePatchRect/VBoxContainer/BoxContainer/defaults/HBoxContainer2/GridContainer2/blanketBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("4_tkq3h")
+min_value = 1.0
+max_value = 64.0
+value = 5.0
+alignment = 1
+
+[node name="halterBox" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/BoxContainer/defaults/HBoxContainer2/GridContainer2"]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/BoxContainer/defaults/HBoxContainer2/GridContainer2/halterBox"]
+layout_mode = 2
+text = "Halters:"
+
+[node name="halterSpinBox" type="SpinBox" parent="NinePatchRect/VBoxContainer/BoxContainer/defaults/HBoxContainer2/GridContainer2/halterBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("4_tkq3h")
+min_value = 1.0
+max_value = 64.0
+value = 4.0
+alignment = 1
+
+[node name="legWrapsBox" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/BoxContainer/defaults/HBoxContainer2/GridContainer2"]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/BoxContainer/defaults/HBoxContainer2/GridContainer2/legWrapsBox"]
+layout_mode = 2
+text = "Leg Wraps:"
+
+[node name="legWrapsSpinBox" type="SpinBox" parent="NinePatchRect/VBoxContainer/BoxContainer/defaults/HBoxContainer2/GridContainer2/legWrapsBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("4_tkq3h")
+min_value = 1.0
+max_value = 64.0
+value = 4.0
+alignment = 1
+
+[node name="breastCollarBox" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/BoxContainer/defaults/HBoxContainer2/GridContainer2"]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/BoxContainer/defaults/HBoxContainer2/GridContainer2/breastCollarBox"]
+layout_mode = 2
+text = "Breast Collars:"
+
+[node name="breastCollarSpinBox" type="SpinBox" parent="NinePatchRect/VBoxContainer/BoxContainer/defaults/HBoxContainer2/GridContainer2/breastCollarBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("4_tkq3h")
+min_value = 1.0
+max_value = 64.0
+value = 10.0
+alignment = 1
+
+[node name="armorBox" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/BoxContainer/defaults/HBoxContainer2/GridContainer2"]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/BoxContainer/defaults/HBoxContainer2/GridContainer2/armorBox"]
+layout_mode = 2
+text = "Armors:"
+
+[node name="armorSpinBox" type="SpinBox" parent="NinePatchRect/VBoxContainer/BoxContainer/defaults/HBoxContainer2/GridContainer2/armorBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("4_tkq3h")
+min_value = 1.0
+max_value = 64.0
+value = 64.0
+alignment = 1
+
+[node name="bagBox" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/BoxContainer/defaults/HBoxContainer2/GridContainer2"]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/BoxContainer/defaults/HBoxContainer2/GridContainer2/bagBox"]
+layout_mode = 2
+text = "Saddle Bags:"
+
+[node name="bagSpinBox" type="SpinBox" parent="NinePatchRect/VBoxContainer/BoxContainer/defaults/HBoxContainer2/GridContainer2/bagBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("4_tkq3h")
+min_value = 1.0
+max_value = 64.0
+value = 8.0
+alignment = 1
+
+[node name="girthStrapBox" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/BoxContainer/defaults/HBoxContainer2/GridContainer2"]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/BoxContainer/defaults/HBoxContainer2/GridContainer2/girthStrapBox"]
+layout_mode = 2
+text = "Grith Straps:"
+
+[node name="girthStrapSpinBox" type="SpinBox" parent="NinePatchRect/VBoxContainer/BoxContainer/defaults/HBoxContainer2/GridContainer2/girthStrapBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("4_tkq3h")
+min_value = 1.0
+max_value = 64.0
+value = 3.0
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/BoxContainer/defaults"]
+layout_mode = 2
+alignment = 2
+
+[node name="GridContainer" type="GridContainer" parent="NinePatchRect/VBoxContainer/BoxContainer/defaults/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 15
+columns = 2
+
+[node name="pastureBlanketBox" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/BoxContainer/defaults/HBoxContainer/GridContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/BoxContainer/defaults/HBoxContainer/GridContainer/pastureBlanketBox"]
+layout_mode = 2
+text = "Pasture Blankets:"
+
+[node name="pastureBlanketSpinBox" type="SpinBox" parent="NinePatchRect/VBoxContainer/BoxContainer/defaults/HBoxContainer/GridContainer/pastureBlanketBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("4_tkq3h")
+min_value = 1.0
+max_value = 64.0
+value = 16.0
+alignment = 1
+
+[node name="arPastureBlanketBox" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/BoxContainer/defaults/HBoxContainer/GridContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/BoxContainer/defaults/HBoxContainer/GridContainer/arPastureBlanketBox"]
+layout_mode = 2
+text = "Armored Pasture Blankets:"
+
+[node name="arpastureBlanketSpinBox" type="SpinBox" parent="NinePatchRect/VBoxContainer/BoxContainer/defaults/HBoxContainer/GridContainer/arPastureBlanketBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("4_tkq3h")
+min_value = 1.0
+max_value = 64.0
+value = 32.0
+alignment = 1
+
+[node name="Container" type="Container" parent="NinePatchRect/VBoxContainer/BoxContainer"]
+layout_mode = 2
+
+[node name="Line2D" type="Line2D" parent="NinePatchRect/VBoxContainer/BoxContainer/Container"]
+position = Vector2(20.3425, 3)
+scale = Vector2(3.0766, 1)
+points = PackedVector2Array(-7, 2, -7, 156)
+width = 1.0
+default_color = Color(0.811765, 0.67451, 0.490196, 1)
+
+[node name="buttonGrid" type="VBoxContainer" parent="NinePatchRect/VBoxContainer/BoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/BoxContainer/buttonGrid"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme = ExtResource("6_63gio")
+text = "Make one-off items"
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="NinePatchRect/VBoxContainer/BoxContainer/buttonGrid"]
+layout_mode = 2
+columns = 3
+
+[node name="saddles" parent="NinePatchRect/VBoxContainer/BoxContainer/buttonGrid/GridContainer" instance=ExtResource("5_nykae")]
+unique_name_in_owner = true
+layout_mode = 2
+button_text = "Saddles"
+
+[node name="bridles" parent="NinePatchRect/VBoxContainer/BoxContainer/buttonGrid/GridContainer" instance=ExtResource("5_nykae")]
+unique_name_in_owner = true
+layout_mode = 2
+button_text = "Bridles"
+
+[node name="blankets" parent="NinePatchRect/VBoxContainer/BoxContainer/buttonGrid/GridContainer" instance=ExtResource("5_nykae")]
+unique_name_in_owner = true
+layout_mode = 2
+button_text = "Saddle Blankets"
+
+[node name="girth_straps" parent="NinePatchRect/VBoxContainer/BoxContainer/buttonGrid/GridContainer" instance=ExtResource("5_nykae")]
+unique_name_in_owner = true
+layout_mode = 2
+button_text = "Girth Straps"
+
+[node name="breast_collars" parent="NinePatchRect/VBoxContainer/BoxContainer/buttonGrid/GridContainer" instance=ExtResource("5_nykae")]
+unique_name_in_owner = true
+layout_mode = 2
+button_text = "Breast Collars"
+
+[node name="leg_wraps" parent="NinePatchRect/VBoxContainer/BoxContainer/buttonGrid/GridContainer" instance=ExtResource("5_nykae")]
+unique_name_in_owner = true
+layout_mode = 2
+button_text = "Leg Wraps"
+
+[node name="halters" parent="NinePatchRect/VBoxContainer/BoxContainer/buttonGrid/GridContainer" instance=ExtResource("5_nykae")]
+unique_name_in_owner = true
+layout_mode = 2
+button_text = "Halters"
+
+[node name="saddle_bags" parent="NinePatchRect/VBoxContainer/BoxContainer/buttonGrid/GridContainer" instance=ExtResource("5_nykae")]
+unique_name_in_owner = true
+layout_mode = 2
+button_text = "Saddle Bags"
+
+[node name="armors" parent="NinePatchRect/VBoxContainer/BoxContainer/buttonGrid/GridContainer" instance=ExtResource("5_nykae")]
+unique_name_in_owner = true
+layout_mode = 2
+button_text = "Armors"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/BoxContainer/buttonGrid"]
+layout_mode = 2
+alignment = 1
+
+[node name="pasture_blankets" parent="NinePatchRect/VBoxContainer/BoxContainer/buttonGrid/HBoxContainer" instance=ExtResource("9_5u002")]
+unique_name_in_owner = true
+layout_mode = 2
+button_text = "Both Pasture Blankets"
+
+[node name="continue" type="Label" parent="NinePatchRect"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(111, 14)
+layout_mode = 2
+offset_left = 208.0
+offset_top = 291.0
+offset_right = 319.0
+offset_bottom = 305.0
+theme = ExtResource("4_tkq3h")
+theme_override_colors/font_color = Color(0.505882, 0.517647, 0.364706, 1)
+theme_override_font_sizes/font_size = 16
+text = "Default Values Saved"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="confirmButton" type="TextureButton" parent="NinePatchRect"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 324.0
+offset_top = 283.0
+offset_right = 338.0
+offset_bottom = 297.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(1.5, 1.5)
+disabled = true
+texture_normal = SubResource("AtlasTexture_2dryr")
+texture_pressed = SubResource("AtlasTexture_o0agg")
+texture_hover = SubResource("AtlasTexture_m7vgm")
+texture_disabled = SubResource("AtlasTexture_00yw3")
+stretch_mode = 0
+
+[node name="HelperLabel5" type="Label" parent="NinePatchRect"]
+custom_minimum_size = Vector2(522, 30)
+layout_mode = 2
+offset_left = 43.0
+offset_top = 300.0
+offset_right = 565.0
+offset_bottom = 330.0
+size_flags_horizontal = 4
+theme = ExtResource("9_56vof")
+theme_override_colors/font_color = Color(0.493728, 0.364523, 0.227402, 1)
+text = "Return to the main menu"
+vertical_alignment = 2
+
+[node name="backButton" type="TextureButton" parent="NinePatchRect"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 9.0
+offset_top = 300.0
+offset_right = 21.0
+offset_bottom = 314.0
+scale = Vector2(2, 2)
+texture_normal = SubResource("AtlasTexture_ror28")
+texture_pressed = SubResource("AtlasTexture_jop8w")
+texture_hover = SubResource("AtlasTexture_2l2ur")
+texture_disabled = SubResource("AtlasTexture_5h1pk")
+
+[node name="errorMessage" parent="." instance=ExtResource("10_551ul")]
+visible = false
+layout_mode = 1
+
+[node name="popUP" parent="." instance=ExtResource("11_71188")]
+visible = false
+layout_mode = 1
+
+[connection signal="value_changed" from="NinePatchRect/VBoxContainer/BoxContainer/defaults/HBoxContainer2/GridContainer2/saddleBox/saddleSpinBox" to="." method="_on_saddle_spin_box_value_changed"]
+[connection signal="value_changed" from="NinePatchRect/VBoxContainer/BoxContainer/defaults/HBoxContainer2/GridContainer2/bridleBox/bridleSpinBox" to="." method="_on_bridle_spin_box_value_changed"]
+[connection signal="value_changed" from="NinePatchRect/VBoxContainer/BoxContainer/defaults/HBoxContainer2/GridContainer2/blanketBox/blanketSpinBox" to="." method="_on_blanket_spin_box_value_changed"]
+[connection signal="value_changed" from="NinePatchRect/VBoxContainer/BoxContainer/defaults/HBoxContainer2/GridContainer2/halterBox/halterSpinBox" to="." method="_on_halter_spin_box_value_changed"]
+[connection signal="value_changed" from="NinePatchRect/VBoxContainer/BoxContainer/defaults/HBoxContainer2/GridContainer2/legWrapsBox/legWrapsSpinBox" to="." method="_on_leg_wraps_spin_box_value_changed"]
+[connection signal="value_changed" from="NinePatchRect/VBoxContainer/BoxContainer/defaults/HBoxContainer2/GridContainer2/breastCollarBox/breastCollarSpinBox" to="." method="_on_breast_collar_spin_box_value_changed"]
+[connection signal="value_changed" from="NinePatchRect/VBoxContainer/BoxContainer/defaults/HBoxContainer2/GridContainer2/armorBox/armorSpinBox" to="." method="_on_armor_spin_box_value_changed"]
+[connection signal="value_changed" from="NinePatchRect/VBoxContainer/BoxContainer/defaults/HBoxContainer2/GridContainer2/bagBox/bagSpinBox" to="." method="_on_bag_spin_box_value_changed"]
+[connection signal="value_changed" from="NinePatchRect/VBoxContainer/BoxContainer/defaults/HBoxContainer2/GridContainer2/girthStrapBox/girthStrapSpinBox" to="." method="_on_girth_strap_spin_box_value_changed"]
+[connection signal="value_changed" from="NinePatchRect/VBoxContainer/BoxContainer/defaults/HBoxContainer/GridContainer/pastureBlanketBox/pastureBlanketSpinBox" to="." method="_on_pasture_blanket_spin_box_value_changed"]
+[connection signal="value_changed" from="NinePatchRect/VBoxContainer/BoxContainer/defaults/HBoxContainer/GridContainer/arPastureBlanketBox/arpastureBlanketSpinBox" to="." method="_on_arpasture_blanket_spin_box_value_changed"]
+[connection signal="pressed" from="NinePatchRect/confirmButton" to="." method="_on_confirm_button_pressed"]
+[connection signal="pressed" from="NinePatchRect/backButton" to="." method="_on_back_button_pressed"]
