@@ -8,6 +8,7 @@ var old_pack : bool
 signal setup_done
 var root_changed : bool
 var folder_changed : bool
+var directory : String
 
 func _ready() -> void:
 	if GlobalScripts.root != "":
@@ -30,6 +31,9 @@ func _ready() -> void:
 	%tackButton.button_pressed.connect(on_tack_selected)
 	$errorMessage.error_continue.connect(on_error_continue)
 	%nameCheck.button_pressed.connect(on_name_check)
+	%animButton2.set_disabled()
+	$popUP.deny.connect(on_popup_back)
+	$popUP.confirm.connect(on_popup_confirmed)
 
 func _on_confirm_button_pressed() -> void:
 	var Root = location_text.text
@@ -38,13 +42,10 @@ func _on_confirm_button_pressed() -> void:
 	folder = GlobalScripts.path_clean(folder)
 	GlobalScripts.root = Root
 	GlobalScripts.folder = folder
-	var directory = GlobalScripts.join_paths(Root, folder)
-	var opened_dir= DirAccess.open(directory)
+	directory = GlobalScripts.join_paths(Root, folder)
 	
-	if opened_dir:
-		GlobalScripts.old_pack_setup(directory)
-		old_pack = true
-		setup_done.emit()
+	if GlobalScripts.check_folder(directory):
+		folder_exists()
 	else:
 		GlobalScripts.new_pack_setup(directory)
 		old_pack = false
@@ -75,8 +76,10 @@ func on_coats_selected() -> void:
 	get_tree().change_scene_to_file("res://scene/coatGUI.tscn")
 
 func on_tack_selected() -> void:
-	pass
+	get_tree().change_scene_to_file("res://scene/tackMenuGUI.tscn")
 
+func on_animation_selected() -> void:
+	pass
 
 func _on_location_text_text_changed() -> void:
 	$checkPathLOCA.awaiting_check()
@@ -129,3 +132,30 @@ func on_name_check() -> void:
 			%confirmButton.disabled = false
 		else:
 			pass
+
+func folder_exists() -> void:
+	var title = "This folder already exists!"
+	var message = "There already exists a pack folder named '" + folder_nametext.text + "'. \nWhat do you want to do?"
+	var no_label = "Go Back"
+	var yes_label = "Open it"
+	$popUP.pop_yesNo(title, message, no_label, yes_label)
+	%confirmButton.disabled = true
+	%backButton.disabled = true
+	%nameCheck.set_disabled()
+	%pathOpenButton.set_disabled()
+	location_text.editable = false
+	folder_nametext.editable = false
+
+func on_popup_back() -> void:
+	%confirmButton.disabled = false
+	%backButton.disabled = false
+	%nameCheck.reenable_button()
+	%pathOpenButton.reenable_button()
+	location_text.editable = true
+	folder_nametext.editable = true
+
+func on_popup_confirmed() -> void:
+	var opened_dir= DirAccess.open(directory)
+	GlobalScripts.old_pack_setup(directory)
+	old_pack = true
+	setup_done.emit()

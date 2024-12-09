@@ -1,16 +1,17 @@
-[gd_scene load_steps=21 format=3 uid="uid://c7f637oqram5g"]
+[gd_scene load_steps=22 format=3 uid="uid://c7f637oqram5g"]
 
 [ext_resource type="Script" path="res://scripts/starting_gui.gd" id="1_3an53"]
 [ext_resource type="Texture2D" uid="uid://8f0rfohmniwa" path="res://assets/menuUI.png" id="1_lx5dw"]
 [ext_resource type="Theme" uid="uid://clxftkhcliti8" path="res://assets/UI_theme.tres" id="2_em82s"]
 [ext_resource type="Texture2D" uid="uid://dm1bh2yywotao" path="res://assets/icon.png" id="3_kp27u"]
-[ext_resource type="PackedScene" uid="uid://bicshr65lr0n1" path="res://scene/button.tscn" id="5_1lo41"]
+[ext_resource type="PackedScene" uid="uid://bicshr65lr0n1" path="res://scene/components/button.tscn" id="5_1lo41"]
 [ext_resource type="Theme" uid="uid://cf6ttsgxwgavd" path="res://assets/UI_theme_blue.tres" id="5_o5bxr"]
-[ext_resource type="PackedScene" uid="uid://cp0jrapb6x6a2" path="res://scene/buttonSMOL.tscn" id="5_uwvmr"]
-[ext_resource type="PackedScene" uid="uid://b3cou3ndcs75h" path="res://scene/error_message.tscn" id="6_iaop6"]
+[ext_resource type="PackedScene" uid="uid://cp0jrapb6x6a2" path="res://scene/components/buttonSMOL.tscn" id="5_uwvmr"]
+[ext_resource type="PackedScene" uid="uid://b3cou3ndcs75h" path="res://scene/components/error_message.tscn" id="6_iaop6"]
 [ext_resource type="Theme" uid="uid://dix1yxdlw8hbv" path="res://assets/UI_theme_smol.tres" id="7_0bqte"]
 [ext_resource type="Theme" uid="uid://db3wwmhf400fw" path="res://assets/UI_theme_dark_big.tres" id="7_7bhpy"]
-[ext_resource type="PackedScene" uid="uid://cdigxro282sfm" path="res://scene/checkAlert.tscn" id="9_xnwmn"]
+[ext_resource type="PackedScene" uid="uid://cdigxro282sfm" path="res://scene/components/checkAlert.tscn" id="9_xnwmn"]
+[ext_resource type="PackedScene" uid="uid://bpgiy2j33slge" path="res://scene/components/pop_up.tscn" id="12_kwseo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kx556"]
 atlas = ExtResource("1_lx5dw")
@@ -237,6 +238,11 @@ unique_name_in_owner = true
 layout_mode = 2
 button_text = "Tack"
 
+[node name="animButton2" parent="NinePatchRect/VBoxContainer/Stage2BoxContainer/HBoxContainer" instance=ExtResource("5_1lo41")]
+unique_name_in_owner = true
+layout_mode = 2
+button_text = "Animations"
+
 [node name="backButton" type="TextureButton" parent="NinePatchRect"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -264,7 +270,6 @@ texture_hover = SubResource("AtlasTexture_yfjb1")
 texture_disabled = SubResource("AtlasTexture_scopy")
 
 [node name="errorMessage" parent="." instance=ExtResource("6_iaop6")]
-visible = false
 layout_mode = 1
 
 [node name="checkPathLOCA" parent="." instance=ExtResource("9_xnwmn")]
@@ -282,6 +287,9 @@ offset_top = -52.0
 offset_right = 203.0
 offset_bottom = -36.0
 scale = Vector2(1.5, 1.5)
+
+[node name="popUP" parent="." instance=ExtResource("12_kwseo")]
+layout_mode = 1
 
 [connection signal="text_changed" from="NinePatchRect/VBoxContainer/Hbox/locationText" to="." method="_on_location_text_text_changed"]
 [connection signal="text_changed" from="NinePatchRect/VBoxContainer/Hbox2/folderNametext" to="." method="_on_folder_nametext_text_changed"]
