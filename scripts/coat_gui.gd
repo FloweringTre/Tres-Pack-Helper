@@ -202,11 +202,12 @@ func save_coat() -> void:
 		file.store_string(string_1)
 		file.close()
 		GlobalScripts.instructions_coat(%coatText.text, GlobalScripts.join_paths(GlobalScripts.textures_root, "coats/legacy") )
-		GlobalScripts.report("I saved the new coat, " + %coatText.text + ", to " + path)
+		GlobalScripts.report("Saved the new coat, " + %coatText.text + ", to " + path)
 		new_coat_saved.emit()
 	
 	else:
 		ErrorManager.error_print("I couldn't save the new coat. The ./json/coat/ folder wouldn't open. Check to see if it exists.")
+		GlobalScripts.report("Failed to save the new coat, '" + %coatText.text + "' to " + path)
 
 func coat_exists() -> void:
 	var title = "This coat already exists!"

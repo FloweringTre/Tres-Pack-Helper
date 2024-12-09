@@ -8,19 +8,6 @@ var textures_root : String
 var report_file_path : String
 var instructions_file_path : String
 
-enum TackTypes {
-	SaddleBlanket, 
-	BreastCollar, 
-	Bridle, 
-	GirthStrap, 
-	Halter, 
-	HorseArmor,
-	LegWraps,
-	PastureBlanket,
-	Saddle,
-	SaddleBag
-}
-
 func path_clean(path : String): #prepares file paths to proper GDscript format
 	var cleaned_path : String
 	cleaned_path = path.replace("\\", "/")
@@ -67,12 +54,13 @@ func new_pack_setup(directory : String) -> void: #Build a new pack
 	instructions_file_path = join_paths(directory_root, "INSTRUCTIONS.txt")
 	jsons_root = join_paths(directory_root, "jsons")
 	textures_root = join_paths(directory_root, "textures")
+	TackScripts.script_start_up()
 	DirAccess.make_dir_absolute(directory_root)
 	setup_report()
 	set_up_instructions()
 	make_folder(jsons_root)
 	make_folder(textures_root)
-	report("I finished setting up a new main pack folder at " + directory_root)
+	report("Finished setting up a new community pack folder at " + directory_root)
 
 func old_pack_setup(directory : String) -> void: #Open an existing pack
 	directory_root = directory
@@ -80,13 +68,14 @@ func old_pack_setup(directory : String) -> void: #Open an existing pack
 	instructions_file_path = join_paths(directory_root, "INSTRUCTIONS.txt")
 	jsons_root = join_paths(directory_root, "jsons")
 	textures_root = join_paths(directory_root, "textures")
+	TackScripts.script_start_up()
 	setup_report()
 	set_up_instructions()
 	if !check_folder(jsons_root):
 		make_folder(jsons_root)
 	if !check_folder(textures_root):
 		make_folder(textures_root)
-	report("I opened the following directory: " + directory)
+	report("Completed the opening process for the following folder: " + directory)
 
 func check_folder(path : String): #does a folder exist
 	if DirAccess.open(path):
@@ -102,7 +91,7 @@ func check_file_exists(path : String): #is there already a file here?
 
 func make_folder(path : String) -> void: #make a new folder and log it
 	DirAccess.make_dir_absolute(path)
-	report("I made a new folder at " + path)
+	report("Made a new folder at " + path)
 
 func setup_coats() -> void:
 	var temp_j = join_paths(jsons_root, "coats")
@@ -115,42 +104,15 @@ func setup_coats() -> void:
 	if !check_folder(temp_l):
 		make_folder(temp_l)
 
-func setup_main_tack() -> void:
+func setup_tack(tack_type : String):
 	var temp_j = join_paths(jsons_root, "tack")
 	var temp_t = join_paths(textures_root, "tack")
+	var tack_j = join_paths(temp_j, tack_type)
+	var tack_t = join_paths(temp_t, tack_type)
 	if !check_folder(temp_j):
 		make_folder(temp_j)
 	if !check_folder(temp_t):
 		make_folder(temp_t)
-
-func setup_tack(tack_type : int):
-	setup_main_tack()
-	var temp_j = join_paths(jsons_root, "tack")
-	var temp_t = join_paths(textures_root, "tack")
-	var tack_item : String
-	match tack_type:
-		0: #blanket
-			tack_item = "blanket"
-		1: #breast collar
-			tack_item = "breast_collar"
-		2: #bridle
-			tack_item = "bridle"
-		3: #girth strap
-			tack_item = "girth_strap"
-		4: #halter
-			tack_item = "halter"
-		5: #horse armor
-			tack_item = "horse_armor"
-		6: #leg wraps
-			tack_item = "leg_wraps"
-		7: #pasture blanket
-			tack_item = "pasture_blanket"
-		8: #saddle
-			tack_item = "saddle"
-		9: #saddlebag
-			tack_item = "saddle_bag"
-	var tack_j = join_paths(temp_j, tack_item)
-	var tack_t = join_paths(temp_t, tack_item)
 	if !check_folder(tack_j):
 		make_folder(tack_j)
 	if !check_folder(tack_t):
@@ -161,7 +123,7 @@ func setup_report() -> void:
 		return
 	else:
 		if check_file_exists(report_file_path):
-			report("I opened back up this pack folder")
+			report("Opened back up this reporting document")
 		else:
 			var file = FileAccess.open(report_file_path, FileAccess.WRITE_READ)
 			if !file:
@@ -171,7 +133,7 @@ func setup_report() -> void:
 			else:
 				file.store_string("This document will log all creations made by Tre's Pack Helper application.\n\n" )
 				file.close()
-	report("I set up the report document.")
+				report("Set up the report document.")
 
 func report(reporting_text : String):
 	if ErrorManager.is_error:
@@ -203,12 +165,14 @@ func set_up_instructions() -> void:
 			if !file:
 				ErrorManager.is_error = true
 				ErrorManager.error_print("Unable to set up the instructions document - check the file path location.")
+				report("Failed to set up the instructions document when one does not exist at: " + instructions_file_path)
 				return
 			else:
-				file.store_string("This document will tell you the names of each texture to add and where to add them.\n \
-	Please understand, your pack will not function if the textures are not correctly named or placed in the wrong folders.\n\n" )
+				file.store_string("This document will tell you the names of each texture to add and where to add them.\n" + \
+				" Please understand, your pack will not function if the textures are not correctly named or placed in the wrong" + \
+				" folders.\n Feel free to delete instructions you have completed and copy/paste names and addresses from this document.\n\n" )
 				file.close()
-				report("I set up the INSTRUCTIONS.txt document")
+				report("Set up the INSTRUCTIONS.txt document")
 
 func instructions_coat(texture_name : String, path : String):
 	if ErrorManager.is_error:
@@ -223,29 +187,31 @@ func instructions_coat(texture_name : String, path : String):
 		if !file:
 			ErrorManager.is_error = true
 			ErrorManager.error_print("Unable to save instructions. Please check to see if the folder pathway still exists." )
+			report("Failed on opening the instructions document when saving a coat named: " + texture_name)
 			return
 		else:
 			file.seek_end()
 			file.store_string(instruction_string)
 			file.close()
-			report("I updated the instruction document with information for " + texture_name)
+			report("Updated the instruction document with information for " + texture_name)
 
 func instructions_tack(type : String, item : String, tack_textures : String , path : String):
 	if ErrorManager.is_error:
 		return
 	else:
 		var file = FileAccess.open(instructions_file_path, FileAccess.READ_WRITE)
-		var string_1 = "\nADD NEW" + type.to_upper() + " TEXTURES\n"# ADD NEW COAT
-		var string_2 = "~" + type + " :" + item + "\n"
-		var string_3 = "~~Name the following textures as specified below: \n"# instructions
-		var string_4 = "~~Save ALL these textures in: " + path + "\n" # ~~Save to: folder/path/way
+		var string_1 = "\nADD NEW " + type.to_upper() + " TEXTURES\n"# ADD NEW COAT
+		var string_2 = "~Tack Piece: " + item + "\n"
+		var string_3 = "~~Name the textures as listed below~~\n"# instructions
+		var string_4 = "~~Save ALL of these textures in: " + path + "\n" # ~~Save to: folder/path/way
 		var instruction_string = string_1 + string_2 + string_3 + tack_textures + string_4
 		if !file:
 			ErrorManager.is_error = true
 			ErrorManager.error_print("Unable to save instructions. Please check to see if the folder pathway still exists." )
+			report("Failed on opening the instructions document when saving a tack item named: " + item)
 			return
 		else:
 			file.seek_end()
 			file.store_string(instruction_string)
 			file.close()
-			report("I updated the instruction document with information for " + item)
+			report("Updated the instruction document with information for " + item)

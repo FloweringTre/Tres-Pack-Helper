@@ -37,6 +37,7 @@ func _ready() -> void:
 	$popUP_Saved.confirm.connect(on_popup_saved_confirmed)
 	$popUP2_Dupe.deny.connect(on_popup_dupe_back)
 	$popUP2_Dupe.confirm.connect(on_popup_dupe_confirmed)
+	TackScripts.blanket_saved.connect(on_new_tack_saved)
 
 func on_error() -> void:
 	%confirmButton.disabled = true
@@ -257,8 +258,6 @@ func ready_to_save() -> void:
 
 #########################################################
 func _on_confirm_button_pressed() -> void:
-	var type = GlobalScripts.TackTypes.SaddleBlanket
-	GlobalScripts.setup_tack(type)
 	TackScripts.blanket_save(%tackText.text, %artistText.text, %inspoText.text, coin, red, green, blue, adventure)
 
 func tack_exists() -> void:
