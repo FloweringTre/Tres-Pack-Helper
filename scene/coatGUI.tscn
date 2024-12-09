@@ -5,13 +5,13 @@
 [ext_resource type="Texture2D" uid="uid://dm1bh2yywotao" path="res://assets/icon.png" id="3_2qsf6"]
 [ext_resource type="Theme" uid="uid://clxftkhcliti8" path="res://assets/UI_theme.tres" id="4_gvril"]
 [ext_resource type="Theme" uid="uid://dm4jlnbmnj4eb" path="res://assets/UI_theme_dark.tres" id="5_0f6da"]
-[ext_resource type="PackedScene" uid="uid://cp0jrapb6x6a2" path="res://scene/buttonSMOL.tscn" id="5_1wej3"]
+[ext_resource type="PackedScene" uid="uid://cp0jrapb6x6a2" path="res://scene/components/buttonSMOL.tscn" id="5_1wej3"]
 [ext_resource type="Theme" uid="uid://cf6ttsgxwgavd" path="res://assets/UI_theme_blue.tres" id="5_sgdhu"]
 [ext_resource type="Theme" uid="uid://db3wwmhf400fw" path="res://assets/UI_theme_dark_big.tres" id="6_duviu"]
-[ext_resource type="PackedScene" uid="uid://b3cou3ndcs75h" path="res://scene/error_message.tscn" id="6_m2onb"]
+[ext_resource type="PackedScene" uid="uid://b3cou3ndcs75h" path="res://scene/components/error_message.tscn" id="6_m2onb"]
 [ext_resource type="Theme" uid="uid://dix1yxdlw8hbv" path="res://assets/UI_theme_smol.tres" id="9_200ey"]
-[ext_resource type="PackedScene" uid="uid://cdigxro282sfm" path="res://scene/checkAlert.tscn" id="9_edoao"]
-[ext_resource type="PackedScene" uid="uid://bpgiy2j33slge" path="res://scene/pop_up.tscn" id="10_75oqe"]
+[ext_resource type="PackedScene" uid="uid://cdigxro282sfm" path="res://scene/components/checkAlert.tscn" id="9_edoao"]
+[ext_resource type="PackedScene" uid="uid://bpgiy2j33slge" path="res://scene/components/pop_up.tscn" id="10_75oqe"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kx556"]
 atlas = ExtResource("2_ypuxh")

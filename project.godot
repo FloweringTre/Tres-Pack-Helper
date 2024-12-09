@@ -17,8 +17,9 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-GlobalScripts="*res://scripts/global_scripts.gd"
-ErrorManager="*res://scripts/error_manager.gd"
+GlobalScripts="*res://scripts/globals/global_scripts.gd"
+ErrorManager="*res://scripts/globals/error_manager.gd"
+TackScripts="*res://scripts/globals/tack_scripts.gd"
 
 [display]
 

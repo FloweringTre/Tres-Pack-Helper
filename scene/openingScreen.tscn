@@ -7,7 +7,7 @@
 [ext_resource type="Theme" uid="uid://dm4jlnbmnj4eb" path="res://assets/UI_theme_dark.tres" id="4_uf3dj"]
 [ext_resource type="Theme" uid="uid://cf6ttsgxwgavd" path="res://assets/UI_theme_blue.tres" id="5_cncku"]
 [ext_resource type="Theme" uid="uid://dix1yxdlw8hbv" path="res://assets/UI_theme_smol.tres" id="5_sdrau"]
-[ext_resource type="PackedScene" uid="uid://b3cou3ndcs75h" path="res://scene/error_message.tscn" id="7_8xlpx"]
+[ext_resource type="PackedScene" uid="uid://b3cou3ndcs75h" path="res://scene/components/error_message.tscn" id="7_8xlpx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kx556"]
 atlas = ExtResource("2_fs84d")
