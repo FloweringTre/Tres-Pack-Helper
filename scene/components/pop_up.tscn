@@ -113,7 +113,9 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 90)
 layout_mode = 2
 theme = SubResource("Theme_65ef0")
-text = "pop up message goes here"
+theme_override_constants/line_spacing = -3
+text = "pop up message goes here It can be such a long message. Like so hecking long omg. This is a long long pop up message!
+SO LONGGGGG!!!!!"
 horizontal_alignment = 1
 autowrap_mode = 2
 

@@ -79,6 +79,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 90)
 layout_mode = 2
 theme = SubResource("Theme_65ef0")
+theme_override_constants/line_spacing = -3
 text = "Error Message goes here."
 horizontal_alignment = 1
 autowrap_mode = 2
