@@ -1,7 +1,7 @@
 extends Control
 
-@onready var location_text: TextEdit = $NinePatchRect/VBoxContainer/Hbox/locationText
-@onready var folder_nametext: TextEdit = $NinePatchRect/VBoxContainer/Hbox2/folderNametext
+@onready var location_text: LineEdit = $NinePatchRect/VBoxContainer/Hbox/locationText
+@onready var folder_nametext: LineEdit = $NinePatchRect/VBoxContainer/Hbox2/folderNametext
 @onready var file_dialog: FileDialog = $FileDialog
 
 var old_pack : bool
@@ -81,12 +81,12 @@ func on_tack_selected() -> void:
 func on_animation_selected() -> void:
 	pass
 
-func _on_location_text_text_changed() -> void:
+func _on_location_text_text_changed(new_text: String) -> void:
 	$checkPathLOCA.awaiting_check()
 	root_changed = false
 	%confirmButton.disabled = true 
 
-func _on_folder_nametext_text_changed() -> void:
+func _on_folder_nametext_text_changed(new_text: String) -> void:
 	$checkPathFOLD.awaiting_check()
 	folder_changed = false
 	%confirmButton.disabled = true 

@@ -50,7 +50,7 @@ func on_error_continue() -> void:
 func _on_back_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scene/startingGUI.tscn")
 
-func _on_artist_text_text_changed() -> void:
+func _on_artist_text_text_changed(new_text: String) -> void:
 	if %artistText.text != "":
 		artist = true
 		if coat_name == true && inspo == true:
@@ -61,7 +61,7 @@ func _on_artist_text_text_changed() -> void:
 		artist = false
 		%confirmButton.disabled = true
 
-func _on_inspo_text_text_changed() -> void:
+func _on_inspo_text_text_changed(new_text: String) -> void:
 	if %inspoText.text != "":
 		inspo = true
 		if artist == true && coat_name == true:
@@ -80,7 +80,7 @@ func on_NA_button() -> void:
 	else:
 		pass
 
-func _on_coat_text_text_changed() -> void:
+func _on_coat_text_text_changed(new_text: String) -> void:
 	$checkPath.awaiting_check()
 	coat_name = false
 	%confirmButton.disabled = true

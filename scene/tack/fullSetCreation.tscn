@@ -26,35 +26,35 @@ region = Rect2(58, 10, 28, 28)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ror28"]
 atlas = ExtResource("2_t4x1h")
-region = Rect2(178, 1, 12, 14)
+region = Rect2(176, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jop8w"]
 atlas = ExtResource("2_t4x1h")
-region = Rect2(178, 35, 12, 12)
+region = Rect2(176, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2l2ur"]
 atlas = ExtResource("2_t4x1h")
-region = Rect2(178, 17, 12, 14)
+region = Rect2(176, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5h1pk"]
 atlas = ExtResource("2_t4x1h")
-region = Rect2(178, 51, 12, 12)
+region = Rect2(176, 48, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7qkcx"]
 atlas = ExtResource("2_t4x1h")
-region = Rect2(161, 2, 14, 13)
+region = Rect2(160, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ug12d"]
 atlas = ExtResource("2_t4x1h")
-region = Rect2(161, 36, 14, 11)
+region = Rect2(160, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yfjb1"]
 atlas = ExtResource("2_t4x1h")
-region = Rect2(161, 18, 14, 13)
+region = Rect2(160, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_scopy"]
 atlas = ExtResource("2_t4x1h")
-region = Rect2(161, 52, 14, 11)
+region = Rect2(160, 48, 16, 16)
 
 [node name="fullSetCreation" type="Control"]
 layout_mode = 3
@@ -779,6 +779,7 @@ texture_normal = SubResource("AtlasTexture_ror28")
 texture_pressed = SubResource("AtlasTexture_jop8w")
 texture_hover = SubResource("AtlasTexture_2l2ur")
 texture_disabled = SubResource("AtlasTexture_5h1pk")
+texture_focused = SubResource("AtlasTexture_2l2ur")
 
 [node name="confirmButton" type="TextureButton" parent="NinePatchRect"]
 unique_name_in_owner = true
@@ -799,6 +800,7 @@ texture_normal = SubResource("AtlasTexture_7qkcx")
 texture_pressed = SubResource("AtlasTexture_ug12d")
 texture_hover = SubResource("AtlasTexture_yfjb1")
 texture_disabled = SubResource("AtlasTexture_scopy")
+texture_focused = SubResource("AtlasTexture_yfjb1")
 
 [node name="errorMessage" parent="." instance=ExtResource("10_xcubv")]
 visible = false

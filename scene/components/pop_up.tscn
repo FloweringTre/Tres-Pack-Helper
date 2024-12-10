@@ -18,51 +18,51 @@ LineEdit/icons/clear = null
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ninoc"]
 atlas = ExtResource("1_6x5xs")
-region = Rect2(178, 1, 12, 14)
+region = Rect2(176, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wsrpf"]
 atlas = ExtResource("1_6x5xs")
-region = Rect2(178, 35, 12, 12)
+region = Rect2(176, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_glo3f"]
 atlas = ExtResource("1_6x5xs")
-region = Rect2(178, 17, 12, 14)
+region = Rect2(176, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_beyp4"]
 atlas = ExtResource("1_6x5xs")
-region = Rect2(178, 51, 12, 12)
+region = Rect2(176, 48, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o1an7"]
 atlas = ExtResource("1_6x5xs")
-region = Rect2(161, 2, 14, 13)
+region = Rect2(160, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_if4m6"]
 atlas = ExtResource("1_6x5xs")
-region = Rect2(161, 36, 14, 11)
+region = Rect2(160, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jifrg"]
 atlas = ExtResource("1_6x5xs")
-region = Rect2(161, 18, 14, 13)
+region = Rect2(160, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nan3c"]
 atlas = ExtResource("1_6x5xs")
-region = Rect2(161, 52, 14, 11)
+region = Rect2(160, 48, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5er8k"]
 atlas = ExtResource("1_6x5xs")
-region = Rect2(133, 1, 7, 14)
+region = Rect2(128, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u6lj1"]
 atlas = ExtResource("1_6x5xs")
-region = Rect2(134, 35, 7, 12)
+region = Rect2(128, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pby4t"]
 atlas = ExtResource("1_6x5xs")
-region = Rect2(133, 17, 7, 14)
+region = Rect2(128, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vk1f2"]
 atlas = ExtResource("1_6x5xs")
-region = Rect2(134, 51, 7, 12)
+region = Rect2(128, 48, 16, 16)
 
 [node name="popUP" type="NinePatchRect"]
 z_index = 1
@@ -167,6 +167,7 @@ texture_normal = SubResource("AtlasTexture_ninoc")
 texture_pressed = SubResource("AtlasTexture_wsrpf")
 texture_hover = SubResource("AtlasTexture_glo3f")
 texture_disabled = SubResource("AtlasTexture_beyp4")
+texture_focused = SubResource("AtlasTexture_glo3f")
 
 [node name="confirmButton" type="TextureButton" parent="yesOrNo"]
 unique_name_in_owner = true
@@ -175,6 +176,7 @@ texture_normal = SubResource("AtlasTexture_o1an7")
 texture_pressed = SubResource("AtlasTexture_if4m6")
 texture_hover = SubResource("AtlasTexture_jifrg")
 texture_disabled = SubResource("AtlasTexture_nan3c")
+texture_focused = SubResource("AtlasTexture_jifrg")
 
 [node name="continue" type="HBoxContainer" parent="."]
 visible = false

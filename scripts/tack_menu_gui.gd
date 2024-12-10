@@ -31,7 +31,7 @@ func _ready() -> void:
 	%pasture_blankets.button_pressed.connect(on_pasture_blankets)
 	$popUP.confirm.connect(on_popup_confirmed)
 	$popUP.deny.connect(on_popup_back)
-	disabled_buttons()
+	perm_disabled_buttons()
 	update_save_button()
 	load_values()
 
@@ -49,8 +49,23 @@ func disabled_buttons() -> void:
 	%armors.set_disabled()
 	%pasture_blankets.set_disabled()
 	%backButton.disabled = true
-	#%full_set.set_disabled()
+	%full_set.set_disabled()
 	%confirmButton.disabled = true
+
+func perm_disabled_buttons() -> void:
+	%saddle_set.set_disabled()
+	%extras_set.set_disabled()
+	%saddles.set_disabled()
+	%bridles.set_disabled()
+	%blankets.set_disabled()
+	%girth_straps.set_disabled()
+	%breast_collars.set_disabled()
+	%leg_wraps.set_disabled()
+	%halters.set_disabled()
+	%saddle_bags.set_disabled()
+	%armors.set_disabled()
+	%pasture_blankets.set_disabled()
+
 
 func reenabled_buttons() -> void:
 	%saddle_set.reenable_button()
@@ -68,6 +83,7 @@ func reenabled_buttons() -> void:
 	update_save_button()
 	%backButton.disabled = false
 	%full_set.reenable_button()
+	perm_disabled_buttons()
 
 #################### SCENE MOVING ####################
 func _on_back_button_pressed() -> void:

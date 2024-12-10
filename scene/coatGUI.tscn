@@ -19,35 +19,35 @@ region = Rect2(58, 10, 28, 28)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ror28"]
 atlas = ExtResource("2_ypuxh")
-region = Rect2(178, 1, 12, 14)
+region = Rect2(176, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jop8w"]
 atlas = ExtResource("2_ypuxh")
-region = Rect2(178, 35, 12, 12)
+region = Rect2(176, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2l2ur"]
 atlas = ExtResource("2_ypuxh")
-region = Rect2(178, 17, 12, 14)
+region = Rect2(176, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5h1pk"]
 atlas = ExtResource("2_ypuxh")
-region = Rect2(178, 51, 12, 12)
+region = Rect2(176, 48, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7qkcx"]
 atlas = ExtResource("2_ypuxh")
-region = Rect2(161, 2, 14, 13)
+region = Rect2(160, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ug12d"]
 atlas = ExtResource("2_ypuxh")
-region = Rect2(161, 36, 14, 11)
+region = Rect2(160, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yfjb1"]
 atlas = ExtResource("2_ypuxh")
-region = Rect2(161, 18, 14, 13)
+region = Rect2(160, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_scopy"]
 atlas = ExtResource("2_ypuxh")
-region = Rect2(161, 52, 14, 11)
+region = Rect2(160, 48, 16, 16)
 
 [node name="coatGUI" type="Control"]
 layout_mode = 3
@@ -124,10 +124,12 @@ theme = ExtResource("4_gvril")
 text = "Texture Artist"
 horizontal_alignment = 2
 
-[node name="artistText" type="TextEdit" parent="NinePatchRect/VBoxContainer/artist"]
+[node name="artistText" type="LineEdit" parent="NinePatchRect/VBoxContainer/artist"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
+focus_neighbor_bottom = NodePath("../../inspiration/inspoText")
+focus_next = NodePath("../../inspiration/inspoText")
 placeholder_text = "Who made the coat texture?"
 
 [node name="Container" type="Container" parent="NinePatchRect/VBoxContainer/artist"]
@@ -144,16 +146,26 @@ theme = ExtResource("4_gvril")
 text = "Inspiration:"
 horizontal_alignment = 2
 
-[node name="inspoText" type="TextEdit" parent="NinePatchRect/VBoxContainer/inspiration"]
+[node name="inspoText" type="LineEdit" parent="NinePatchRect/VBoxContainer/inspiration"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
+focus_neighbor_top = NodePath("../../artist/artistText")
+focus_neighbor_right = NodePath("../n_aButton")
+focus_neighbor_bottom = NodePath("../../coatName/coatText")
+focus_next = NodePath("../../coatName/nameCheck")
+focus_previous = NodePath("../../artist/artistText")
 placeholder_text = "My IRL horse || SSO || N/a"
 
 [node name="n_aButton" parent="NinePatchRect/VBoxContainer/inspiration" instance=ExtResource("5_1wej3")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(80, 32)
 layout_mode = 2
+focus_neighbor_left = NodePath("../inspoText")
+focus_neighbor_top = NodePath("../../artist/artistText")
+focus_neighbor_bottom = NodePath("../../coatName/nameCheck")
+focus_next = NodePath("../../coatName/coatText")
+focus_previous = NodePath("../inspoText")
 button_text = "Set N/a"
 
 [node name="coatName" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
@@ -166,16 +178,26 @@ theme = ExtResource("4_gvril")
 text = "Coat Name:"
 horizontal_alignment = 2
 
-[node name="coatText" type="TextEdit" parent="NinePatchRect/VBoxContainer/coatName"]
+[node name="coatText" type="LineEdit" parent="NinePatchRect/VBoxContainer/coatName"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
+focus_neighbor_top = NodePath("../../inspiration/inspoText")
+focus_neighbor_right = NodePath("../nameCheck")
+focus_neighbor_bottom = NodePath("../../HBoxContainer/cycling/lapisCheckBox")
+focus_next = NodePath("../nameCheck")
+focus_previous = NodePath("../../inspiration/n_aButton")
 placeholder_text = "kiwi_the_wonder_paint"
 
 [node name="nameCheck" parent="NinePatchRect/VBoxContainer/coatName" instance=ExtResource("5_1wej3")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(80, 32)
 layout_mode = 2
+focus_neighbor_left = NodePath("../coatText")
+focus_neighbor_top = NodePath("../../inspiration/n_aButton")
+focus_neighbor_bottom = NodePath("../../HBoxContainer/breeding/breedingCheckBox")
+focus_next = NodePath("../../HBoxContainer/cycling/lapisCheckBox")
+focus_previous = NodePath("../coatText")
 button_text = "Clean"
 
 [node name="HelperLabel2" type="Label" parent="NinePatchRect/VBoxContainer"]
@@ -209,6 +231,11 @@ horizontal_alignment = 2
 [node name="lapisCheckBox" type="CheckBox" parent="NinePatchRect/VBoxContainer/HBoxContainer/cycling"]
 unique_name_in_owner = true
 layout_mode = 2
+focus_neighbor_top = NodePath("../../../coatName/coatText")
+focus_neighbor_right = NodePath("../../breeding/breedingCheckBox")
+focus_neighbor_bottom = NodePath("../../../baseColorp2/Black/blackCheckBox")
+focus_next = NodePath("../../breeding/breedingCheckBox")
+focus_previous = NodePath("../../../coatName/nameCheck")
 button_pressed = true
 
 [node name="lapisLabel" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer/cycling"]
@@ -229,6 +256,11 @@ horizontal_alignment = 2
 
 [node name="breedingCheckBox" type="CheckBox" parent="NinePatchRect/VBoxContainer/HBoxContainer/breeding"]
 layout_mode = 2
+focus_neighbor_left = NodePath("../../cycling/lapisCheckBox")
+focus_neighbor_top = NodePath("../../../coatName/nameCheck")
+focus_neighbor_bottom = NodePath("../../../baseColorp2/Chestnut/chestnutCheckBox7")
+focus_next = NodePath("../../../baseColorp2/Black/blackCheckBox")
+focus_previous = NodePath("../../cycling/lapisCheckBox")
 button_pressed = true
 
 [node name="breedingLabel" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer/breeding"]
@@ -265,6 +297,11 @@ theme_override_constants/separation = 0
 
 [node name="blackCheckBox" type="CheckBox" parent="NinePatchRect/VBoxContainer/baseColorp2/Black"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../../../HBoxContainer/cycling/lapisCheckBox")
+focus_neighbor_right = NodePath("../../Gray/grayCheckBox2")
+focus_neighbor_bottom = NodePath("../../../../backButton")
+focus_next = NodePath("../../Gray/grayCheckBox2")
+focus_previous = NodePath("../../../HBoxContainer/breeding/breedingCheckBox")
 
 [node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/baseColorp2/Black"]
 custom_minimum_size = Vector2(0, 24)
@@ -279,6 +316,11 @@ theme_override_constants/separation = 0
 
 [node name="grayCheckBox2" type="CheckBox" parent="NinePatchRect/VBoxContainer/baseColorp2/Gray"]
 layout_mode = 2
+focus_neighbor_left = NodePath("../../Black/blackCheckBox")
+focus_neighbor_top = NodePath("../../../HBoxContainer/cycling/lapisCheckBox")
+focus_neighbor_right = NodePath("../../White/whiteCheckBox3")
+focus_neighbor_bottom = NodePath("../../../../backButton")
+focus_next = NodePath("../../White/whiteCheckBox3")
 
 [node name="Label2" type="Label" parent="NinePatchRect/VBoxContainer/baseColorp2/Gray"]
 layout_mode = 2
@@ -291,6 +333,12 @@ theme_override_constants/separation = 0
 
 [node name="whiteCheckBox3" type="CheckBox" parent="NinePatchRect/VBoxContainer/baseColorp2/White"]
 layout_mode = 2
+focus_neighbor_left = NodePath("../../Gray/grayCheckBox2")
+focus_neighbor_top = NodePath("../../../HBoxContainer/cycling/lapisCheckBox")
+focus_neighbor_right = NodePath("../../Creamy/creamyCheckBox4")
+focus_neighbor_bottom = NodePath("../../../../backButton")
+focus_next = NodePath("../../Creamy/creamyCheckBox4")
+focus_previous = NodePath("../../Gray/grayCheckBox2")
 
 [node name="Label3" type="Label" parent="NinePatchRect/VBoxContainer/baseColorp2/White"]
 layout_mode = 2
@@ -303,6 +351,12 @@ theme_override_constants/separation = 0
 
 [node name="creamyCheckBox4" type="CheckBox" parent="NinePatchRect/VBoxContainer/baseColorp2/Creamy"]
 layout_mode = 2
+focus_neighbor_left = NodePath("../../White/whiteCheckBox3")
+focus_neighbor_top = NodePath("../../../HBoxContainer/cycling/lapisCheckBox")
+focus_neighbor_right = NodePath("../../Brown/brownCheckBox5")
+focus_neighbor_bottom = NodePath("../../../../backButton")
+focus_next = NodePath("../../Brown/brownCheckBox5")
+focus_previous = NodePath("../../White/whiteCheckBox3")
 
 [node name="Label4" type="Label" parent="NinePatchRect/VBoxContainer/baseColorp2/Creamy"]
 layout_mode = 2
@@ -315,6 +369,12 @@ theme_override_constants/separation = 0
 
 [node name="brownCheckBox5" type="CheckBox" parent="NinePatchRect/VBoxContainer/baseColorp2/Brown"]
 layout_mode = 2
+focus_neighbor_left = NodePath("../../Creamy/creamyCheckBox4")
+focus_neighbor_top = NodePath("../../../HBoxContainer/breeding/breedingCheckBox")
+focus_neighbor_right = NodePath("../../DBrown/d_brownCheckBox6")
+focus_neighbor_bottom = NodePath("../../../../confirmButton")
+focus_next = NodePath("../../DBrown/d_brownCheckBox6")
+focus_previous = NodePath("../../Creamy/creamyCheckBox4")
 
 [node name="Label5" type="Label" parent="NinePatchRect/VBoxContainer/baseColorp2/Brown"]
 layout_mode = 2
@@ -327,6 +387,12 @@ theme_override_constants/separation = 0
 
 [node name="d_brownCheckBox6" type="CheckBox" parent="NinePatchRect/VBoxContainer/baseColorp2/DBrown"]
 layout_mode = 2
+focus_neighbor_left = NodePath("../../Brown/brownCheckBox5")
+focus_neighbor_top = NodePath("../../../HBoxContainer/breeding/breedingCheckBox")
+focus_neighbor_right = NodePath("../../Chestnut/chestnutCheckBox7")
+focus_neighbor_bottom = NodePath("../../../../confirmButton")
+focus_next = NodePath("../../Chestnut/chestnutCheckBox7")
+focus_previous = NodePath("../../Brown/brownCheckBox5")
 
 [node name="Label6" type="Label" parent="NinePatchRect/VBoxContainer/baseColorp2/DBrown"]
 layout_mode = 2
@@ -339,6 +405,11 @@ theme_override_constants/separation = 0
 
 [node name="chestnutCheckBox7" type="CheckBox" parent="NinePatchRect/VBoxContainer/baseColorp2/Chestnut"]
 layout_mode = 2
+focus_neighbor_left = NodePath("../../DBrown/d_brownCheckBox6")
+focus_neighbor_top = NodePath("../../../HBoxContainer/breeding/breedingCheckBox")
+focus_neighbor_bottom = NodePath("../../../../confirmButton")
+focus_next = NodePath("../../../../confirmButton")
+focus_previous = NodePath("../../DBrown/d_brownCheckBox6")
 
 [node name="Label7" type="Label" parent="NinePatchRect/VBoxContainer/baseColorp2/Chestnut"]
 layout_mode = 2
@@ -367,6 +438,7 @@ texture_normal = SubResource("AtlasTexture_ror28")
 texture_pressed = SubResource("AtlasTexture_jop8w")
 texture_hover = SubResource("AtlasTexture_2l2ur")
 texture_disabled = SubResource("AtlasTexture_5h1pk")
+texture_focused = SubResource("AtlasTexture_2l2ur")
 
 [node name="confirmButton" type="TextureButton" parent="NinePatchRect"]
 unique_name_in_owner = true
@@ -378,20 +450,26 @@ offset_bottom = 314.0
 grow_horizontal = 0
 grow_vertical = 0
 scale = Vector2(2, 2)
+focus_neighbor_left = NodePath("../backButton")
+focus_next = NodePath("../backButton")
+focus_previous = NodePath("../VBoxContainer/baseColorp2/Chestnut/chestnutCheckBox7")
 disabled = true
 texture_normal = SubResource("AtlasTexture_7qkcx")
 texture_pressed = SubResource("AtlasTexture_ug12d")
 texture_hover = SubResource("AtlasTexture_yfjb1")
 texture_disabled = SubResource("AtlasTexture_scopy")
+texture_focused = SubResource("AtlasTexture_yfjb1")
 
 [node name="errorMessage" parent="." instance=ExtResource("6_m2onb")]
 visible = false
 layout_mode = 1
 
 [node name="popUP_Saved" parent="." instance=ExtResource("10_75oqe")]
+visible = false
 layout_mode = 1
 
 [node name="popUP2_Dupe" parent="." instance=ExtResource("10_75oqe")]
+visible = false
 layout_mode = 1
 
 [node name="checkPath" parent="." instance=ExtResource("9_edoao")]

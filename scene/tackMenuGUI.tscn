@@ -19,35 +19,35 @@ region = Rect2(58, 10, 28, 28)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2dryr"]
 atlas = ExtResource("2_ch7cg")
-region = Rect2(161, 2, 14, 13)
+region = Rect2(160, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o0agg"]
 atlas = ExtResource("2_ch7cg")
-region = Rect2(161, 36, 14, 11)
+region = Rect2(160, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m7vgm"]
 atlas = ExtResource("2_ch7cg")
-region = Rect2(161, 18, 14, 13)
+region = Rect2(160, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_00yw3"]
 atlas = ExtResource("2_ch7cg")
-region = Rect2(161, 52, 14, 11)
+region = Rect2(160, 48, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ror28"]
 atlas = ExtResource("2_ch7cg")
-region = Rect2(178, 1, 12, 14)
+region = Rect2(176, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jop8w"]
 atlas = ExtResource("2_ch7cg")
-region = Rect2(178, 35, 12, 12)
+region = Rect2(176, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2l2ur"]
 atlas = ExtResource("2_ch7cg")
-region = Rect2(178, 17, 12, 14)
+region = Rect2(176, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5h1pk"]
 atlas = ExtResource("2_ch7cg")
-region = Rect2(178, 51, 12, 12)
+region = Rect2(176, 48, 16, 16)
 
 [node name="tackmenuGUI" type="Control"]
 layout_mode = 3
@@ -190,6 +190,9 @@ text = "Saddles:"
 [node name="saddleSpinBox" type="SpinBox" parent="NinePatchRect/VBoxContainer/BoxContainer/defaults/HBoxContainer2/GridContainer2/saddleBox"]
 unique_name_in_owner = true
 layout_mode = 2
+focus_neighbor_right = NodePath("../../bridleBox/bridleSpinBox")
+focus_neighbor_bottom = NodePath("../../halterBox/halterSpinBox")
+focus_next = NodePath("../../bridleBox/bridleSpinBox")
 theme = ExtResource("4_tkq3h")
 min_value = 1.0
 max_value = 64.0
@@ -207,6 +210,11 @@ text = "Bridles:"
 [node name="bridleSpinBox" type="SpinBox" parent="NinePatchRect/VBoxContainer/BoxContainer/defaults/HBoxContainer2/GridContainer2/bridleBox"]
 unique_name_in_owner = true
 layout_mode = 2
+focus_neighbor_left = NodePath("../../saddleBox/saddleSpinBox")
+focus_neighbor_right = NodePath("../../blanketBox/blanketSpinBox")
+focus_neighbor_bottom = NodePath("../../legWrapsBox/legWrapsSpinBox")
+focus_next = NodePath("../../blanketBox/blanketSpinBox")
+focus_previous = NodePath("../../saddleBox/saddleSpinBox")
 theme = ExtResource("4_tkq3h")
 min_value = 1.0
 max_value = 64.0
@@ -224,6 +232,10 @@ text = "Saddle Blankets:"
 [node name="blanketSpinBox" type="SpinBox" parent="NinePatchRect/VBoxContainer/BoxContainer/defaults/HBoxContainer2/GridContainer2/blanketBox"]
 unique_name_in_owner = true
 layout_mode = 2
+focus_neighbor_left = NodePath("../../bridleBox/bridleSpinBox")
+focus_neighbor_bottom = NodePath("../../breastCollarBox/breastCollarSpinBox")
+focus_next = NodePath("../../halterBox/halterSpinBox")
+focus_previous = NodePath("../../bridleBox/bridleSpinBox")
 theme = ExtResource("4_tkq3h")
 min_value = 1.0
 max_value = 64.0
@@ -241,6 +253,11 @@ text = "Halters:"
 [node name="halterSpinBox" type="SpinBox" parent="NinePatchRect/VBoxContainer/BoxContainer/defaults/HBoxContainer2/GridContainer2/halterBox"]
 unique_name_in_owner = true
 layout_mode = 2
+focus_neighbor_top = NodePath("../../saddleBox/saddleSpinBox")
+focus_neighbor_right = NodePath("../../legWrapsBox/legWrapsSpinBox")
+focus_neighbor_bottom = NodePath("../../armorBox/armorSpinBox")
+focus_next = NodePath("../../legWrapsBox/legWrapsSpinBox")
+focus_previous = NodePath("../../blanketBox/blanketSpinBox")
 theme = ExtResource("4_tkq3h")
 min_value = 1.0
 max_value = 64.0
@@ -258,6 +275,12 @@ text = "Leg Wraps:"
 [node name="legWrapsSpinBox" type="SpinBox" parent="NinePatchRect/VBoxContainer/BoxContainer/defaults/HBoxContainer2/GridContainer2/legWrapsBox"]
 unique_name_in_owner = true
 layout_mode = 2
+focus_neighbor_left = NodePath("../../halterBox/halterSpinBox")
+focus_neighbor_top = NodePath("../../bridleBox/bridleSpinBox")
+focus_neighbor_right = NodePath("../../breastCollarBox/breastCollarSpinBox")
+focus_neighbor_bottom = NodePath("../../bagBox/bagSpinBox")
+focus_next = NodePath("../../breastCollarBox/breastCollarSpinBox")
+focus_previous = NodePath("../../halterBox/halterSpinBox")
 theme = ExtResource("4_tkq3h")
 min_value = 1.0
 max_value = 64.0
@@ -275,6 +298,11 @@ text = "Breast Collars:"
 [node name="breastCollarSpinBox" type="SpinBox" parent="NinePatchRect/VBoxContainer/BoxContainer/defaults/HBoxContainer2/GridContainer2/breastCollarBox"]
 unique_name_in_owner = true
 layout_mode = 2
+focus_neighbor_left = NodePath("../../legWrapsBox/legWrapsSpinBox")
+focus_neighbor_top = NodePath("../../blanketBox/blanketSpinBox")
+focus_neighbor_bottom = NodePath("../../girthStrapBox/girthStrapSpinBox")
+focus_next = NodePath("../../armorBox/armorSpinBox")
+focus_previous = NodePath("../../legWrapsBox/legWrapsSpinBox")
 theme = ExtResource("4_tkq3h")
 min_value = 1.0
 max_value = 64.0
@@ -283,6 +311,11 @@ alignment = 1
 
 [node name="armorBox" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/BoxContainer/defaults/HBoxContainer2/GridContainer2"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../halterBox/halterSpinBox")
+focus_neighbor_right = NodePath("../bagBox/bagSpinBox")
+focus_neighbor_bottom = NodePath("../../../HBoxContainer/GridContainer/pastureBlanketBox/pastureBlanketSpinBox")
+focus_next = NodePath("../bagBox/bagSpinBox")
+focus_previous = NodePath("../breastCollarBox/breastCollarSpinBox")
 alignment = 2
 
 [node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/BoxContainer/defaults/HBoxContainer2/GridContainer2/armorBox"]
@@ -309,6 +342,12 @@ text = "Saddle Bags:"
 [node name="bagSpinBox" type="SpinBox" parent="NinePatchRect/VBoxContainer/BoxContainer/defaults/HBoxContainer2/GridContainer2/bagBox"]
 unique_name_in_owner = true
 layout_mode = 2
+focus_neighbor_left = NodePath("../../armorBox/armorSpinBox")
+focus_neighbor_top = NodePath("../../legWrapsBox/legWrapsSpinBox")
+focus_neighbor_right = NodePath("../../girthStrapBox/girthStrapSpinBox")
+focus_neighbor_bottom = NodePath("../../../../HBoxContainer/GridContainer/arPastureBlanketBox/arpastureBlanketSpinBox")
+focus_next = NodePath("../../girthStrapBox/girthStrapSpinBox")
+focus_previous = NodePath("../../armorBox/armorSpinBox")
 theme = ExtResource("4_tkq3h")
 min_value = 1.0
 max_value = 64.0
@@ -326,6 +365,11 @@ text = "Grith Straps:"
 [node name="girthStrapSpinBox" type="SpinBox" parent="NinePatchRect/VBoxContainer/BoxContainer/defaults/HBoxContainer2/GridContainer2/girthStrapBox"]
 unique_name_in_owner = true
 layout_mode = 2
+focus_neighbor_left = NodePath("../../bagBox/bagSpinBox")
+focus_neighbor_top = NodePath("../../breastCollarBox/breastCollarSpinBox")
+focus_neighbor_bottom = NodePath("../../../../HBoxContainer/GridContainer/arPastureBlanketBox/arpastureBlanketSpinBox")
+focus_next = NodePath("../../../../HBoxContainer/GridContainer/pastureBlanketBox/pastureBlanketSpinBox")
+focus_previous = NodePath("../../bagBox/bagSpinBox")
 theme = ExtResource("4_tkq3h")
 min_value = 1.0
 max_value = 64.0
@@ -352,6 +396,11 @@ text = "Pasture Blankets:"
 [node name="pastureBlanketSpinBox" type="SpinBox" parent="NinePatchRect/VBoxContainer/BoxContainer/defaults/HBoxContainer/GridContainer/pastureBlanketBox"]
 unique_name_in_owner = true
 layout_mode = 2
+focus_neighbor_top = NodePath("../../../../HBoxContainer2/GridContainer2/bagBox/bagSpinBox")
+focus_neighbor_right = NodePath("../../arPastureBlanketBox/arpastureBlanketSpinBox")
+focus_neighbor_bottom = NodePath("../../../../../../../confirmButton")
+focus_next = NodePath("../../arPastureBlanketBox/arpastureBlanketSpinBox")
+focus_previous = NodePath("../../../../HBoxContainer2/GridContainer2/girthStrapBox/girthStrapSpinBox")
 theme = ExtResource("4_tkq3h")
 min_value = 1.0
 max_value = 64.0
@@ -369,6 +418,11 @@ text = "Armored Pasture Blankets:"
 [node name="arpastureBlanketSpinBox" type="SpinBox" parent="NinePatchRect/VBoxContainer/BoxContainer/defaults/HBoxContainer/GridContainer/arPastureBlanketBox"]
 unique_name_in_owner = true
 layout_mode = 2
+focus_neighbor_left = NodePath("../../pastureBlanketBox/pastureBlanketSpinBox")
+focus_neighbor_top = NodePath("../../../../HBoxContainer2/GridContainer2/girthStrapBox/girthStrapSpinBox")
+focus_neighbor_bottom = NodePath("../../../../../../../confirmButton")
+focus_next = NodePath("../../../../../../../confirmButton")
+focus_previous = NodePath("../../pastureBlanketBox/pastureBlanketSpinBox")
 theme = ExtResource("4_tkq3h")
 min_value = 1.0
 max_value = 64.0
@@ -479,11 +533,14 @@ offset_bottom = 297.0
 grow_horizontal = 0
 grow_vertical = 0
 scale = Vector2(1.5, 1.5)
+focus_next = NodePath("../backButton")
+focus_previous = NodePath("../VBoxContainer/BoxContainer/defaults/HBoxContainer/GridContainer/arPastureBlanketBox/arpastureBlanketSpinBox")
 disabled = true
 texture_normal = SubResource("AtlasTexture_2dryr")
 texture_pressed = SubResource("AtlasTexture_o0agg")
 texture_hover = SubResource("AtlasTexture_m7vgm")
 texture_disabled = SubResource("AtlasTexture_00yw3")
+texture_focused = SubResource("AtlasTexture_m7vgm")
 stretch_mode = 0
 
 [node name="HelperLabel5" type="Label" parent="NinePatchRect"]
@@ -511,6 +568,7 @@ texture_normal = SubResource("AtlasTexture_ror28")
 texture_pressed = SubResource("AtlasTexture_jop8w")
 texture_hover = SubResource("AtlasTexture_2l2ur")
 texture_disabled = SubResource("AtlasTexture_5h1pk")
+texture_focused = SubResource("AtlasTexture_2l2ur")
 
 [node name="errorMessage" parent="." instance=ExtResource("10_551ul")]
 visible = false
