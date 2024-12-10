@@ -27,6 +27,9 @@ var hal : bool = true
 var file_name : String
 var path : String
 
+var west_name : String
+var eng_name : String
+
 signal new_tack_saved
 
 func _ready() -> void:
@@ -37,39 +40,74 @@ func _ready() -> void:
 	$popUP_Saved.confirm.connect(on_popup_saved_confirmed)
 	$popUP2_Dupe.deny.connect(on_popup_dupe_back)
 	$popUP2_Dupe.confirm.connect(on_popup_dupe_confirmed)
-	TackScripts.blanket_saved.connect(on_new_tack_saved)
 
 func on_error() -> void:
+	disable_interaction()
+
+func on_error_continue() -> void:
+	enable_interaction()
+
+func _on_back_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://scene/tackMenuGUI.tscn")
+
+func disable_interaction() -> void:
 	%confirmButton.disabled = true
 	%backButton.disabled = true
 	%artistText.editable = false
 	%inspoText.editable = false
 	%tackText.editable = false
+	%westCheckBox.disabled = true
+	%engCheckBox.disabled = true
+	%armorCheckBox.disabled = true
+	%custCheckBox.disabled = true
+	%redSpinBox.editable = false
+	%greenSpinBox.editable = false
+	%blueSpinBox.editable = false
+	%armorOptions.disabled = true
+	%coinOptions.disabled = true
+	%arpbCheckBox.disabled = true
+	%pbCheckBox.disabled = true
+	%arCheckBox.disabled = true
+	%sbCheckBox.disabled = true
+	%halCheckBox.disabled = true
 
-func on_error_continue() -> void:
+func enable_interaction() -> void:
 	%confirmButton.disabled = false
 	%backButton.disabled = false
 	%artistText.editable = true
 	%inspoText.editable = true
 	%tackText.editable = true
+	%westCheckBox.disabled = false
+	%engCheckBox.disabled = false
+	%armorCheckBox.disabled = false
+	%custCheckBox.disabled = false
+	%redSpinBox.editable = true
+	%greenSpinBox.editable = true
+	%blueSpinBox.editable = true
+	%armorOptions.disabled = false
+	%coinOptions.disabled = false
+	%arpbCheckBox.disabled = false
+	%pbCheckBox.disabled = false
+	%arCheckBox.disabled = false
+	%sbCheckBox.disabled = false
+	%halCheckBox.disabled = false
 
-func _on_back_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://scene/tackMenuGUI.tscn")
 
-func _on_artist_text_text_changed() -> void:
+################### VALUE LOGGING ######################
+func _on_artist_text_text_changed(new_text: String) -> void:
 	if %artistText.text != "":
 		artist = true
 	else:
 		artist = false
 	ready_to_save()
 
-func _on_inspo_text_text_changed() -> void:
+func _on_inspo_text_text_changed(new_text: String) -> void:
 	if %inspoText.text != "":
 		inspo = true
 	else:
 		inspo = false
 
-func _on_tack_text_text_changed() -> void:
+func _on_tack_text_text_changed(new_text: String) -> void:
 	update_name_previews()
 	if %tackText.text != "":
 		set_name = true
@@ -245,6 +283,7 @@ func _on_hal_check_box_pressed() -> void:
 		%halLabel.text = "Yes"
 
 func ready_to_save() -> void:
+	#print("run ready_to_save")
 	if artist && inspo && set_name && set_coin:
 		if western or english:
 			if !ar or set_armor:
@@ -258,29 +297,83 @@ func ready_to_save() -> void:
 
 #########################################################
 func _on_confirm_button_pressed() -> void:
-	TackScripts.blanket_save(%tackText.text, %artistText.text, %inspoText.text, coin, red, green, blue, adventure)
-
-func tack_exists() -> void:
-	var title = "This tack already exists!"
-	var message = "There already exists a tack set named '" + %tackText.text + "'. \nWhat do you want to do?"
-	var no_label = "Go Back"
-	var yes_label = "Overwrite it"
+	var title = "About to Save Tack..."
+	var message = "The generated tack will overwrite any existing tack of the same names... \nDo you want to generate this tack set?"
+	var no_label = "NO, Go Back"
+	var yes_label = "YES, Generate Tack"
 	$popUP2_Dupe.pop_yesNo(title, message, no_label, yes_label)
-	%confirmButton.disabled = true
-	%backButton.disabled = true
-	%artistText.editable = false
-	%inspoText.editable = false
-	%tackText.editable = false
+	disable_interaction()
+	
+func _save_complete_tack_set() -> void:
+	# DUPE SETS FOR ENG AND WESTERN
+	if both_sets:
+		eng_name = %tackText.text + " English"
+		west_name = %tackText.text + " Western"
+		western_tack()
+		english_tack()
+	else:
+		if western:
+			west_name = %tackText.text
+			western_tack()
+		if english:
+			eng_name = %tackText.text
+			english_tack()
+		
+	#CUSTOM RACK TEXTURES
+	if custom_rack:
+		if pb:
+			TackScripts.pasture_blanket_save(%tackText.text, %artistText.text, %inspoText.text, coin)
+		if arpb:
+			TackScripts.ar_pasture_blanket_save(%tackText.text, %artistText.text, %inspoText.text, coin)
+	else:
+		if pb:
+			TackScripts.colored_pasture_blanket_save(%Past_5Long, %Past_3Short, %tackText.text, %artistText.text, %inspoText.text, coin, red, green, blue)
+		if arpb:
+			TackScripts.colored_ar_pasture_blanket_save(%ArmPast_5Long, %ArmPast_3Short, %tackText.text, %artistText.text, %inspoText.text, coin, red, green, blue)
+	
+	#ONE OFFS & OPTIONAL
+	if ar: # armor
+		TackScripts.armor_save(%tackText.text, %artistText.text, %inspoText.text, coin, armor)
+	
+	if sb: #saddle bag
+		TackScripts.saddle_bag_save(%tackText.text, %artistText.text, %inspoText.text, coin, red, green, blue)
+	
+	if hal: #halter
+		TackScripts.halter_save(%tackText.text, %artistText.text, %inspoText.text, coin, red, green, blue, adventure)
+	
+	new_tack_saved.emit()
+
+func western_tack() -> void:
+	TackScripts.saddle_save(west_name, %artistText.text, %inspoText.text, coin, "western", adventure)
+	TackScripts.bridle_save(west_name, %artistText.text, %inspoText.text, coin, "western", adventure)
+	TackScripts.breast_collar_save(west_name, %artistText.text, %inspoText.text, coin, adventure)
+	TackScripts.leg_wraps_save(west_name, %artistText.text, %inspoText.text, coin, adventure)
+	
+	if custom_rack:
+		TackScripts.girth_straps_save(west_name, %artistText.text, %inspoText.text, coin, adventure)
+		TackScripts.blanket_save(west_name, %artistText.text, %inspoText.text, coin, adventure)
+	else:
+		TackScripts.colored_girth_strap_save(%Girth_Saddle, west_name, %artistText.text, %inspoText.text, coin, red, green, blue, adventure)
+		TackScripts.colored_blanket_save(%West_Blanket5, %West_Saddle, west_name, %artistText.text, %inspoText.text, coin, red, green, blue, adventure)
+
+func english_tack() -> void:
+	TackScripts.saddle_save(eng_name, %artistText.text, %inspoText.text, coin, "english", adventure)
+	TackScripts.bridle_save(eng_name, %artistText.text, %inspoText.text, coin, "english", adventure)
+	TackScripts.breast_collar_save(eng_name, %artistText.text, %inspoText.text, coin, adventure)
+	TackScripts.leg_wraps_save(eng_name, %artistText.text, %inspoText.text, coin, adventure)
+	
+	if custom_rack:
+		TackScripts.girth_straps_save(eng_name, %artistText.text, %inspoText.text, coin, adventure)
+		TackScripts.blanket_save(eng_name, %artistText.text, %inspoText.text, coin, adventure)
+	else:
+		TackScripts.colored_girth_strap_save(%Girth_Saddle, eng_name, %artistText.text, %inspoText.text, coin, red, green, blue, adventure)
+		TackScripts.colored_blanket_save(%Eng_Blanket5, %Eng_Saddle, eng_name, %artistText.text, %inspoText.text, coin, red, green, blue, adventure)
 
 func on_popup_dupe_back() -> void:
-	%confirmButton.disabled = false
-	%backButton.disabled = false
-	%artistText.editable = true
-	%inspoText.editable = true
-	%tackText.editable = true
+	enable_interaction()
 
 func on_popup_dupe_confirmed() -> void:
-	pass
+	_save_complete_tack_set()
 
 func on_new_tack_saved() -> void:
 	var title = "Complete!"
@@ -288,20 +381,13 @@ func on_new_tack_saved() -> void:
 	var no_label = "Go Back"
 	var yes_label = "Start A New Set"
 	$popUP_Saved.pop_yesNo(title, message, no_label, yes_label)
-	%confirmButton.disabled = true
-	%backButton.disabled = true
-	%artistText.editable = false
-	%inspoText.editable = false
-	%tackText.editable = false
+	disable_interaction()
 
 func on_popup_saved_back() -> void:
-	%confirmButton.disabled = false
-	%backButton.disabled = false
-	%artistText.editable = true
-	%inspoText.editable = true
-	%tackText.editable = true
+	enable_interaction()
 
 func on_popup_saved_confirmed() -> void:
+	enable_interaction()
 	get_tree().reload_current_scene()
 
 ###########################################################

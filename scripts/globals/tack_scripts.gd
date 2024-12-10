@@ -32,7 +32,7 @@ func script_start_up() -> void:
 	text_dir = GlobalScripts.join_paths(GlobalScripts.textures_root, "tack")
 
 ########## STANDARD SAVE SCRIPTS ##########
-func blanket_save(item : String, artist : String, inspo : String, coin : String, red : int, green : int , blue : int, adv: bool, amount : int = cost_blanket) -> void:
+func blanket_save(item : String, artist : String, inspo : String, coin : String, adv: bool, amount : int = cost_blanket) -> void:
 	var type = "blanket"
 	var type_fancy = "Blanket"
 	GlobalScripts.setup_tack(type)
@@ -65,7 +65,7 @@ func blanket_save(item : String, artist : String, inspo : String, coin : String,
 		}
 		var horse = {"legacy" = legacy}
 		var data = {
-			"color" = [red, green, blue],
+			"color" = [255, 255, 255],
 			"can_wear_armor" = adv
 		}
 		var rack = {
@@ -568,7 +568,7 @@ func saddle_bag_save(item : String, artist : String, inspo : String, coin : Stri
 		ErrorManager.error_print("I couldn't save the new tack set. The ./json/tack/" + type + "/ folder wouldn't open. Check to see if it exists.")
 		GlobalScripts.report("Failed to save the new " + type_fancy + ", '" + item + "' to " + path)
 
-func girth_straps_save(item : String, artist : String, inspo : String, coin : String, red : int, green : int , blue : int, adv: bool, amount : int = cost_girth_straps) -> void:
+func girth_straps_save(item : String, artist : String, inspo : String, coin : String, adv: bool, amount : int = cost_girth_straps) -> void:
 	var type = "girth_strap"
 	var type_fancy = "Girth Strap"
 	GlobalScripts.setup_tack(type)
@@ -600,7 +600,7 @@ func girth_straps_save(item : String, artist : String, inspo : String, coin : St
 		}
 		var horse = {"legacy" = legacy}
 		var data = {
-			"color" = [red, green, blue],
+			"color" = [255, 255, 255],
 			"can_wear_armor" = adv
 		}
 		var rack = {
@@ -635,7 +635,7 @@ func girth_straps_save(item : String, artist : String, inspo : String, coin : St
 		ErrorManager.error_print("I couldn't save the new " + type_fancy + ". The ./json/tack/" + type + "/ folder wouldn't open. Check to see if it exists.")
 		GlobalScripts.report("Failed to save the new " + type_fancy + ", '" + item + "' to " + path)
 
-func pasture_blanket_save(item : String, artist : String, inspo : String, coin : String, red : int, green : int , blue : int, amount : int = cost_pasture_blanket) -> void:
+func pasture_blanket_save(item : String, artist : String, inspo : String, coin : String, amount : int = cost_pasture_blanket) -> void:
 	var type = "pasture_blanket"
 	var type_fancy = "Pasture Blanket"
 	GlobalScripts.setup_tack(type)
@@ -650,6 +650,309 @@ func pasture_blanket_save(item : String, artist : String, inspo : String, coin :
 	var leg_texture = java_name + "_legacy.png"
 	var rack_short_3 = "rack_pasture_blanket_3_short_" + original_item + ".png"
 	var rack_long_5 = "rack_pasture_blanket_5_long_" + original_item + ".png"
+	
+	var file = FileAccess.open(path, FileAccess.WRITE)
+	if file:
+		var display = {
+			"credits" = artist,
+			"inspiration" = inspo,
+			"name" = item
+		}
+		
+		var cost = {
+			"coin" = coin,
+			"amount" = amount
+		}
+		
+		var legacy = {
+			"pasture_blanket" = root + leg_texture
+		}
+		var horse = {"legacy" = legacy}
+		var data = {
+			"color" = [255, 255, 255]
+		}
+		var rack = {
+			"pasture_blanket_long_5" = root + rack_long_5,
+			"pasture_blanket_short_3" = root + rack_short_3
+		}
+		var textures = {"horse" = horse, "rack" = rack}
+		
+		var meta = {
+			"name" = java_name,
+			"icon" = root + icon,
+			"type" = type,
+			"data" = data,
+			"textures" = textures,
+		}
+		
+		var save_file = {"display" = display, "cost" = cost, "meta" = meta}
+		
+		var string_1 = JSON.stringify(save_file)
+		
+		file.store_string(string_1)
+		file.close()
+		
+		var text_list = "    Icon Texture: " + icon + "\n" + "    Horse Texture: " + leg_texture\
+		 + "\n" + "    Long 5 Blanket Rack Texture: " + rack_long_5 + "\n" \
+		 + "    Short 3 Blanket Rack Texture: " + rack_short_3 + "\n"
+		var text_path = GlobalScripts.join_paths(text_dir, type)
+		
+		GlobalScripts.instructions_tack(type_fancy, item, text_list, text_path)
+		GlobalScripts.report("Saved the new " + type_fancy + ", '" + item + "', to " + path)
+		pasture_blanket_saved.emit()
+	
+	else:
+		ErrorManager.error_print("I couldn't save the new " + type_fancy + ". The ./json/tack/" + type + "/ folder wouldn't open. Check to see if it exists.")
+		GlobalScripts.report("Failed to save the new " + type_fancy + ", '" + item + "' to " + path)
+
+func ar_pasture_blanket_save(item : String, artist : String, inspo : String, coin : String, amount : int = cost_ar_pasture_blanket) -> void:
+	var type = "pasture_blanket"
+	var type_fancy = "Armored Pasture Blanket"
+	GlobalScripts.setup_tack(type)
+	var original_item = GlobalScripts.text_clean(item)
+	var java_name = item + "_pasture_blanket_armored"
+	item = "Armored " + item + " Pasture Blanket"
+	java_name = GlobalScripts.text_clean(java_name)
+	var file_name = java_name + ".json"
+	var path = GlobalScripts.join_paths(json_dir, type)
+	path = GlobalScripts.join_paths(path, file_name)
+	var root = type + "/"
+	var icon = java_name + "_icon.png"
+	var leg_texture = java_name + "_legacy.png"
+	var rack_short_3 = "rack_pasture_blanket_3_short_" + original_item + "_armored.png"
+	var rack_long_5 = "rack_pasture_blanket_5_long_" + original_item + "_armored.png"
+	
+	var file = FileAccess.open(path, FileAccess.WRITE)
+	if file:
+		var display = {
+			"credits" = artist,
+			"inspiration" = inspo,
+			"name" = item
+		}
+		
+		var cost = {
+			"coin" = coin,
+			"amount" = amount
+		}
+		
+		var legacy = {
+			"pasture_blanket" = root + leg_texture
+		}
+		var horse = {"legacy" = legacy}
+		var data = {
+			"color" = [255, 255, 255],
+			"is_armored" = true
+		}
+		var rack = {
+			"pasture_blanket_long_5" = root + rack_long_5,
+			"pasture_blanket_short_3" = root + rack_short_3
+		}
+		var textures = {"horse" = horse, "rack" = rack}
+		
+		var meta = {
+			"name" = java_name,
+			"icon" = root + icon,
+			"type" = type,
+			"data" = data,
+			"textures" = textures,
+		}
+		
+		var save_file = {"display" = display, "cost" = cost, "meta" = meta}
+		
+		var string_1 = JSON.stringify(save_file)
+		
+		file.store_string(string_1)
+		file.close()
+		
+		var text_list = "    Icon Texture: " + icon + "\n" + "    Horse Texture: " + leg_texture\
+		 + "\n" + "    Long 5 Blanket Rack Texture: " + rack_long_5 + "\n" \
+		 + "    Short 3 Blanket Rack Texture: " + rack_short_3 + "\n"
+		var text_path = GlobalScripts.join_paths(text_dir, type)
+		
+		GlobalScripts.instructions_tack(type_fancy, item, text_list, text_path)
+		GlobalScripts.report("Saved the new " + type_fancy + ", '" + item + "', to " + path)
+		ar_pasture_blanket_saved.emit()
+	
+	else:
+		ErrorManager.error_print("I couldn't save the new " + type_fancy + ". The ./json/tack/" + type + "/ folder wouldn't open. Check to see if it exists.")
+		GlobalScripts.report("Failed to save the new " + type_fancy + ", '" + item + "' to " + path)
+
+########## COLORED - NO CUSTOM TEXTURE SAVE SCRIPTS ##########
+func colored_blanket_save(rack_5 : Sprite2D, rack_saddle : Sprite2D, item : String, artist : String, inspo : String, coin : String, red : int, green : int , blue : int, adv: bool, amount : int = cost_blanket) -> void:
+	var type = "blanket"
+	var type_fancy = "Blanket"
+	GlobalScripts.setup_tack(type)
+	item = item + " " + type_fancy
+	var java_name = GlobalScripts.text_clean(item)
+	var file_name = java_name + ".json"
+	var path = GlobalScripts.join_paths(json_dir, type)
+	path = GlobalScripts.join_paths(path, file_name)
+	var root = type + "/"
+	var icon = java_name + "_icon.png"
+	var leg_texture = java_name + "_legacy.png"
+	var rack_saddle_text = "rack_saddle_" + java_name + ".png"
+	var rack_5_text = "rack_blanket_5_" + java_name + ".png"
+	
+	var blanket5_path = GlobalScripts.join_paths(text_dir, root + rack_5_text)
+	var saddle_path = GlobalScripts.join_paths(text_dir, root + rack_saddle_text)
+	if !GlobalScripts.check_file_exists(blanket5_path):
+		rack_5.get_texture().get_image().save_png(blanket5_path)
+		GlobalScripts.report("Saved new preset 5 Blanket Rack texture - " + blanket5_path)
+	if !GlobalScripts.check_file_exists(saddle_path):
+		rack_saddle.get_texture().get_image().save_png(saddle_path)
+		GlobalScripts.report("Saved new preset Blanket Saddle Rack texture - " + saddle_path)
+	
+	
+	var file = FileAccess.open(path, FileAccess.WRITE)
+	if file:
+		var display = {
+			"credits" = artist,
+			"inspiration" = inspo,
+			"name" = item
+		}
+		
+		var cost = {
+			"coin" = coin,
+			"amount" = amount
+		}
+		
+		var legacy = {
+			"blanket" = root + leg_texture
+		}
+		var horse = {"legacy" = legacy}
+		var data = {
+			"color" = [red, green, blue],
+			"can_wear_armor" = adv
+		}
+		var rack = {
+			"saddle" = root + rack_saddle_text,
+			"blanket_5" = root + rack_5_text
+		}
+		var textures = {"horse" = horse, "rack" = rack}
+		
+		var meta = {
+			"name" = java_name,
+			"icon" = root + icon,
+			"type" = type,
+			"data" = data,
+			"textures" = textures,
+		}
+		
+		var save_file = {"display" = display, "cost" = cost, "meta" = meta}
+		
+		var string_1 = JSON.stringify(save_file)
+		
+		file.store_string(string_1)
+		file.close()
+		
+		var text_list = "    Icon Texture: " + icon + "\n" + "    Horse Texture: " + leg_texture\
+		 + "\n" + "    No custom rack textures needed for this blanket.\n"
+		var text_path = GlobalScripts.join_paths(text_dir, type)
+		
+		GlobalScripts.instructions_tack(type_fancy, item, text_list, text_path)
+		GlobalScripts.report("Saved the new " + type_fancy + ", '" + item + "', to " + path)
+		blanket_saved.emit()
+	
+	else:
+		ErrorManager.error_print("I couldn't save the new " + type_fancy + ". The ./json/tack/" + type + "/ folder wouldn't open. Check to see if it exists.")
+		GlobalScripts.report("Failed to save the new " + type_fancy + ", '" + item + "' to " + path)
+
+func colored_girth_strap_save(rack_saddle : Sprite2D, item : String, artist : String, inspo : String, coin : String, red : int, green : int , blue : int, adv: bool, amount : int = cost_girth_straps) -> void:
+	var type = "girth_strap"
+	var type_fancy = "Girth Strap"
+	GlobalScripts.setup_tack(type)
+	item = item + " " + type_fancy
+	var java_name = GlobalScripts.text_clean(item)
+	var file_name = java_name + ".json"
+	var path = GlobalScripts.join_paths(json_dir, type)
+	path = GlobalScripts.join_paths(path, file_name)
+	var root = type + "/"
+	var icon = java_name + "_icon.png"
+	var leg_texture = java_name + "_legacy.png"
+	var rack_saddle_text = "rack_saddle_" + java_name + ".png"
+	
+	var saddle_path = GlobalScripts.join_paths(text_dir, root + rack_saddle_text)
+	if !GlobalScripts.check_file_exists(saddle_path):
+		rack_saddle.get_texture().get_image().save_png(saddle_path)
+		GlobalScripts.report("Saved new preset Girth Stap Saddle Rack texture - " + saddle_path)
+	
+	var file = FileAccess.open(path, FileAccess.WRITE)
+	if file:
+		var display = {
+			"credits" = artist,
+			"inspiration" = inspo,
+			"name" = item
+		}
+		
+		var cost = {
+			"coin" = coin,
+			"amount" = amount
+		}
+		
+		var legacy = {
+			"girth_strap" = root + leg_texture
+		}
+		var horse = {"legacy" = legacy}
+		var data = {
+			"color" = [red, green, blue],
+			"can_wear_armor" = adv
+		}
+		var rack = {
+			"saddle" = root + rack_saddle_text
+		}
+		var textures = {"horse" = horse, "rack" = rack}
+		
+		var meta = {
+			"name" = java_name,
+			"icon" = root + icon,
+			"type" = type,
+			"data" = data,
+			"textures" = textures,
+		}
+		
+		var save_file = {"display" = display, "cost" = cost, "meta" = meta}
+		
+		var string_1 = JSON.stringify(save_file)
+		
+		file.store_string(string_1)
+		file.close()
+		
+		var text_list = "    Icon Texture: " + icon + "\n" + "    Horse Girth Strap Texture: " + leg_texture\
+		 + "\n" + "    No custom rack textures needed for this girth strap.\n"
+		var text_path = GlobalScripts.join_paths(text_dir, type)
+		
+		GlobalScripts.instructions_tack(type_fancy, item, text_list, text_path)
+		GlobalScripts.report("Saved the new " + type_fancy + ", '" + item + "', to " + path)
+		girth_straps_saved.emit()
+		
+	else:
+		ErrorManager.error_print("I couldn't save the new " + type_fancy + ". The ./json/tack/" + type + "/ folder wouldn't open. Check to see if it exists.")
+		GlobalScripts.report("Failed to save the new " + type_fancy + ", '" + item + "' to " + path)
+
+func colored_pasture_blanket_save(rack_long : Sprite2D, rack_short : Sprite2D, item : String, artist : String, inspo : String, coin : String, red : int, green : int , blue : int, amount : int = cost_pasture_blanket) -> void:
+	var type = "pasture_blanket"
+	var type_fancy = "Pasture Blanket"
+	GlobalScripts.setup_tack(type)
+	var original_item = GlobalScripts.text_clean(item)
+	item = item + " " + type_fancy
+	var java_name = GlobalScripts.text_clean(item)
+	var file_name = java_name + ".json"
+	var path = GlobalScripts.join_paths(json_dir, type)
+	path = GlobalScripts.join_paths(path, file_name)
+	var root = type + "/"
+	var icon = java_name + "_icon.png"
+	var leg_texture = java_name + "_legacy.png"
+	var rack_short_3 = "rack_pasture_blanket_3_short_" + original_item + "_armored.png"
+	var rack_long_5 = "rack_pasture_blanket_5_long_" + original_item + "_armored.png"
+	
+	var long_path = GlobalScripts.join_paths(text_dir, root + rack_long_5)
+	var short_path = GlobalScripts.join_paths(text_dir, root + rack_short_3)
+	if !GlobalScripts.check_file_exists(long_path):
+		rack_long.get_texture().get_image().save_png(long_path)
+		GlobalScripts.report("Saved new preset 5 Long Pasture Blanket Rack texture - " + long_path)
+	if !GlobalScripts.check_file_exists(short_path):
+		rack_short.get_texture().get_image().save_png(short_path)
+		GlobalScripts.report("Saved new preset 3 Short Pasture Blanket Rack texture - " + short_path)
 	
 	var file = FileAccess.open(path, FileAccess.WRITE)
 	if file:
@@ -693,8 +996,7 @@ func pasture_blanket_save(item : String, artist : String, inspo : String, coin :
 		file.close()
 		
 		var text_list = "    Icon Texture: " + icon + "\n" + "    Horse Texture: " + leg_texture\
-		 + "\n" + "    Long 5 Blanket Rack Texture: " + rack_long_5 + "\n" \
-		 + "    Short 3 Blanket Rack Texture: " + rack_short_3 + "\n"
+		 + "\n" + "    No custom rack textures needed for this blanket.\n"
 		var text_path = GlobalScripts.join_paths(text_dir, type)
 		
 		GlobalScripts.instructions_tack(type_fancy, item, text_list, text_path)
@@ -705,7 +1007,7 @@ func pasture_blanket_save(item : String, artist : String, inspo : String, coin :
 		ErrorManager.error_print("I couldn't save the new " + type_fancy + ". The ./json/tack/" + type + "/ folder wouldn't open. Check to see if it exists.")
 		GlobalScripts.report("Failed to save the new " + type_fancy + ", '" + item + "' to " + path)
 
-func ar_pasture_blanket_save(item : String, artist : String, inspo : String, coin : String, red : int, green : int , blue : int, amount : int = cost_pasture_blanket) -> void:
+func colored_ar_pasture_blanket_save(rack_long : Sprite2D, rack_short : Sprite2D, item : String, artist : String, inspo : String, coin : String, red : int, green : int , blue : int, amount : int = cost_pasture_blanket) -> void:
 	var type = "pasture_blanket"
 	var type_fancy = "Armored Pasture Blanket"
 	GlobalScripts.setup_tack(type)
@@ -721,6 +1023,15 @@ func ar_pasture_blanket_save(item : String, artist : String, inspo : String, coi
 	var leg_texture = java_name + "_legacy.png"
 	var rack_short_3 = "rack_pasture_blanket_3_short_" + original_item + ".png"
 	var rack_long_5 = "rack_pasture_blanket_5_long_" + original_item + ".png"
+	
+	var long_path = GlobalScripts.join_paths(text_dir, root + rack_long_5)
+	var short_path = GlobalScripts.join_paths(text_dir, root + rack_short_3)
+	if !GlobalScripts.check_file_exists(long_path):
+		rack_long.get_texture().get_image().save_png(long_path)
+		GlobalScripts.report("Saved new preset 5 Long Pasture Blanket Rack texture - " + long_path)
+	if !GlobalScripts.check_file_exists(short_path):
+		rack_short.get_texture().get_image().save_png(short_path)
+		GlobalScripts.report("Saved new preset 3 Short Pasture Blanket Rack texture - " + short_path)
 	
 	var file = FileAccess.open(path, FileAccess.WRITE)
 	if file:
@@ -765,8 +1076,7 @@ func ar_pasture_blanket_save(item : String, artist : String, inspo : String, coi
 		file.close()
 		
 		var text_list = "    Icon Texture: " + icon + "\n" + "    Horse Texture: " + leg_texture\
-		 + "\n" + "    Long 5 Blanket Rack Texture: " + rack_long_5 + "\n" \
-		 + "    Short 3 Blanket Rack Texture: " + rack_short_3 + "\n"
+		 + "\n" + "    No custom rack textures needed for this blanket.\n"
 		var text_path = GlobalScripts.join_paths(text_dir, type)
 		
 		GlobalScripts.instructions_tack(type_fancy, item, text_list, text_path)
@@ -776,16 +1086,3 @@ func ar_pasture_blanket_save(item : String, artist : String, inspo : String, coi
 	else:
 		ErrorManager.error_print("I couldn't save the new " + type_fancy + ". The ./json/tack/" + type + "/ folder wouldn't open. Check to see if it exists.")
 		GlobalScripts.report("Failed to save the new " + type_fancy + ", '" + item + "' to " + path)
-
-########## COLORED - NO CUSTOM TEXTURE SAVE SCRIPTS ##########
-func colored_blanket_save() -> void:
-	pass
-	
-func colored_girth_strap_save() -> void:
-	pass
-
-func colored_pasture_blanket_save() -> void:
-	pass
-
-func colored_ar_pasture_blanket_save() -> void:
-	pass
