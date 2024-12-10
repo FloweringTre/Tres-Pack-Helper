@@ -2,7 +2,6 @@ extends Control
 
 @onready var location_text: LineEdit = $NinePatchRect/VBoxContainer/Hbox/locationText
 @onready var folder_nametext: LineEdit = $NinePatchRect/VBoxContainer/Hbox2/folderNametext
-@onready var file_dialog: FileDialog = $FileDialog
 
 var old_pack : bool
 signal setup_done
@@ -31,9 +30,10 @@ func _ready() -> void:
 	%tackButton.button_pressed.connect(on_tack_selected)
 	$errorMessage.error_continue.connect(on_error_continue)
 	%nameCheck.button_pressed.connect(on_name_check)
-	%animButton2.set_disabled()
 	$popUP.deny.connect(on_popup_back)
 	$popUP.confirm.connect(on_popup_confirmed)
+	$popUP2.deny.connect(on_popup_leave_back)
+	$popUP2.confirm.connect(on_popup_leave_confirmed)
 
 func _on_confirm_button_pressed() -> void:
 	var Root = location_text.text
@@ -72,14 +72,31 @@ func on_done() -> void:
 			$NinePatchRect/VBoxContainer/Stage2BoxContainer/Stage2Text.text  = \
 			GlobalScripts.folder + " folder has been generated!"
 
+func disable_interaction() -> void:
+	%confirmButton.disabled = true
+	%backButton.disabled = true
+	%nameCheck.set_disabled()
+	%pathOpenButton.set_disabled()
+	location_text.editable = false
+	folder_nametext.editable = false
+	%coatsButton.set_disabled()
+	%tackButton.set_disabled()
+
+func enable_interaction() -> void:
+	%confirmButton.disabled = false
+	%backButton.disabled = false
+	%nameCheck.reenable_button()
+	%pathOpenButton.reenable_button()
+	location_text.editable = true
+	folder_nametext.editable = true
+	%coatsButton.reenable_button()
+	%tackButton.reenable_button()
+
 func on_coats_selected() -> void:
 	get_tree().change_scene_to_file("res://scene/coatGUI.tscn")
 
 func on_tack_selected() -> void:
 	get_tree().change_scene_to_file("res://scene/tackMenuGUI.tscn")
-
-func on_animation_selected() -> void:
-	pass
 
 func _on_location_text_text_changed(new_text: String) -> void:
 	$checkPathLOCA.awaiting_check()
@@ -105,7 +122,12 @@ func on_error_continue() -> void:
 	%backButton.disabled = false
 	
 func _on_back_button_pressed() -> void:
-	get_tree().quit()
+	var title = "Wait!"
+	var message = "\nAre you sure you want to exit?"
+	var no_label = " NO"
+	var yes_label = "YES "
+	$popUP2.pop_yesNo(title, message, no_label, yes_label)
+	disable_interaction()
 
 func on_path_button_pressed() -> void:
 	location_text.text = GlobalScripts.path_clean(location_text.text)
@@ -139,23 +161,20 @@ func folder_exists() -> void:
 	var no_label = "Go Back"
 	var yes_label = "Open it"
 	$popUP.pop_yesNo(title, message, no_label, yes_label)
-	%confirmButton.disabled = true
-	%backButton.disabled = true
-	%nameCheck.set_disabled()
-	%pathOpenButton.set_disabled()
-	location_text.editable = false
-	folder_nametext.editable = false
+	disable_interaction()
 
 func on_popup_back() -> void:
-	%confirmButton.disabled = false
-	%backButton.disabled = false
-	%nameCheck.reenable_button()
-	%pathOpenButton.reenable_button()
-	location_text.editable = true
-	folder_nametext.editable = true
+	enable_interaction()
 
 func on_popup_confirmed() -> void:
 	var opened_dir= DirAccess.open(directory)
 	GlobalScripts.old_pack_setup(directory)
 	old_pack = true
+	enable_interaction()
 	setup_done.emit()
+
+func on_popup_leave_back() -> void:
+	enable_interaction()
+
+func on_popup_leave_confirmed() -> void:
+	get_tree().quit()

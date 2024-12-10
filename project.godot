@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Tres Pack Helper"
+config/version="0.6-BETA"
 run/main_scene="res://scene/openingScreen.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
+boot_splash/bg_color=Color(0.0862745, 0.0862745, 0.054902, 1)
+boot_splash/image="res://assets/boot_screen.png"
 config/icon="res://icon.svg"
+config/windows_native_icon="res://icon.ico"
 
 [autoload]
 
@@ -38,3 +42,4 @@ theme/custom_font="res://assets/7x5TinyPixelFont.ttf"
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.247775, 0.27111, 0.24403, 1)

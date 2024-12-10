@@ -29,7 +29,7 @@ func _ready() -> void:
 	$popUP2_Dupe.deny.connect(on_popup_dupe_back)
 	$popUP2_Dupe.confirm.connect(on_popup_dupe_confirmed)
 
-func on_error() -> void:
+func disable_interaction () -> void:
 	%confirmButton.disabled = true
 	%backButton.disabled = true
 	%artistText.editable = false
@@ -37,8 +37,17 @@ func on_error() -> void:
 	%coatText.editable = false
 	%n_aButton.set_disabled()
 	%nameCheck.set_disabled()
+	%lapisCheckBox.disabled = true
+	$NinePatchRect/VBoxContainer/HBoxContainer/breeding/breedingCheckBox.disabled = true
+	$NinePatchRect/VBoxContainer/baseColorp2/Black/blackCheckBox.disabled = true
+	$NinePatchRect/VBoxContainer/baseColorp2/Gray/grayCheckBox2.disabled = true
+	$NinePatchRect/VBoxContainer/baseColorp2/White/whiteCheckBox3.disabled = true
+	$NinePatchRect/VBoxContainer/baseColorp2/Creamy/creamyCheckBox4.disabled = true
+	$NinePatchRect/VBoxContainer/baseColorp2/Brown/brownCheckBox5.disabled = true
+	$NinePatchRect/VBoxContainer/baseColorp2/DBrown/d_brownCheckBox6.disabled = true
+	$NinePatchRect/VBoxContainer/baseColorp2/Chestnut/chestnutCheckBox7.disabled = true
 
-func on_error_continue() -> void:
+func enable_interaction () -> void:
 	%confirmButton.disabled = false
 	%backButton.disabled = false
 	%artistText.editable = true
@@ -46,6 +55,21 @@ func on_error_continue() -> void:
 	%coatText.editable = true
 	%n_aButton.reenable_button()
 	%nameCheck.reenable_button()
+	%lapisCheckBox.disabled = true
+	$NinePatchRect/VBoxContainer/HBoxContainer/breeding/breedingCheckBox.disabled = false
+	$NinePatchRect/VBoxContainer/baseColorp2/Black/blackCheckBox.disabled = false
+	$NinePatchRect/VBoxContainer/baseColorp2/Gray/grayCheckBox2.disabled = false
+	$NinePatchRect/VBoxContainer/baseColorp2/White/whiteCheckBox3.disabled = false
+	$NinePatchRect/VBoxContainer/baseColorp2/Creamy/creamyCheckBox4.disabled = false
+	$NinePatchRect/VBoxContainer/baseColorp2/Brown/brownCheckBox5.disabled = false
+	$NinePatchRect/VBoxContainer/baseColorp2/DBrown/d_brownCheckBox6.disabled = false
+	$NinePatchRect/VBoxContainer/baseColorp2/Chestnut/chestnutCheckBox7.disabled = false
+
+func on_error() -> void:
+	disable_interaction()
+
+func on_error_continue() -> void:
+	enable_interaction()
 
 func _on_back_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scene/startingGUI.tscn")
@@ -215,22 +239,10 @@ func coat_exists() -> void:
 	var no_label = "Go Back"
 	var yes_label = "Overwrite it"
 	$popUP2_Dupe.pop_yesNo(title, message, no_label, yes_label)
-	%confirmButton.disabled = true
-	%backButton.disabled = true
-	%artistText.editable = false
-	%inspoText.editable = false
-	%coatText.editable = false
-	%n_aButton.set_disabled()
-	%nameCheck.set_disabled()
+	disable_interaction()
 
 func on_popup_dupe_back() -> void:
-	%confirmButton.disabled = false
-	%backButton.disabled = false
-	%artistText.editable = true
-	%inspoText.editable = true
-	%coatText.editable = true
-	%n_aButton.reenable_button()
-	%nameCheck.reenable_button()
+	enable_interaction()
 
 func on_popup_dupe_confirmed() -> void:
 	save_coat()
@@ -241,22 +253,11 @@ func on_new_coat_saved() -> void:
 	var no_label = "Go Back"
 	var yes_label = "Start New Coat"
 	$popUP_Saved.pop_yesNo(title, message, no_label, yes_label)
-	%confirmButton.disabled = true
-	%backButton.disabled = true
-	%artistText.editable = false
-	%inspoText.editable = false
-	%coatText.editable = false
-	%n_aButton.set_disabled()
-	%nameCheck.set_disabled()
+	disable_interaction()
 
 func on_popup_saved_back() -> void:
-	%confirmButton.disabled = false
-	%backButton.disabled = false
-	%artistText.editable = true
-	%inspoText.editable = true
-	%coatText.editable = true
-	%n_aButton.reenable_button()
-	%nameCheck.reenable_button()
+	enable_interaction()
 
 func on_popup_saved_confirmed() -> void:
+	enable_interaction()
 	get_tree().reload_current_scene()

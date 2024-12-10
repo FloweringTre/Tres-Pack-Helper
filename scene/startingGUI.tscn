@@ -171,6 +171,7 @@ unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_left = NodePath("../folderNametext")
 focus_neighbor_top = NodePath("../../Hbox/pathOpenButton")
+focus_neighbor_right = NodePath("../../../confirmButton")
 focus_neighbor_bottom = NodePath("../../../confirmButton")
 focus_next = NodePath("../../../confirmButton")
 focus_previous = NodePath("../folderNametext")
@@ -204,10 +205,27 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="HelperLabel5" type="Label" parent="NinePatchRect/VBoxContainer/Stage1BoxContainer"]
-custom_minimum_size = Vector2(522, 42)
+[node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/Stage1BoxContainer"]
+custom_minimum_size = Vector2(0, 49)
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_constants/separation = 34
+alignment = 1
+
+[node name="HelperLabel6" type="Label" parent="NinePatchRect/VBoxContainer/Stage1BoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(73, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme = ExtResource("7_0bqte")
+theme_override_colors/font_color = Color(0.493728, 0.364523, 0.227402, 1)
+vertical_alignment = 2
+
+[node name="HelperLabel5" type="Label" parent="NinePatchRect/VBoxContainer/Stage1BoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(400, 42)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
 theme = ExtResource("7_0bqte")
 theme_override_colors/font_color = Color(0.493728, 0.364523, 0.227402, 1)
 text = "Press the buttons above to gain a checkmark on each line to proceed..."
@@ -255,11 +273,6 @@ unique_name_in_owner = true
 layout_mode = 2
 button_text = "Tack"
 
-[node name="animButton2" parent="NinePatchRect/VBoxContainer/Stage2BoxContainer/HBoxContainer" instance=ExtResource("5_1lo41")]
-unique_name_in_owner = true
-layout_mode = 2
-button_text = "Animations"
-
 [node name="backButton" type="TextureButton" parent="NinePatchRect"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -274,13 +287,25 @@ texture_hover = SubResource("AtlasTexture_5a3py")
 texture_disabled = SubResource("AtlasTexture_8xqp5")
 texture_focused = SubResource("AtlasTexture_5a3py")
 
+[node name="HelperLabel5" type="Label" parent="NinePatchRect"]
+layout_mode = 2
+offset_left = 50.0
+offset_top = 315.0
+offset_right = 74.0
+offset_bottom = 329.0
+size_flags_horizontal = 4
+theme = ExtResource("7_0bqte")
+theme_override_colors/font_color = Color(0.493728, 0.364523, 0.227402, 1)
+text = "Exit "
+vertical_alignment = 2
+
 [node name="confirmButton" type="TextureButton" parent="NinePatchRect"]
 unique_name_in_owner = true
 layout_mode = 2
-offset_left = 572.0
-offset_top = 300.5
-offset_right = 586.0
-offset_bottom = 314.5
+offset_left = 571.0
+offset_top = 299.5
+offset_right = 587.0
+offset_bottom = 315.5
 scale = Vector2(2, 2)
 focus_neighbor_left = NodePath("../backButton")
 focus_previous = NodePath("../VBoxContainer/Hbox2/nameCheck")
@@ -311,6 +336,10 @@ offset_bottom = -36.0
 scale = Vector2(1.5, 1.5)
 
 [node name="popUP" parent="." instance=ExtResource("12_kwseo")]
+visible = false
+layout_mode = 1
+
+[node name="popUP2" parent="." instance=ExtResource("12_kwseo")]
 visible = false
 layout_mode = 1
 

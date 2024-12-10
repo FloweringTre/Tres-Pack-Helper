@@ -66,7 +66,6 @@ func perm_disabled_buttons() -> void:
 	%armors.set_disabled()
 	%pasture_blankets.set_disabled()
 
-
 func reenabled_buttons() -> void:
 	%saddle_set.reenable_button()
 	%extras_set.reenable_button()
