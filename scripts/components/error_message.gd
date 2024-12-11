@@ -21,4 +21,5 @@ func _on_continue_button_pressed() -> void:
 	error_continue.emit()
 	ErrorManager.is_error = false
 	ErrorManager.current_error = ""
+	ErrorManager.error_continue()
 	$".".visible = false
