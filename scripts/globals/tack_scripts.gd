@@ -98,7 +98,7 @@ func blanket_save(item : String, artist : String, inspo : String, coin : String,
 		blanket_saved.emit()
 	
 	else:
-		ErrorManager.error_print("I couldn't save the new " + type_fancy + ". The ./json/tack/" + type + "/ folder wouldn't open. Check to see if it exists.")
+		ErrorManager.error_print("Couldn't save the new " + type_fancy + ". The ./json/tack/" + type + "/ folder wouldn't open. Check to see if it exists.")
 		GlobalScripts.report("Failed to save the new " + type_fancy + ", '" + item + "' to " + path)
 
 func saddle_save(item : String, artist : String, inspo : String, coin : String, model : String, adv: bool, amount : int = cost_saddle) -> void:
@@ -158,8 +158,15 @@ func saddle_save(item : String, artist : String, inspo : String, coin : String, 
 		file.store_string(string_1)
 		file.close()
 		
-		var text_list = "    Icon Texture: " + icon + "\n" + "    Horse Texture: " + leg_texture\
-		 + "\n" + "    Saddle Rack Texture: " + rack_saddle + "\n" + "    Horse Armor Rack Texture: " + rack_armor + "\n"
+		var text_1 = "    Icon Texture: " + icon + "\n" + "    Horse Texture: " + leg_texture\
+		 + "\n" + "    Saddle Rack Texture: " + rack_saddle + "\n"
+		var text_2 = ""
+		if adv:
+			text_2 = "    Horse Armor Rack Texture: " + rack_armor + "\n"
+		else:
+			text_2 = "\n"
+		
+		var text_list =  text_1 + text_2
 		var text_path = GlobalScripts.join_paths(text_dir, type)
 		
 		GlobalScripts.instructions_tack(type_fancy, item, text_list, text_path)
@@ -167,7 +174,7 @@ func saddle_save(item : String, artist : String, inspo : String, coin : String, 
 		saddle_saved.emit()
 		
 	else:
-		ErrorManager.error_print("I couldn't save the new " + type_fancy + ". The ./json/tack/" + type + "/ folder wouldn't open. Check to see if it exists.")
+		ErrorManager.error_print("Couldn't save the new " + type_fancy + ". The ./json/tack/" + type + "/ folder wouldn't open. Check to see if it exists.")
 		GlobalScripts.report("Failed to save the new " + type_fancy + ", '" + item + "' to " + path)
 
 func bridle_save(item : String, artist : String, inspo : String, coin : String, model : String, adv: bool, amount : int = cost_bridle) -> void:
@@ -236,7 +243,7 @@ func bridle_save(item : String, artist : String, inspo : String, coin : String, 
 		bridle_saved.emit()
 		
 	else:
-		ErrorManager.error_print("I couldn't save the new " + type_fancy + ". The ./json/tack/" + type + "/ folder wouldn't open. Check to see if it exists.")
+		ErrorManager.error_print("Couldn't save the new " + type_fancy + ". The ./json/tack/" + type + "/ folder wouldn't open. Check to see if it exists.")
 		GlobalScripts.report("Failed to save the new " + type_fancy + ", '" + item + "' to " + path)
 
 func halter_save(item : String, artist : String, inspo : String, coin : String, red : int, green : int , blue : int, adv: bool, amount : int = cost_halter) -> void:
@@ -303,7 +310,7 @@ func halter_save(item : String, artist : String, inspo : String, coin : String, 
 		halter_saved.emit()
 		
 	else:
-		ErrorManager.error_print("I couldn't save the new " + type_fancy + ". The ./json/tack/" + type + "/ folder wouldn't open. Check to see if it exists.")
+		ErrorManager.error_print("Couldn't save the new " + type_fancy + ". The ./json/tack/" + type + "/ folder wouldn't open. Check to see if it exists.")
 		GlobalScripts.report("Failed to save the new " + type_fancy + ", '" + item + "' to " + path)
 
 func leg_wraps_save(item : String, artist : String, inspo : String, coin : String, adv: bool, amount : int = cost_leg_wraps) -> void:
@@ -370,7 +377,7 @@ func leg_wraps_save(item : String, artist : String, inspo : String, coin : Strin
 		leg_wraps_saved.emit()
 	
 	else:
-		ErrorManager.error_print("I couldn't save the new tack set. The ./json/tack/" + type + "/ folder wouldn't open. Check to see if it exists.")
+		ErrorManager.error_print("Couldn't save the new tack set. The ./json/tack/" + type + "/ folder wouldn't open. Check to see if it exists.")
 		GlobalScripts.report("Failed to save the new " + type_fancy + ", '" + item + "' to " + path)
 
 func breast_collar_save(item : String, artist : String, inspo : String, coin : String, adv: bool, amount : int = cost_breast_collar) -> void:
@@ -434,7 +441,7 @@ func breast_collar_save(item : String, artist : String, inspo : String, coin : S
 		breast_collar_saved.emit()
 	
 	else:
-		ErrorManager.error_print("I couldn't save the new tack set. The ./json/tack/" + type + "/ folder wouldn't open. Check to see if it exists.")
+		ErrorManager.error_print("Couldn't save the new tack set. The ./json/tack/" + type + "/ folder wouldn't open. Check to see if it exists.")
 		GlobalScripts.report("Failed to save the new " + type_fancy + ", '" + item + "' to " + path)
 
 func armor_save(item : String, artist : String, inspo : String, coin : String, tier: String, amount : int = cost_blanket) -> void:
@@ -502,7 +509,7 @@ func armor_save(item : String, artist : String, inspo : String, coin : String, t
 		armor_saved.emit()
 	
 	else:
-		ErrorManager.error_print("I couldn't save the new " + type_fancy + ". The ./json/tack/" + type + "/ folder wouldn't open. Check to see if it exists.")
+		ErrorManager.error_print("Couldn't save the new " + type_fancy + ". The ./json/tack/" + type + "/ folder wouldn't open. Check to see if it exists.")
 		GlobalScripts.report("Failed to save the new " + type_fancy + ", '" + item + "' to " + path)
 
 func saddle_bag_save(item : String, artist : String, inspo : String, coin : String, red : int, green : int , blue : int, amount : int = cost_saddle_bag) -> void:
@@ -565,7 +572,7 @@ func saddle_bag_save(item : String, artist : String, inspo : String, coin : Stri
 		saddle_bag_saved.emit()
 	
 	else:
-		ErrorManager.error_print("I couldn't save the new tack set. The ./json/tack/" + type + "/ folder wouldn't open. Check to see if it exists.")
+		ErrorManager.error_print("Couldn't save the new tack set. The ./json/tack/" + type + "/ folder wouldn't open. Check to see if it exists.")
 		GlobalScripts.report("Failed to save the new " + type_fancy + ", '" + item + "' to " + path)
 
 func girth_straps_save(item : String, artist : String, inspo : String, coin : String, adv: bool, amount : int = cost_girth_straps) -> void:
@@ -632,7 +639,7 @@ func girth_straps_save(item : String, artist : String, inspo : String, coin : St
 		girth_straps_saved.emit()
 		
 	else:
-		ErrorManager.error_print("I couldn't save the new " + type_fancy + ". The ./json/tack/" + type + "/ folder wouldn't open. Check to see if it exists.")
+		ErrorManager.error_print("Couldn't save the new " + type_fancy + ". The ./json/tack/" + type + "/ folder wouldn't open. Check to see if it exists.")
 		GlobalScripts.report("Failed to save the new " + type_fancy + ", '" + item + "' to " + path)
 
 func pasture_blanket_save(item : String, artist : String, inspo : String, coin : String, amount : int = cost_pasture_blanket) -> void:
@@ -702,7 +709,7 @@ func pasture_blanket_save(item : String, artist : String, inspo : String, coin :
 		pasture_blanket_saved.emit()
 	
 	else:
-		ErrorManager.error_print("I couldn't save the new " + type_fancy + ". The ./json/tack/" + type + "/ folder wouldn't open. Check to see if it exists.")
+		ErrorManager.error_print("Couldn't save the new " + type_fancy + ". The ./json/tack/" + type + "/ folder wouldn't open. Check to see if it exists.")
 		GlobalScripts.report("Failed to save the new " + type_fancy + ", '" + item + "' to " + path)
 
 func ar_pasture_blanket_save(item : String, artist : String, inspo : String, coin : String, amount : int = cost_ar_pasture_blanket) -> void:
@@ -774,7 +781,7 @@ func ar_pasture_blanket_save(item : String, artist : String, inspo : String, coi
 		ar_pasture_blanket_saved.emit()
 	
 	else:
-		ErrorManager.error_print("I couldn't save the new " + type_fancy + ". The ./json/tack/" + type + "/ folder wouldn't open. Check to see if it exists.")
+		ErrorManager.error_print("Couldn't save the new " + type_fancy + ". The ./json/tack/" + type + "/ folder wouldn't open. Check to see if it exists.")
 		GlobalScripts.report("Failed to save the new " + type_fancy + ", '" + item + "' to " + path)
 
 ########## COLORED - NO CUSTOM TEXTURE SAVE SCRIPTS ##########
@@ -854,7 +861,7 @@ func colored_blanket_save(rack_5 : Sprite2D, rack_saddle : Sprite2D, item : Stri
 		blanket_saved.emit()
 	
 	else:
-		ErrorManager.error_print("I couldn't save the new " + type_fancy + ". The ./json/tack/" + type + "/ folder wouldn't open. Check to see if it exists.")
+		ErrorManager.error_print("Couldn't save the new " + type_fancy + ". The ./json/tack/" + type + "/ folder wouldn't open. Check to see if it exists.")
 		GlobalScripts.report("Failed to save the new " + type_fancy + ", '" + item + "' to " + path)
 
 func colored_girth_strap_save(rack_saddle : Sprite2D, item : String, artist : String, inspo : String, coin : String, red : int, green : int , blue : int, adv: bool, amount : int = cost_girth_straps) -> void:
@@ -926,7 +933,7 @@ func colored_girth_strap_save(rack_saddle : Sprite2D, item : String, artist : St
 		girth_straps_saved.emit()
 		
 	else:
-		ErrorManager.error_print("I couldn't save the new " + type_fancy + ". The ./json/tack/" + type + "/ folder wouldn't open. Check to see if it exists.")
+		ErrorManager.error_print("Couldn't save the new " + type_fancy + ". The ./json/tack/" + type + "/ folder wouldn't open. Check to see if it exists.")
 		GlobalScripts.report("Failed to save the new " + type_fancy + ", '" + item + "' to " + path)
 
 func colored_pasture_blanket_save(rack_long : Sprite2D, rack_short : Sprite2D, item : String, artist : String, inspo : String, coin : String, red : int, green : int , blue : int, amount : int = cost_pasture_blanket) -> void:
@@ -1004,7 +1011,7 @@ func colored_pasture_blanket_save(rack_long : Sprite2D, rack_short : Sprite2D, i
 		pasture_blanket_saved.emit()
 	
 	else:
-		ErrorManager.error_print("I couldn't save the new " + type_fancy + ". The ./json/tack/" + type + "/ folder wouldn't open. Check to see if it exists.")
+		ErrorManager.error_print("Couldn't save the new " + type_fancy + ". The ./json/tack/" + type + "/ folder wouldn't open. Check to see if it exists.")
 		GlobalScripts.report("Failed to save the new " + type_fancy + ", '" + item + "' to " + path)
 
 func colored_ar_pasture_blanket_save(rack_long : Sprite2D, rack_short : Sprite2D, item : String, artist : String, inspo : String, coin : String, red : int, green : int , blue : int, amount : int = cost_pasture_blanket) -> void:
@@ -1084,5 +1091,5 @@ func colored_ar_pasture_blanket_save(rack_long : Sprite2D, rack_short : Sprite2D
 		ar_pasture_blanket_saved.emit()
 	
 	else:
-		ErrorManager.error_print("I couldn't save the new " + type_fancy + ". The ./json/tack/" + type + "/ folder wouldn't open. Check to see if it exists.")
+		ErrorManager.error_print("Couldn't save the new " + type_fancy + ". The ./json/tack/" + type + "/ folder wouldn't open. Check to see if it exists.")
 		GlobalScripts.report("Failed to save the new " + type_fancy + ", '" + item + "' to " + path)
