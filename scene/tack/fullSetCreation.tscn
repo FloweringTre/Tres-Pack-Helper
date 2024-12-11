@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://eb3brbdum74l"]
+[gd_scene load_steps=30 format=3 uid="uid://eb3brbdum74l"]
 
 [ext_resource type="Script" path="res://scripts/tack/full_set_creation.gd" id="1_id3ft"]
 [ext_resource type="Texture2D" uid="uid://8f0rfohmniwa" path="res://assets/menuUI.png" id="2_t4x1h"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://b3cou3ndcs75h" path="res://scene/components/error_message.tscn" id="10_xcubv"]
 [ext_resource type="PackedScene" uid="uid://bpgiy2j33slge" path="res://scene/components/pop_up.tscn" id="11_1qftn"]
 [ext_resource type="Texture2D" uid="uid://gmchkp7i7m5e" path="res://assets/rackResources/rack_blanket_5_english_blanket.png" id="11_hv16x"]
+[ext_resource type="PackedScene" uid="uid://clixcby1mmxr3" path="res://scene/helpScreen.tscn" id="11_xkd12"]
 [ext_resource type="Texture2D" uid="uid://btrg0jid24lsi" path="res://assets/rackResources/rack_blanket_5_western_blanket.png" id="12_0rrc5"]
 [ext_resource type="PackedScene" uid="uid://cdigxro282sfm" path="res://scene/components/checkAlert.tscn" id="12_y85y2"]
 [ext_resource type="Texture2D" uid="uid://e0mn4j7b2dax" path="res://assets/rackResources/rack_pasture_blanket_3_short.png" id="13_2ynpt"]
@@ -24,35 +25,35 @@
 atlas = ExtResource("2_t4x1h")
 region = Rect2(58, 10, 28, 28)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ror28"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ytf6o"]
 atlas = ExtResource("2_t4x1h")
 region = Rect2(176, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jop8w"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_8k5rt"]
 atlas = ExtResource("2_t4x1h")
 region = Rect2(176, 32, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2l2ur"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ajnw7"]
 atlas = ExtResource("2_t4x1h")
 region = Rect2(176, 16, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5h1pk"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_a8fa8"]
 atlas = ExtResource("2_t4x1h")
 region = Rect2(176, 48, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7qkcx"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_wirbh"]
 atlas = ExtResource("2_t4x1h")
 region = Rect2(160, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ug12d"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_apwef"]
 atlas = ExtResource("2_t4x1h")
 region = Rect2(160, 32, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_yfjb1"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_7aqcs"]
 atlas = ExtResource("2_t4x1h")
 region = Rect2(160, 16, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_scopy"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_71y0a"]
 atlas = ExtResource("2_t4x1h")
 region = Rect2(160, 48, 16, 16)
 
@@ -631,7 +632,6 @@ unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_top = NodePath("../../../HBoxContainer4/armorType/armorOptions")
 focus_neighbor_right = NodePath("../../pbBoxContainer/pbCheckBox")
-focus_neighbor_bottom = NodePath("../../../../backButton")
 focus_next = NodePath("../../pbBoxContainer/pbCheckBox")
 focus_previous = NodePath("../../../HBoxContainer4/moneyCheck/coinOptions")
 button_pressed = true
@@ -657,7 +657,6 @@ layout_mode = 2
 focus_neighbor_left = NodePath("../../arpbBoxContainer2/arpbCheckBox")
 focus_neighbor_top = NodePath("../../../HBoxContainer4/moneyCheck/coinOptions")
 focus_neighbor_right = NodePath("../../arBoxContainer3/arCheckBox")
-focus_neighbor_bottom = NodePath("../../../../backButton")
 focus_next = NodePath("../../arBoxContainer3/arCheckBox")
 focus_previous = NodePath("../../arpbBoxContainer2/arpbCheckBox")
 button_pressed = true
@@ -683,7 +682,6 @@ layout_mode = 2
 focus_neighbor_left = NodePath("../../pbBoxContainer/pbCheckBox")
 focus_neighbor_top = NodePath("../../../HBoxContainer4/moneyCheck/coinOptions")
 focus_neighbor_right = NodePath("../../sbBoxContainer4/sbCheckBox")
-focus_neighbor_bottom = NodePath("../../../../backButton")
 focus_next = NodePath("../../sbBoxContainer4/sbCheckBox")
 focus_previous = NodePath("../../pbBoxContainer/pbCheckBox")
 button_pressed = true
@@ -709,7 +707,6 @@ layout_mode = 2
 focus_neighbor_left = NodePath("../../arBoxContainer3/arCheckBox")
 focus_neighbor_top = NodePath("../../../HBoxContainer4/moneyCheck/coinOptions")
 focus_neighbor_right = NodePath("../../halBoxContainer5/halCheckBox")
-focus_neighbor_bottom = NodePath("../../../../confirmButton")
 focus_next = NodePath("../../halBoxContainer5/halCheckBox")
 focus_previous = NodePath("../../arBoxContainer3/arCheckBox")
 button_pressed = true
@@ -734,9 +731,6 @@ unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_left = NodePath("../../sbBoxContainer4/sbCheckBox")
 focus_neighbor_top = NodePath("../../../HBoxContainer4/moneyCheck/coinOptions")
-focus_neighbor_right = NodePath("../../../../confirmButton")
-focus_neighbor_bottom = NodePath("../../../../confirmButton")
-focus_next = NodePath("../../../../confirmButton")
 focus_previous = NodePath("../../sbBoxContainer4/sbCheckBox")
 button_pressed = true
 
@@ -754,53 +748,47 @@ theme = ExtResource("6_28gow")
 text = "^^^ Select the 'extra items' want generated in this set ^^^"
 horizontal_alignment = 1
 
+[node name="backButton" type="TextureButton" parent="NinePatchRect"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 7.0
+offset_top = 297.0
+offset_right = 23.0
+offset_bottom = 313.0
+scale = Vector2(2, 2)
+texture_normal = SubResource("AtlasTexture_ytf6o")
+texture_pressed = SubResource("AtlasTexture_8k5rt")
+texture_hover = SubResource("AtlasTexture_ajnw7")
+texture_disabled = SubResource("AtlasTexture_a8fa8")
+texture_focused = SubResource("AtlasTexture_ajnw7")
+
 [node name="HelperLabel5" type="Label" parent="NinePatchRect"]
-custom_minimum_size = Vector2(522, 14)
-layout_mode = 2
-offset_left = 42.5
-offset_top = 316.0
-offset_right = 564.5
-offset_bottom = 330.0
+layout_mode = 0
+offset_left = 41.0
+offset_top = 313.0
+offset_right = 65.0
+offset_bottom = 327.0
 size_flags_horizontal = 4
 theme = ExtResource("9_fguin")
 theme_override_colors/font_color = Color(0.493728, 0.364523, 0.227402, 1)
 text = "Return to the Tack Main Menu"
 vertical_alignment = 2
 
-[node name="backButton" type="TextureButton" parent="NinePatchRect"]
-unique_name_in_owner = true
-layout_mode = 2
-offset_left = 9.0
-offset_top = 300.0
-offset_right = 21.0
-offset_bottom = 314.0
-scale = Vector2(2, 2)
-texture_normal = SubResource("AtlasTexture_ror28")
-texture_pressed = SubResource("AtlasTexture_jop8w")
-texture_hover = SubResource("AtlasTexture_2l2ur")
-texture_disabled = SubResource("AtlasTexture_5h1pk")
-texture_focused = SubResource("AtlasTexture_2l2ur")
-
 [node name="confirmButton" type="TextureButton" parent="NinePatchRect"]
 unique_name_in_owner = true
-layout_mode = 2
-offset_left = 572.0
-offset_top = 300.0
-offset_right = 586.0
-offset_bottom = 314.0
-grow_horizontal = 0
-grow_vertical = 0
+layout_mode = 0
+offset_left = 569.0
+offset_top = 296.5
+offset_right = 585.0
+offset_bottom = 312.5
 scale = Vector2(2, 2)
 focus_neighbor_left = NodePath("../backButton")
-focus_neighbor_top = NodePath("../VBoxContainer/HBoxContainer5/halBoxContainer5/halCheckBox")
-focus_next = NodePath("../backButton")
-focus_previous = NodePath("../VBoxContainer/HBoxContainer5/halBoxContainer5/halCheckBox")
-disabled = true
-texture_normal = SubResource("AtlasTexture_7qkcx")
-texture_pressed = SubResource("AtlasTexture_ug12d")
-texture_hover = SubResource("AtlasTexture_yfjb1")
-texture_disabled = SubResource("AtlasTexture_scopy")
-texture_focused = SubResource("AtlasTexture_yfjb1")
+focus_previous = NodePath("../VBoxContainer/Hbox2/nameCheck")
+texture_normal = SubResource("AtlasTexture_wirbh")
+texture_pressed = SubResource("AtlasTexture_apwef")
+texture_hover = SubResource("AtlasTexture_7aqcs")
+texture_disabled = SubResource("AtlasTexture_71y0a")
+texture_focused = SubResource("AtlasTexture_7aqcs")
 
 [node name="errorMessage" parent="." instance=ExtResource("10_xcubv")]
 visible = false
@@ -814,6 +802,10 @@ layout_mode = 1
 visible = false
 layout_mode = 1
 
+[node name="popUPexit" parent="." instance=ExtResource("11_1qftn")]
+visible = false
+layout_mode = 1
+
 [node name="checkPath" parent="." instance=ExtResource("12_y85y2")]
 visible = false
 offset_left = 161.0
@@ -821,6 +813,9 @@ offset_top = -49.0
 offset_right = 177.0
 offset_bottom = -33.0
 scale = Vector2(1.5, 1.5)
+
+[node name="helpscreen" parent="." instance=ExtResource("11_xkd12")]
+layout_mode = 1
 
 [node name="rackTemplates" type="Control" parent="."]
 visible = false

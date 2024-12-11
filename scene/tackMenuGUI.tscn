@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://c2mcpghq36d4e"]
+[gd_scene load_steps=23 format=3 uid="uid://c2mcpghq36d4e"]
 
 [ext_resource type="Script" path="res://scripts/tack_menu_gui.gd" id="1_7ssmw"]
 [ext_resource type="Texture2D" uid="uid://8f0rfohmniwa" path="res://assets/menuUI.png" id="2_ch7cg"]
@@ -12,6 +12,7 @@
 [ext_resource type="Theme" uid="uid://dix1yxdlw8hbv" path="res://assets/UI_theme_smol.tres" id="9_56vof"]
 [ext_resource type="PackedScene" uid="uid://b3cou3ndcs75h" path="res://scene/components/error_message.tscn" id="10_551ul"]
 [ext_resource type="PackedScene" uid="uid://bpgiy2j33slge" path="res://scene/components/pop_up.tscn" id="11_71188"]
+[ext_resource type="PackedScene" uid="uid://clixcby1mmxr3" path="res://scene/helpScreen.tscn" id="13_218np"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kx556"]
 atlas = ExtResource("2_ch7cg")
@@ -33,19 +34,19 @@ region = Rect2(160, 16, 16, 16)
 atlas = ExtResource("2_ch7cg")
 region = Rect2(160, 48, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ror28"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_7adk4"]
 atlas = ExtResource("2_ch7cg")
 region = Rect2(176, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jop8w"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_kkneh"]
 atlas = ExtResource("2_ch7cg")
 region = Rect2(176, 32, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2l2ur"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_8mqg6"]
 atlas = ExtResource("2_ch7cg")
 region = Rect2(176, 16, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5h1pk"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_m7l3u"]
 atlas = ExtResource("2_ch7cg")
 region = Rect2(176, 48, 16, 16)
 
@@ -533,7 +534,6 @@ offset_bottom = 297.0
 grow_horizontal = 0
 grow_vertical = 0
 scale = Vector2(1.5, 1.5)
-focus_next = NodePath("../backButton")
 focus_previous = NodePath("../VBoxContainer/BoxContainer/defaults/HBoxContainer/GridContainer/arPastureBlanketBox/arpastureBlanketSpinBox")
 disabled = true
 texture_normal = SubResource("AtlasTexture_2dryr")
@@ -543,32 +543,31 @@ texture_disabled = SubResource("AtlasTexture_00yw3")
 texture_focused = SubResource("AtlasTexture_m7vgm")
 stretch_mode = 0
 
+[node name="backButton" type="TextureButton" parent="NinePatchRect"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 7.0
+offset_top = 297.0
+offset_right = 23.0
+offset_bottom = 313.0
+scale = Vector2(2, 2)
+texture_normal = SubResource("AtlasTexture_7adk4")
+texture_pressed = SubResource("AtlasTexture_kkneh")
+texture_hover = SubResource("AtlasTexture_8mqg6")
+texture_disabled = SubResource("AtlasTexture_m7l3u")
+texture_focused = SubResource("AtlasTexture_8mqg6")
+
 [node name="HelperLabel5" type="Label" parent="NinePatchRect"]
-custom_minimum_size = Vector2(522, 30)
-layout_mode = 2
-offset_left = 43.0
-offset_top = 300.0
-offset_right = 565.0
-offset_bottom = 330.0
+layout_mode = 0
+offset_left = 41.0
+offset_top = 313.0
+offset_right = 65.0
+offset_bottom = 327.0
 size_flags_horizontal = 4
 theme = ExtResource("9_56vof")
 theme_override_colors/font_color = Color(0.493728, 0.364523, 0.227402, 1)
-text = "Return to the main menu"
+text = "Return to the Main Menu"
 vertical_alignment = 2
-
-[node name="backButton" type="TextureButton" parent="NinePatchRect"]
-unique_name_in_owner = true
-layout_mode = 2
-offset_left = 9.0
-offset_top = 300.0
-offset_right = 21.0
-offset_bottom = 314.0
-scale = Vector2(2, 2)
-texture_normal = SubResource("AtlasTexture_ror28")
-texture_pressed = SubResource("AtlasTexture_jop8w")
-texture_hover = SubResource("AtlasTexture_2l2ur")
-texture_disabled = SubResource("AtlasTexture_5h1pk")
-texture_focused = SubResource("AtlasTexture_2l2ur")
 
 [node name="errorMessage" parent="." instance=ExtResource("10_551ul")]
 visible = false
@@ -576,6 +575,9 @@ layout_mode = 1
 
 [node name="popUP" parent="." instance=ExtResource("11_71188")]
 visible = false
+layout_mode = 1
+
+[node name="helpscreen" parent="." instance=ExtResource("13_218np")]
 layout_mode = 1
 
 [connection signal="value_changed" from="NinePatchRect/VBoxContainer/BoxContainer/defaults/HBoxContainer2/GridContainer2/saddleBox/saddleSpinBox" to="." method="_on_saddle_spin_box_value_changed"]

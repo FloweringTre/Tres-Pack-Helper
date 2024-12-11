@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dum14k8byt87m"]
+[gd_scene load_steps=23 format=3 uid="uid://dum14k8byt87m"]
 
 [ext_resource type="Script" path="res://scripts/coat_gui.gd" id="1_bgw28"]
 [ext_resource type="Texture2D" uid="uid://8f0rfohmniwa" path="res://assets/menuUI.png" id="2_ypuxh"]
@@ -12,40 +12,41 @@
 [ext_resource type="Theme" uid="uid://dix1yxdlw8hbv" path="res://assets/UI_theme_smol.tres" id="9_200ey"]
 [ext_resource type="PackedScene" uid="uid://cdigxro282sfm" path="res://scene/components/checkAlert.tscn" id="9_edoao"]
 [ext_resource type="PackedScene" uid="uid://bpgiy2j33slge" path="res://scene/components/pop_up.tscn" id="10_75oqe"]
+[ext_resource type="PackedScene" uid="uid://clixcby1mmxr3" path="res://scene/helpScreen.tscn" id="13_f6knk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kx556"]
 atlas = ExtResource("2_ypuxh")
 region = Rect2(58, 10, 28, 28)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ror28"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_e0xqp"]
 atlas = ExtResource("2_ypuxh")
 region = Rect2(176, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jop8w"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_wnf13"]
 atlas = ExtResource("2_ypuxh")
 region = Rect2(176, 32, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2l2ur"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_y5o6h"]
 atlas = ExtResource("2_ypuxh")
 region = Rect2(176, 16, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5h1pk"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_auchi"]
 atlas = ExtResource("2_ypuxh")
 region = Rect2(176, 48, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7qkcx"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_sb6pb"]
 atlas = ExtResource("2_ypuxh")
 region = Rect2(160, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ug12d"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_silx2"]
 atlas = ExtResource("2_ypuxh")
 region = Rect2(160, 32, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_yfjb1"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_mfow1"]
 atlas = ExtResource("2_ypuxh")
 region = Rect2(160, 16, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_scopy"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_nt2nv"]
 atlas = ExtResource("2_ypuxh")
 region = Rect2(160, 48, 16, 16)
 
@@ -299,7 +300,6 @@ theme_override_constants/separation = 0
 layout_mode = 2
 focus_neighbor_top = NodePath("../../../HBoxContainer/cycling/lapisCheckBox")
 focus_neighbor_right = NodePath("../../Gray/grayCheckBox2")
-focus_neighbor_bottom = NodePath("../../../../backButton")
 focus_next = NodePath("../../Gray/grayCheckBox2")
 focus_previous = NodePath("../../../HBoxContainer/breeding/breedingCheckBox")
 
@@ -319,7 +319,6 @@ layout_mode = 2
 focus_neighbor_left = NodePath("../../Black/blackCheckBox")
 focus_neighbor_top = NodePath("../../../HBoxContainer/cycling/lapisCheckBox")
 focus_neighbor_right = NodePath("../../White/whiteCheckBox3")
-focus_neighbor_bottom = NodePath("../../../../backButton")
 focus_next = NodePath("../../White/whiteCheckBox3")
 
 [node name="Label2" type="Label" parent="NinePatchRect/VBoxContainer/baseColorp2/Gray"]
@@ -336,7 +335,6 @@ layout_mode = 2
 focus_neighbor_left = NodePath("../../Gray/grayCheckBox2")
 focus_neighbor_top = NodePath("../../../HBoxContainer/cycling/lapisCheckBox")
 focus_neighbor_right = NodePath("../../Creamy/creamyCheckBox4")
-focus_neighbor_bottom = NodePath("../../../../backButton")
 focus_next = NodePath("../../Creamy/creamyCheckBox4")
 focus_previous = NodePath("../../Gray/grayCheckBox2")
 
@@ -354,7 +352,6 @@ layout_mode = 2
 focus_neighbor_left = NodePath("../../White/whiteCheckBox3")
 focus_neighbor_top = NodePath("../../../HBoxContainer/cycling/lapisCheckBox")
 focus_neighbor_right = NodePath("../../Brown/brownCheckBox5")
-focus_neighbor_bottom = NodePath("../../../../backButton")
 focus_next = NodePath("../../Brown/brownCheckBox5")
 focus_previous = NodePath("../../White/whiteCheckBox3")
 
@@ -372,7 +369,6 @@ layout_mode = 2
 focus_neighbor_left = NodePath("../../Creamy/creamyCheckBox4")
 focus_neighbor_top = NodePath("../../../HBoxContainer/breeding/breedingCheckBox")
 focus_neighbor_right = NodePath("../../DBrown/d_brownCheckBox6")
-focus_neighbor_bottom = NodePath("../../../../confirmButton")
 focus_next = NodePath("../../DBrown/d_brownCheckBox6")
 focus_previous = NodePath("../../Creamy/creamyCheckBox4")
 
@@ -390,7 +386,6 @@ layout_mode = 2
 focus_neighbor_left = NodePath("../../Brown/brownCheckBox5")
 focus_neighbor_top = NodePath("../../../HBoxContainer/breeding/breedingCheckBox")
 focus_neighbor_right = NodePath("../../Chestnut/chestnutCheckBox7")
-focus_neighbor_bottom = NodePath("../../../../confirmButton")
 focus_next = NodePath("../../Chestnut/chestnutCheckBox7")
 focus_previous = NodePath("../../Brown/brownCheckBox5")
 
@@ -407,8 +402,6 @@ theme_override_constants/separation = 0
 layout_mode = 2
 focus_neighbor_left = NodePath("../../DBrown/d_brownCheckBox6")
 focus_neighbor_top = NodePath("../../../HBoxContainer/breeding/breedingCheckBox")
-focus_neighbor_bottom = NodePath("../../../../confirmButton")
-focus_next = NodePath("../../../../confirmButton")
 focus_previous = NodePath("../../DBrown/d_brownCheckBox6")
 
 [node name="Label7" type="Label" parent="NinePatchRect/VBoxContainer/baseColorp2/Chestnut"]
@@ -417,48 +410,47 @@ theme = ExtResource("5_0f6da")
 text = "Chestnut
 "
 
-[node name="HelperLabel5" type="Label" parent="NinePatchRect/VBoxContainer"]
-custom_minimum_size = Vector2(522, 30)
-layout_mode = 2
+[node name="backButton" type="TextureButton" parent="NinePatchRect"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 7.0
+offset_top = 297.0
+offset_right = 23.0
+offset_bottom = 313.0
+scale = Vector2(2, 2)
+texture_normal = SubResource("AtlasTexture_e0xqp")
+texture_pressed = SubResource("AtlasTexture_wnf13")
+texture_hover = SubResource("AtlasTexture_y5o6h")
+texture_disabled = SubResource("AtlasTexture_auchi")
+texture_focused = SubResource("AtlasTexture_y5o6h")
+
+[node name="HelperLabel5" type="Label" parent="NinePatchRect"]
+layout_mode = 0
+offset_left = 41.0
+offset_top = 313.0
+offset_right = 65.0
+offset_bottom = 327.0
 size_flags_horizontal = 4
 theme = ExtResource("9_200ey")
 theme_override_colors/font_color = Color(0.493728, 0.364523, 0.227402, 1)
-text = "Return to the main menu"
+text = "Return to the Main Menu"
 vertical_alignment = 2
-
-[node name="backButton" type="TextureButton" parent="NinePatchRect"]
-unique_name_in_owner = true
-layout_mode = 2
-offset_left = 9.0
-offset_top = 300.0
-offset_right = 21.0
-offset_bottom = 314.0
-scale = Vector2(2, 2)
-texture_normal = SubResource("AtlasTexture_ror28")
-texture_pressed = SubResource("AtlasTexture_jop8w")
-texture_hover = SubResource("AtlasTexture_2l2ur")
-texture_disabled = SubResource("AtlasTexture_5h1pk")
-texture_focused = SubResource("AtlasTexture_2l2ur")
 
 [node name="confirmButton" type="TextureButton" parent="NinePatchRect"]
 unique_name_in_owner = true
-layout_mode = 2
-offset_left = 572.0
-offset_top = 300.0
-offset_right = 586.0
-offset_bottom = 314.0
-grow_horizontal = 0
-grow_vertical = 0
+layout_mode = 0
+offset_left = 569.0
+offset_top = 296.5
+offset_right = 585.0
+offset_bottom = 312.5
 scale = Vector2(2, 2)
 focus_neighbor_left = NodePath("../backButton")
-focus_next = NodePath("../backButton")
-focus_previous = NodePath("../VBoxContainer/baseColorp2/Chestnut/chestnutCheckBox7")
-disabled = true
-texture_normal = SubResource("AtlasTexture_7qkcx")
-texture_pressed = SubResource("AtlasTexture_ug12d")
-texture_hover = SubResource("AtlasTexture_yfjb1")
-texture_disabled = SubResource("AtlasTexture_scopy")
-texture_focused = SubResource("AtlasTexture_yfjb1")
+focus_previous = NodePath("../VBoxContainer/Hbox2/nameCheck")
+texture_normal = SubResource("AtlasTexture_sb6pb")
+texture_pressed = SubResource("AtlasTexture_silx2")
+texture_hover = SubResource("AtlasTexture_mfow1")
+texture_disabled = SubResource("AtlasTexture_nt2nv")
+texture_focused = SubResource("AtlasTexture_mfow1")
 
 [node name="errorMessage" parent="." instance=ExtResource("6_m2onb")]
 visible = false
@@ -472,12 +464,19 @@ layout_mode = 1
 visible = false
 layout_mode = 1
 
+[node name="popUPexit" parent="." instance=ExtResource("10_75oqe")]
+visible = false
+layout_mode = 1
+
 [node name="checkPath" parent="." instance=ExtResource("9_edoao")]
 offset_left = 161.0
 offset_top = -49.0
 offset_right = 177.0
 offset_bottom = -33.0
 scale = Vector2(1.5, 1.5)
+
+[node name="helpscreen" parent="." instance=ExtResource("13_f6knk")]
+layout_mode = 1
 
 [connection signal="text_changed" from="NinePatchRect/VBoxContainer/artist/artistText" to="." method="_on_artist_text_text_changed"]
 [connection signal="text_changed" from="NinePatchRect/VBoxContainer/inspiration/inspoText" to="." method="_on_inspo_text_text_changed"]

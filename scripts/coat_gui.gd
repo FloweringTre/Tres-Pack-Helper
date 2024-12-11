@@ -28,6 +28,8 @@ func _ready() -> void:
 	$popUP_Saved.confirm.connect(on_popup_saved_confirmed)
 	$popUP2_Dupe.deny.connect(on_popup_dupe_back)
 	$popUP2_Dupe.confirm.connect(on_popup_dupe_confirmed)
+	$popUPexit.deny.connect(on_popup_saved_back)
+	$popUPexit.confirm.connect(on_popup_exit_confirmed)
 
 func disable_interaction () -> void:
 	%confirmButton.disabled = true
@@ -72,7 +74,10 @@ func on_error_continue() -> void:
 	enable_interaction()
 
 func _on_back_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://scene/startingGUI.tscn")
+	if %artistText.text != "" or %inspoText.text != "" or %coatText.text != "":
+		are_you_sure()
+	else:
+		get_tree().change_scene_to_file("res://scene/startingGUI.tscn")
 
 func _on_artist_text_text_changed(new_text: String) -> void:
 	if %artistText.text != "":
@@ -261,3 +266,14 @@ func on_popup_saved_back() -> void:
 func on_popup_saved_confirmed() -> void:
 	enable_interaction()
 	get_tree().reload_current_scene()
+
+func are_you_sure() -> void:
+	var title = "Wait a moment!"
+	var message = "Are you sure you want to return to the main menu?"
+	var no_label = "Go Back"
+	var yes_label = "Continue to Main Menu"
+	$popUPexit.pop_yesNo(title, message, no_label, yes_label)
+	disable_interaction()
+
+func on_popup_exit_confirmed() -> void:
+	get_tree().change_scene_to_file("res://scene/startingGUI.tscn")

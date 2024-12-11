@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://c7f637oqram5g"]
+[gd_scene load_steps=23 format=3 uid="uid://c7f637oqram5g"]
 
 [ext_resource type="Script" path="res://scripts/starting_gui.gd" id="1_3an53"]
 [ext_resource type="Texture2D" uid="uid://8f0rfohmniwa" path="res://assets/menuUI.png" id="1_lx5dw"]
@@ -12,6 +12,7 @@
 [ext_resource type="Theme" uid="uid://db3wwmhf400fw" path="res://assets/UI_theme_dark_big.tres" id="7_7bhpy"]
 [ext_resource type="PackedScene" uid="uid://cdigxro282sfm" path="res://scene/components/checkAlert.tscn" id="9_xnwmn"]
 [ext_resource type="PackedScene" uid="uid://bpgiy2j33slge" path="res://scene/components/pop_up.tscn" id="12_kwseo"]
+[ext_resource type="PackedScene" uid="uid://clixcby1mmxr3" path="res://scene/helpScreen.tscn" id="13_g6yan"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kx556"]
 atlas = ExtResource("1_lx5dw")
@@ -205,26 +206,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/Stage1BoxContainer"]
-custom_minimum_size = Vector2(0, 49)
+[node name="HelperLabel5" type="Label" parent="NinePatchRect/VBoxContainer/Stage1BoxContainer"]
+custom_minimum_size = Vector2(380, 15)
 layout_mode = 2
-size_flags_horizontal = 4
-theme_override_constants/separation = 34
-alignment = 1
-
-[node name="HelperLabel6" type="Label" parent="NinePatchRect/VBoxContainer/Stage1BoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(73, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-theme = ExtResource("7_0bqte")
-theme_override_colors/font_color = Color(0.493728, 0.364523, 0.227402, 1)
-vertical_alignment = 2
-
-[node name="HelperLabel5" type="Label" parent="NinePatchRect/VBoxContainer/Stage1BoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(400, 42)
-layout_mode = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 8
 size_flags_vertical = 8
 theme = ExtResource("7_0bqte")
 theme_override_colors/font_color = Color(0.493728, 0.364523, 0.227402, 1)
@@ -273,13 +258,46 @@ unique_name_in_owner = true
 layout_mode = 2
 button_text = "Tack"
 
+[node name="HBoxContainer3" type="HBoxContainer" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -165.5
+offset_top = -22.0
+offset_right = 165.5
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="HelperLabel7" type="Label" parent="NinePatchRect/HBoxContainer3"]
+layout_mode = 2
+theme = ExtResource("7_0bqte")
+theme_override_colors/font_color = Color(0.113924, 0.41665, 0.289974, 1)
+text = "If you have questions or bugs, please join my
+"
+horizontal_alignment = 1
+
+[node name="LinkButton" type="LinkButton" parent="NinePatchRect/HBoxContainer3"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.198815, 0.4217, 0.443676, 1)
+theme_override_colors/font_focus_color = Color(0.957863, 0.999282, 0.975755, 1)
+theme_override_colors/font_pressed_color = Color(0.0915672, 0.352416, 0.243904, 1)
+theme_override_colors/font_hover_color = Color(0.783671, 0.933012, 0.946132, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.194243, 0.672641, 0.474787, 1)
+text = "Discord server."
+uri = "https://discord.gg/GuYRWK22Mx"
+
 [node name="backButton" type="TextureButton" parent="NinePatchRect"]
 unique_name_in_owner = true
 layout_mode = 2
-offset_left = 14.0
-offset_top = 300.0
-offset_right = 26.0
-offset_bottom = 314.0
+offset_left = 7.0
+offset_top = 297.0
+offset_right = 23.0
+offset_bottom = 313.0
 scale = Vector2(2, 2)
 texture_normal = SubResource("AtlasTexture_bvqpb")
 texture_pressed = SubResource("AtlasTexture_swcsf")
@@ -289,10 +307,10 @@ texture_focused = SubResource("AtlasTexture_5a3py")
 
 [node name="HelperLabel5" type="Label" parent="NinePatchRect"]
 layout_mode = 2
-offset_left = 50.0
-offset_top = 315.0
-offset_right = 74.0
-offset_bottom = 329.0
+offset_left = 41.0
+offset_top = 313.0
+offset_right = 65.0
+offset_bottom = 327.0
 size_flags_horizontal = 4
 theme = ExtResource("7_0bqte")
 theme_override_colors/font_color = Color(0.493728, 0.364523, 0.227402, 1)
@@ -302,10 +320,10 @@ vertical_alignment = 2
 [node name="confirmButton" type="TextureButton" parent="NinePatchRect"]
 unique_name_in_owner = true
 layout_mode = 2
-offset_left = 571.0
-offset_top = 299.5
-offset_right = 587.0
-offset_bottom = 315.5
+offset_left = 569.0
+offset_top = 296.5
+offset_right = 585.0
+offset_bottom = 312.5
 scale = Vector2(2, 2)
 focus_neighbor_left = NodePath("../backButton")
 focus_previous = NodePath("../VBoxContainer/Hbox2/nameCheck")
@@ -341,6 +359,9 @@ layout_mode = 1
 
 [node name="popUP2" parent="." instance=ExtResource("12_kwseo")]
 visible = false
+layout_mode = 1
+
+[node name="helpscreen" parent="." instance=ExtResource("13_g6yan")]
 layout_mode = 1
 
 [connection signal="text_changed" from="NinePatchRect/VBoxContainer/Hbox/locationText" to="." method="_on_location_text_text_changed"]

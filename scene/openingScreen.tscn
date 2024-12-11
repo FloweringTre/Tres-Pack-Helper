@@ -14,35 +14,35 @@
 atlas = ExtResource("2_fs84d")
 region = Rect2(58, 10, 28, 28)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bvqpb"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_evtic"]
 atlas = ExtResource("2_fs84d")
 region = Rect2(176, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_swcsf"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_2lxfb"]
 atlas = ExtResource("2_fs84d")
 region = Rect2(176, 32, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5a3py"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ifa6c"]
 atlas = ExtResource("2_fs84d")
 region = Rect2(176, 16, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8xqp5"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_me2im"]
 atlas = ExtResource("2_fs84d")
 region = Rect2(176, 48, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7qkcx"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_dc5y5"]
 atlas = ExtResource("2_fs84d")
 region = Rect2(160, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ug12d"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_vma22"]
 atlas = ExtResource("2_fs84d")
 region = Rect2(160, 32, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_yfjb1"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_bdmw2"]
 atlas = ExtResource("2_fs84d")
 region = Rect2(160, 16, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_scopy"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_bsk5g"]
 atlas = ExtResource("2_fs84d")
 region = Rect2(160, 48, 16, 16)
 
@@ -125,10 +125,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -301.0
-offset_top = -167.0
-offset_right = 307.0
-offset_bottom = 168.0
+offset_left = -304.0
+offset_top = -167.5
+offset_right = 304.0
+offset_bottom = 167.5
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("AtlasTexture_kx556")
@@ -178,7 +178,7 @@ flip_h = true
 layout_mode = 2
 theme = ExtResource("4_uf3dj")
 theme_override_font_sizes/font_size = 16
-text = "Version 0.6-BETA made for SWEM version 1.5.2"
+text = "Version 1.0 made for SWEM version 1.5.2"
 horizontal_alignment = 1
 
 [node name="HelperLabel4" type="Label" parent="NinePatchRect/VBoxContainer"]
@@ -270,39 +270,25 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect"]
-custom_minimum_size = Vector2(298, 14)
-layout_mode = 2
-offset_left = 6.0
-offset_top = 300.0
-offset_right = 304.0
-offset_bottom = 314.0
-grow_horizontal = 2
-grow_vertical = 0
-scale = Vector2(2, 2)
-theme_override_constants/separation = 4
-alignment = 1
-
-[node name="backButton" type="TextureButton" parent="NinePatchRect/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-texture_normal = SubResource("AtlasTexture_bvqpb")
-texture_pressed = SubResource("AtlasTexture_swcsf")
-texture_hover = SubResource("AtlasTexture_5a3py")
-texture_disabled = SubResource("AtlasTexture_8xqp5")
-texture_focused = SubResource("AtlasTexture_5a3py")
-
-[node name="exit" type="Label" parent="NinePatchRect/HBoxContainer"]
+[node name="exit" type="Label" parent="NinePatchRect"]
 custom_minimum_size = Vector2(100, 14)
 layout_mode = 2
+offset_left = 41.0
+offset_top = 313.0
+offset_right = 141.0
+offset_bottom = 327.0
 theme_override_colors/font_color = Color(0.52549, 0.203922, 0.14902, 1)
 text = "Exit"
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="continue" type="Label" parent="NinePatchRect/HBoxContainer"]
+[node name="continue" type="Label" parent="NinePatchRect"]
 custom_minimum_size = Vector2(150, 14)
 layout_mode = 2
+offset_left = 415.0
+offset_top = 313.0
+offset_right = 565.0
+offset_bottom = 327.0
 theme_override_colors/font_color = Color(0.505953, 0.515687, 0.364552, 1)
 theme_override_font_sizes/font_size = 16
 text = "Continue"
@@ -310,15 +296,33 @@ horizontal_alignment = 2
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="confirmButton" type="TextureButton" parent="NinePatchRect/HBoxContainer"]
+[node name="backButton" type="TextureButton" parent="NinePatchRect"]
 unique_name_in_owner = true
-layout_mode = 2
-disabled = true
-texture_normal = SubResource("AtlasTexture_7qkcx")
-texture_pressed = SubResource("AtlasTexture_ug12d")
-texture_hover = SubResource("AtlasTexture_yfjb1")
-texture_disabled = SubResource("AtlasTexture_scopy")
-texture_focused = SubResource("AtlasTexture_yfjb1")
+offset_left = 7.0
+offset_top = 297.0
+offset_right = 23.0
+offset_bottom = 313.0
+scale = Vector2(2, 2)
+texture_normal = SubResource("AtlasTexture_evtic")
+texture_pressed = SubResource("AtlasTexture_2lxfb")
+texture_hover = SubResource("AtlasTexture_ifa6c")
+texture_disabled = SubResource("AtlasTexture_me2im")
+texture_focused = SubResource("AtlasTexture_ifa6c")
+
+[node name="confirmButton" type="TextureButton" parent="NinePatchRect"]
+unique_name_in_owner = true
+offset_left = 569.0
+offset_top = 296.5
+offset_right = 585.0
+offset_bottom = 312.5
+scale = Vector2(2, 2)
+focus_neighbor_left = NodePath("../backButton")
+focus_previous = NodePath("../VBoxContainer/Hbox2/nameCheck")
+texture_normal = SubResource("AtlasTexture_dc5y5")
+texture_pressed = SubResource("AtlasTexture_vma22")
+texture_hover = SubResource("AtlasTexture_bdmw2")
+texture_disabled = SubResource("AtlasTexture_bsk5g")
+texture_focused = SubResource("AtlasTexture_bdmw2")
 
 [node name="errorMessage" parent="." instance=ExtResource("7_8xlpx")]
 visible = false
@@ -351,6 +355,4 @@ one_shot = true
 autostart = true
 
 [connection signal="pressed" from="NinePatchRect/VBoxContainer/HBoxContainer2/CheckBox" to="." method="_on_check_box_pressed"]
-[connection signal="pressed" from="NinePatchRect/HBoxContainer/backButton" to="." method="_on_back_button_pressed"]
-[connection signal="pressed" from="NinePatchRect/HBoxContainer/confirmButton" to="." method="_on_confirm_button_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
