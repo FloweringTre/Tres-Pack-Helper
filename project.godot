@@ -11,7 +11,8 @@ config_version=5
 [application]
 
 config/name="Tres Pack Helper"
-config/version="0.6-BETA"
+config/description="An application designed to help make Community Pack folders for SWEM 1.5.2 for Minecraft 1.20.1"
+config/version="0.6"
 run/main_scene="res://scene/openingScreen.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 boot_splash/bg_color=Color(0.0862745, 0.0862745, 0.054902, 1)
@@ -32,6 +33,10 @@ window/size/viewport_height=720
 window/stretch/aspect="expand"
 window/stretch/scale=2.0
 window/stretch/scale_mode="integer"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot_icon/plugin.cfg")
 
 [gui]
 
