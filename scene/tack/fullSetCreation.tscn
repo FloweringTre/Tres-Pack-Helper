@@ -760,7 +760,6 @@ texture_normal = SubResource("AtlasTexture_ytf6o")
 texture_pressed = SubResource("AtlasTexture_8k5rt")
 texture_hover = SubResource("AtlasTexture_ajnw7")
 texture_disabled = SubResource("AtlasTexture_a8fa8")
-texture_focused = SubResource("AtlasTexture_ajnw7")
 
 [node name="HelperLabel5" type="Label" parent="NinePatchRect"]
 layout_mode = 0
@@ -784,11 +783,11 @@ offset_bottom = 312.5
 scale = Vector2(2, 2)
 focus_neighbor_left = NodePath("../backButton")
 focus_previous = NodePath("../VBoxContainer/Hbox2/nameCheck")
+disabled = true
 texture_normal = SubResource("AtlasTexture_wirbh")
 texture_pressed = SubResource("AtlasTexture_apwef")
 texture_hover = SubResource("AtlasTexture_7aqcs")
 texture_disabled = SubResource("AtlasTexture_71y0a")
-texture_focused = SubResource("AtlasTexture_7aqcs")
 
 [node name="errorMessage" parent="." instance=ExtResource("10_xcubv")]
 visible = false
@@ -815,6 +814,7 @@ offset_bottom = -33.0
 scale = Vector2(1.5, 1.5)
 
 [node name="helpscreen" parent="." instance=ExtResource("11_xkd12")]
+visible = false
 layout_mode = 1
 
 [node name="rackTemplates" type="Control" parent="."]
