@@ -1,6 +1,8 @@
 extends Node
 
 var directory_root : String = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP)
+#store and start with the desktop directory no matter what system
+
 var root : String = ""
 var folder: String = ""
 var jsons_root : String
@@ -170,7 +172,10 @@ func set_up_instructions() -> void:
 			else:
 				file.store_string("This document will tell you the names of each texture to add and where to add them.\n" + \
 				" Please understand, your pack will not function if the textures are not correctly named or placed in the wrong" + \
-				" folders.\n Feel free to delete instructions you have completed and copy/paste names and addresses from this document.\n\n" )
+				" folders.\n Feel free to delete instructions you have completed and copy/paste names and addresses from this document.\n\n" + \
+				"~~~ YOU MUST REMOVE BOTH THE INSTRUCTIONS AND REPORT DOCUMENTS FROM THE PACK FOLDER PRIOR TO LAUNCHING MINECRAFT OTHERWISE IT WILL NOT LOAD THE PACK.~~~ \n\n" + \
+				"This pack (with the added textures below, and the removal of the above files), needs to be put in the config > swem > community-packs folder.\n" + \
+				"Please reach out to me (kyraltre) via my discord if you have issues or questions. https://discord.gg/GuYRWK22Mx\n\n")
 				file.close()
 				report("Set up the INSTRUCTIONS.txt document")
 
