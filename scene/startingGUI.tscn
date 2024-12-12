@@ -303,7 +303,6 @@ texture_normal = SubResource("AtlasTexture_bvqpb")
 texture_pressed = SubResource("AtlasTexture_swcsf")
 texture_hover = SubResource("AtlasTexture_5a3py")
 texture_disabled = SubResource("AtlasTexture_8xqp5")
-texture_focused = SubResource("AtlasTexture_5a3py")
 
 [node name="HelperLabel5" type="Label" parent="NinePatchRect"]
 layout_mode = 2
@@ -331,7 +330,6 @@ texture_normal = SubResource("AtlasTexture_7qkcx")
 texture_pressed = SubResource("AtlasTexture_ug12d")
 texture_hover = SubResource("AtlasTexture_yfjb1")
 texture_disabled = SubResource("AtlasTexture_scopy")
-texture_focused = SubResource("AtlasTexture_yfjb1")
 
 [node name="errorMessage" parent="." instance=ExtResource("6_iaop6")]
 visible = false
@@ -362,6 +360,7 @@ visible = false
 layout_mode = 1
 
 [node name="helpscreen" parent="." instance=ExtResource("13_g6yan")]
+visible = false
 layout_mode = 1
 
 [connection signal="text_changed" from="NinePatchRect/VBoxContainer/Hbox/locationText" to="." method="_on_location_text_text_changed"]

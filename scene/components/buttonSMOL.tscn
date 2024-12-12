@@ -36,7 +36,6 @@ texture_normal = SubResource("AtlasTexture_oouux")
 texture_pressed = SubResource("AtlasTexture_bi53k")
 texture_hover = SubResource("AtlasTexture_mvstv")
 texture_disabled = SubResource("AtlasTexture_8d0ty")
-texture_focused = SubResource("AtlasTexture_mvstv")
 
 [node name="textContainer" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(60, 25)

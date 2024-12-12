@@ -308,7 +308,6 @@ texture_normal = SubResource("AtlasTexture_evtic")
 texture_pressed = SubResource("AtlasTexture_2lxfb")
 texture_hover = SubResource("AtlasTexture_ifa6c")
 texture_disabled = SubResource("AtlasTexture_me2im")
-texture_focused = SubResource("AtlasTexture_ifa6c")
 
 [node name="confirmButton" type="TextureButton" parent="NinePatchRect"]
 unique_name_in_owner = true
@@ -324,7 +323,6 @@ texture_normal = SubResource("AtlasTexture_dc5y5")
 texture_pressed = SubResource("AtlasTexture_vma22")
 texture_hover = SubResource("AtlasTexture_bdmw2")
 texture_disabled = SubResource("AtlasTexture_bsk5g")
-texture_focused = SubResource("AtlasTexture_bdmw2")
 
 [node name="errorMessage" parent="." instance=ExtResource("7_8xlpx")]
 visible = false
