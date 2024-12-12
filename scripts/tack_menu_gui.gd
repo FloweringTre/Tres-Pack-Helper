@@ -53,7 +53,6 @@ func disabled_buttons() -> void:
 	%confirmButton.disabled = true
 
 func perm_disabled_buttons() -> void:
-	%saddle_set.set_disabled()
 	%extras_set.set_disabled()
 	%saddles.set_disabled()
 	%bridles.set_disabled()
@@ -96,7 +95,11 @@ func on_full_set() -> void:
 		get_tree().change_scene_to_file("res://scene/tack/fullSetCreation.tscn")
 
 func on_saddle_set() -> void:
-	pass
+	if not_saved:
+		saved_scene = "res://scene/tack/SaddleSetCreation.tscn"
+		not_saved_defaults()
+	else:
+		get_tree().change_scene_to_file("res://scene/tack/SaddleSetCreation.tscn")
 
 func on_extras_set() -> void:
 	pass

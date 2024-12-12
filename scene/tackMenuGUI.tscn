@@ -540,7 +540,6 @@ texture_normal = SubResource("AtlasTexture_2dryr")
 texture_pressed = SubResource("AtlasTexture_o0agg")
 texture_hover = SubResource("AtlasTexture_m7vgm")
 texture_disabled = SubResource("AtlasTexture_00yw3")
-texture_focused = SubResource("AtlasTexture_m7vgm")
 stretch_mode = 0
 
 [node name="backButton" type="TextureButton" parent="NinePatchRect"]
@@ -555,7 +554,6 @@ texture_normal = SubResource("AtlasTexture_7adk4")
 texture_pressed = SubResource("AtlasTexture_kkneh")
 texture_hover = SubResource("AtlasTexture_8mqg6")
 texture_disabled = SubResource("AtlasTexture_m7l3u")
-texture_focused = SubResource("AtlasTexture_8mqg6")
 
 [node name="HelperLabel5" type="Label" parent="NinePatchRect"]
 layout_mode = 0
@@ -578,6 +576,7 @@ visible = false
 layout_mode = 1
 
 [node name="helpscreen" parent="." instance=ExtResource("13_218np")]
+visible = false
 layout_mode = 1
 
 [connection signal="value_changed" from="NinePatchRect/VBoxContainer/BoxContainer/defaults/HBoxContainer2/GridContainer2/saddleBox/saddleSpinBox" to="." method="_on_saddle_spin_box_value_changed"]
