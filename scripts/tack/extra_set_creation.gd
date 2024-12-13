@@ -4,13 +4,9 @@ var artist : bool = false
 var inspo : bool = false
 var set_name : bool = false
 var set_coin : bool = false
+var set_armor : bool = false
 
-var sad_western : bool = true
-var sad_english : bool = false
-var bri_western : bool = true
-var bri_english : bool = false
-var bla_western : bool = true
-var bla_english : bool = false
+var armor : String = ""
 var adventure : bool = false
 
 var custom_rack : bool = false
@@ -59,21 +55,17 @@ func disable_interaction() -> void:
 	%artistText.editable = false
 	%inspoText.editable = false
 	%tackText.editable = false
-	%armorCheckBox.disabled = true
 	%custCheckBox.disabled = true
 	%redSpinBox.editable = false
 	%greenSpinBox.editable = false
 	%blueSpinBox.editable = false
 	%coinOptions.disabled = true
-	%SaddleCheckButton.disabled = true
-	%BridleCheckButton.disabled = true
-	%BlanketCheckButton.disabled = true
-	%saddleSpinBox.editable = false
-	%bridleSpinBox.editable = false
-	%blanketSpinBox.editable = false
-	%legWrapsSpinBox.editable = false
-	%breastCollarSpinBox.editable = false
-	%girthStrapSpinBox.editable = false
+	%halterSpinBox.editable = false
+	%saddleBagSpinBox.editable = false
+	%ArmorSpinBox.editable = false
+	%PBSpinBox.editable = false
+	%armoredPBSpinBox.editable = false
+	%armorOptions.disabled = true
 
 func enable_interaction() -> void:
 	%confirmButton.disabled = false
@@ -81,21 +73,17 @@ func enable_interaction() -> void:
 	%artistText.editable = true
 	%inspoText.editable = true
 	%tackText.editable = true
-	%armorCheckBox.disabled = false
 	%custCheckBox.disabled = false
 	%redSpinBox.editable = true
 	%greenSpinBox.editable = true
 	%blueSpinBox.editable = true
 	%coinOptions.disabled = false
-	%SaddleCheckButton.disabled = false
-	%BridleCheckButton.disabled = false
-	%BlanketCheckButton.disabled = false
-	%saddleSpinBox.editable = true
-	%bridleSpinBox.editable = true
-	%blanketSpinBox.editable = true
-	%legWrapsSpinBox.editable = true
-	%breastCollarSpinBox.editable = true
-	%girthStrapSpinBox.editable = true
+	%halterSpinBox.editable = true
+	%saddleBagSpinBox.editable = true
+	%ArmorSpinBox.editable = true
+	%PBSpinBox.editable = true
+	%armoredPBSpinBox.editable = true
+	%armorOptions.disabled = true
 
 ################### VALUE LOGGING ######################
 func _on_artist_text_text_changed(new_text: String) -> void:
@@ -126,14 +114,6 @@ func update_name_previews() -> void:
 	else:
 		text = %tackText.text
 
-func _on_armor_check_box_pressed() -> void:
-	if adventure:
-		adventure = false
-		%armorLabel.text = "No"
-	else:
-		adventure = true
-		%armorLabel.text = "Yes"
-
 func _on_cust_check_box_pressed() -> void:
 	if custom_rack:
 		custom_rack = false
@@ -160,6 +140,21 @@ func _on_blue_spin_box_value_changed(value: float) -> void:
 
 func update_color_preview() -> void:
 	%colorPreview.color = Color(red/255, green/255, blue/255)
+
+func _on_armor_options_item_selected(index: int) -> void:
+	set_armor = true
+	ready_to_save()
+	match index:
+		0:
+			armor = "cloth"
+		1:
+			armor = "iron"
+		2:
+			armor = "gold"
+		3:
+			armor = "diamond"
+		4:
+			armor = "amethyst"
 
 func _on_coin_options_item_selected(index: int) -> void:
 	set_coin = true
@@ -188,64 +183,57 @@ func ready_to_save() -> void:
 
 #########################################################
 func _on_confirm_button_pressed() -> void:
-	var title = "About to Save Tack..."
-	var message = "The generated tack will overwrite any existing tack of the same names... \nDo you want to generate this tack set?"
-	var no_label = "NO, Go Back"
-	var yes_label = "YES, Generate Tack"
+	var found_dupes = check_for_duplicates()
+	if found_dupes != 0:
+		dupe_exists(found_dupes)
+	else:
+		_save_complete_tack_set()
+
+func dupe_exists(duplicates_found : int) -> void:
+	var title = "Oops! Duplicates exists!"
+	var message = "There are " + str(duplicates_found) + " items from this tack set that already exist in this pack. \nDo you still want to generate this tack set?"
+	var no_label = "Go Back"
+	var yes_label = "Generate the files"
 	$popUP2_Dupe.pop_yesNo(title, message, no_label, yes_label)
 	disable_interaction()
+
+func check_for_duplicates():
+	var duplicate_exists : int
+	if TackScripts.tack_dupe_check("pasture_blanket", %tackText.text):
+		duplicate_exists += 1
+	if TackScripts.tack_dupe_check("pasture_blanket_armored", %tackText.text):
+		duplicate_exists += 1
+	if TackScripts.tack_dupe_check("horse_armor", %tackText.text):
+		duplicate_exists += 1
+	if TackScripts.tack_dupe_check("saddle_bag", %tackText.text):
+		duplicate_exists += 1
+	if TackScripts.tack_dupe_check("halter", %tackText.text):
+		duplicate_exists += 1
+	return duplicate_exists
 	
 func _save_complete_tack_set() -> void:
-	# DUPE SETS FOR ENG AND WESTERN
-	if sad_western:
-			TackScripts.saddle_save(%tackText.text, %artistText.text, %inspoText.text, coin, "western", adventure, %saddleSpinBox.value)
-
-	if sad_english:
-			TackScripts.saddle_save(%tackText.text, %artistText.text, %inspoText.text, coin, "english", adventure, %saddleSpinBox.value)
-
-	if bri_western:
+		#CUSTOM RACK TEXTURES
+	if custom_rack:
 		if ErrorManager.is_error:
 			return
 		else:
-			TackScripts.bridle_save(%tackText.text, %artistText.text, %inspoText.text, coin, "western", adventure, %bridleSpinBox.value)
-
-	if bri_english:
+			TackScripts.pasture_blanket_save(%tackText.text, %artistText.text, %inspoText.text, coin)
+			TackScripts.ar_pasture_blanket_save(%tackText.text, %artistText.text, %inspoText.text, coin)
+	else:
 		if ErrorManager.is_error:
 			return
 		else:
-			TackScripts.bridle_save(%tackText.text, %artistText.text, %inspoText.text, coin, "english", adventure, %bridleSpinBox.value)
-
-	if bla_western:
-		if custom_rack:
-			if ErrorManager.is_error:
-				return
-			else:
-				TackScripts.girth_straps_save(%tackText.text, %artistText.text, %inspoText.text, coin, adventure, %girthStrapSpinBox.value)
-				TackScripts.blanket_save(%tackText.text, %artistText.text, %inspoText.text, coin, adventure, %blanketSpinBox.value)
-		else:
-			if ErrorManager.is_error:
-				return
-			else:
-				TackScripts.colored_girth_strap_save(%Girth_Saddle, %tackText.text, %artistText.text, %inspoText.text, coin, red, green, blue, adventure, %girthStrapSpinBox.value)
-				TackScripts.colored_blanket_save(%West_Blanket5, %West_Saddle, %tackText.text, %artistText.text, %inspoText.text, coin, red, green, blue, adventure, %blanketSpinBox.value)
-	if bla_english:
-		if custom_rack:
-			if ErrorManager.is_error:
-				return
-			else:
-				TackScripts.girth_straps_save(%tackText.text, %artistText.text, %inspoText.text, coin, adventure, %girthStrapSpinBox.value)
-				TackScripts.blanket_save(%tackText.text, %artistText.text, %inspoText.text, coin, adventure, %blanketSpinBox.value)
-		else:
-			if ErrorManager.is_error:
-				return
-			else:
-				TackScripts.colored_girth_strap_save(%Girth_Saddle, %tackText.text, %artistText.text, %inspoText.text, coin, red, green, blue, adventure, %girthStrapSpinBox.value)
-				TackScripts.colored_blanket_save(%Eng_Blanket5, %Eng_Saddle, %tackText.text, %artistText.text, %inspoText.text, coin, red, green, blue, adventure, %blanketSpinBox.value)
+			TackScripts.colored_pasture_blanket_save(%Past_5Long, %Past_3Short, %tackText.text, %artistText.text, %inspoText.text, coin, red, green, blue)
+			TackScripts.colored_ar_pasture_blanket_save(%ArmPast_5Long, %ArmPast_3Short, %tackText.text, %artistText.text, %inspoText.text, coin, red, green, blue)
+	
+	#ONE OFFS & OPTIONAL
 	if ErrorManager.is_error:
 		return
 	else:
-		TackScripts.breast_collar_save(%tackText.text, %artistText.text, %inspoText.text, coin, adventure, %breastCollarSpinBox.value)
-		TackScripts.leg_wraps_save(%tackText.text, %artistText.text, %inspoText.text, coin, adventure, %legWrapsSpinBox.value)
+		TackScripts.armor_save(%tackText.text, %artistText.text, %inspoText.text, coin, armor)
+		TackScripts.saddle_bag_save(%tackText.text, %artistText.text, %inspoText.text, coin, red, green, blue)
+		TackScripts.halter_save(%tackText.text, %artistText.text, %inspoText.text, coin, red, green, blue, true)
+
 	if ErrorManager.is_error:
 			return
 	else:
@@ -285,47 +273,9 @@ func on_popup_exit_confirmed() -> void:
 
 ###########################################################
 
-func _on_saddle_check_button_pressed() -> void:
-	if sad_western:
-		sad_western = false
-		sad_english = true
-		%WestSadLabel.add_theme_color_override("font_color", Color(0.49, 0.36, 0.22))
-		%EngSadLabel.add_theme_color_override("font_color", Color(0.306, 0.271, 0.133))
-	else:
-		sad_western = true
-		sad_english = false
-		%WestSadLabel.add_theme_color_override("font_color", Color(0.306, 0.271, 0.133))
-		%EngSadLabel.add_theme_color_override("font_color", Color(0.49, 0.36, 0.22))
-
-func _on_bridle_check_button_pressed() -> void:
-	if bri_western:
-		bri_western = false
-		bri_english = true
-		%WestBriLabel.add_theme_color_override("font_color", Color(0.49, 0.36, 0.22))
-		%EngBriLabel.add_theme_color_override("font_color", Color(0.306, 0.271, 0.133))
-	else:
-		bri_western = true
-		bri_english = false
-		%WestBriLabel.add_theme_color_override("font_color", Color(0.306, 0.271, 0.133))
-		%EngBriLabel.add_theme_color_override("font_color", Color(0.49, 0.36, 0.22))
-
-func _on_blanket_check_button_pressed() -> void:
-	if bla_western:
-		bla_western = false
-		bla_english = true
-		%WestBlaLabel.add_theme_color_override("font_color", Color(0.49, 0.36, 0.22))
-		%EngBlaLabel.add_theme_color_override("font_color", Color(0.306, 0.271, 0.133))
-	else:
-		bla_western = true
-		bla_english = false
-		%WestBlaLabel.add_theme_color_override("font_color", Color(0.306, 0.271, 0.133))
-		%EngBlaLabel.add_theme_color_override("font_color", Color(0.49, 0.36, 0.22))
-
 func starting_coin_values() -> void:
-	%saddleSpinBox.value = TackScripts.cost_saddle
-	%bridleSpinBox.value = TackScripts.cost_bridle
-	%blanketSpinBox.value = TackScripts.cost_blanket
-	%legWrapsSpinBox.value = TackScripts.cost_leg_wraps
-	%breastCollarSpinBox.value = TackScripts.cost_breast_collar
-	%girthStrapSpinBox.value = TackScripts.cost_girth_straps
-	
+	%halterSpinBox.value = TackScripts.cost_halter
+	%saddleBagSpinBox.value = TackScripts.cost_saddle_bag
+	%ArmorSpinBox.value = TackScripts.cost_armor
+	%PBSpinBox.value = TackScripts.cost_pasture_blanket
+	%armoredPBSpinBox.value = TackScripts.cost_ar_pasture_blanket
