@@ -35,6 +35,8 @@ func _ready() -> void:
 	$popUP2.deny.connect(on_popup_leave_back)
 	$popUP2.confirm.connect(on_popup_leave_confirmed)
 	$helpscreen.visible = true
+	if GlobalScripts.artist != "":
+		%artistNametext.text = GlobalScripts.artist
 
 func _on_confirm_button_pressed() -> void:
 	var Root = location_text.text
@@ -181,4 +183,4 @@ func on_popup_leave_confirmed() -> void:
 	get_tree().quit()
 
 func _on_artist_nametext_text_changed(new_text: String) -> void:
-	%artistNametext.text = GlobalScripts.artist
+	GlobalScripts.artist = %artistNametext.text

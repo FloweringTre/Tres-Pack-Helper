@@ -243,7 +243,7 @@ custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
 theme = ExtResource("5_wev1s")
 theme_override_constants/line_spacing = -2
-text = "It's okay, you can select \"No\" for custom rack textures and the rack textures I made for saddle blankets (both English and Western), girth straps, and pasture blankets (armor and normal), will be saved in your pack folder properly named. "
+text = "It's okay, you can select \"No\" for custom rack textures and the rack textures I made for saddle blankets, girth straps, and pasture blankets, will be saved in your pack folder. "
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -325,7 +325,7 @@ layout_mode = 2
 theme = ExtResource("7_3nugk")
 theme_override_constants/line_spacing = -1
 theme_override_font_sizes/font_size = 16
-text = "My pack doesn't show in game.... "
+text = "Where do I put the pack folder? "
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -335,8 +335,7 @@ layout_mode = 2
 theme = ExtResource("5_wev1s")
 theme_override_constants/line_spacing = -2
 text = " Your pack folder needs to be in the config > swem > community-packs folder in your modpack. 
-
-If it is still missing, make sure you deleted the INSTRUCTIONS and REPORT files in the folder."
+"
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -358,6 +357,7 @@ horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="HelperLabel5" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer2/VBoxContainer2/VBoxContainer"]
+visible = false
 layout_mode = 2
 theme = ExtResource("5_wev1s")
 theme_override_colors/font_color = Color(0.113725, 0.415686, 0.290196, 1)
@@ -375,6 +375,7 @@ horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="HelperLabel7" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer2/VBoxContainer2/VBoxContainer"]
+visible = false
 layout_mode = 2
 theme = ExtResource("5_wev1s")
 theme_override_colors/font_color = Color(0.113725, 0.415686, 0.290196, 1)
@@ -387,7 +388,7 @@ custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
 theme = ExtResource("5_wev1s")
 theme_override_constants/line_spacing = -2
-text = "Both the 'Normal' and 'Hoof' textures are the same, just with different names."
+text = "Both the 'Normal' and 'Hoof' textures are the same for leg wraps, just with different names."
 horizontal_alignment = 1
 autowrap_mode = 2
 
