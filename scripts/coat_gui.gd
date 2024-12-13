@@ -227,7 +227,7 @@ func save_coat() -> void:
 			"base_colors" = basecolors
 		}
 		
-		var string_1 = JSON.stringify(part_1)
+		var string_1 = JSON.stringify(part_1, "/t")
 		
 		file.store_string(string_1)
 		file.close()
