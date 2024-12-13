@@ -1,12 +1,13 @@
-[gd_scene load_steps=31 format=3 uid="uid://eb3brbdum74l"]
+[gd_scene load_steps=32 format=3 uid="uid://eb3brbdum74l"]
 
 [ext_resource type="Script" path="res://scripts/tack/full_set_creation.gd" id="1_id3ft"]
 [ext_resource type="Texture2D" uid="uid://8f0rfohmniwa" path="res://assets/menuUI.png" id="2_t4x1h"]
 [ext_resource type="Texture2D" uid="uid://dm1bh2yywotao" path="res://assets/icon.png" id="3_3u56n"]
 [ext_resource type="Theme" uid="uid://clxftkhcliti8" path="res://assets/UI_theme.tres" id="4_j06lc"]
 [ext_resource type="Theme" uid="uid://cf6ttsgxwgavd" path="res://assets/UI_theme_blue.tres" id="6_28gow"]
-[ext_resource type="Theme" uid="uid://vjxbkxdwdxu4" path="res://assets/UI_theme_green.tres" id="6_riofi"]
+[ext_resource type="Theme" uid="uid://vjxbkxdwdxu4" path="res://assets/UI_theme_alert.tres" id="6_riofi"]
 [ext_resource type="Theme" uid="uid://dm4jlnbmnj4eb" path="res://assets/UI_theme_dark.tres" id="8_e8y18"]
+[ext_resource type="Theme" uid="uid://cof5u4dam7c2t" path="res://assets/UI_theme_shadowed.tres" id="9_bj8bu"]
 [ext_resource type="Theme" uid="uid://dix1yxdlw8hbv" path="res://assets/UI_theme_smol.tres" id="9_fguin"]
 [ext_resource type="PackedScene" uid="uid://b3cou3ndcs75h" path="res://scene/components/error_message.tscn" id="10_xcubv"]
 [ext_resource type="PackedScene" uid="uid://bpgiy2j33slge" path="res://scene/components/pop_up.tscn" id="11_1qftn"]
@@ -435,7 +436,7 @@ value = 255.0
 
 [node name="Label2" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer2/EDITBoxContainer"]
 layout_mode = 2
-theme = ExtResource("6_riofi")
+theme = ExtResource("9_fguin")
 theme_override_colors/font_color = Color(0.605674, 1.66051e-06, 3.85046e-07, 1)
 text = "Red  "
 horizontal_alignment = 2
@@ -457,7 +458,7 @@ value = 255.0
 
 [node name="Label3" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer2/EDITBoxContainer"]
 layout_mode = 2
-theme = ExtResource("6_riofi")
+theme = ExtResource("9_fguin")
 theme_override_colors/font_color = Color(1.92523e-06, 0.41793, 1.92523e-07, 1)
 text = "Green  "
 horizontal_alignment = 2
@@ -478,7 +479,7 @@ value = 255.0
 
 [node name="Label4" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer2/EDITBoxContainer"]
 layout_mode = 2
-theme = ExtResource("6_riofi")
+theme = ExtResource("9_fguin")
 theme_override_colors/font_color = Color(0.0936844, 0.321806, 0.95922, 1)
 text = "Blue"
 horizontal_alignment = 2
@@ -516,7 +517,7 @@ editable = false
 
 [node name="Label2" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer2/STATICBoxContainer"]
 layout_mode = 2
-theme = ExtResource("6_riofi")
+theme = ExtResource("9_fguin")
 theme_override_colors/font_color = Color(0.45038, 0.249676, 0.237129, 1)
 text = "Red  "
 horizontal_alignment = 2
@@ -532,7 +533,7 @@ editable = false
 
 [node name="Label3" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer2/STATICBoxContainer"]
 layout_mode = 2
-theme = ExtResource("6_riofi")
+theme = ExtResource("9_fguin")
 theme_override_colors/font_color = Color(0.363304, 0.402131, 0.317398, 1)
 text = "Green  "
 horizontal_alignment = 2
@@ -548,7 +549,7 @@ editable = false
 
 [node name="Label4" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer2/STATICBoxContainer"]
 layout_mode = 2
-theme = ExtResource("6_riofi")
+theme = ExtResource("9_fguin")
 theme_override_colors/font_color = Color(0.383492, 0.452497, 0.609917, 1)
 text = "Blue"
 horizontal_alignment = 2
@@ -799,6 +800,24 @@ texture_pressed = SubResource("AtlasTexture_8k5rt")
 texture_hover = SubResource("AtlasTexture_ajnw7")
 texture_disabled = SubResource("AtlasTexture_a8fa8")
 
+[node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect"]
+layout_mode = 0
+offset_left = 467.0
+offset_top = 313.0
+offset_right = 560.0
+offset_bottom = 327.0
+
+[node name="required" type="Label" parent="NinePatchRect/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("6_riofi")
+text = "*"
+horizontal_alignment = 2
+
+[node name="Label" type="Label" parent="NinePatchRect/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("9_bj8bu")
+text = "= required field"
+
 [node name="HelperLabel5" type="Label" parent="NinePatchRect"]
 layout_mode = 0
 offset_left = 41.0
@@ -806,7 +825,7 @@ offset_top = 313.0
 offset_right = 65.0
 offset_bottom = 327.0
 size_flags_horizontal = 4
-theme = ExtResource("6_riofi")
+theme = ExtResource("9_bj8bu")
 theme_override_colors/font_color = Color(0.493728, 0.364523, 0.227402, 1)
 text = "Return to the Tack Main Menu"
 vertical_alignment = 2

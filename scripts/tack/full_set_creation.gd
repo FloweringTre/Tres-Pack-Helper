@@ -307,13 +307,83 @@ func ready_to_save() -> void:
 
 #########################################################
 func _on_confirm_button_pressed() -> void:
-	var title = "About to Save Tack..."
-	var message = "The generated tack will overwrite any existing tack of the same names... \nDo you want to generate this tack set?"
-	var no_label = "NO, Go Back"
-	var yes_label = "YES, Generate Tack"
+	var found_dupes = check_for_duplicates()
+	if found_dupes != 0:
+		dupe_exists(found_dupes)
+	else:
+		_save_complete_tack_set()
+
+func dupe_exists(duplicates_found : int) -> void:
+	var title = "Oops! Duplicates exists!"
+	var message = "There are " + str(duplicates_found) + " items from this tack set that already exist in this pack. \nDo you still want to generate this tack set?"
+	var no_label = "Go Back"
+	var yes_label = "Generate the files"
 	$popUP2_Dupe.pop_yesNo(title, message, no_label, yes_label)
 	disable_interaction()
-	
+
+func check_for_duplicates():
+	var duplicate_exists : int
+	if both_sets:
+		eng_name = %tackText.text + " English"
+		west_name = %tackText.text + " Western"
+		duplicate_exists += dupe_western()
+		duplicate_exists += dupe_english()
+	else:
+		if western:
+			west_name = %tackText.text
+			duplicate_exists += dupe_western()
+		if english:
+			eng_name = %tackText.text
+			duplicate_exists += dupe_english()
+	if pb:
+		if TackScripts.tack_dupe_check("pasture_blanket", %tackText.text):
+			duplicate_exists += 1
+	if arpb:
+		if TackScripts.tack_dupe_check("pasture_blanket_armored", %tackText.text):
+			duplicate_exists += 1
+	if ar:
+		if TackScripts.tack_dupe_check("horse_armor", %tackText.text):
+			duplicate_exists += 1
+	if sb:
+		if TackScripts.tack_dupe_check("saddle_bag", %tackText.text):
+			duplicate_exists += 1
+	if hal:
+		if TackScripts.tack_dupe_check("halter", %tackText.text):
+			duplicate_exists += 1
+	return duplicate_exists
+
+func dupe_western():
+	var duplicate_exists : int
+	if TackScripts.tack_dupe_check("saddle", west_name):
+		duplicate_exists += 1
+	if TackScripts.tack_dupe_check("bridle", west_name):
+		duplicate_exists += 1
+	if TackScripts.tack_dupe_check("blanket", west_name):
+		duplicate_exists += 1
+	if TackScripts.tack_dupe_check("leg_wraps", west_name):
+		duplicate_exists += 1
+	if TackScripts.tack_dupe_check("girth_strap", west_name):
+		duplicate_exists += 1
+	if TackScripts.tack_dupe_check("breast_collar", west_name):
+		duplicate_exists += 1
+	return duplicate_exists
+
+func dupe_english():
+	var duplicate_exists : int
+	if TackScripts.tack_dupe_check("saddle", eng_name):
+		duplicate_exists += 1
+	if TackScripts.tack_dupe_check("bridle", eng_name):
+		duplicate_exists += 1
+	if TackScripts.tack_dupe_check("blanket", eng_name):
+		duplicate_exists += 1
+	if TackScripts.tack_dupe_check("leg_wraps", eng_name):
+		duplicate_exists += 1
+	if TackScripts.tack_dupe_check("girth_strap", eng_name):
+		duplicate_exists += 1
+	if TackScripts.tack_dupe_check("breast_collar", eng_name):
+		duplicate_exists += 1
+	return duplicate_exists
+
 func _save_complete_tack_set() -> void:
 	# DUPE SETS FOR ENG AND WESTERN
 	if both_sets:

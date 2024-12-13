@@ -87,7 +87,7 @@ func blanket_save(item : String, artist : String, inspo : String, coin : String,
 			
 			var save_file = {"display" = display, "cost" = cost, "meta" = meta}
 			
-			var string_1 = JSON.stringify(save_file)
+			var string_1 = JSON.stringify(save_file, "\t")
 			
 			file.store_string(string_1)
 			file.close()
@@ -143,10 +143,21 @@ func saddle_save(item : String, artist : String, inspo : String, coin : String, 
 				"model_type" = model,
 				"can_wear_armor" = adv
 			}
-			var rack = {
-				"saddle" = root + rack_saddle,
-				"horse_armor" = root + rack_armor
-			}
+			
+			var rack = {}
+			var text_2 = ""
+			if adv:
+				rack = {
+					"saddle" = root + rack_saddle,
+					"horse_armor" = root + rack_armor
+				}
+				text_2 = "    Horse Armor Rack Texture: " + rack_armor + "\n"
+			else:
+				rack = {
+					"saddle" = root + rack_saddle
+				}
+				text_2 = ""
+			
 			var textures = {"horse" = horse, "rack" = rack}
 			
 			var meta = {
@@ -159,18 +170,13 @@ func saddle_save(item : String, artist : String, inspo : String, coin : String, 
 			
 			var save_file = {"display" = display, "cost" = cost, "meta" = meta}
 			
-			var string_1 = JSON.stringify(save_file)
+			var string_1 = JSON.stringify(save_file, "\t")
 			
 			file.store_string(string_1)
 			file.close()
 			
 			var text_1 = "    Icon Texture: " + icon + "\n" + "    Horse Texture: " + leg_texture\
 			 + "\n" + "    Saddle Rack Texture: " + rack_saddle + "\n"
-			var text_2 = ""
-			if adv:
-				text_2 = "    Horse Armor Rack Texture: " + rack_armor + "\n"
-			else:
-				text_2 = "\n"
 			
 			var text_list =  text_1 + text_2
 			var text_path = GlobalScripts.join_paths(text_dir, type)
@@ -238,7 +244,7 @@ func bridle_save(item : String, artist : String, inspo : String, coin : String, 
 			
 			var save_file = {"display" = display, "cost" = cost, "meta" = meta}
 			
-			var string_1 = JSON.stringify(save_file)
+			var string_1 = JSON.stringify(save_file, "\t")
 			
 			file.store_string(string_1)
 			file.close()
@@ -308,7 +314,7 @@ func halter_save(item : String, artist : String, inspo : String, coin : String, 
 			
 			var save_file = {"display" = display, "cost" = cost, "meta" = meta}
 			
-			var string_1 = JSON.stringify(save_file)
+			var string_1 = JSON.stringify(save_file, "\t")
 			
 			file.store_string(string_1)
 			file.close()
@@ -378,7 +384,7 @@ func leg_wraps_save(item : String, artist : String, inspo : String, coin : Strin
 			
 			var save_file = {"display" = display, "cost" = cost, "meta" = meta}
 			
-			var string_1 = JSON.stringify(save_file)
+			var string_1 = JSON.stringify(save_file, "\t")
 			
 			file.store_string(string_1)
 			file.close()
@@ -446,7 +452,7 @@ func breast_collar_save(item : String, artist : String, inspo : String, coin : S
 			
 			var save_file = {"display" = display, "cost" = cost, "meta" = meta}
 			
-			var string_1 = JSON.stringify(save_file)
+			var string_1 = JSON.stringify(save_file, "\t")
 			
 			file.store_string(string_1)
 			file.close()
@@ -516,7 +522,7 @@ func armor_save(item : String, artist : String, inspo : String, coin : String, t
 			
 			var save_file = {"display" = display, "cost" = cost, "meta" = meta}
 			
-			var string_1 = JSON.stringify(save_file)
+			var string_1 = JSON.stringify(save_file, "\t")
 			
 			file.store_string(string_1)
 			file.close()
@@ -583,7 +589,7 @@ func saddle_bag_save(item : String, artist : String, inspo : String, coin : Stri
 			
 			var save_file = {"display" = display, "cost" = cost, "meta" = meta}
 			
-			var string_1 = JSON.stringify(save_file)
+			var string_1 = JSON.stringify(save_file, "\t")
 			
 			file.store_string(string_1)
 			file.close()
@@ -652,7 +658,7 @@ func girth_straps_save(item : String, artist : String, inspo : String, coin : St
 			
 			var save_file = {"display" = display, "cost" = cost, "meta" = meta}
 			
-			var string_1 = JSON.stringify(save_file)
+			var string_1 = JSON.stringify(save_file, "\t")
 			
 			file.store_string(string_1)
 			file.close()
@@ -724,7 +730,7 @@ func pasture_blanket_save(item : String, artist : String, inspo : String, coin :
 			
 			var save_file = {"display" = display, "cost" = cost, "meta" = meta}
 			
-			var string_1 = JSON.stringify(save_file)
+			var string_1 = JSON.stringify(save_file, "\t")
 			
 			file.store_string(string_1)
 			file.close()
@@ -799,7 +805,7 @@ func ar_pasture_blanket_save(item : String, artist : String, inspo : String, coi
 			
 			var save_file = {"display" = display, "cost" = cost, "meta" = meta}
 			
-			var string_1 = JSON.stringify(save_file)
+			var string_1 = JSON.stringify(save_file, "\t")
 			
 			file.store_string(string_1)
 			file.close()
@@ -883,13 +889,12 @@ func colored_blanket_save(rack_5 : Sprite2D, rack_saddle : Sprite2D, item : Stri
 			
 			var save_file = {"display" = display, "cost" = cost, "meta" = meta}
 			
-			var string_1 = JSON.stringify(save_file)
+			var string_1 = JSON.stringify(save_file, "\t")
 			
 			file.store_string(string_1)
 			file.close()
 			
-			var text_list = "    Icon Texture: " + icon + "\n" + "    Horse Texture: " + leg_texture\
-			 + "\n" + "    No custom rack textures needed for this blanket.\n"
+			var text_list = "    Icon Texture: " + icon + "\n" + "    Horse Texture: " + leg_texture
 			var text_path = GlobalScripts.join_paths(text_dir, type)
 			
 			GlobalScripts.instructions_tack(type_fancy, item, text_list, text_path)
@@ -958,13 +963,12 @@ func colored_girth_strap_save(rack_saddle : Sprite2D, item : String, artist : St
 			
 			var save_file = {"display" = display, "cost" = cost, "meta" = meta}
 			
-			var string_1 = JSON.stringify(save_file)
+			var string_1 = JSON.stringify(save_file, "\t")
 			
 			file.store_string(string_1)
 			file.close()
 			
-			var text_list = "    Icon Texture: " + icon + "\n" + "    Horse Girth Strap Texture: " + leg_texture\
-			 + "\n" + "    No custom rack textures needed for this girth strap.\n"
+			var text_list = "    Icon Texture: " + icon + "\n" + "    Horse Girth Strap Texture: " + leg_texture
 			var text_path = GlobalScripts.join_paths(text_dir, type)
 			
 			GlobalScripts.instructions_tack(type_fancy, item, text_list, text_path)
@@ -1039,13 +1043,12 @@ func colored_pasture_blanket_save(rack_long : Sprite2D, rack_short : Sprite2D, i
 			
 			var save_file = {"display" = display, "cost" = cost, "meta" = meta}
 			
-			var string_1 = JSON.stringify(save_file)
+			var string_1 = JSON.stringify(save_file, "\t")
 			
 			file.store_string(string_1)
 			file.close()
 			
-			var text_list = "    Icon Texture: " + icon + "\n" + "    Horse Texture: " + leg_texture\
-			 + "\n" + "    No custom rack textures needed for this blanket.\n"
+			var text_list = "    Icon Texture: " + icon + "\n" + "    Horse Texture: " + leg_texture
 			var text_path = GlobalScripts.join_paths(text_dir, type)
 			
 			GlobalScripts.instructions_tack(type_fancy, item, text_list, text_path)
@@ -1122,13 +1125,12 @@ func colored_ar_pasture_blanket_save(rack_long : Sprite2D, rack_short : Sprite2D
 			
 			var save_file = {"display" = display, "cost" = cost, "meta" = meta}
 			
-			var string_1 = JSON.stringify(save_file)
+			var string_1 = JSON.stringify(save_file, "\t")
 			
 			file.store_string(string_1)
 			file.close()
 			
-			var text_list = "    Icon Texture: " + icon + "\n" + "    Horse Texture: " + leg_texture\
-			 + "\n" + "    No custom rack textures needed for this blanket.\n"
+			var text_list = "    Icon Texture: " + icon + "\n" + "    Horse Texture: " + leg_texture
 			var text_path = GlobalScripts.join_paths(text_dir, type)
 			
 			GlobalScripts.instructions_tack(type_fancy, item, text_list, text_path)
@@ -1138,3 +1140,21 @@ func colored_ar_pasture_blanket_save(rack_long : Sprite2D, rack_short : Sprite2D
 		else:
 			ErrorManager.error_print("Couldn't save the new " + type_fancy + ". The ./json/tack/" + type + "/ folder wouldn't open. Check to see if it exists.")
 			GlobalScripts.report("Failed to save the new " + type_fancy + ", '" + item + "' to " + path)
+
+
+######### CHECK FOR A DUPLICATE #################
+
+func tack_dupe_check(type : String, item : String):
+	var tack_root = ""
+	var item_file = ""
+	if type == "pasture_blanket_armored":
+		tack_root = GlobalScripts.join_paths(json_dir, "pasture_blanket")
+		item_file = item + "_pasture_blanket_armored.json"
+	else:
+		tack_root = GlobalScripts.join_paths(json_dir, type)
+		item_file = item + "_" + type + ".json"
+	var path = GlobalScripts.join_paths(tack_root, item_file)
+	if FileAccess.file_exists(path):
+		return true
+	else:
+		return false
