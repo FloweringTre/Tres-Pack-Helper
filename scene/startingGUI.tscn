@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://c7f637oqram5g"]
+[gd_scene load_steps=24 format=3 uid="uid://c7f637oqram5g"]
 
 [ext_resource type="Script" path="res://scripts/starting_gui.gd" id="1_3an53"]
 [ext_resource type="Texture2D" uid="uid://8f0rfohmniwa" path="res://assets/menuUI.png" id="1_lx5dw"]
@@ -8,9 +8,10 @@
 [ext_resource type="Theme" uid="uid://cf6ttsgxwgavd" path="res://assets/UI_theme_blue.tres" id="5_o5bxr"]
 [ext_resource type="PackedScene" uid="uid://cp0jrapb6x6a2" path="res://scene/components/buttonSMOL.tscn" id="5_uwvmr"]
 [ext_resource type="PackedScene" uid="uid://b3cou3ndcs75h" path="res://scene/components/error_message.tscn" id="6_iaop6"]
-[ext_resource type="Theme" uid="uid://dix1yxdlw8hbv" path="res://assets/UI_theme_smol.tres" id="7_0bqte"]
 [ext_resource type="Theme" uid="uid://db3wwmhf400fw" path="res://assets/UI_theme_dark_big.tres" id="7_7bhpy"]
+[ext_resource type="Theme" uid="uid://vjxbkxdwdxu4" path="res://assets/UI_theme_green.tres" id="7_7ylay"]
 [ext_resource type="PackedScene" uid="uid://cdigxro282sfm" path="res://scene/components/checkAlert.tscn" id="9_xnwmn"]
+[ext_resource type="Theme" uid="uid://dm4jlnbmnj4eb" path="res://assets/UI_theme_dark.tres" id="10_5yckn"]
 [ext_resource type="PackedScene" uid="uid://bpgiy2j33slge" path="res://scene/components/pop_up.tscn" id="12_kwseo"]
 [ext_resource type="PackedScene" uid="uid://clixcby1mmxr3" path="res://scene/helpScreen.tscn" id="13_g6yan"]
 
@@ -121,7 +122,14 @@ alignment = 2
 [node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/Hbox"]
 layout_mode = 2
 theme = ExtResource("2_em82s")
-text = "File Location:"
+text = "File Location"
+horizontal_alignment = 2
+
+[node name="required" type="Label" parent="NinePatchRect/VBoxContainer/Hbox"]
+layout_mode = 2
+theme = ExtResource("7_7ylay")
+theme_override_font_sizes/font_size = 32
+text = "*"
 horizontal_alignment = 2
 
 [node name="locationText" type="LineEdit" parent="NinePatchRect/VBoxContainer/Hbox"]
@@ -155,7 +163,14 @@ alignment = 2
 [node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/Hbox2"]
 layout_mode = 2
 theme = ExtResource("2_em82s")
-text = "Pack Name:"
+text = "Pack Name"
+horizontal_alignment = 2
+
+[node name="required" type="Label" parent="NinePatchRect/VBoxContainer/Hbox2"]
+layout_mode = 2
+theme = ExtResource("7_7ylay")
+theme_override_font_sizes/font_size = 32
+text = "*"
 horizontal_alignment = 2
 
 [node name="folderNametext" type="LineEdit" parent="NinePatchRect/VBoxContainer/Hbox2"]
@@ -193,7 +208,7 @@ horizontal_alignment = 1
 [node name="HelperLabel4" type="Label" parent="NinePatchRect/VBoxContainer/Stage1BoxContainer"]
 custom_minimum_size = Vector2(0, 14)
 layout_mode = 2
-theme = ExtResource("7_0bqte")
+theme = ExtResource("7_7ylay")
 text = "Each pack needs to have a unique name... so keep that in mind while naming this pack!"
 horizontal_alignment = 1
 
@@ -211,7 +226,7 @@ custom_minimum_size = Vector2(380, 15)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
-theme = ExtResource("7_0bqte")
+theme = ExtResource("7_7ylay")
 theme_override_colors/font_color = Color(0.493728, 0.364523, 0.227402, 1)
 text = "Press the buttons above to gain a checkmark on each line to proceed..."
 horizontal_alignment = 2
@@ -224,7 +239,7 @@ layout_mode = 2
 [node name="Stage2Text2" type="Label" parent="NinePatchRect/VBoxContainer/Stage2BoxContainer"]
 custom_minimum_size = Vector2(0, 14)
 layout_mode = 2
-theme = ExtResource("7_0bqte")
+theme = ExtResource("7_7ylay")
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -258,6 +273,42 @@ unique_name_in_owner = true
 layout_mode = 2
 button_text = "Tack"
 
+[node name="Container2" type="Label" parent="NinePatchRect/VBoxContainer/Stage2BoxContainer"]
+custom_minimum_size = Vector2(64, 26)
+layout_mode = 2
+theme = ExtResource("5_o5bxr")
+text = "Optional: Set the default texture artist for this pack."
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Hbox3" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/Stage2BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/Stage2BoxContainer/Hbox3"]
+visible = false
+custom_minimum_size = Vector2(0, 22)
+layout_mode = 2
+theme = ExtResource("10_5yckn")
+text = "Default Artist Name:"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="artistNametext" type="LineEdit" parent="NinePatchRect/VBoxContainer/Stage2BoxContainer/Hbox3"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(360, 0)
+layout_mode = 2
+focus_neighbor_top = NodePath("../../../Hbox/locationText")
+focus_neighbor_bottom = NodePath("../../../../confirmButton")
+focus_previous = NodePath("../../../Hbox/pathOpenButton")
+placeholder_text = "The name put here preloads on all screens"
+
+[node name="Container" type="Container" parent="NinePatchRect/VBoxContainer/Stage2BoxContainer/Hbox3"]
+visible = false
+custom_minimum_size = Vector2(42, 0)
+layout_mode = 2
+
 [node name="HBoxContainer3" type="HBoxContainer" parent="NinePatchRect"]
 layout_mode = 1
 anchors_preset = 7
@@ -275,8 +326,7 @@ alignment = 1
 
 [node name="HelperLabel7" type="Label" parent="NinePatchRect/HBoxContainer3"]
 layout_mode = 2
-theme = ExtResource("7_0bqte")
-theme_override_colors/font_color = Color(0.113924, 0.41665, 0.289974, 1)
+theme = ExtResource("7_7ylay")
 text = "If you have questions or bugs, please join my
 "
 horizontal_alignment = 1
@@ -311,7 +361,7 @@ offset_top = 313.0
 offset_right = 65.0
 offset_bottom = 327.0
 size_flags_horizontal = 4
-theme = ExtResource("7_0bqte")
+theme = ExtResource("7_7ylay")
 theme_override_colors/font_color = Color(0.493728, 0.364523, 0.227402, 1)
 text = "Exit "
 vertical_alignment = 2
@@ -365,5 +415,6 @@ layout_mode = 1
 
 [connection signal="text_changed" from="NinePatchRect/VBoxContainer/Hbox/locationText" to="." method="_on_location_text_text_changed"]
 [connection signal="text_changed" from="NinePatchRect/VBoxContainer/Hbox2/folderNametext" to="." method="_on_folder_nametext_text_changed"]
+[connection signal="text_changed" from="NinePatchRect/VBoxContainer/Stage2BoxContainer/Hbox3/artistNametext" to="." method="_on_artist_nametext_text_changed"]
 [connection signal="pressed" from="NinePatchRect/backButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="NinePatchRect/confirmButton" to="." method="_on_confirm_button_pressed"]

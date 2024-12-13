@@ -5,6 +5,7 @@ var directory_root : String = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP)
 
 var root : String = ""
 var folder: String = ""
+var artist : String = ""
 var jsons_root : String
 var textures_root : String
 var report_file_path : String
@@ -52,8 +53,8 @@ func join_paths(root_path : String, folder : String): #joins two values to a cor
 
 func new_pack_setup(directory : String) -> void: #Build a new pack
 	directory_root = directory
-	report_file_path = join_paths(directory_root, "TRE.S_PACK_HELPER_REPORT.txt")
-	instructions_file_path = join_paths(directory_root, "INSTRUCTIONS.txt")
+	report_file_path = join_paths(directory_root, "TRE.S_PACK_HELPER_REPORT.json")
+	instructions_file_path = join_paths(directory_root, "INSTRUCTIONS.json")
 	jsons_root = join_paths(directory_root, "jsons")
 	textures_root = join_paths(directory_root, "textures")
 	TackScripts.script_start_up()
