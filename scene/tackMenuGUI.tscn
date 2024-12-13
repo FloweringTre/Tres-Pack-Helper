@@ -9,8 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://bicshr65lr0n1" path="res://scene/components/button.tscn" id="6_ibjxg"]
 [ext_resource type="Theme" uid="uid://dm4jlnbmnj4eb" path="res://assets/UI_theme_dark.tres" id="8_xsab8"]
 [ext_resource type="PackedScene" uid="uid://eexrhh8cyqwa" path="res://scene/components/buttonLONG.tscn" id="9_5u002"]
-[ext_resource type="Theme" uid="uid://dix1yxdlw8hbv" path="res://assets/UI_theme_smol.tres" id="9_56vof"]
 [ext_resource type="PackedScene" uid="uid://b3cou3ndcs75h" path="res://scene/components/error_message.tscn" id="10_551ul"]
+[ext_resource type="Theme" uid="uid://vjxbkxdwdxu4" path="res://assets/UI_theme_green.tres" id="10_t4wx0"]
 [ext_resource type="PackedScene" uid="uid://bpgiy2j33slge" path="res://scene/components/pop_up.tscn" id="11_71188"]
 [ext_resource type="PackedScene" uid="uid://clixcby1mmxr3" path="res://scene/helpScreen.tscn" id="13_218np"]
 
@@ -562,7 +562,7 @@ offset_top = 313.0
 offset_right = 65.0
 offset_bottom = 327.0
 size_flags_horizontal = 4
-theme = ExtResource("9_56vof")
+theme = ExtResource("10_t4wx0")
 theme_override_colors/font_color = Color(0.493728, 0.364523, 0.227402, 1)
 text = "Return to the Main Menu"
 vertical_alignment = 2

@@ -30,6 +30,11 @@ func _ready() -> void:
 	$popUP2_Dupe.confirm.connect(on_popup_dupe_confirmed)
 	$popUPexit.deny.connect(on_popup_saved_back)
 	$popUPexit.confirm.connect(on_popup_exit_confirmed)
+	$helpscreen.visible = true
+	if GlobalScripts.artist != "":
+		%artistText.text = GlobalScripts.artist
+		artist = true
+	ready_to_save()
 
 func disable_interaction () -> void:
 	%confirmButton.disabled = true
@@ -82,50 +87,40 @@ func _on_back_button_pressed() -> void:
 func _on_artist_text_text_changed(new_text: String) -> void:
 	if %artistText.text != "":
 		artist = true
-		if coat_name == true && inspo == true:
-			%confirmButton.disabled = false
-		else:
-			pass
+		ready_to_save()
 	else:
 		artist = false
-		%confirmButton.disabled = true
+		ready_to_save()
 
 func _on_inspo_text_text_changed(new_text: String) -> void:
 	if %inspoText.text != "":
 		inspo = true
-		if artist == true && coat_name == true:
-			%confirmButton.disabled = false
-		else:
-			pass
+		ready_to_save()
 	else:
 		inspo = false
-		%confirmButton.disabled = true
+		ready_to_save()
 
 func on_NA_button() -> void:
 	%inspoText.text = "N/a"
 	inspo = true
-	if artist == true && coat_name == true:
-		%confirmButton.disabled = false
-	else:
-		pass
+	ready_to_save()
 
 func _on_coat_text_text_changed(new_text: String) -> void:
 	$checkPath.awaiting_check()
 	coat_name = false
 	%confirmButton.disabled = true
+	ready_to_save()
 
 func on_name_check() -> void:
 	if %coatText.text == "":
 		$checkPath.set_check(false)
 		coat_name = false
+		ready_to_save()
 	else:
 		%coatText.text = GlobalScripts.text_clean(%coatText.text)
 		$checkPath.set_check(true)
 		coat_name = true
-		if artist == true && inspo == true:
-			%confirmButton.disabled = false
-		else:
-			pass
+		ready_to_save()
 
 func _on_breeding_check_box_pressed() -> void:
 	if breedable:
@@ -199,6 +194,12 @@ func _on_chestnut_check_box_7_pressed() -> void:
 		chestnut_coat = true
 		basecolors.append("chestnut")
 
+func ready_to_save() -> void:
+	if artist && inspo && coat_name:
+		%confirmButton.disabled = false
+	else:
+		%confirmButton.disabled = true
+
 func _on_confirm_button_pressed() -> void:
 	GlobalScripts.setup_coats()
 	on_name_check()
@@ -261,7 +262,7 @@ func on_new_coat_saved() -> void:
 	disable_interaction()
 
 func on_popup_saved_back() -> void:
-	enable_interaction()
+	get_tree().change_scene_to_file("res://scene/startingGUI.tscn")
 
 func on_popup_saved_confirmed() -> void:
 	enable_interaction()

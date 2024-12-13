@@ -42,6 +42,11 @@ func _ready() -> void:
 	$popUP2_Dupe.confirm.connect(on_popup_dupe_confirmed)
 	$popUPexit.deny.connect(on_popup_saved_back)
 	$popUPexit.confirm.connect(on_popup_exit_confirmed)
+	$helpscreen.visible = true
+	if GlobalScripts.artist != "":
+		%artistText.text = GlobalScripts.artist
+		artist = true
+		ready_to_save()
 
 func on_error() -> void:
 	disable_interaction()
@@ -424,7 +429,7 @@ func on_new_tack_saved() -> void:
 	disable_interaction()
 
 func on_popup_saved_back() -> void:
-	enable_interaction()
+	get_tree().change_scene_to_file("res://scene/tackMenuGUI.tscn")
 
 func on_popup_saved_confirmed() -> void:
 	enable_interaction()

@@ -34,6 +34,7 @@ func _ready() -> void:
 	perm_disabled_buttons()
 	update_save_button()
 	load_values()
+	$helpscreen.visible = true
 
 func disabled_buttons() -> void:
 	%saddle_set.set_disabled()

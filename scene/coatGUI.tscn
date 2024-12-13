@@ -6,10 +6,10 @@
 [ext_resource type="Theme" uid="uid://clxftkhcliti8" path="res://assets/UI_theme.tres" id="4_gvril"]
 [ext_resource type="Theme" uid="uid://dm4jlnbmnj4eb" path="res://assets/UI_theme_dark.tres" id="5_0f6da"]
 [ext_resource type="PackedScene" uid="uid://cp0jrapb6x6a2" path="res://scene/components/buttonSMOL.tscn" id="5_1wej3"]
+[ext_resource type="Theme" uid="uid://vjxbkxdwdxu4" path="res://assets/UI_theme_green.tres" id="5_ra54s"]
 [ext_resource type="Theme" uid="uid://cf6ttsgxwgavd" path="res://assets/UI_theme_blue.tres" id="5_sgdhu"]
 [ext_resource type="Theme" uid="uid://db3wwmhf400fw" path="res://assets/UI_theme_dark_big.tres" id="6_duviu"]
 [ext_resource type="PackedScene" uid="uid://b3cou3ndcs75h" path="res://scene/components/error_message.tscn" id="6_m2onb"]
-[ext_resource type="Theme" uid="uid://dix1yxdlw8hbv" path="res://assets/UI_theme_smol.tres" id="9_200ey"]
 [ext_resource type="PackedScene" uid="uid://cdigxro282sfm" path="res://scene/components/checkAlert.tscn" id="9_edoao"]
 [ext_resource type="PackedScene" uid="uid://bpgiy2j33slge" path="res://scene/components/pop_up.tscn" id="10_75oqe"]
 [ext_resource type="PackedScene" uid="uid://clixcby1mmxr3" path="res://scene/helpScreen.tscn" id="13_f6knk"]
@@ -125,6 +125,13 @@ theme = ExtResource("4_gvril")
 text = "Texture Artist"
 horizontal_alignment = 2
 
+[node name="required" type="Label" parent="NinePatchRect/VBoxContainer/artist"]
+layout_mode = 2
+theme = ExtResource("5_ra54s")
+theme_override_font_sizes/font_size = 32
+text = "*"
+horizontal_alignment = 2
+
 [node name="artistText" type="LineEdit" parent="NinePatchRect/VBoxContainer/artist"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 0)
@@ -144,7 +151,14 @@ alignment = 2
 [node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/inspiration"]
 layout_mode = 2
 theme = ExtResource("4_gvril")
-text = "Inspiration:"
+text = "Inspiration"
+horizontal_alignment = 2
+
+[node name="required" type="Label" parent="NinePatchRect/VBoxContainer/inspiration"]
+layout_mode = 2
+theme = ExtResource("5_ra54s")
+theme_override_font_sizes/font_size = 32
+text = "*"
 horizontal_alignment = 2
 
 [node name="inspoText" type="LineEdit" parent="NinePatchRect/VBoxContainer/inspiration"]
@@ -176,7 +190,14 @@ alignment = 2
 [node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/coatName"]
 layout_mode = 2
 theme = ExtResource("4_gvril")
-text = "Coat Name:"
+text = "Coat Name"
+horizontal_alignment = 2
+
+[node name="required" type="Label" parent="NinePatchRect/VBoxContainer/coatName"]
+layout_mode = 2
+theme = ExtResource("5_ra54s")
+theme_override_font_sizes/font_size = 32
+text = "*"
 horizontal_alignment = 2
 
 [node name="coatText" type="LineEdit" parent="NinePatchRect/VBoxContainer/coatName"]
@@ -430,7 +451,7 @@ offset_top = 313.0
 offset_right = 65.0
 offset_bottom = 327.0
 size_flags_horizontal = 4
-theme = ExtResource("9_200ey")
+theme = ExtResource("5_ra54s")
 theme_override_colors/font_color = Color(0.493728, 0.364523, 0.227402, 1)
 text = "Return to the Main Menu"
 vertical_alignment = 2
