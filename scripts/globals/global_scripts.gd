@@ -53,8 +53,8 @@ func join_paths(root_path : String, folder : String): #joins two values to a cor
 
 func new_pack_setup(directory : String) -> void: #Build a new pack
 	directory_root = directory
-	report_file_path = join_paths(directory_root, "TRE.S_PACK_HELPER_REPORT.json")
-	instructions_file_path = join_paths(directory_root, "INSTRUCTIONS.json")
+	report_file_path = join_paths(directory_root, "TRE.S_PACK_HELPER_REPORT.txt")
+	instructions_file_path = join_paths(directory_root, "INSTRUCTIONS.txt")
 	jsons_root = join_paths(directory_root, "jsons")
 	textures_root = join_paths(directory_root, "textures")
 	TackScripts.script_start_up()
@@ -174,7 +174,6 @@ func set_up_instructions() -> void:
 				file.store_string("This document will tell you the names of each texture to add and where to add them.\n" + \
 				" Please understand, your pack will not function if the textures are not correctly named or placed in the wrong" + \
 				" folders.\n Feel free to delete instructions you have completed and copy/paste names and addresses from this document.\n\n" + \
-				"~~~ YOU MUST REMOVE BOTH THE INSTRUCTIONS AND REPORT DOCUMENTS FROM THE PACK FOLDER PRIOR TO LAUNCHING MINECRAFT OTHERWISE IT WILL NOT LOAD THE PACK.~~~ \n\n" + \
 				"This pack (with the added textures below, and the removal of the above files), needs to be put in the config > swem > community-packs folder.\n" + \
 				"Please reach out to me (kyraltre) via my discord if you have issues or questions. https://discord.gg/GuYRWK22Mx\n\n")
 				file.close()
