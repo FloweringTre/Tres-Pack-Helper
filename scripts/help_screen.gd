@@ -1,6 +1,7 @@
 extends Control
 
 func _ready() -> void:
+	$".".visible = true
 	$NinePatchRect.visible = false
 	ErrorManager.error_alert.connect(on_error)
 	ErrorManager.error_passed.connect(on_error_passed)
