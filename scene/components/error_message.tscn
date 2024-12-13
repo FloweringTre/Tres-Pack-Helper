@@ -103,7 +103,6 @@ texture_normal = SubResource("AtlasTexture_5er8k")
 texture_pressed = SubResource("AtlasTexture_u6lj1")
 texture_hover = SubResource("AtlasTexture_pby4t")
 texture_disabled = SubResource("AtlasTexture_vk1f2")
-texture_focused = SubResource("AtlasTexture_pby4t")
 
 [node name="Line2D" type="Line2D" parent="."]
 points = PackedVector2Array(176, 23, 10, 23)

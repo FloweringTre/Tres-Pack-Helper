@@ -167,7 +167,6 @@ texture_normal = SubResource("AtlasTexture_ninoc")
 texture_pressed = SubResource("AtlasTexture_wsrpf")
 texture_hover = SubResource("AtlasTexture_glo3f")
 texture_disabled = SubResource("AtlasTexture_beyp4")
-texture_focused = SubResource("AtlasTexture_glo3f")
 
 [node name="confirmButton" type="TextureButton" parent="yesOrNo"]
 unique_name_in_owner = true
@@ -176,7 +175,6 @@ texture_normal = SubResource("AtlasTexture_o1an7")
 texture_pressed = SubResource("AtlasTexture_if4m6")
 texture_hover = SubResource("AtlasTexture_jifrg")
 texture_disabled = SubResource("AtlasTexture_nan3c")
-texture_focused = SubResource("AtlasTexture_jifrg")
 
 [node name="continue" type="HBoxContainer" parent="."]
 visible = false
