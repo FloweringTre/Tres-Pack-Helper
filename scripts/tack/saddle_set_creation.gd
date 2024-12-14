@@ -125,6 +125,8 @@ func update_name_previews() -> void:
 		text = "Butterfly Morpho"
 	else:
 		text = %tackText.text
+	%inGameLabel.text = text + " Bridle"
+	%dataLabel.text = GlobalScripts.text_clean(text) + "_bridle"
 
 func _on_armor_check_box_pressed() -> void:
 	if adventure:

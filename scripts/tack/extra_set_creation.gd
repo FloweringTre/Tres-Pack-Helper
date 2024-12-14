@@ -113,6 +113,8 @@ func update_name_previews() -> void:
 		text = "Butterfly Morpho"
 	else:
 		text = %tackText.text
+	%inGameLabel.text = text + " Halter"
+	%dataLabel.text = GlobalScripts.text_clean(text) + "_halter"
 
 func _on_cust_check_box_pressed() -> void:
 	if custom_rack:
