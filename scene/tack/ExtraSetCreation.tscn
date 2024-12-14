@@ -223,10 +223,12 @@ autowrap_mode = 2
 [node name="previewBox" type="HSplitContainer" parent="NinePatchRect/VBoxContainer"]
 custom_minimum_size = Vector2(513, 0)
 layout_mode = 2
+size_flags_horizontal = 4
 
 [node name="inGameBoxContainer" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/previewBox"]
 custom_minimum_size = Vector2(256, 0)
 layout_mode = 2
+alignment = 1
 
 [node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/previewBox/inGameBoxContainer"]
 custom_minimum_size = Vector2(105, 0)
@@ -285,37 +287,12 @@ horizontal_alignment = 1
 custom_minimum_size = Vector2(0, 3)
 layout_mode = 2
 
-[node name="armorCheck" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
-visible = false
-layout_mode = 2
-theme_override_constants/separation = -1
-
-[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/armorCheck"]
-layout_mode = 2
-theme = ExtResource("6_s5vfx")
-text = "Can be worn with Armor?"
-horizontal_alignment = 2
-
-[node name="armorCheckBox" type="CheckBox" parent="NinePatchRect/VBoxContainer/armorCheck"]
-unique_name_in_owner = true
-layout_mode = 2
-focus_neighbor_left = NodePath("../../HBoxContainer2/custCheck/custCheckBox")
-focus_neighbor_top = NodePath("../../tackName/tackText")
-focus_neighbor_bottom = NodePath("../../VBoxContainer2/EDITBoxContainer/blueSpinBox")
-focus_next = NodePath("../../VBoxContainer2/EDITBoxContainer/redSpinBox")
-focus_previous = NodePath("../../HBoxContainer2/custCheck/custCheckBox")
-
-[node name="armorLabel" type="Label" parent="NinePatchRect/VBoxContainer/armorCheck"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(21, 0)
-layout_mode = 2
-theme = ExtResource("5_jy6up")
-text = "No"
-
 [node name="HBoxContainer2" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 0
-alignment = 1
+
+[node name="Container2" type="Container" parent="NinePatchRect/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(39, 0)
+layout_mode = 2
 
 [node name="custCheck" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
@@ -324,16 +301,14 @@ theme_override_constants/separation = -1
 [node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer2/custCheck"]
 layout_mode = 2
 theme = ExtResource("6_s5vfx")
-text = "Custom Blanket Rack?"
+text = "Custom Pasture Blanket Racks?"
 horizontal_alignment = 2
 
 [node name="custCheckBox" type="CheckBox" parent="NinePatchRect/VBoxContainer/HBoxContainer2/custCheck"]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_top = NodePath("../../../tackName/tackText")
-focus_neighbor_right = NodePath("../../../armorCheck/armorCheckBox")
 focus_neighbor_bottom = NodePath("../../VBoxContainer2/EDITBoxContainer/redSpinBox")
-focus_next = NodePath("../../../armorCheck/armorCheckBox")
 
 [node name="custLabel" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer2/custCheck"]
 unique_name_in_owner = true
@@ -343,7 +318,8 @@ theme = ExtResource("5_jy6up")
 text = "No"
 
 [node name="Container" type="Container" parent="NinePatchRect/VBoxContainer/HBoxContainer2/custCheck"]
-custom_minimum_size = Vector2(12, 0)
+visible = false
+custom_minimum_size = Vector2(-2, 0)
 layout_mode = 2
 
 [node name="EDITBoxContainer" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer2/custCheck"]
@@ -513,9 +489,12 @@ custom_minimum_size = Vector2(0, 3)
 layout_mode = 2
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
+custom_minimum_size = Vector2(598, 0)
 layout_mode = 2
-theme_override_constants/separation = 150
-alignment = 1
+
+[node name="Container" type="Container" parent="NinePatchRect/VBoxContainer/HBoxContainer4"]
+custom_minimum_size = Vector2(39, 0)
+layout_mode = 2
 
 [node name="armorType" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer4"]
 layout_mode = 2
@@ -551,6 +530,10 @@ popup/item_3/text = "Diamond"
 popup/item_3/id = 3
 popup/item_4/text = "Amethyst"
 popup/item_4/id = 4
+
+[node name="Container2" type="Container" parent="NinePatchRect/VBoxContainer/HBoxContainer4"]
+custom_minimum_size = Vector2(144, 0)
+layout_mode = 2
 
 [node name="moneyCheck" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer4"]
 layout_mode = 2
@@ -827,7 +810,6 @@ texture = ExtResource("17_jjydr")
 [connection signal="text_changed" from="NinePatchRect/VBoxContainer/HBoxContainer3/artist/artistText" to="." method="_on_artist_text_text_changed"]
 [connection signal="text_changed" from="NinePatchRect/VBoxContainer/HBoxContainer3/inspiration/inspoText" to="." method="_on_inspo_text_text_changed"]
 [connection signal="text_changed" from="NinePatchRect/VBoxContainer/tackName/tackText" to="." method="_on_tack_text_text_changed"]
-[connection signal="pressed" from="NinePatchRect/VBoxContainer/armorCheck/armorCheckBox" to="." method="_on_armor_check_box_pressed"]
 [connection signal="pressed" from="NinePatchRect/VBoxContainer/HBoxContainer2/custCheck/custCheckBox" to="." method="_on_cust_check_box_pressed"]
 [connection signal="value_changed" from="NinePatchRect/VBoxContainer/HBoxContainer2/custCheck/EDITBoxContainer/redSpinBox" to="." method="_on_red_spin_box_value_changed"]
 [connection signal="value_changed" from="NinePatchRect/VBoxContainer/HBoxContainer2/custCheck/EDITBoxContainer/greenSpinBox" to="." method="_on_green_spin_box_value_changed"]

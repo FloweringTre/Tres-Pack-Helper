@@ -473,6 +473,7 @@ texture_hover = SubResource("AtlasTexture_mfow1")
 texture_disabled = SubResource("AtlasTexture_nt2nv")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect"]
+layout_mode = 0
 offset_left = 467.0
 offset_top = 313.0
 offset_right = 560.0
