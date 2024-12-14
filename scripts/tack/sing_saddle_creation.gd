@@ -56,7 +56,6 @@ func disable_interaction() -> void:
 	%coinOptions.disabled = true
 	%SaddleCheckButton.disabled = true
 	%saddleSpinBox.editable = false
-	%bridleSpinBox.editable = false
 
 func enable_interaction() -> void:
 	%confirmButton.disabled = false
@@ -97,6 +96,8 @@ func update_name_previews() -> void:
 		text = "Butterfly Morpho"
 	else:
 		text = %tackText.text
+	%inGameLabel.text = text + " Saddle"
+	%dataLabel.text = GlobalScripts.text_clean(text) + "_saddle"
 
 func _on_armor_check_box_pressed() -> void:
 	if adventure:
@@ -210,23 +211,43 @@ func starting_coin_values() -> void:
 
 func _on_file_dialog_file_selected(path: String) -> void:
 	var save_path = GlobalScripts.join_paths(GlobalScripts.textures_root, "saddle")
+	var target_line : LineEdit
 	if !GlobalScripts.check_file_exists(save_path):
 		GlobalScripts.make_folder(save_path)
 	else:
 		pass
 	if file_opened == "icon":
-		save_path = save_path + "/" + GlobalScripts.text_clean(%tackText.text) + "_icon.png"
-	if file_opened == "horse":
-		save_path = save_path + "/" + GlobalScripts.text_clean(%tackText.text) + "_legacy.png"
+		save_path = save_path + "/" + GlobalScripts.text_clean(%tackText.text) + "_saddle_icon.png"
+		target_line = %iconLineEdit
+	if file_opened == "render":
+		save_path = save_path + "/" + GlobalScripts.text_clean(%tackText.text) + "_saddle_legacy.png"
+		target_line = %renderLineEdit
 	if file_opened == "rack":
-		save_path = save_path + "/" + GlobalScripts.text_clean(%tackText.text) + "_icon.png"
+		save_path = save_path + "/rack_horse_armor_" + GlobalScripts.text_clean(%tackText.text) + "_saddle.png"
+		target_line = %rackLineEdit
 	var image = Image.load_from_file(path)
 	image.save_png(save_path)
 	GlobalScripts.report("Saved user selected image: " + path + "  to the file location: " + save_path)
+	var image_file_name = path.split("/")
+	image_file_name = image_file_name[-1]
+	target_line.text = image_file_name
 
 
-func _on_iconbutton_button_pressed() -> void:
-	print("PRESSED!")
+func _on_icon_button_button_pressed() -> void:
 	file_opened = "icon"
 	$FileDialog.visible = true
-	$FileDialog.title = "Select an Icon Texture"
+	$FileDialog.title = "Select the Icon Texture"
+	%iconButton.button_label.text = "Icon"
+
+
+func _on_render_button_button_pressed() -> void:
+	file_opened = "render"
+	$FileDialog.visible = true
+	$FileDialog.title = "Select the Tack Texture"
+	%renderButton.button_label.text = "Tack"
+
+func _on_rack_button_button_pressed() -> void:
+	file_opened = "rack"
+	$FileDialog.visible = true
+	$FileDialog.title = "Select the Saddle Rack Texture"
+	%rackButton.button_label.text = "Rack"
