@@ -283,8 +283,8 @@ func on_popup_dupe_confirmed() -> void:
 func on_new_tack_saved() -> void:
 	var title = "Complete!"
 	var message = "Successfully added '" + %tackText.text + "' Tack Set to the pack folder. \nWhat do you want to do now?"
-	var no_label = "Go Back"
-	var yes_label = "Start A New Set"
+	var no_label = "Return to Menu"
+	var yes_label = "Make Another"
 	$popUP_Saved.pop_yesNo(title, message, no_label, yes_label)
 	disable_interaction()
 
