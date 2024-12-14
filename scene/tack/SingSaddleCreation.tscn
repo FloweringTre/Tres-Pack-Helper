@@ -122,12 +122,10 @@ layout_mode = 2
 texture = ExtResource("3_qav1g")
 flip_h = true
 
-[node name="HelperLabel3" type="Label" parent="NinePatchRect/VBoxContainer"]
-custom_minimum_size = Vector2(0, 18)
+[node name="HelperLabel3" type="Container" parent="NinePatchRect/VBoxContainer"]
+custom_minimum_size = Vector2(0, 6)
 layout_mode = 2
 theme = ExtResource("5_d5j7a")
-horizontal_alignment = 1
-autowrap_mode = 2
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
 custom_minimum_size = Vector2(0, 28)
@@ -214,6 +212,10 @@ focus_next = NodePath("../../HBoxContainer/VBoxContainer/tackType/SaddleCheckBut
 focus_previous = NodePath("../../HBoxContainer3/inspiration/inspoText")
 placeholder_text = "Butterfly Morpho Saddle"
 
+[node name="Container" type="Container" parent="NinePatchRect/VBoxContainer/tackName"]
+custom_minimum_size = Vector2(49, 0)
+layout_mode = 2
+
 [node name="HelperLabel2" type="Label" parent="NinePatchRect/VBoxContainer"]
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
@@ -262,12 +264,12 @@ text = "butterfly_morpho_saddle"
 text_overrun_behavior = 3
 
 [node name="Spacer" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
-custom_minimum_size = Vector2(0, 5)
+custom_minimum_size = Vector2(0, 9)
 layout_mode = 2
 alignment = 1
 
 [node name="Line2D" type="Line2D" parent="NinePatchRect/VBoxContainer/Spacer"]
-position = Vector2(20.3425, 3)
+position = Vector2(-0.657455, 6)
 scale = Vector2(3.0766, 1)
 points = PackedVector2Array(176.296, 2, -1, 2)
 width = 1.0
@@ -288,7 +290,6 @@ layout_mode = 2
 custom_minimum_size = Vector2(210, 0)
 layout_mode = 2
 size_flags_horizontal = 0
-alignment = 1
 
 [node name="tackType" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
