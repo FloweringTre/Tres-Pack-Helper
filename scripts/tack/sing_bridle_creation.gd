@@ -74,7 +74,7 @@ func disable_interaction() -> void:
 	%armorCheckBox.disabled = true
 	%coinOptions.disabled = true
 	%SaddleCheckButton.disabled = true
-	%saddleSpinBox.editable = false
+	%bridleSpinBox.editable = false
 	%iconButton.set_disabled()
 	%renderButton.set_disabled()
 	%renderReinsButton.set_disabled()
@@ -89,7 +89,7 @@ func enable_interaction() -> void:
 	%armorCheckBox.disabled = false
 	%coinOptions.disabled = false
 	%SaddleCheckButton.disabled = false
-	%saddleSpinBox.editable = true
+	%bridleSpinBox.editable = true
 	%iconButton.reenable_button()
 	%renderButton.reenable_button()
 	%renderReinsButton.reenable_button()
@@ -161,7 +161,7 @@ func ready_to_save() -> void:
 
 #########################################################
 func _on_confirm_button_pressed() -> void:
-	if TackScripts.tack_dupe_check("saddle", %tackText.text):
+	if TackScripts.tack_dupe_check("bridle", %tackText.text):
 		dupe_exists()
 	else:
 		_save_tack()
