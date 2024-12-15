@@ -54,8 +54,6 @@ func disabled_buttons() -> void:
 	%confirmButton.disabled = true
 
 func perm_disabled_buttons() -> void:
-	%bridles.set_disabled()
-	%blankets.set_disabled()
 	%girth_straps.set_disabled()
 	%breast_collars.set_disabled()
 	%leg_wraps.set_disabled()
@@ -111,10 +109,10 @@ func on_saddles() -> void:
 	get_tree().change_scene_to_file("res://scene/tack/SingSaddleCreation.tscn")
 
 func on_bridles() -> void:
-	pass
+	get_tree().change_scene_to_file("res://scene/tack/SingBridleCreation.tscn")
 
 func on_blankets() -> void:
-	pass
+	get_tree().change_scene_to_file("res://scene/tack/SingBlanketCreation.tscn")
 
 func on_girth_straps() -> void:
 	pass
