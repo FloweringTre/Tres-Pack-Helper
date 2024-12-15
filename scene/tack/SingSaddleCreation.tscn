@@ -471,21 +471,21 @@ layout_mode = 2
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
-placeholder_text = "Icon Texture"
+placeholder_text = " Icon Texture"
 editable = false
 
 [node name="renderLineEdit" type="LineEdit" parent="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer3"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(175, 0)
 layout_mode = 2
-placeholder_text = "Tack Texture"
+placeholder_text = " Tack Texture"
 editable = false
 
 [node name="rackLineEdit" type="LineEdit" parent="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer3"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(175, 0)
 layout_mode = 2
-placeholder_text = "Rack Texture"
+placeholder_text = " Rack Texture"
 editable = false
 
 [node name="Label2" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer2"]
@@ -620,6 +620,7 @@ initial_position = 4
 size = Vector2i(400, 300)
 theme = ExtResource("6_ab507")
 theme_override_colors/folder_icon_color = Color(0.758928, 0.918193, 0.727778, 1)
+theme_override_colors/file_icon_color = Color(0.584314, 0.854902, 0.847059, 1)
 ok_button_text = "Open"
 dialog_hide_on_ok = true
 file_mode = 0

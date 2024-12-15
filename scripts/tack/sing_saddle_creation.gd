@@ -9,6 +9,20 @@ var sad_western : bool = true
 var sad_english : bool = false
 var adventure : bool = false
 
+var text_icon : bool = false
+var text_render : bool = false
+var text_rack : bool = false
+
+var image_icon : Image
+var image_render : Image
+var image_rack : Image
+var icon_save_path : String
+var render_save_path : String
+var rack_save_path : String
+var icon_source : String
+var render_source : String
+var rack_source : String
+
 var coin : String
 
 var file_name : String
@@ -28,6 +42,7 @@ func _ready() -> void:
 	$popUPexit.deny.connect(on_popup_saved_back)
 	$popUPexit.confirm.connect(on_popup_exit_confirmed)
 	$helpscreen.visible = true
+	$FileDialog.current_dir = GlobalScripts.directory_root
 	starting_coin_values()
 	if GlobalScripts.artist != "":
 		%artistText.text = GlobalScripts.artist
@@ -41,7 +56,7 @@ func on_error_continue() -> void:
 	enable_interaction()
 
 func _on_back_button_pressed() -> void:
-	if %artistText.text != "" or %inspoText.text != "" or %tackText.text != "":
+	if %artistText.text != "" or %inspoText.text != "" or %tackText.text != "" or text_icon or text_render or text_rack:
 		are_you_sure()
 	else:
 		get_tree().change_scene_to_file("res://scene/tackMenuGUI.tscn")
@@ -150,9 +165,19 @@ func dupe_exists() -> void:
 func _save_tack() -> void:
 	# DUPE SETS FOR ENG AND WESTERN
 	if sad_western:
-			TackScripts.saddle_save(%tackText.text, %artistText.text, %inspoText.text, coin, "western", adventure, %saddleSpinBox.value)
+			TackScripts.saddle_save(%tackText.text, %artistText.text, %inspoText.text, coin, "western", adventure, text_icon, text_render, text_rack, %saddleSpinBox.value)
 	if sad_english:
-			TackScripts.saddle_save(%tackText.text, %artistText.text, %inspoText.text, coin, "english", adventure, %saddleSpinBox.value)
+			TackScripts.saddle_save(%tackText.text, %artistText.text, %inspoText.text, coin, "english", adventure, text_icon, text_render, text_rack, %saddleSpinBox.value)
+	
+	if text_icon:
+		image_icon.save_png(icon_save_path)
+		GlobalScripts.report("Saved user selected image: " + icon_source + "  to the file location: " + icon_save_path)
+	if text_render:
+		image_render.save_png(render_save_path)
+		GlobalScripts.report("Saved user selected image: " + render_source + "  to the file location: " + render_save_path)
+	if text_rack:
+		image_rack.save_png(rack_save_path)
+		GlobalScripts.report("Saved user selected image: " + rack_source + "  to the file location: " + rack_save_path)
 	
 	if ErrorManager.is_error:
 			return
@@ -208,46 +233,52 @@ func _on_saddle_check_button_pressed() -> void:
 func starting_coin_values() -> void:
 	%saddleSpinBox.value = TackScripts.cost_saddle
 
-
 func _on_file_dialog_file_selected(path: String) -> void:
-	var save_path = GlobalScripts.join_paths(GlobalScripts.textures_root, "saddle")
+	var save_path = GlobalScripts.join_paths(GlobalScripts.textures_root, "tack/saddle")
 	var target_line : LineEdit
 	if !GlobalScripts.check_file_exists(save_path):
 		GlobalScripts.make_folder(save_path)
 	else:
 		pass
 	if file_opened == "icon":
-		save_path = save_path + "/" + GlobalScripts.text_clean(%tackText.text) + "_saddle_icon.png"
+		icon_save_path = save_path + "/" + GlobalScripts.text_clean(%tackText.text) + "_saddle_icon.png"
 		target_line = %iconLineEdit
+		text_icon = true
+		icon_source = path
+		image_icon = Image.load_from_file(path)
+		%iconButton.button_label.text = "Icon"
+	
 	if file_opened == "render":
-		save_path = save_path + "/" + GlobalScripts.text_clean(%tackText.text) + "_saddle_legacy.png"
+		render_save_path = save_path + "/" + GlobalScripts.text_clean(%tackText.text) + "_saddle_legacy.png"
 		target_line = %renderLineEdit
+		text_render = true
+		render_source = path
+		image_render = Image.load_from_file(path)
+		%renderButton.button_label.text = "Tack"
+	
 	if file_opened == "rack":
-		save_path = save_path + "/rack_horse_armor_" + GlobalScripts.text_clean(%tackText.text) + "_saddle.png"
+		rack_save_path = save_path + "/rack_horse_armor_" + GlobalScripts.text_clean(%tackText.text) + "_saddle.png"
 		target_line = %rackLineEdit
-	var image = Image.load_from_file(path)
-	image.save_png(save_path)
-	GlobalScripts.report("Saved user selected image: " + path + "  to the file location: " + save_path)
+		text_rack = true
+		rack_source = path
+		image_rack = Image.load_from_file(path)
+		%rackButton.button_label.text = "Rack"
+
 	var image_file_name = path.split("/")
 	image_file_name = image_file_name[-1]
-	target_line.text = image_file_name
-
+	target_line.text = " " + image_file_name
 
 func _on_icon_button_button_pressed() -> void:
 	file_opened = "icon"
 	$FileDialog.visible = true
 	$FileDialog.title = "Select the Icon Texture"
-	%iconButton.button_label.text = "Icon"
-
 
 func _on_render_button_button_pressed() -> void:
 	file_opened = "render"
 	$FileDialog.visible = true
 	$FileDialog.title = "Select the Tack Texture"
-	%renderButton.button_label.text = "Tack"
 
 func _on_rack_button_button_pressed() -> void:
 	file_opened = "rack"
 	$FileDialog.visible = true
 	$FileDialog.title = "Select the Saddle Rack Texture"
-	%rackButton.button_label.text = "Rack"
