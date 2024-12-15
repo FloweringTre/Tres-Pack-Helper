@@ -149,10 +149,9 @@ focus_neighbor_left = NodePath("../locationText")
 focus_neighbor_bottom = NodePath("../../Hbox2/nameCheck")
 focus_next = NodePath("../../Hbox2/folderNametext")
 focus_previous = NodePath("../locationText")
-button_text = "Test Path"
+button_text = "Open Folder"
 
 [node name="HelperLabel" type="Label" parent="NinePatchRect/VBoxContainer"]
-visible = false
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
 theme = ExtResource("5_o5bxr")
@@ -197,7 +196,6 @@ focus_previous = NodePath("../folderNametext")
 button_text = "Clean"
 
 [node name="Stage1BoxContainer" type="VBoxContainer" parent="NinePatchRect/VBoxContainer"]
-visible = false
 layout_mode = 2
 
 [node name="HelperLabel2" type="Label" parent="NinePatchRect/VBoxContainer/Stage1BoxContainer"]
@@ -236,6 +234,7 @@ horizontal_alignment = 2
 vertical_alignment = 2
 
 [node name="Stage2BoxContainer" type="VBoxContainer" parent="NinePatchRect/VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="Stage2Text2" type="Label" parent="NinePatchRect/VBoxContainer/Stage2BoxContainer"]
@@ -298,6 +297,11 @@ text = "Default Artist Name:"
 horizontal_alignment = 2
 vertical_alignment = 1
 
+[node name="Container" type="Container" parent="NinePatchRect/VBoxContainer/Stage2BoxContainer/Hbox3"]
+visible = false
+custom_minimum_size = Vector2(3, 0)
+layout_mode = 2
+
 [node name="artistNametext" type="LineEdit" parent="NinePatchRect/VBoxContainer/Stage2BoxContainer/Hbox3"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(360, 0)
@@ -306,11 +310,6 @@ focus_neighbor_top = NodePath("../../../Hbox/locationText")
 focus_neighbor_bottom = NodePath("../../../../confirmButton")
 focus_previous = NodePath("../../../Hbox/pathOpenButton")
 placeholder_text = "This name will pre-populate on all the generators to save time!"
-
-[node name="Container" type="Container" parent="NinePatchRect/VBoxContainer/Stage2BoxContainer/Hbox3"]
-visible = false
-custom_minimum_size = Vector2(42, 0)
-layout_mode = 2
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="NinePatchRect"]
 layout_mode = 1
@@ -416,8 +415,21 @@ layout_mode = 1
 visible = false
 layout_mode = 1
 
+[node name="FileDialog" type="FileDialog" parent="."]
+title = "Open a Directory"
+initial_position = 1
+size = Vector2i(400, 300)
+theme_override_colors/folder_icon_color = Color(0.760784, 0.917647, 0.729412, 1)
+theme_override_colors/file_icon_color = Color(0.586162, 0.854457, 0.848783, 1)
+ok_button_text = "Select Current Folder"
+dialog_hide_on_ok = true
+file_mode = 2
+access = 2
+
+[connection signal="focus_exited" from="NinePatchRect/VBoxContainer/Hbox/locationText" to="." method="_on_location_text_focus_exited"]
 [connection signal="text_changed" from="NinePatchRect/VBoxContainer/Hbox/locationText" to="." method="_on_location_text_text_changed"]
 [connection signal="text_changed" from="NinePatchRect/VBoxContainer/Hbox2/folderNametext" to="." method="_on_folder_nametext_text_changed"]
 [connection signal="text_changed" from="NinePatchRect/VBoxContainer/Stage2BoxContainer/Hbox3/artistNametext" to="." method="_on_artist_nametext_text_changed"]
 [connection signal="pressed" from="NinePatchRect/backButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="NinePatchRect/confirmButton" to="." method="_on_confirm_button_pressed"]
+[connection signal="dir_selected" from="FileDialog" to="." method="_on_file_dialog_dir_selected"]

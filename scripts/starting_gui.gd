@@ -133,17 +133,9 @@ func _on_back_button_pressed() -> void:
 	disable_interaction()
 
 func on_path_button_pressed() -> void:
-	location_text.text = GlobalScripts.path_clean(location_text.text)
-	if GlobalScripts.check_folder(location_text.text):
-		$checkPathLOCA.set_check(true)
-		root_changed = true
-		if folder_changed == true:
-			%confirmButton.disabled = false
-		else:
-			pass
-	else:
-		$checkPathLOCA.set_check(false)
-		root_changed = false
+	$FileDialog.visible = true
+	$FileDialog.title = "Select where to save the pack folder"
+	$FileDialog.current_dir = location_text.text
 
 func on_name_check() -> void:
 	if folder_nametext.text == "":
@@ -184,3 +176,21 @@ func on_popup_leave_confirmed() -> void:
 
 func _on_artist_nametext_text_changed(new_text: String) -> void:
 	GlobalScripts.artist = %artistNametext.text
+
+func _on_location_text_focus_exited() -> void:
+	location_text.text = GlobalScripts.path_clean(location_text.text)
+	if GlobalScripts.check_folder(location_text.text):
+		$checkPathLOCA.set_check(true)
+		root_changed = true
+		if folder_changed == true:
+			%confirmButton.disabled = false
+		else:
+			pass
+	else:
+		$checkPathLOCA.set_check(false)
+		root_changed = false
+
+
+func _on_file_dialog_dir_selected(dir: String) -> void:
+	location_text.text = dir
+	_on_location_text_focus_exited()
