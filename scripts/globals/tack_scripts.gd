@@ -37,6 +37,12 @@ func blanket_save(item : String, artist : String, inspo : String, coin : String,
 		return
 	else:
 		var type = "blanket"
+		var save_text_path = GlobalScripts.join_paths(GlobalScripts.textures_root, "tack")
+		if !GlobalScripts.check_file_exists(save_text_path):
+			GlobalScripts.make_folder(save_text_path)
+		save_text_path = GlobalScripts.join_paths(save_text_path, type)
+		if !GlobalScripts.check_file_exists(save_text_path):
+			GlobalScripts.make_folder(save_text_path)
 		var type_fancy = "Blanket"
 		GlobalScripts.setup_tack(type)
 		item = item + " " + type_fancy
@@ -125,6 +131,12 @@ func saddle_save(item : String, artist : String, inspo : String, coin : String, 
 		return
 	else:
 		var type = "saddle"
+		var save_text_path = GlobalScripts.join_paths(GlobalScripts.textures_root, "tack")
+		if !GlobalScripts.check_file_exists(save_text_path):
+			GlobalScripts.make_folder(save_text_path)
+		save_text_path = GlobalScripts.join_paths(save_text_path, type)
+		if !GlobalScripts.check_file_exists(save_text_path):
+			GlobalScripts.make_folder(save_text_path)
 		var type_fancy = "Saddle"
 		GlobalScripts.setup_tack(type)
 		item = item + " " + type_fancy
@@ -223,6 +235,12 @@ func bridle_save(item : String, artist : String, inspo : String, coin : String, 
 		return
 	else:
 		var type = "bridle"
+		var save_text_path = GlobalScripts.join_paths(GlobalScripts.textures_root, "tack")
+		if !GlobalScripts.check_file_exists(save_text_path):
+			GlobalScripts.make_folder(save_text_path)
+		save_text_path = GlobalScripts.join_paths(save_text_path, type)
+		if !GlobalScripts.check_file_exists(save_text_path):
+			GlobalScripts.make_folder(save_text_path)
 		var type_fancy = "Bridle"
 		GlobalScripts.setup_tack(type)
 		item = item + " " + type_fancy
@@ -312,6 +330,12 @@ func halter_save(item : String, artist : String, inspo : String, coin : String, 
 		return
 	else:
 		var type = "halter"
+		var save_text_path = GlobalScripts.join_paths(GlobalScripts.textures_root, "tack")
+		if !GlobalScripts.check_file_exists(save_text_path):
+			GlobalScripts.make_folder(save_text_path)
+		save_text_path = GlobalScripts.join_paths(save_text_path, type)
+		if !GlobalScripts.check_file_exists(save_text_path):
+			GlobalScripts.make_folder(save_text_path)
 		var type_fancy = "Halter"
 		GlobalScripts.setup_tack(type)
 		item = item + " " + type_fancy
@@ -395,6 +419,12 @@ func leg_wraps_save(item : String, artist : String, inspo : String, coin : Strin
 		return
 	else:
 		var type = "leg_wraps"
+		var save_text_path = GlobalScripts.join_paths(GlobalScripts.textures_root, "tack")
+		if !GlobalScripts.check_file_exists(save_text_path):
+			GlobalScripts.make_folder(save_text_path)
+		save_text_path = GlobalScripts.join_paths(save_text_path, type)
+		if !GlobalScripts.check_file_exists(save_text_path):
+			GlobalScripts.make_folder(save_text_path)
 		var type_fancy = "Leg Wraps"
 		GlobalScripts.setup_tack(type)
 		item = item + " " + type_fancy
@@ -478,6 +508,12 @@ func breast_collar_save(item : String, artist : String, inspo : String, coin : S
 		return
 	else:
 		var type = "breast_collar"
+		var save_text_path = GlobalScripts.join_paths(GlobalScripts.textures_root, "tack")
+		if !GlobalScripts.check_file_exists(save_text_path):
+			GlobalScripts.make_folder(save_text_path)
+		save_text_path = GlobalScripts.join_paths(save_text_path, type)
+		if !GlobalScripts.check_file_exists(save_text_path):
+			GlobalScripts.make_folder(save_text_path)
 		var type_fancy = "Breast Collar"
 		GlobalScripts.setup_tack(type)
 		item = item + " " + type_fancy
@@ -556,6 +592,12 @@ func armor_save(item : String, artist : String, inspo : String, coin : String, t
 		return
 	else:
 		var type = "horse_armor"
+		var save_text_path = GlobalScripts.join_paths(GlobalScripts.textures_root, "tack")
+		if !GlobalScripts.check_file_exists(save_text_path):
+			GlobalScripts.make_folder(save_text_path)
+		save_text_path = GlobalScripts.join_paths(save_text_path, type)
+		if !GlobalScripts.check_file_exists(save_text_path):
+			GlobalScripts.make_folder(save_text_path)
 		var type_fancy = "Horse Armor"
 		GlobalScripts.setup_tack(type)
 		item = item + " " + type_fancy
@@ -644,6 +686,12 @@ func saddle_bag_save(item : String, artist : String, inspo : String, coin : Stri
 		return
 	else:
 		var type = "saddle_bag"
+		var save_text_path = GlobalScripts.join_paths(GlobalScripts.textures_root, "tack")
+		if !GlobalScripts.check_file_exists(save_text_path):
+			GlobalScripts.make_folder(save_text_path)
+		save_text_path = GlobalScripts.join_paths(save_text_path, type)
+		if !GlobalScripts.check_file_exists(save_text_path):
+			GlobalScripts.make_folder(save_text_path)
 		var type_fancy = "Saddle Bag"
 		GlobalScripts.setup_tack(type)
 		item = item + " " + type_fancy
@@ -721,6 +769,12 @@ func girth_straps_save(item : String, artist : String, inspo : String, coin : St
 		return
 	else:
 		var type = "girth_strap"
+		var save_text_path = GlobalScripts.join_paths(GlobalScripts.textures_root, "tack")
+		if !GlobalScripts.check_file_exists(save_text_path):
+			GlobalScripts.make_folder(save_text_path)
+		save_text_path = GlobalScripts.join_paths(save_text_path, type)
+		if !GlobalScripts.check_file_exists(save_text_path):
+			GlobalScripts.make_folder(save_text_path)
 		var type_fancy = "Girth Strap"
 		GlobalScripts.setup_tack(type)
 		item = item + " " + type_fancy
@@ -804,6 +858,12 @@ func pasture_blanket_save(item : String, artist : String, inspo : String, coin :
 		return
 	else:
 		var type = "pasture_blanket"
+		var save_text_path = GlobalScripts.join_paths(GlobalScripts.textures_root, "tack")
+		if !GlobalScripts.check_file_exists(save_text_path):
+			GlobalScripts.make_folder(save_text_path)
+		save_text_path = GlobalScripts.join_paths(save_text_path, type)
+		if !GlobalScripts.check_file_exists(save_text_path):
+			GlobalScripts.make_folder(save_text_path)
 		var type_fancy = "Pasture Blanket"
 		GlobalScripts.setup_tack(type)
 		var original_item = GlobalScripts.text_clean(item)
@@ -892,6 +952,12 @@ func ar_pasture_blanket_save(item : String, artist : String, inspo : String, coi
 		return
 	else:
 		var type = "pasture_blanket"
+		var save_text_path = GlobalScripts.join_paths(GlobalScripts.textures_root, "tack")
+		if !GlobalScripts.check_file_exists(save_text_path):
+			GlobalScripts.make_folder(save_text_path)
+		save_text_path = GlobalScripts.join_paths(save_text_path, type)
+		if !GlobalScripts.check_file_exists(save_text_path):
+			GlobalScripts.make_folder(save_text_path)
 		var type_fancy = "Armored Pasture Blanket"
 		GlobalScripts.setup_tack(type)
 		var original_item = GlobalScripts.text_clean(item)
@@ -983,6 +1049,12 @@ func colored_blanket_save(rack_5 : Sprite2D, rack_saddle : Sprite2D, item : Stri
 		return
 	else:
 		var type = "blanket"
+		var save_text_path = GlobalScripts.join_paths(GlobalScripts.textures_root, "tack")
+		if !GlobalScripts.check_file_exists(save_text_path):
+			GlobalScripts.make_folder(save_text_path)
+		save_text_path = GlobalScripts.join_paths(save_text_path, type)
+		if !GlobalScripts.check_file_exists(save_text_path):
+			GlobalScripts.make_folder(save_text_path)
 		var type_fancy = "Blanket"
 		GlobalScripts.setup_tack(type)
 		item = item + " " + type_fancy
@@ -1075,6 +1147,12 @@ func colored_girth_strap_save(rack_saddle : Sprite2D, item : String, artist : St
 		return
 	else:
 		var type = "girth_strap"
+		var save_text_path = GlobalScripts.join_paths(GlobalScripts.textures_root, "tack")
+		if !GlobalScripts.check_file_exists(save_text_path):
+			GlobalScripts.make_folder(save_text_path)
+		save_text_path = GlobalScripts.join_paths(save_text_path, type)
+		if !GlobalScripts.check_file_exists(save_text_path):
+			GlobalScripts.make_folder(save_text_path)
 		var type_fancy = "Girth Strap"
 		GlobalScripts.setup_tack(type)
 		item = item + " " + type_fancy
@@ -1160,6 +1238,12 @@ func colored_pasture_blanket_save(rack_long : Sprite2D, rack_short : Sprite2D, i
 		return
 	else:
 		var type = "pasture_blanket"
+		var save_text_path = GlobalScripts.join_paths(GlobalScripts.textures_root, "tack")
+		if !GlobalScripts.check_file_exists(save_text_path):
+			GlobalScripts.make_folder(save_text_path)
+		save_text_path = GlobalScripts.join_paths(save_text_path, type)
+		if !GlobalScripts.check_file_exists(save_text_path):
+			GlobalScripts.make_folder(save_text_path)
 		var type_fancy = "Pasture Blanket"
 		GlobalScripts.setup_tack(type)
 		var original_item = GlobalScripts.text_clean(item)
@@ -1251,6 +1335,12 @@ func colored_ar_pasture_blanket_save(rack_long : Sprite2D, rack_short : Sprite2D
 		return
 	else:
 		var type = "pasture_blanket"
+		var save_text_path = GlobalScripts.join_paths(GlobalScripts.textures_root, "tack")
+		if !GlobalScripts.check_file_exists(save_text_path):
+			GlobalScripts.make_folder(save_text_path)
+		save_text_path = GlobalScripts.join_paths(save_text_path, type)
+		if !GlobalScripts.check_file_exists(save_text_path):
+			GlobalScripts.make_folder(save_text_path)
 		var type_fancy = "Armored Pasture Blanket"
 		GlobalScripts.setup_tack(type)
 		var original_item = GlobalScripts.text_clean(item)
@@ -1339,9 +1429,7 @@ func colored_ar_pasture_blanket_save(rack_long : Sprite2D, rack_short : Sprite2D
 			ErrorManager.error_print("Couldn't save the new " + type_fancy + ". The ./json/tack/" + type + "/ folder wouldn't open. Check to see if it exists.")
 			GlobalScripts.report("Failed to save the new " + type_fancy + ", '" + item + "' to " + path)
 
-
 ######### CHECK FOR A DUPLICATE #################
-
 func tack_dupe_check(type : String, item : String):
 	var tack_root = ""
 	var item_file = ""
