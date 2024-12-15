@@ -71,6 +71,9 @@ func disable_interaction() -> void:
 	%coinOptions.disabled = true
 	%SaddleCheckButton.disabled = true
 	%saddleSpinBox.editable = false
+	%iconButton.set_disabled()
+	%renderButton.set_disabled()
+	%rackButton.set_disabled()
 
 func enable_interaction() -> void:
 	%confirmButton.disabled = false
@@ -82,6 +85,9 @@ func enable_interaction() -> void:
 	%coinOptions.disabled = false
 	%SaddleCheckButton.disabled = false
 	%saddleSpinBox.editable = true
+	%iconButton.reenable_button()
+	%renderButton.reenable_button()
+	%rackButton.reenable_button()
 
 ################### VALUE LOGGING ######################
 func _on_artist_text_text_changed(new_text: String) -> void:
@@ -156,7 +162,7 @@ func _on_confirm_button_pressed() -> void:
 
 func dupe_exists() -> void:
 	var title = "This saddle already exists!"
-	var message = "There already exists a saddle named '" + %tackText.text + "'. \nWhat do you want to do?"
+	var message = "There already exists a saddle named '" + %tackText.text + " Saddle'. \nWhat do you want to do?"
 	var no_label = "Go Back"
 	var yes_label = "Overwrite it"
 	$popUP2_Dupe.pop_yesNo(title, message, no_label, yes_label)
@@ -192,7 +198,7 @@ func on_popup_dupe_confirmed() -> void:
 
 func on_new_tack_saved() -> void:
 	var title = "Complete!"
-	var message = "Successfully added '" + %tackText.text + "' to the pack folder. \nWhat do you want to do now?"
+	var message = "Successfully added '" + %tackText.text + " Saddle' to the pack folder. \nWhat do you want to do now?"
 	var no_label = "Return to Menu"
 	var yes_label = "Make Another"
 	$popUP_Saved.pop_yesNo(title, message, no_label, yes_label)
@@ -236,10 +242,6 @@ func starting_coin_values() -> void:
 func _on_file_dialog_file_selected(path: String) -> void:
 	var save_path = GlobalScripts.join_paths(GlobalScripts.textures_root, "tack/saddle")
 	var target_line : LineEdit
-	if !GlobalScripts.check_file_exists(save_path):
-		GlobalScripts.make_folder(save_path)
-	else:
-		pass
 	if file_opened == "icon":
 		icon_save_path = save_path + "/" + GlobalScripts.text_clean(%tackText.text) + "_saddle_icon.png"
 		target_line = %iconLineEdit
