@@ -223,54 +223,54 @@ func check_for_duplicates():
 func _save_complete_tack_set() -> void:
 	# DUPE SETS FOR ENG AND WESTERN
 	if sad_western:
-			TackScripts.saddle_save(%tackText.text, %artistText.text, %inspoText.text, coin, "western", adventure, %saddleSpinBox.value)
+			TackScripts.saddle_save(%tackText.text, %artistText.text, %inspoText.text, coin, "western", adventure, false, false, false, %saddleSpinBox.value,)
 
 	if sad_english:
-			TackScripts.saddle_save(%tackText.text, %artistText.text, %inspoText.text, coin, "english", adventure, %saddleSpinBox.value)
+			TackScripts.saddle_save(%tackText.text, %artistText.text, %inspoText.text, coin, "english", adventure, false, false, false, %saddleSpinBox.value)
 
 	if bri_western:
 		if ErrorManager.is_error:
 			return
 		else:
-			TackScripts.bridle_save(%tackText.text, %artistText.text, %inspoText.text, coin, "western", adventure, %bridleSpinBox.value)
+			TackScripts.bridle_save(%tackText.text, %artistText.text, %inspoText.text, coin, "western", adventure, false, false, false, %bridleSpinBox.value)
 
 	if bri_english:
 		if ErrorManager.is_error:
 			return
 		else:
-			TackScripts.bridle_save(%tackText.text, %artistText.text, %inspoText.text, coin, "english", adventure, %bridleSpinBox.value)
+			TackScripts.bridle_save(%tackText.text, %artistText.text, %inspoText.text, coin, "english", adventure, false, false, false, %bridleSpinBox.value)
 
 	if bla_western:
 		if custom_rack:
 			if ErrorManager.is_error:
 				return
 			else:
-				TackScripts.girth_straps_save(%tackText.text, %artistText.text, %inspoText.text, coin, adventure, %girthStrapSpinBox.value)
-				TackScripts.blanket_save(%tackText.text, %artistText.text, %inspoText.text, coin, adventure, %blanketSpinBox.value)
+				TackScripts.girth_straps_save(%tackText.text, %artistText.text, %inspoText.text, coin, adventure, false, false, false, %girthStrapSpinBox.value)
+				TackScripts.blanket_save(%tackText.text, %artistText.text, %inspoText.text, coin, adventure, false, false, false, false, %blanketSpinBox.value)
 		else:
 			if ErrorManager.is_error:
 				return
 			else:
-				TackScripts.colored_girth_strap_save(%Girth_Saddle, %tackText.text, %artistText.text, %inspoText.text, coin, red, green, blue, adventure, %girthStrapSpinBox.value)
-				TackScripts.colored_blanket_save(%West_Blanket5, %West_Saddle, %tackText.text, %artistText.text, %inspoText.text, coin, red, green, blue, adventure, %blanketSpinBox.value)
+				TackScripts.colored_girth_strap_save(%Girth_Saddle, %tackText.text, %artistText.text, %inspoText.text, coin, red, green, blue, adventure, false, false, %girthStrapSpinBox.value)
+				TackScripts.colored_blanket_save(%West_Blanket5, %West_Saddle, %tackText.text, %artistText.text, %inspoText.text, coin, red, green, blue, adventure, false, false, %blanketSpinBox.value)
 	if bla_english:
 		if custom_rack:
 			if ErrorManager.is_error:
 				return
 			else:
-				TackScripts.girth_straps_save(%tackText.text, %artistText.text, %inspoText.text, coin, adventure, %girthStrapSpinBox.value)
-				TackScripts.blanket_save(%tackText.text, %artistText.text, %inspoText.text, coin, adventure, %blanketSpinBox.value)
+				TackScripts.girth_straps_save(%tackText.text, %artistText.text, %inspoText.text, coin, adventure, false, false, false, %girthStrapSpinBox.value)
+				TackScripts.blanket_save(%tackText.text, %artistText.text, %inspoText.text, coin, adventure, false, false, false, false, %blanketSpinBox.value)
 		else:
 			if ErrorManager.is_error:
 				return
 			else:
-				TackScripts.colored_girth_strap_save(%Girth_Saddle, %tackText.text, %artistText.text, %inspoText.text, coin, red, green, blue, adventure, %girthStrapSpinBox.value)
-				TackScripts.colored_blanket_save(%Eng_Blanket5, %Eng_Saddle, %tackText.text, %artistText.text, %inspoText.text, coin, red, green, blue, adventure, %blanketSpinBox.value)
+				TackScripts.colored_girth_strap_save(%Girth_Saddle, %tackText.text, %artistText.text, %inspoText.text, coin, red, green, blue, adventure, false, false, %girthStrapSpinBox.value)
+				TackScripts.colored_blanket_save(%Eng_Blanket5, %Eng_Saddle, %tackText.text, %artistText.text, %inspoText.text, coin, red, green, blue, adventure, false, false, %blanketSpinBox.value)
 	if ErrorManager.is_error:
 		return
 	else:
-		TackScripts.breast_collar_save(%tackText.text, %artistText.text, %inspoText.text, coin, adventure, %breastCollarSpinBox.value)
-		TackScripts.leg_wraps_save(%tackText.text, %artistText.text, %inspoText.text, coin, adventure, %legWrapsSpinBox.value)
+		TackScripts.breast_collar_save(%tackText.text, %artistText.text, %inspoText.text, coin, adventure, false, false, %breastCollarSpinBox.value)
+		TackScripts.leg_wraps_save(%tackText.text, %artistText.text, %inspoText.text, coin, adventure, false, false, false, %legWrapsSpinBox.value)
 	if ErrorManager.is_error:
 			return
 	else:

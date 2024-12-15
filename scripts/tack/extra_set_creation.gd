@@ -219,22 +219,22 @@ func _save_complete_tack_set() -> void:
 		if ErrorManager.is_error:
 			return
 		else:
-			TackScripts.pasture_blanket_save(%tackText.text, %artistText.text, %inspoText.text, coin)
-			TackScripts.ar_pasture_blanket_save(%tackText.text, %artistText.text, %inspoText.text, coin)
+			TackScripts.pasture_blanket_save(%tackText.text, %artistText.text, %inspoText.text, coin, false, false, false, false, %PBSpinBox.value)
+			TackScripts.ar_pasture_blanket_save(%tackText.text, %artistText.text, %inspoText.text, coin, false, false, false, false, %armoredPBSpinBox.value)
 	else:
 		if ErrorManager.is_error:
 			return
 		else:
-			TackScripts.colored_pasture_blanket_save(%Past_5Long, %Past_3Short, %tackText.text, %artistText.text, %inspoText.text, coin, red, green, blue)
-			TackScripts.colored_ar_pasture_blanket_save(%ArmPast_5Long, %ArmPast_3Short, %tackText.text, %artistText.text, %inspoText.text, coin, red, green, blue)
+			TackScripts.colored_pasture_blanket_save(%Past_5Long, %Past_3Short, %tackText.text, %artistText.text, %inspoText.text, coin, red, green, blue, false, false, %PBSpinBox.value)
+			TackScripts.colored_ar_pasture_blanket_save(%ArmPast_5Long, %ArmPast_3Short, %tackText.text, %artistText.text, %inspoText.text, coin, red, green, blue, false, false, %armoredPBSpinBox.value)
 	
 	#ONE OFFS & OPTIONAL
 	if ErrorManager.is_error:
 		return
 	else:
-		TackScripts.armor_save(%tackText.text, %artistText.text, %inspoText.text, coin, armor)
-		TackScripts.saddle_bag_save(%tackText.text, %artistText.text, %inspoText.text, coin, red, green, blue)
-		TackScripts.halter_save(%tackText.text, %artistText.text, %inspoText.text, coin, red, green, blue, true)
+		TackScripts.armor_save(%tackText.text, %artistText.text, %inspoText.text, coin, armor, false, false, false, false, %ArmorSpinBox.value)
+		TackScripts.saddle_bag_save(%tackText.text, %artistText.text, %inspoText.text, coin, red, green, blue, false, false, %saddleBagSpinBox.value)
+		TackScripts.halter_save(%tackText.text, %artistText.text, %inspoText.text, coin, red, green, blue, true, false, false, false, %halterSpinBox.value)
 
 	if ErrorManager.is_error:
 			return

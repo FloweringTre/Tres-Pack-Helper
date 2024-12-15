@@ -405,30 +405,30 @@ func _save_complete_tack_set() -> void:
 			return
 		else:
 			if pb:
-				TackScripts.pasture_blanket_save(%tackText.text, %artistText.text, %inspoText.text, coin)
+				TackScripts.pasture_blanket_save(%tackText.text, %artistText.text, %inspoText.text, coin, false, false, false, false)
 			if arpb:
-				TackScripts.ar_pasture_blanket_save(%tackText.text, %artistText.text, %inspoText.text, coin)
+				TackScripts.ar_pasture_blanket_save(%tackText.text, %artistText.text, %inspoText.text, coin, false, false, false, false)
 	else:
 		if ErrorManager.is_error:
 			return
 		else:
 			if pb:
-				TackScripts.colored_pasture_blanket_save(%Past_5Long, %Past_3Short, %tackText.text, %artistText.text, %inspoText.text, coin, red, green, blue)
+				TackScripts.colored_pasture_blanket_save(%Past_5Long, %Past_3Short, %tackText.text, %artistText.text, %inspoText.text, coin, red, green, blue, false, false)
 			if arpb:
-				TackScripts.colored_ar_pasture_blanket_save(%ArmPast_5Long, %ArmPast_3Short, %tackText.text, %artistText.text, %inspoText.text, coin, red, green, blue)
+				TackScripts.colored_ar_pasture_blanket_save(%ArmPast_5Long, %ArmPast_3Short, %tackText.text, %artistText.text, %inspoText.text, coin, red, green, blue, false, false)
 	
 	#ONE OFFS & OPTIONAL
 	if ErrorManager.is_error:
 		return
 	else:
 		if ar: # armor
-			TackScripts.armor_save(%tackText.text, %artistText.text, %inspoText.text, coin, armor)
+			TackScripts.armor_save(%tackText.text, %artistText.text, %inspoText.text, coin, armor, false, false, false, false)
 		
 		if sb: #saddle bag
-			TackScripts.saddle_bag_save(%tackText.text, %artistText.text, %inspoText.text, coin, red, green, blue)
+			TackScripts.saddle_bag_save(%tackText.text, %artistText.text, %inspoText.text, coin, red, green, blue, false, false)
 		
 		if hal: #halter
-			TackScripts.halter_save(%tackText.text, %artistText.text, %inspoText.text, coin, red, green, blue, adventure)
+			TackScripts.halter_save(%tackText.text, %artistText.text, %inspoText.text, coin, red, green, blue, adventure, false, false, false)
 	if ErrorManager.is_error:
 		return
 	else:
@@ -438,51 +438,51 @@ func western_tack() -> void:
 	if ErrorManager.is_error:
 		return
 	else:
-		TackScripts.saddle_save(west_name, %artistText.text, %inspoText.text, coin, "western", adventure)
-		TackScripts.bridle_save(west_name, %artistText.text, %inspoText.text, coin, "western", adventure)
+		TackScripts.saddle_save(west_name, %artistText.text, %inspoText.text, coin, "western", adventure, false, false, false)
+		TackScripts.bridle_save(west_name, %artistText.text, %inspoText.text, coin, "western", adventure, false, false, false, false)
 	if ErrorManager.is_error:
 		return
 	else:
-		TackScripts.breast_collar_save(west_name, %artistText.text, %inspoText.text, coin, adventure)
-		TackScripts.leg_wraps_save(west_name, %artistText.text, %inspoText.text, coin, adventure)
+		TackScripts.breast_collar_save(west_name, %artistText.text, %inspoText.text, coin, adventure, false, false)
+		TackScripts.leg_wraps_save(west_name, %artistText.text, %inspoText.text, coin, adventure, false, false, false)
 	
 	if custom_rack:
 		if ErrorManager.is_error:
 			return
 		else:
-			TackScripts.girth_straps_save(west_name, %artistText.text, %inspoText.text, coin, adventure)
-			TackScripts.blanket_save(west_name, %artistText.text, %inspoText.text, coin, adventure)
+			TackScripts.girth_straps_save(west_name, %artistText.text, %inspoText.text, coin, adventure, false, false, false)
+			TackScripts.blanket_save(west_name, %artistText.text, %inspoText.text, coin, adventure, false, false, false, false)
 	else:
 		if ErrorManager.is_error:
 			return
 		else:
-			TackScripts.colored_girth_strap_save(%Girth_Saddle, west_name, %artistText.text, %inspoText.text, coin, red, green, blue, adventure)
-			TackScripts.colored_blanket_save(%West_Blanket5, %West_Saddle, west_name, %artistText.text, %inspoText.text, coin, red, green, blue, adventure)
+			TackScripts.colored_girth_strap_save(%Girth_Saddle, west_name, %artistText.text, %inspoText.text, coin, red, green, blue, adventure, false, false)
+			TackScripts.colored_blanket_save(%West_Blanket5, %West_Saddle, west_name, %artistText.text, %inspoText.text, coin, red, green, blue, adventure, false, false)
 
 func english_tack() -> void:
 	if ErrorManager.is_error:
 		return
 	else:
-		TackScripts.saddle_save(eng_name, %artistText.text, %inspoText.text, coin, "english", adventure)
-		TackScripts.bridle_save(eng_name, %artistText.text, %inspoText.text, coin, "english", adventure)
+		TackScripts.saddle_save(eng_name, %artistText.text, %inspoText.text, coin, "english", adventure, false, false, false)
+		TackScripts.bridle_save(eng_name, %artistText.text, %inspoText.text, coin, "english", adventure, false, false, false, false,)
 	if ErrorManager.is_error:
 		return
 	else:
-		TackScripts.breast_collar_save(eng_name, %artistText.text, %inspoText.text, coin, adventure)
-		TackScripts.leg_wraps_save(eng_name, %artistText.text, %inspoText.text, coin, adventure)
+		TackScripts.breast_collar_save(eng_name, %artistText.text, %inspoText.text, coin, adventure, false, false)
+		TackScripts.leg_wraps_save(eng_name, %artistText.text, %inspoText.text, coin, adventure, false, false, false)
 	
 	if custom_rack:
 		if ErrorManager.is_error:
 			return
 		else:
-			TackScripts.girth_straps_save(eng_name, %artistText.text, %inspoText.text, coin, adventure)
-			TackScripts.blanket_save(eng_name, %artistText.text, %inspoText.text, coin, adventure)
+			TackScripts.girth_straps_save(eng_name, %artistText.text, %inspoText.text, coin, adventure, false, false, false)
+			TackScripts.blanket_save(eng_name, %artistText.text, %inspoText.text, coin, adventure, false, false, false, false)
 	else:
 		if ErrorManager.is_error:
 			return
 		else:
-			TackScripts.colored_girth_strap_save(%Girth_Saddle, eng_name, %artistText.text, %inspoText.text, coin, red, green, blue, adventure)
-			TackScripts.colored_blanket_save(%Eng_Blanket5, %Eng_Saddle, eng_name, %artistText.text, %inspoText.text, coin, red, green, blue, adventure)
+			TackScripts.colored_girth_strap_save(%Girth_Saddle, eng_name, %artistText.text, %inspoText.text, coin, red, green, blue, adventure, false, false)
+			TackScripts.colored_blanket_save(%Eng_Blanket5, %Eng_Saddle, eng_name, %artistText.text, %inspoText.text, coin, red, green, blue, adventure, false, false)
 
 func on_popup_dupe_back() -> void:
 	enable_interaction()

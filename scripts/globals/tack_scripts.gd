@@ -32,7 +32,7 @@ func script_start_up() -> void:
 	text_dir = GlobalScripts.join_paths(GlobalScripts.textures_root, "tack")
 
 ########## STANDARD SAVE SCRIPTS ##########
-func blanket_save(item : String, artist : String, inspo : String, coin : String, adv: bool, amount : int = cost_blanket) -> void:
+func blanket_save(item : String, artist : String, inspo : String, coin : String, adv: bool, preloaded_icon: bool, preloaded_render : bool, preloaded_rack_saddle : bool, preloaded_rack_5 : bool, amount : int = cost_blanket) -> void:
 	if ErrorManager.is_error:
 		return
 	else:
@@ -92,11 +92,27 @@ func blanket_save(item : String, artist : String, inspo : String, coin : String,
 			file.store_string(string_1)
 			file.close()
 			
-			var text_list = "    Icon Texture: " + icon + "\n" + "    Horse Texture: " + leg_texture\
-			 + "\n" + "    Saddle Rack Texture: " + rack_saddle + "\n" + "    5 Blanket Rack Texture: " + rack_5 + "\n"
+			var text_1 = ""
+			var text_2 = ""
+			var text_3 = ""
+			var text_4 = ""
+			
+			if !preloaded_icon:
+				text_1 = "    Icon Texture: " + icon + "\n" 
+			if !preloaded_render:
+				text_2 = "    Horse Saddle Blanket Texture: " + leg_texture + "\n" 
+			if !preloaded_rack_saddle:
+				text_3 = "    Saddle Rack Texture: " + rack_saddle + "\n"
+			if !preloaded_rack_5:
+				text_4 = "    5 Blanket Rack Texture: " + rack_5 + "\n"
+			
+			var text_list =  text_1 + text_2 + text_3 + text_4
 			var text_path = GlobalScripts.join_paths(text_dir, type)
 			
-			GlobalScripts.instructions_tack(type_fancy, item, text_list, text_path)
+			if preloaded_icon && preloaded_render && preloaded_rack_5 && preloaded_rack_saddle:
+				pass
+			else:
+				GlobalScripts.instructions_tack(type_fancy, item, text_list, text_path)
 			GlobalScripts.report("Saved the new " + type_fancy + ", '" + item + "', to " + path)
 			blanket_saved.emit()
 		
@@ -104,7 +120,7 @@ func blanket_save(item : String, artist : String, inspo : String, coin : String,
 			ErrorManager.error_print("Couldn't save the new " + type_fancy + ". The ./json/tack/" + type + "/ folder wouldn't open. Check to see if it exists.")
 			GlobalScripts.report("Failed to save the new " + type_fancy + ", '" + item + "' to " + path)
 
-func saddle_save(item : String, artist : String, inspo : String, coin : String, model : String, adv: bool, amount : int = cost_saddle) -> void:
+func saddle_save(item : String, artist : String, inspo : String, coin : String, model : String, adv: bool, preloaded_icon: bool, preloaded_render : bool, preloaded_rack : bool, amount : int = cost_saddle) -> void:
 	if ErrorManager.is_error:
 		return
 	else:
@@ -145,18 +161,18 @@ func saddle_save(item : String, artist : String, inspo : String, coin : String, 
 			}
 			
 			var rack = {}
-			var text_2 = ""
+			var text_4 = ""
 			if adv:
 				rack = {
 					"saddle" = root + rack_saddle,
 					"horse_armor" = root + rack_armor
 				}
-				text_2 = "    Horse Armor Rack Texture: " + rack_armor + "\n"
+				text_4 = "    Horse Armor Rack Texture: " + rack_armor + "\n"
 			else:
 				rack = {
 					"saddle" = root + rack_saddle
 				}
-				text_2 = ""
+				text_4 = ""
 			
 			var textures = {"horse" = horse, "rack" = rack}
 			
@@ -175,13 +191,26 @@ func saddle_save(item : String, artist : String, inspo : String, coin : String, 
 			file.store_string(string_1)
 			file.close()
 			
-			var text_1 = "    Icon Texture: " + icon + "\n" + "    Horse Texture: " + leg_texture\
-			 + "\n" + "    Saddle Rack Texture: " + rack_saddle + "\n"
+			var text_1 = ""
+			var text_2 = ""
+			var text_3 = ""
 			
-			var text_list =  text_1 + text_2
+			if !preloaded_icon:
+				text_1 = "    Icon Texture: " + icon + "\n" 
+			if !preloaded_render:
+				text_2 = "    Horse Texture: " + leg_texture + "\n" 
+			if !preloaded_rack:
+				text_3 = "    Saddle Rack Texture: " + rack_saddle + "\n"
+			if preloaded_rack && adv:
+				text_4 = ""
+			
+			var text_list =  text_1 + text_2 + text_3 + text_4
 			var text_path = GlobalScripts.join_paths(text_dir, type)
 			
-			GlobalScripts.instructions_tack(type_fancy, item, text_list, text_path)
+			if preloaded_icon && preloaded_render && preloaded_rack:
+				pass
+			else:
+				GlobalScripts.instructions_tack(type_fancy, item, text_list, text_path)
 			GlobalScripts.report("Saved the new " + type_fancy + ", '" + item + "', to " + path)
 			saddle_saved.emit()
 			
@@ -189,7 +218,7 @@ func saddle_save(item : String, artist : String, inspo : String, coin : String, 
 			ErrorManager.error_print("Couldn't save the new " + type_fancy + ". The ./json/tack/" + type + "/ folder wouldn't open. Check to see if it exists.")
 			GlobalScripts.report("Failed to save the new " + type_fancy + ", '" + item + "' to " + path)
 
-func bridle_save(item : String, artist : String, inspo : String, coin : String, model : String, adv: bool, amount : int = cost_bridle) -> void:
+func bridle_save(item : String, artist : String, inspo : String, coin : String, model : String, adv: bool, preloaded_icon: bool, preloaded_render_headstall : bool, preloaded_render_reins : bool, preloaded_rack : bool, amount : int = cost_bridle) -> void:
 	if ErrorManager.is_error:
 		return
 	else:
@@ -249,11 +278,28 @@ func bridle_save(item : String, artist : String, inspo : String, coin : String, 
 			file.store_string(string_1)
 			file.close()
 			
-			var text_list = "    Icon Texture: " + icon + "\n" + "    Horse Bridle Texture: " + leg_halter_texture\
-			 + "\n" + "    Horse Bit & Reins Texture: " + leg_texture + "\n" + "    Bridle Rack Texture: " + rack_bridle + "\n"
+			var text_1 = ""
+			var text_2 = ""
+			var text_3 = ""
+			var text_4 = ""
+			
+			if !preloaded_icon:
+				text_1 = "    Icon Texture: " + icon + "\n" 
+			if !preloaded_render_headstall:
+				text_2 = "    Horse Bridle Texture: " + leg_halter_texture + "\n" 
+			if !preloaded_render_reins:
+				text_3 = "    Horse Bit & Reins Texture: " + leg_texture + "\n"
+			if !preloaded_rack:
+				text_4 = "    Bridle Rack Texture: " + rack_bridle + "\n"
+			
+			var text_list =  text_1 + text_2 + text_3 + text_4
 			var text_path = GlobalScripts.join_paths(text_dir, type)
 			
-			GlobalScripts.instructions_tack(type_fancy, item, text_list, text_path)
+			if preloaded_icon && preloaded_render_headstall && preloaded_render_reins && preloaded_rack:
+				pass
+			else:
+				GlobalScripts.instructions_tack(type_fancy, item, text_list, text_path)
+			
 			GlobalScripts.report("Saved the new " + type_fancy + ", '" + item + "', to " + path)
 			bridle_saved.emit()
 			
@@ -261,7 +307,7 @@ func bridle_save(item : String, artist : String, inspo : String, coin : String, 
 			ErrorManager.error_print("Couldn't save the new " + type_fancy + ". The ./json/tack/" + type + "/ folder wouldn't open. Check to see if it exists.")
 			GlobalScripts.report("Failed to save the new " + type_fancy + ", '" + item + "' to " + path)
 
-func halter_save(item : String, artist : String, inspo : String, coin : String, red : int, green : int , blue : int, adv: bool, amount : int = cost_halter) -> void:
+func halter_save(item : String, artist : String, inspo : String, coin : String, red : int, green : int , blue : int, adv: bool, preloaded_icon: bool, preloaded_render : bool, preloaded_rack : bool, amount : int = cost_halter) -> void:
 	if ErrorManager.is_error:
 		return
 	else:
@@ -319,11 +365,24 @@ func halter_save(item : String, artist : String, inspo : String, coin : String, 
 			file.store_string(string_1)
 			file.close()
 			
-			var text_list = "    Icon Texture: " + icon + "\n" + "    Horse Halter Texture: " + leg_texture\
-			 + "\n" + "    Bridle Rack Texture: " + rack_bridle + "\n"
+			var text_1 = ""
+			var text_2 = ""
+			var text_3 = ""
+			
+			if !preloaded_icon:
+				text_1 = "    Icon Texture: " + icon + "\n" 
+			if !preloaded_render:
+				text_2 = "    Horse Halter Texture: " + leg_texture + "\n" 
+			if !preloaded_rack:
+				text_3 = "    Bridle Rack Texture: " + rack_bridle + "\n"
+			
+			var text_list =  text_1 + text_2 + text_3 
 			var text_path = GlobalScripts.join_paths(text_dir, type)
 			
-			GlobalScripts.instructions_tack(type_fancy, item, text_list, text_path)
+			if preloaded_icon && preloaded_render && preloaded_rack:
+				pass
+			else:
+				GlobalScripts.instructions_tack(type_fancy, item, text_list, text_path)
 			GlobalScripts.report("Saved the new " + type_fancy + ", '" + item + "', to " + path)
 			halter_saved.emit()
 			
@@ -331,7 +390,7 @@ func halter_save(item : String, artist : String, inspo : String, coin : String, 
 			ErrorManager.error_print("Couldn't save the new " + type_fancy + ". The ./json/tack/" + type + "/ folder wouldn't open. Check to see if it exists.")
 			GlobalScripts.report("Failed to save the new " + type_fancy + ", '" + item + "' to " + path)
 
-func leg_wraps_save(item : String, artist : String, inspo : String, coin : String, adv: bool, amount : int = cost_leg_wraps) -> void:
+func leg_wraps_save(item : String, artist : String, inspo : String, coin : String, adv: bool, preloaded_icon: bool, preloaded_render_horse : bool, preloaded_render_hoof : bool, amount : int = cost_leg_wraps) -> void:
 	if ErrorManager.is_error:
 		return
 	else:
@@ -389,11 +448,24 @@ func leg_wraps_save(item : String, artist : String, inspo : String, coin : Strin
 			file.store_string(string_1)
 			file.close()
 			
-			var text_list = "    Icon Texture: " + icon + "\n" + "    Horse Main Texture: " + leg_texture + "\n" + \
-			"    Horse Hoof Texture: " + leg_hoof_texture + "\n"
+			var text_1 = ""
+			var text_2 = ""
+			var text_3 = ""
+			
+			if !preloaded_icon:
+				text_1 = "    Icon Texture: " + icon + "\n" 
+			if !preloaded_render_horse:
+				text_2 = "    Horse Main Texture: " + leg_texture + "\n" 
+			if !preloaded_render_hoof:
+				text_3 = "    Horse Hoof Texture: " + leg_hoof_texture + "\n" 
+			
+			var text_list =  text_1 + text_2 + text_3
 			var text_path = GlobalScripts.join_paths(text_dir, type)
 			
-			GlobalScripts.instructions_tack(type_fancy, item, text_list, text_path)
+			if preloaded_icon && preloaded_render_horse && preloaded_render_hoof:
+				pass
+			else:
+				GlobalScripts.instructions_tack(type_fancy, item, text_list, text_path)
 			GlobalScripts.report("Saved the new " + type_fancy + ", '" + item + "', to " + path)
 			leg_wraps_saved.emit()
 		
@@ -401,7 +473,7 @@ func leg_wraps_save(item : String, artist : String, inspo : String, coin : Strin
 			ErrorManager.error_print("Couldn't save the new tack set. The ./json/tack/" + type + "/ folder wouldn't open. Check to see if it exists.")
 			GlobalScripts.report("Failed to save the new " + type_fancy + ", '" + item + "' to " + path)
 
-func breast_collar_save(item : String, artist : String, inspo : String, coin : String, adv: bool, amount : int = cost_breast_collar) -> void:
+func breast_collar_save(item : String, artist : String, inspo : String, coin : String, adv: bool, preloaded_icon: bool, preloaded_render : bool, amount : int = cost_breast_collar) -> void:
 	if ErrorManager.is_error:
 		return
 	else:
@@ -457,10 +529,21 @@ func breast_collar_save(item : String, artist : String, inspo : String, coin : S
 			file.store_string(string_1)
 			file.close()
 			
-			var text_list = "    Icon Texture: " + icon + "\n" + "    Horse Texture: " + leg_texture + "\n"
+			var text_1 = ""
+			var text_2 = ""
+			
+			if !preloaded_icon:
+				text_1 = "    Icon Texture: " + icon + "\n" 
+			if !preloaded_render:
+				text_2 = "    Horse Breast Collar Texture: " + leg_texture + "\n" 
+			
+			var text_list =  text_1 + text_2
 			var text_path = GlobalScripts.join_paths(text_dir, type)
 			
-			GlobalScripts.instructions_tack(type_fancy, item, text_list, text_path)
+			if preloaded_icon && preloaded_render:
+				pass
+			else:
+				GlobalScripts.instructions_tack(type_fancy, item, text_list, text_path)
 			GlobalScripts.report("Saved the new " + type_fancy + ", '" + item + "', to " + path)
 			breast_collar_saved.emit()
 		
@@ -468,7 +551,7 @@ func breast_collar_save(item : String, artist : String, inspo : String, coin : S
 			ErrorManager.error_print("Couldn't save the new tack set. The ./json/tack/" + type + "/ folder wouldn't open. Check to see if it exists.")
 			GlobalScripts.report("Failed to save the new " + type_fancy + ", '" + item + "' to " + path)
 
-func armor_save(item : String, artist : String, inspo : String, coin : String, tier: String, amount : int = cost_blanket) -> void:
+func armor_save(item : String, artist : String, inspo : String, coin : String, tier: String, preloaded_icon: bool, preloaded_render_armor : bool, preloaded_render_wings : bool, preloaded_rack : bool, amount : int = cost_armor) -> void:
 	if ErrorManager.is_error:
 		return
 	else:
@@ -527,11 +610,28 @@ func armor_save(item : String, artist : String, inspo : String, coin : String, t
 			file.store_string(string_1)
 			file.close()
 			
-			var text_list = "    Icon Texture: " + icon + "\n" + "    Horse Armor Texture: " + leg_texture\
-			 + "\n" + "    Horse Wings Texture: " + leg_wing_texture + "\n" + "    Armor Rack Texture: " + rack_armor + "\n"
+			var text_1 = ""
+			var text_2 = ""
+			var text_3 = ""
+			var text_4 = ""
+			
+			if !preloaded_icon:
+				text_1 = "    Icon Texture: " + icon + "\n" 
+			if !preloaded_render_armor:
+				text_2 = "    Horse Armor Texture: " + leg_texture + "\n" 
+			if !preloaded_render_wings:
+				text_3 = "    Horse Wings Texture: " + leg_wing_texture + "\n"
+			if !preloaded_rack:
+				text_4 = "    Armor Rack Texture: " + rack_armor + "\n"
+			
+			var text_list =  text_1 + text_2 + text_3 + text_4
 			var text_path = GlobalScripts.join_paths(text_dir, type)
 			
-			GlobalScripts.instructions_tack(type_fancy, item, text_list, text_path)
+			if preloaded_icon && preloaded_render_armor && preloaded_render_wings && preloaded_rack:
+				pass
+			else:
+				GlobalScripts.instructions_tack(type_fancy, item, text_list, text_path)
+			
 			GlobalScripts.report("Saved the new " + type_fancy + ", '" + item + "', to " + path)
 			armor_saved.emit()
 		
@@ -539,7 +639,7 @@ func armor_save(item : String, artist : String, inspo : String, coin : String, t
 			ErrorManager.error_print("Couldn't save the new " + type_fancy + ". The ./json/tack/" + type + "/ folder wouldn't open. Check to see if it exists.")
 			GlobalScripts.report("Failed to save the new " + type_fancy + ", '" + item + "' to " + path)
 
-func saddle_bag_save(item : String, artist : String, inspo : String, coin : String, red : int, green : int , blue : int, amount : int = cost_saddle_bag) -> void:
+func saddle_bag_save(item : String, artist : String, inspo : String, coin : String, red : int, green : int , blue : int, preloaded_icon: bool, preloaded_render : bool, amount : int = cost_saddle_bag) -> void:
 	if ErrorManager.is_error:
 		return
 	else:
@@ -594,10 +694,21 @@ func saddle_bag_save(item : String, artist : String, inspo : String, coin : Stri
 			file.store_string(string_1)
 			file.close()
 			
-			var text_list = "    Icon Texture: " + icon + "\n" + "    Horse Texture: " + leg_texture + "\n"
+			var text_1 = ""
+			var text_2 = ""
+			
+			if !preloaded_icon:
+				text_1 = "    Icon Texture: " + icon + "\n" 
+			if !preloaded_render:
+				text_2 = "    Horse Saddle Bag Texture: " + leg_texture + "\n" 
+			
+			var text_list =  text_1 + text_2
 			var text_path = GlobalScripts.join_paths(text_dir, type)
 			
-			GlobalScripts.instructions_tack(type_fancy, item, text_list, text_path)
+			if preloaded_icon && preloaded_render:
+				pass
+			else:
+				GlobalScripts.instructions_tack(type_fancy, item, text_list, text_path)
 			GlobalScripts.report("Saved the new " + type_fancy + ", '" + item + "', to " + path)
 			saddle_bag_saved.emit()
 		
@@ -605,7 +716,7 @@ func saddle_bag_save(item : String, artist : String, inspo : String, coin : Stri
 			ErrorManager.error_print("Couldn't save the new tack set. The ./json/tack/" + type + "/ folder wouldn't open. Check to see if it exists.")
 			GlobalScripts.report("Failed to save the new " + type_fancy + ", '" + item + "' to " + path)
 
-func girth_straps_save(item : String, artist : String, inspo : String, coin : String, adv: bool, amount : int = cost_girth_straps) -> void:
+func girth_straps_save(item : String, artist : String, inspo : String, coin : String, adv: bool, preloaded_icon: bool, preloaded_render : bool, preloaded_rack : bool, amount : int = cost_girth_straps) -> void:
 	if ErrorManager.is_error:
 		return
 	else:
@@ -663,11 +774,24 @@ func girth_straps_save(item : String, artist : String, inspo : String, coin : St
 			file.store_string(string_1)
 			file.close()
 			
-			var text_list = "    Icon Texture: " + icon + "\n" + "    Horse Girth Strap Texture: " + leg_texture\
-			 + "\n" + "    Saddle Rack Texture: " + rack_saddle + "\n"
+			var text_1 = ""
+			var text_2 = ""
+			var text_3 = ""
+			
+			if !preloaded_icon:
+				text_1 = "    Icon Texture: " + icon + "\n" 
+			if !preloaded_render:
+				text_2 = "    Horse Girth Strap Texture: " + leg_texture + "\n" 
+			if !preloaded_rack:
+				text_3 = "    Saddle Rack Texture: " + rack_saddle + "\n"
+			
+			var text_list =  text_1 + text_2 + text_3 
 			var text_path = GlobalScripts.join_paths(text_dir, type)
 			
-			GlobalScripts.instructions_tack(type_fancy, item, text_list, text_path)
+			if preloaded_icon && preloaded_render && preloaded_rack:
+				pass
+			else:
+				GlobalScripts.instructions_tack(type_fancy, item, text_list, text_path)
 			GlobalScripts.report("Saved the new " + type_fancy + ", '" + item + "', to " + path)
 			girth_straps_saved.emit()
 			
@@ -675,7 +799,7 @@ func girth_straps_save(item : String, artist : String, inspo : String, coin : St
 			ErrorManager.error_print("Couldn't save the new " + type_fancy + ". The ./json/tack/" + type + "/ folder wouldn't open. Check to see if it exists.")
 			GlobalScripts.report("Failed to save the new " + type_fancy + ", '" + item + "' to " + path)
 
-func pasture_blanket_save(item : String, artist : String, inspo : String, coin : String, amount : int = cost_pasture_blanket) -> void:
+func pasture_blanket_save(item : String, artist : String, inspo : String, coin : String, preloaded_icon: bool, preloaded_render : bool, preloaded_rack_short : bool, preloaded_rack_long : bool, amount : int = cost_pasture_blanket) -> void:
 	if ErrorManager.is_error:
 		return
 	else:
@@ -735,12 +859,27 @@ func pasture_blanket_save(item : String, artist : String, inspo : String, coin :
 			file.store_string(string_1)
 			file.close()
 			
-			var text_list = "    Icon Texture: " + icon + "\n" + "    Horse Texture: " + leg_texture\
-			 + "\n" + "    Long 5 Blanket Rack Texture: " + rack_long_5 + "\n" \
-			 + "    Short 3 Blanket Rack Texture: " + rack_short_3 + "\n"
+			var text_1 = ""
+			var text_2 = ""
+			var text_3 = ""
+			var text_4 = ""
+			
+			if !preloaded_icon:
+				text_1 = "    Icon Texture: " + icon + "\n" 
+			if !preloaded_render:
+				text_2 = "    Horse Pasture Blanket Texture: " + leg_texture + "\n" 
+			if !preloaded_rack_long:
+				text_3 = "    Long 5 Blanket Texture: " + rack_long_5 + "\n"
+			if !preloaded_rack_short:
+				text_4 = "    Short 3 Blanket Rack Texture: " + rack_short_3 + "\n"
+			
+			var text_list =  text_1 + text_2 + text_3 + text_4
 			var text_path = GlobalScripts.join_paths(text_dir, type)
 			
-			GlobalScripts.instructions_tack(type_fancy, item, text_list, text_path)
+			if preloaded_icon && preloaded_render && preloaded_rack_long && preloaded_rack_short:
+				pass
+			else:
+				GlobalScripts.instructions_tack(type_fancy, item, text_list, text_path)
 			GlobalScripts.report("Saved the new " + type_fancy + ", '" + item + "', to " + path)
 			pasture_blanket_saved.emit()
 		
@@ -748,7 +887,7 @@ func pasture_blanket_save(item : String, artist : String, inspo : String, coin :
 			ErrorManager.error_print("Couldn't save the new " + type_fancy + ". The ./json/tack/" + type + "/ folder wouldn't open. Check to see if it exists.")
 			GlobalScripts.report("Failed to save the new " + type_fancy + ", '" + item + "' to " + path)
 
-func ar_pasture_blanket_save(item : String, artist : String, inspo : String, coin : String, amount : int = cost_ar_pasture_blanket) -> void:
+func ar_pasture_blanket_save(item : String, artist : String, inspo : String, coin : String, preloaded_icon: bool, preloaded_render : bool, preloaded_rack_short : bool, preloaded_rack_long : bool, amount : int = cost_ar_pasture_blanket) -> void:
 	if ErrorManager.is_error:
 		return
 	else:
@@ -810,12 +949,27 @@ func ar_pasture_blanket_save(item : String, artist : String, inspo : String, coi
 			file.store_string(string_1)
 			file.close()
 			
-			var text_list = "    Icon Texture: " + icon + "\n" + "    Horse Texture: " + leg_texture\
-			 + "\n" + "    Long 5 Blanket Rack Texture: " + rack_long_5 + "\n" \
-			 + "    Short 3 Blanket Rack Texture: " + rack_short_3 + "\n"
+			var text_1 = ""
+			var text_2 = ""
+			var text_3 = ""
+			var text_4 = ""
+			
+			if !preloaded_icon:
+				text_1 = "    Icon Texture: " + icon + "\n" 
+			if !preloaded_render:
+				text_2 = "    Horse Armored Pasture Blanket Texture: " + leg_texture + "\n" 
+			if !preloaded_rack_long:
+				text_3 = "    Long 5 Blanket Texture: " + rack_long_5 + "\n"
+			if !preloaded_rack_short:
+				text_4 = "    Short 3 Blanket Rack Texture: " + rack_short_3 + "\n"
+			
+			var text_list =  text_1 + text_2 + text_3 + text_4
 			var text_path = GlobalScripts.join_paths(text_dir, type)
 			
-			GlobalScripts.instructions_tack(type_fancy, item, text_list, text_path)
+			if preloaded_icon && preloaded_render && preloaded_rack_long && preloaded_rack_short:
+				pass
+			else:
+				GlobalScripts.instructions_tack(type_fancy, item, text_list, text_path)
 			GlobalScripts.report("Saved the new " + type_fancy + ", '" + item + "', to " + path)
 			ar_pasture_blanket_saved.emit()
 		
@@ -824,7 +978,7 @@ func ar_pasture_blanket_save(item : String, artist : String, inspo : String, coi
 			GlobalScripts.report("Failed to save the new " + type_fancy + ", '" + item + "' to " + path)
 
 ########## COLORED - NO CUSTOM TEXTURE SAVE SCRIPTS ##########
-func colored_blanket_save(rack_5 : Sprite2D, rack_saddle : Sprite2D, item : String, artist : String, inspo : String, coin : String, red : int, green : int , blue : int, adv: bool, amount : int = cost_blanket) -> void:
+func colored_blanket_save(rack_5 : Sprite2D, rack_saddle : Sprite2D, item : String, artist : String, inspo : String, coin : String, red : int, green : int , blue : int, adv: bool, preloaded_icon: bool, preloaded_render : bool, amount : int = cost_blanket) -> void:
 	if ErrorManager.is_error:
 		return
 	else:
@@ -894,10 +1048,21 @@ func colored_blanket_save(rack_5 : Sprite2D, rack_saddle : Sprite2D, item : Stri
 			file.store_string(string_1)
 			file.close()
 			
-			var text_list = "    Icon Texture: " + icon + "\n" + "    Horse Texture: " + leg_texture
+			var text_1 = ""
+			var text_2 = ""
+			
+			if !preloaded_icon:
+				text_1 = "    Icon Texture: " + icon + "\n" 
+			if !preloaded_render:
+				text_2 = "    Horse Saddle Blanket Texture: " + leg_texture + "\n" 
+			
+			var text_list =  text_1 + text_2 
 			var text_path = GlobalScripts.join_paths(text_dir, type)
 			
-			GlobalScripts.instructions_tack(type_fancy, item, text_list, text_path)
+			if preloaded_icon && preloaded_render:
+				pass
+			else:
+				GlobalScripts.instructions_tack(type_fancy, item, text_list, text_path)
 			GlobalScripts.report("Saved the new " + type_fancy + ", '" + item + "', to " + path)
 			blanket_saved.emit()
 		
@@ -905,7 +1070,7 @@ func colored_blanket_save(rack_5 : Sprite2D, rack_saddle : Sprite2D, item : Stri
 			ErrorManager.error_print("Couldn't save the new " + type_fancy + ". The ./json/tack/" + type + "/ folder wouldn't open. Check to see if it exists.")
 			GlobalScripts.report("Failed to save the new " + type_fancy + ", '" + item + "' to " + path)
 
-func colored_girth_strap_save(rack_saddle : Sprite2D, item : String, artist : String, inspo : String, coin : String, red : int, green : int , blue : int, adv: bool, amount : int = cost_girth_straps) -> void:
+func colored_girth_strap_save(rack_saddle : Sprite2D, item : String, artist : String, inspo : String, coin : String, red : int, green : int , blue : int, adv: bool, preloaded_icon: bool, preloaded_render : bool, amount : int = cost_girth_straps) -> void:
 	if ErrorManager.is_error:
 		return
 	else:
@@ -968,10 +1133,21 @@ func colored_girth_strap_save(rack_saddle : Sprite2D, item : String, artist : St
 			file.store_string(string_1)
 			file.close()
 			
-			var text_list = "    Icon Texture: " + icon + "\n" + "    Horse Girth Strap Texture: " + leg_texture
+			var text_1 = ""
+			var text_2 = ""
+			
+			if !preloaded_icon:
+				text_1 = "    Icon Texture: " + icon + "\n" 
+			if !preloaded_render:
+				text_2 = "    Horse Girth Strap Texture: " + leg_texture + "\n" 
+			
+			var text_list =  text_1 + text_2 
 			var text_path = GlobalScripts.join_paths(text_dir, type)
 			
-			GlobalScripts.instructions_tack(type_fancy, item, text_list, text_path)
+			if preloaded_icon && preloaded_render:
+				pass
+			else:
+				GlobalScripts.instructions_tack(type_fancy, item, text_list, text_path)
 			GlobalScripts.report("Saved the new " + type_fancy + ", '" + item + "', to " + path)
 			girth_straps_saved.emit()
 			
@@ -979,7 +1155,7 @@ func colored_girth_strap_save(rack_saddle : Sprite2D, item : String, artist : St
 			ErrorManager.error_print("Couldn't save the new " + type_fancy + ". The ./json/tack/" + type + "/ folder wouldn't open. Check to see if it exists.")
 			GlobalScripts.report("Failed to save the new " + type_fancy + ", '" + item + "' to " + path)
 
-func colored_pasture_blanket_save(rack_long : Sprite2D, rack_short : Sprite2D, item : String, artist : String, inspo : String, coin : String, red : int, green : int , blue : int, amount : int = cost_pasture_blanket) -> void:
+func colored_pasture_blanket_save(rack_long : Sprite2D, rack_short : Sprite2D, item : String, artist : String, inspo : String, coin : String, red : int, green : int , blue : int, preloaded_icon: bool, preloaded_render : bool, amount : int = cost_pasture_blanket) -> void:
 	if ErrorManager.is_error:
 		return
 	else:
@@ -1048,10 +1224,21 @@ func colored_pasture_blanket_save(rack_long : Sprite2D, rack_short : Sprite2D, i
 			file.store_string(string_1)
 			file.close()
 			
-			var text_list = "    Icon Texture: " + icon + "\n" + "    Horse Texture: " + leg_texture
+			var text_1 = ""
+			var text_2 = ""
+			
+			if !preloaded_icon:
+				text_1 = "    Icon Texture: " + icon + "\n" 
+			if !preloaded_render:
+				text_2 = "    Horse Pasture Blanket Texture: " + leg_texture + "\n" 
+			
+			var text_list =  text_1 + text_2 
 			var text_path = GlobalScripts.join_paths(text_dir, type)
 			
-			GlobalScripts.instructions_tack(type_fancy, item, text_list, text_path)
+			if preloaded_icon && preloaded_render:
+				pass
+			else:
+				GlobalScripts.instructions_tack(type_fancy, item, text_list, text_path)
 			GlobalScripts.report("Saved the new " + type_fancy + ", '" + item + "', to " + path)
 			pasture_blanket_saved.emit()
 		
@@ -1059,7 +1246,7 @@ func colored_pasture_blanket_save(rack_long : Sprite2D, rack_short : Sprite2D, i
 			ErrorManager.error_print("Couldn't save the new " + type_fancy + ". The ./json/tack/" + type + "/ folder wouldn't open. Check to see if it exists.")
 			GlobalScripts.report("Failed to save the new " + type_fancy + ", '" + item + "' to " + path)
 
-func colored_ar_pasture_blanket_save(rack_long : Sprite2D, rack_short : Sprite2D, item : String, artist : String, inspo : String, coin : String, red : int, green : int , blue : int, amount : int = cost_pasture_blanket) -> void:
+func colored_ar_pasture_blanket_save(rack_long : Sprite2D, rack_short : Sprite2D, item : String, artist : String, inspo : String, coin : String, red : int, green : int , blue : int, preloaded_icon: bool, preloaded_render : bool, amount : int = cost_ar_pasture_blanket) -> void:
 	if ErrorManager.is_error:
 		return
 	else:
@@ -1130,10 +1317,21 @@ func colored_ar_pasture_blanket_save(rack_long : Sprite2D, rack_short : Sprite2D
 			file.store_string(string_1)
 			file.close()
 			
-			var text_list = "    Icon Texture: " + icon + "\n" + "    Horse Texture: " + leg_texture
+			var text_1 = ""
+			var text_2 = ""
+			
+			if !preloaded_icon:
+				text_1 = "    Icon Texture: " + icon + "\n" 
+			if !preloaded_render:
+				text_2 = "    Horse Armored Pasture Blanket Texture: " + leg_texture + "\n" 
+			
+			var text_list =  text_1 + text_2 
 			var text_path = GlobalScripts.join_paths(text_dir, type)
 			
-			GlobalScripts.instructions_tack(type_fancy, item, text_list, text_path)
+			if preloaded_icon && preloaded_render:
+				pass
+			else:
+				GlobalScripts.instructions_tack(type_fancy, item, text_list, text_path)
 			GlobalScripts.report("Saved the new " + type_fancy + ", '" + item + "', to " + path)
 			ar_pasture_blanket_saved.emit()
 		
