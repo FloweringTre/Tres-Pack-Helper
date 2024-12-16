@@ -54,10 +54,7 @@ func disabled_buttons() -> void:
 	%confirmButton.disabled = true
 
 func perm_disabled_buttons() -> void:
-	%girth_straps.set_disabled()
-	%breast_collars.set_disabled()
 	%leg_wraps.set_disabled()
-	%halters.set_disabled()
 	%saddle_bags.set_disabled()
 
 func reenabled_buttons() -> void:
@@ -125,16 +122,28 @@ func on_blankets() -> void:
 		get_tree().change_scene_to_file("res://scene/tack/SingBlanketCreation.tscn")
 
 func on_girth_straps() -> void:
-	pass
+	if not_saved:
+		saved_scene = "res://scene/tack/SingGirthStrapCreation.tscn"
+		not_saved_defaults()
+	else:
+		get_tree().change_scene_to_file("res://scene/tack/SingGirthStrapCreation.tscn")
 
 func on_breast_collars() -> void:
-	pass
+	if not_saved:
+		saved_scene = "res://scene/tack/SingBreastCollarCreation.tscn"
+		not_saved_defaults()
+	else:
+		get_tree().change_scene_to_file("res://scene/tack/SingBreastCollarCreation.tscn")
 
 func on_leg_wraps() -> void:
 	pass
 
 func on_halters() -> void:
-	pass
+	if not_saved:
+		saved_scene = "res://scene/tack/SingHalterCreation.tscn"
+		not_saved_defaults()
+	else:
+		get_tree().change_scene_to_file("res://scene/tack/SingHalterCreation.tscn")
 
 func on_saddle_bag() -> void:
 	pass
