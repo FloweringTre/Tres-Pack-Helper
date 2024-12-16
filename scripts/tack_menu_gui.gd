@@ -31,7 +31,6 @@ func _ready() -> void:
 	%pasture_blankets.button_pressed.connect(on_pasture_blankets)
 	$popUP.confirm.connect(on_popup_confirmed)
 	$popUP.deny.connect(on_popup_back)
-	perm_disabled_buttons()
 	update_save_button()
 	load_values()
 	$helpscreen.visible = true
@@ -53,10 +52,6 @@ func disabled_buttons() -> void:
 	%full_set.set_disabled()
 	%confirmButton.disabled = true
 
-func perm_disabled_buttons() -> void:
-	%leg_wraps.set_disabled()
-	%saddle_bags.set_disabled()
-
 func reenabled_buttons() -> void:
 	%saddle_set.reenable_button()
 	%extras_set.reenable_button()
@@ -73,7 +68,6 @@ func reenabled_buttons() -> void:
 	update_save_button()
 	%backButton.disabled = false
 	%full_set.reenable_button()
-	perm_disabled_buttons()
 
 #################### SCENE MOVING ####################
 func _on_back_button_pressed() -> void:
@@ -136,7 +130,11 @@ func on_breast_collars() -> void:
 		get_tree().change_scene_to_file("res://scene/tack/SingBreastCollarCreation.tscn")
 
 func on_leg_wraps() -> void:
-	pass
+	if not_saved:
+		saved_scene = "res://scene/tack/SingLegWrapsCreation.tscn"
+		not_saved_defaults()
+	else:
+		get_tree().change_scene_to_file("res://scene/tack/SingLegWrapsCreation.tscn")
 
 func on_halters() -> void:
 	if not_saved:
@@ -146,7 +144,11 @@ func on_halters() -> void:
 		get_tree().change_scene_to_file("res://scene/tack/SingHalterCreation.tscn")
 
 func on_saddle_bag() -> void:
-	pass
+	if not_saved:
+		saved_scene = "res://scene/tack/SingSaddleBagCreation.tscn"
+		not_saved_defaults()
+	else:
+		get_tree().change_scene_to_file("res://scene/tack/SingSaddleBagCreation.tscn")
 
 func on_armors() -> void:
 	if not_saved:
