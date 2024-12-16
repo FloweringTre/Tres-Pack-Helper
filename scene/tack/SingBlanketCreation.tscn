@@ -210,7 +210,7 @@ layout_mode = 2
 focus_neighbor_top = NodePath("../../HBoxContainer3/artist/artistText")
 focus_next = NodePath("../../HBoxContainer/VBoxContainer/tackType/SaddleCheckButton")
 focus_previous = NodePath("../../HBoxContainer3/inspiration/inspoText")
-placeholder_text = "Butterfly Morpho Blanket"
+placeholder_text = "Butterfly Morpho"
 
 [node name="Container" type="Container" parent="NinePatchRect/VBoxContainer/tackName"]
 custom_minimum_size = Vector2(49, 0)
