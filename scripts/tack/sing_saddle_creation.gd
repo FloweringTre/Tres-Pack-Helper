@@ -102,6 +102,7 @@ func _on_inspo_text_text_changed(new_text: String) -> void:
 		inspo = true
 	else:
 		inspo = false
+	ready_to_save()
 
 func _on_tack_text_text_changed(new_text: String) -> void:
 	update_name_previews()
