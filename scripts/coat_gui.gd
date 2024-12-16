@@ -2,6 +2,7 @@ extends Control
 
 var breedable : bool = true
 var cyclable : bool = true
+
 var basecolors : Array
 var black_coat : bool = false
 var gray_coat : bool = false
@@ -10,27 +11,34 @@ var creamy_coat : bool = false
 var brown_coat : bool = false
 var dark_brown_coat : bool = false
 var chestnut_coat : bool = false
+
 var artist : bool = false
 var inspo : bool = false
 var coat_name : bool = false
+
 var file_name : String
 var path : String
+
+var image_coat : Image
+var text_coat : bool = false
+var coat_save_path : String
+var coat_source : String
 
 signal new_coat_saved
 
 func _ready() -> void:
 	ErrorManager.error_alert.connect(on_error)
 	$errorMessage.error_continue.connect(on_error_continue)
-	%n_aButton.button_pressed.connect(on_NA_button)
 	%nameCheck.button_pressed.connect(on_name_check)
 	new_coat_saved.connect(on_new_coat_saved)
 	$popUP_Saved.deny.connect(on_popup_saved_back)
 	$popUP_Saved.confirm.connect(on_popup_saved_confirmed)
 	$popUP2_Dupe.deny.connect(on_popup_dupe_back)
 	$popUP2_Dupe.confirm.connect(on_popup_dupe_confirmed)
-	$popUPexit.deny.connect(on_popup_saved_back)
+	$popUPexit.deny.connect(on_popup_exit_back)
 	$popUPexit.confirm.connect(on_popup_exit_confirmed)
 	$helpscreen.visible = true
+	$FileDialog.current_dir = GlobalScripts.directory_root
 	if GlobalScripts.artist != "":
 		%artistText.text = GlobalScripts.artist
 		artist = true
@@ -42,17 +50,17 @@ func disable_interaction () -> void:
 	%artistText.editable = false
 	%inspoText.editable = false
 	%coatText.editable = false
-	%n_aButton.set_disabled()
+	%renderButton.set_disabled()
 	%nameCheck.set_disabled()
 	%lapisCheckBox.disabled = true
-	$NinePatchRect/VBoxContainer/HBoxContainer/breeding/breedingCheckBox.disabled = true
-	$NinePatchRect/VBoxContainer/baseColorp2/Black/blackCheckBox.disabled = true
-	$NinePatchRect/VBoxContainer/baseColorp2/Gray/grayCheckBox2.disabled = true
-	$NinePatchRect/VBoxContainer/baseColorp2/White/whiteCheckBox3.disabled = true
-	$NinePatchRect/VBoxContainer/baseColorp2/Creamy/creamyCheckBox4.disabled = true
-	$NinePatchRect/VBoxContainer/baseColorp2/Brown/brownCheckBox5.disabled = true
-	$NinePatchRect/VBoxContainer/baseColorp2/DBrown/d_brownCheckBox6.disabled = true
-	$NinePatchRect/VBoxContainer/baseColorp2/Chestnut/chestnutCheckBox7.disabled = true
+	%breedingCheckBox.disabled = true
+	%blackCheckBox.disabled = true
+	%grayCheckBox2.disabled = true
+	%whiteCheckBox3.disabled = true
+	%creamyCheckBox4.disabled = true
+	%brownCheckBox5.disabled = true
+	%d_brownCheckBox6.disabled = true
+	%chestnutCheckBox7.disabled = true
 
 func enable_interaction () -> void:
 	%confirmButton.disabled = false
@@ -60,17 +68,17 @@ func enable_interaction () -> void:
 	%artistText.editable = true
 	%inspoText.editable = true
 	%coatText.editable = true
-	%n_aButton.reenable_button()
+	%renderButton.reenable_button()
 	%nameCheck.reenable_button()
-	%lapisCheckBox.disabled = true
-	$NinePatchRect/VBoxContainer/HBoxContainer/breeding/breedingCheckBox.disabled = false
-	$NinePatchRect/VBoxContainer/baseColorp2/Black/blackCheckBox.disabled = false
-	$NinePatchRect/VBoxContainer/baseColorp2/Gray/grayCheckBox2.disabled = false
-	$NinePatchRect/VBoxContainer/baseColorp2/White/whiteCheckBox3.disabled = false
-	$NinePatchRect/VBoxContainer/baseColorp2/Creamy/creamyCheckBox4.disabled = false
-	$NinePatchRect/VBoxContainer/baseColorp2/Brown/brownCheckBox5.disabled = false
-	$NinePatchRect/VBoxContainer/baseColorp2/DBrown/d_brownCheckBox6.disabled = false
-	$NinePatchRect/VBoxContainer/baseColorp2/Chestnut/chestnutCheckBox7.disabled = false
+	%lapisCheckBox.disabled = false
+	%breedingCheckBox.disabled = false
+	%blackCheckBox.disabled = false
+	%grayCheckBox2.disabled = false
+	%whiteCheckBox3.disabled = false
+	%creamyCheckBox4.disabled = false
+	%brownCheckBox5.disabled = false
+	%d_brownCheckBox6.disabled = false
+	%chestnutCheckBox7.disabled = false
 
 func on_error() -> void:
 	disable_interaction()
@@ -79,7 +87,7 @@ func on_error_continue() -> void:
 	enable_interaction()
 
 func _on_back_button_pressed() -> void:
-	if %artistText.text != "" or %inspoText.text != "" or %coatText.text != "":
+	if %artistText.text != "" or %inspoText.text != "" or %coatText.text != "" or text_coat:
 		are_you_sure()
 	else:
 		get_tree().change_scene_to_file("res://scene/startingGUI.tscn")
@@ -99,11 +107,6 @@ func _on_inspo_text_text_changed(new_text: String) -> void:
 	else:
 		inspo = false
 		ready_to_save()
-
-func on_NA_button() -> void:
-	%inspoText.text = "N/a"
-	inspo = true
-	ready_to_save()
 
 func _on_coat_text_text_changed(new_text: String) -> void:
 	$checkPath.awaiting_check()
@@ -213,6 +216,7 @@ func _on_confirm_button_pressed() -> void:
 		save_coat()
 
 func save_coat() -> void:
+	var save_path = GlobalScripts.join_paths(GlobalScripts.textures_root, "coats/legacy")
 	var file = FileAccess.open(path, FileAccess.WRITE)
 	if file:
 		var models = {
@@ -231,8 +235,14 @@ func save_coat() -> void:
 		
 		file.store_string(string_1)
 		file.close()
-		GlobalScripts.instructions_coat(%coatText.text, GlobalScripts.join_paths(GlobalScripts.textures_root, "coats/legacy") )
 		GlobalScripts.report("Saved the new coat, " + %coatText.text + ", to " + path)
+		
+		if text_coat:
+			coat_save_path = save_path + "/" + %coatText.text + ".png"
+			image_coat.save_png(coat_save_path)
+			GlobalScripts.report("Saved user selected image: " + coat_source + "  to the file location: " + coat_save_path)
+		else:
+			GlobalScripts.instructions_coat(%coatText.text, GlobalScripts.join_paths(GlobalScripts.textures_root, "coats/legacy") )
 		new_coat_saved.emit()
 	
 	else:
@@ -276,5 +286,22 @@ func are_you_sure() -> void:
 	$popUPexit.pop_yesNo(title, message, no_label, yes_label)
 	disable_interaction()
 
+func on_popup_exit_back() -> void:
+	enable_interaction()
+
 func on_popup_exit_confirmed() -> void:
 	get_tree().change_scene_to_file("res://scene/startingGUI.tscn")
+
+func _on_file_dialog_file_selected(selected_path: String) -> void:
+	text_coat = true
+	coat_source = path
+	image_coat = Image.load_from_file(selected_path)
+	%renderButton.button_label.text = "Coat"
+
+	var image_file_name = selected_path.split("/")
+	image_file_name = image_file_name[-1]
+	%renderLineEdit.text = " " + image_file_name
+
+func _on_render_button_button_pressed() -> void:
+	$FileDialog.visible = true
+	$FileDialog.title = "Select the Coat Texture"
