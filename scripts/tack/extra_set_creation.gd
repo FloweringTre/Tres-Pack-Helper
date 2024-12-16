@@ -185,6 +185,7 @@ func ready_to_save() -> void:
 
 #########################################################
 func _on_confirm_button_pressed() -> void:
+	disable_interaction()
 	var found_dupes = check_for_duplicates()
 	if found_dupes != 0:
 		dupe_exists(found_dupes)
