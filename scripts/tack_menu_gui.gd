@@ -71,7 +71,11 @@ func reenabled_buttons() -> void:
 
 #################### SCENE MOVING ####################
 func _on_back_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://scene/startingGUI.tscn")
+	if not_saved:
+		saved_scene = "res://scene/startingGUI.tscn"
+		not_saved_defaults()
+	else:
+		get_tree().change_scene_to_file("res://scene/startingGUI.tscn")
 
 func on_full_set() -> void:
 	if not_saved:
