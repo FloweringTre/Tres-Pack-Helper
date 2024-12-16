@@ -114,7 +114,7 @@ texture = ExtResource("3_fpbm8")
 layout_mode = 2
 theme = ExtResource("4_lgkcb")
 theme_override_colors/font_color = Color(0.178263, 0.423711, 0.665043, 1)
-text = "New Saddle Item"
+text = "New Halter Item"
 
 [node name="TextureRect2" type="TextureRect" parent="NinePatchRect/VBoxContainer/TitleContainer"]
 custom_minimum_size = Vector2(0, 28)
@@ -194,7 +194,7 @@ alignment = 1
 [node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/tackName"]
 layout_mode = 2
 theme = ExtResource("6_8xb5b")
-text = "Saddle Name"
+text = "Halter Name"
 horizontal_alignment = 2
 
 [node name="required" type="Label" parent="NinePatchRect/VBoxContainer/tackName"]
