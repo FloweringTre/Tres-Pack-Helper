@@ -209,6 +209,7 @@ func update_color_preview() -> void:
 
 #########################################################
 func _on_confirm_button_pressed() -> void:
+	disable_interaction()
 	if TackScripts.tack_dupe_check("blanket", %tackText.text):
 		dupe_exists()
 	else:
@@ -223,7 +224,7 @@ func dupe_exists() -> void:
 	disable_interaction()
 
 func _save_tack() -> void:
-	# DUPE SETS FOR ENG AND WESTERN
+	var save_path = GlobalScripts.join_paths(GlobalScripts.textures_root, "tack/blanket")
 	if custom_rack:
 		TackScripts.blanket_save(%tackText.text, %artistText.text, %inspoText.text, coin, adventure, text_icon, text_render, text_rack_sad, text_rack_5, %blanketSpinBox.value)
 	else:
@@ -233,16 +234,20 @@ func _save_tack() -> void:
 				TackScripts.colored_blanket_save(%Eng_Blanket5, %Eng_Saddle, %tackText.text, %artistText.text, %inspoText.text, coin, red, green, blue, adventure, text_icon, text_render, %blanketSpinBox.value)
 
 	if text_icon:
+		icon_save_path = save_path + "/" + GlobalScripts.text_clean(%tackText.text) + "_blanket_icon.png"
 		image_icon.save_png(icon_save_path)
 		GlobalScripts.report("Saved user selected image: " + icon_source + "  to the file location: " + icon_save_path)
 	if text_render:
+		render_save_path = save_path + "/" + GlobalScripts.text_clean(%tackText.text) + "_blanket_legacy.png"
 		image_render.save_png(render_save_path)
 		GlobalScripts.report("Saved user selected image: " + render_source + "  to the file location: " + render_save_path)
 	if text_rack_sad:
-		image_rack_5.save_png(rack_save_path_5)
+		rack_save_path_sad = save_path + "/rack_saddle_" + GlobalScripts.text_clean(%tackText.text) + "_blanket.png"
+		image_rack_sad.save_png(rack_save_path_sad)
 		GlobalScripts.report("Saved user selected image: " + rack_source_sad + "  to the file location: " + rack_save_path_sad)
 	if text_rack_5:
-		image_rack_sad.save_png(rack_save_path_sad)
+		rack_save_path_5 = save_path + "/rack_blanket_5_" + GlobalScripts.text_clean(%tackText.text) + "_blanket.png"
+		image_rack_5.save_png(rack_save_path_5)
 		GlobalScripts.report("Saved user selected image: " + rack_source_5 + "  to the file location: " + rack_save_path_5)
 	
 	if ErrorManager.is_error:
@@ -301,9 +306,7 @@ func starting_coin_values() -> void:
 
 func _on_file_dialog_file_selected(path: String) -> void:
 	var target_line : LineEdit
-	var save_path = GlobalScripts.join_paths(GlobalScripts.textures_root, "tack/blanket")
 	if file_opened == "icon":
-		icon_save_path = save_path + "/" + GlobalScripts.text_clean(%tackText.text) + "_blanket_icon.png"
 		target_line = %iconLineEdit
 		text_icon = true
 		icon_source = path
@@ -311,7 +314,6 @@ func _on_file_dialog_file_selected(path: String) -> void:
 		%iconButton.button_label.text = "Icon"
 	
 	if file_opened == "render":
-		render_save_path = save_path + "/" + GlobalScripts.text_clean(%tackText.text) + "_blanket_legacy.png"
 		target_line = %renderLineEdit
 		text_render = true
 		render_source = path
@@ -319,7 +321,6 @@ func _on_file_dialog_file_selected(path: String) -> void:
 		%renderButton.button_label.text = "Tack"
 	
 	if file_opened == "rack_sad":
-		rack_save_path_sad = save_path + "/rack_saddle_" + GlobalScripts.text_clean(%tackText.text) + "_blanket.png"
 		target_line = %rack_sadLineEdit
 		text_rack_sad = true
 		rack_source_sad = path
@@ -327,7 +328,6 @@ func _on_file_dialog_file_selected(path: String) -> void:
 		%rack_sadButton.button_label.text = "Saddle"
 	
 	if file_opened == "rack_5":
-		rack_save_path_5 = save_path + "/rack_blanket_5_" + GlobalScripts.text_clean(%tackText.text) + "_blanket.png"
 		target_line = %rack_5LineEdit
 		text_rack_5 = true
 		rack_source_5 = path

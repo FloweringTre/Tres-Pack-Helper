@@ -161,6 +161,7 @@ func ready_to_save() -> void:
 
 #########################################################
 func _on_confirm_button_pressed() -> void:
+	disable_interaction()
 	if TackScripts.tack_dupe_check("bridle", %tackText.text):
 		dupe_exists()
 	else:
@@ -175,22 +176,26 @@ func dupe_exists() -> void:
 	disable_interaction()
 
 func _save_tack() -> void:
-	# DUPE SETS FOR ENG AND WESTERN
+	var save_path = GlobalScripts.join_paths(GlobalScripts.textures_root, "tack/bridle")
 	if bri_western:
 			TackScripts.bridle_save(%tackText.text, %artistText.text, %inspoText.text, coin, "western", adventure, text_icon, text_render_head, text_render_reins, text_rack, %bridleSpinBox.value)
 	if bri_english:
 			TackScripts.bridle_save(%tackText.text, %artistText.text, %inspoText.text, coin, "english", adventure, text_icon, text_render_head, text_render_reins, text_rack, %bridleSpinBox.value)
 	
 	if text_icon:
+		icon_save_path = save_path + "/" + GlobalScripts.text_clean(%tackText.text) + "_bridle_icon.png"
 		image_icon.save_png(icon_save_path)
 		GlobalScripts.report("Saved user selected image: " + icon_source + "  to the file location: " + icon_save_path)
 	if text_render_head:
+		render_save_path_head = save_path + "/" + GlobalScripts.text_clean(%tackText.text) + "_bridle_legacy.png"
 		image_render_head.save_png(render_save_path_head)
 		GlobalScripts.report("Saved user selected image: " + render_source_head + "  to the file location: " + render_save_path_head)
 	if text_render_reins:
+		render_save_path_reins = save_path + "/" + GlobalScripts.text_clean(%tackText.text) + "_bridle_bit_legacy.png"
 		image_render_reins.save_png(render_save_path_reins)
 		GlobalScripts.report("Saved user selected image: " + render_source_reins + "  to the file location: " + render_save_path_reins)
 	if text_rack:
+		rack_save_path = save_path + "/rack_bridle_" + GlobalScripts.text_clean(%tackText.text) + "_bridle.png"
 		image_rack.save_png(rack_save_path)
 		GlobalScripts.report("Saved user selected image: " + rack_source + "  to the file location: " + rack_save_path)
 	
@@ -250,9 +255,7 @@ func starting_coin_values() -> void:
 
 func _on_file_dialog_file_selected(path: String) -> void:
 	var target_line : LineEdit
-	var save_path = GlobalScripts.join_paths(GlobalScripts.textures_root, "tack/bridle")
 	if file_opened == "icon":
-		icon_save_path = save_path + "/" + GlobalScripts.text_clean(%tackText.text) + "_bridle_icon.png"
 		target_line = %iconLineEdit
 		text_icon = true
 		icon_source = path
@@ -260,7 +263,6 @@ func _on_file_dialog_file_selected(path: String) -> void:
 		%iconButton.button_label.text = "Icon"
 	
 	if file_opened == "render_head":
-		render_save_path_head = save_path + "/" + GlobalScripts.text_clean(%tackText.text) + "_bridle_legacy.png"
 		target_line = %renderLineEdit
 		text_render_head = true
 		render_source_head = path
@@ -268,7 +270,6 @@ func _on_file_dialog_file_selected(path: String) -> void:
 		%renderButton.button_label.text = "Headstall"
 	
 	if file_opened == "render_reins":
-		render_save_path_head = save_path + "/" + GlobalScripts.text_clean(%tackText.text) + "_bridle_bit_legacy.png"
 		target_line = %renderReinsLineEdit
 		text_render_reins = true
 		render_source_reins = path
@@ -276,7 +277,6 @@ func _on_file_dialog_file_selected(path: String) -> void:
 		%renderReinsButton.button_label.text = "Reins"
 	
 	if file_opened == "rack":
-		rack_save_path = save_path + "/rack_bridle_" + GlobalScripts.text_clean(%tackText.text) + "_bridle.png"
 		target_line = %rackLineEdit
 		text_rack = true
 		rack_source = path

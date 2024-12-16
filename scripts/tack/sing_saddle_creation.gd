@@ -155,6 +155,7 @@ func ready_to_save() -> void:
 
 #########################################################
 func _on_confirm_button_pressed() -> void:
+	disable_interaction()
 	if TackScripts.tack_dupe_check("saddle", %tackText.text):
 		dupe_exists()
 	else:
@@ -169,19 +170,22 @@ func dupe_exists() -> void:
 	disable_interaction()
 
 func _save_tack() -> void:
-	# DUPE SETS FOR ENG AND WESTERN
+	var save_path = GlobalScripts.join_paths(GlobalScripts.textures_root, "tack/saddle")
 	if sad_western:
 			TackScripts.saddle_save(%tackText.text, %artistText.text, %inspoText.text, coin, "western", adventure, text_icon, text_render, text_rack, %saddleSpinBox.value)
 	if sad_english:
 			TackScripts.saddle_save(%tackText.text, %artistText.text, %inspoText.text, coin, "english", adventure, text_icon, text_render, text_rack, %saddleSpinBox.value)
 	
 	if text_icon:
+		icon_save_path = save_path + "/" + GlobalScripts.text_clean(%tackText.text) + "_saddle_icon.png"
 		image_icon.save_png(icon_save_path)
 		GlobalScripts.report("Saved user selected image: " + icon_source + "  to the file location: " + icon_save_path)
 	if text_render:
+		render_save_path = save_path + "/" + GlobalScripts.text_clean(%tackText.text) + "_saddle_legacy.png"
 		image_render.save_png(render_save_path)
 		GlobalScripts.report("Saved user selected image: " + render_source + "  to the file location: " + render_save_path)
 	if text_rack:
+		rack_save_path = save_path + "/rack_horse_armor_" + GlobalScripts.text_clean(%tackText.text) + "_saddle.png"
 		image_rack.save_png(rack_save_path)
 		GlobalScripts.report("Saved user selected image: " + rack_source + "  to the file location: " + rack_save_path)
 	
@@ -240,10 +244,8 @@ func starting_coin_values() -> void:
 	%saddleSpinBox.value = TackScripts.cost_saddle
 
 func _on_file_dialog_file_selected(path: String) -> void:
-	var save_path = GlobalScripts.join_paths(GlobalScripts.textures_root, "tack/saddle")
 	var target_line : LineEdit
 	if file_opened == "icon":
-		icon_save_path = save_path + "/" + GlobalScripts.text_clean(%tackText.text) + "_saddle_icon.png"
 		target_line = %iconLineEdit
 		text_icon = true
 		icon_source = path
@@ -251,7 +253,6 @@ func _on_file_dialog_file_selected(path: String) -> void:
 		%iconButton.button_label.text = "Icon"
 	
 	if file_opened == "render":
-		render_save_path = save_path + "/" + GlobalScripts.text_clean(%tackText.text) + "_saddle_legacy.png"
 		target_line = %renderLineEdit
 		text_render = true
 		render_source = path
@@ -259,7 +260,6 @@ func _on_file_dialog_file_selected(path: String) -> void:
 		%renderButton.button_label.text = "Tack"
 	
 	if file_opened == "rack":
-		rack_save_path = save_path + "/rack_horse_armor_" + GlobalScripts.text_clean(%tackText.text) + "_saddle.png"
 		target_line = %rackLineEdit
 		text_rack = true
 		rack_source = path
