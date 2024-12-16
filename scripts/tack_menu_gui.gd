@@ -59,7 +59,6 @@ func perm_disabled_buttons() -> void:
 	%leg_wraps.set_disabled()
 	%halters.set_disabled()
 	%saddle_bags.set_disabled()
-	%armors.set_disabled()
 
 func reenabled_buttons() -> void:
 	%saddle_set.reenable_button()
@@ -105,13 +104,25 @@ func on_extras_set() -> void:
 		get_tree().change_scene_to_file("res://scene/tack/ExtraSetCreation.tscn")
 
 func on_saddles() -> void:
-	get_tree().change_scene_to_file("res://scene/tack/SingSaddleCreation.tscn")
+	if not_saved:
+		saved_scene = "res://scene/tack/SingSaddleCreation.tscn"
+		not_saved_defaults()
+	else:
+		get_tree().change_scene_to_file("res://scene/tack/SingSaddleCreation.tscn")
 
 func on_bridles() -> void:
-	get_tree().change_scene_to_file("res://scene/tack/SingBridleCreation.tscn")
+	if not_saved:
+		saved_scene = "res://scene/tack/SingBridleCreation.tscn"
+		not_saved_defaults()
+	else:
+		get_tree().change_scene_to_file("res://scene/tack/SingBridleCreation.tscn")
 
 func on_blankets() -> void:
-	get_tree().change_scene_to_file("res://scene/tack/SingBlanketCreation.tscn")
+	if not_saved:
+		saved_scene = "res://scene/tack/SingBlanketCreation.tscn"
+		not_saved_defaults()
+	else:
+		get_tree().change_scene_to_file("res://scene/tack/SingBlanketCreation.tscn")
 
 func on_girth_straps() -> void:
 	pass
@@ -129,10 +140,18 @@ func on_saddle_bag() -> void:
 	pass
 
 func on_armors() -> void:
-	pass
+	if not_saved:
+		saved_scene = "res://scene/tack/SingArmorCreation.tscn"
+		not_saved_defaults()
+	else:
+		get_tree().change_scene_to_file("res://scene/tack/SingArmorCreation.tscn")
 
 func on_pasture_blankets() -> void:
-	get_tree().change_scene_to_file("res://scene/tack/SingPasBlanketCreation.tscn")
+	if not_saved:
+		saved_scene = "res://scene/tack/SingPasBlanketCreation.tscn"
+		not_saved_defaults()
+	else:
+		get_tree().change_scene_to_file("res://scene/tack/SingPasBlanketCreation.tscn")
 
 #################### SET DEFAULTS ####################
 func update_save_button() -> void:
