@@ -60,7 +60,6 @@ func perm_disabled_buttons() -> void:
 	%halters.set_disabled()
 	%saddle_bags.set_disabled()
 	%armors.set_disabled()
-	%pasture_blankets.set_disabled()
 
 func reenabled_buttons() -> void:
 	%saddle_set.reenable_button()
@@ -133,7 +132,7 @@ func on_armors() -> void:
 	pass
 
 func on_pasture_blankets() -> void:
-	pass
+	get_tree().change_scene_to_file("res://scene/tack/SingPasBlanketCreation.tscn")
 
 #################### SET DEFAULTS ####################
 func update_save_button() -> void:
