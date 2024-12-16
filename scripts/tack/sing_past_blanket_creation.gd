@@ -133,7 +133,7 @@ func _on_tack_text_text_changed(new_text: String) -> void:
 func update_name_previews() -> void:
 	var text = ""
 	if %tackText.text == "":
-		text = "Rose"
+		text = "Indigo"
 	else:
 		text = %tackText.text
 	if adventure:
@@ -233,11 +233,11 @@ func dupe_exists() -> void:
 	var title = ""
 	var message = ""
 	if adventure:
-		title = "This blanket already exists!"
-		message = "There already exists a blanket named '" + %tackText.text + " Armored Pasture Blanket'. \nWhat do you want to do?"
+		title = "This item already exists!"
+		message = "There already exists an item named '" + %tackText.text + " Armored Pasture Blanket'. \nWhat do you want to do?"
 	else:
-		title = "This blanket already exists!"
-		message = "There already exists a blanket named '" + %tackText.text + " Pasture Blanket'. \nWhat do you want to do?"
+		title = "This item already exists!"
+		message = "There already exists an item named '" + %tackText.text + " Pasture Blanket'. \nWhat do you want to do?"
 	var no_label = "Go Back"
 	var yes_label = "Overwrite it"
 	$popUP2_Dupe.pop_yesNo(title, message, no_label, yes_label)

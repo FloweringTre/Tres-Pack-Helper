@@ -106,11 +106,11 @@ func _on_tack_text_text_changed(new_text: String) -> void:
 func update_name_previews() -> void:
 	var text = ""
 	if %tackText.text == "":
-		text = "Rose"
+		text = "Indigo"
 	else:
 		text = %tackText.text
-	%inGameLabel.text = text + " Halter"
-	%dataLabel.text = GlobalScripts.text_clean(text) + "_halter"
+	%inGameLabel.text = text + " Breast Collar"
+	%dataLabel.text = GlobalScripts.text_clean(text) + "_breast_collar"
 
 func _on_armor_check_box_pressed() -> void:
 	if adventure:
@@ -154,8 +154,8 @@ func _on_confirm_button_pressed() -> void:
 		_save_tack()
 
 func dupe_exists() -> void:
-	var title = "This breast collar already exists!"
-	var message = "There already exists a breast collar named '" + %tackText.text + " Breast Collar'. \nWhat do you want to do?"
+	var title = "This item already exists!"
+	var message = "There already exists an item named '" + %tackText.text + " Breast Collar'. \nWhat do you want to do?"
 	var no_label = "Go Back"
 	var yes_label = "Overwrite it"
 	$popUP2_Dupe.pop_yesNo(title, message, no_label, yes_label)

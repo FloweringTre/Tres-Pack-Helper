@@ -203,8 +203,8 @@ func _on_confirm_button_pressed() -> void:
 		_save_tack()
 
 func dupe_exists() -> void:
-	var title = "This girth strap already exists!"
-	var message = "There already exists a girth strap named '" + %tackText.text + " Girth Strap'. \nWhat do you want to do?"
+	var title = "This item already exists!"
+	var message = "There already exists an item named '" + %tackText.text + " Girth Strap'. \nWhat do you want to do?"
 	var no_label = "Go Back"
 	var yes_label = "Overwrite it"
 	$popUP2_Dupe.pop_yesNo(title, message, no_label, yes_label)

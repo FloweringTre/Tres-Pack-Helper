@@ -112,7 +112,7 @@ func _on_tack_text_text_changed(new_text: String) -> void:
 func update_name_previews() -> void:
 	var text = ""
 	if %tackText.text == "":
-		text = "Rose"
+		text = "Indigo"
 	else:
 		text = %tackText.text
 	%inGameLabel.text = text + " Leg Wraps"
@@ -160,8 +160,8 @@ func _on_confirm_button_pressed() -> void:
 		_save_tack()
 
 func dupe_exists() -> void:
-	var title = "This leg wrap already exists!"
-	var message = "There already exists leg wraps named '" + %tackText.text + " Leg Wraps'. \nWhat do you want to do?"
+	var title = "This item already exists!"
+	var message = "There already exists an item named '" + %tackText.text + " Leg Wraps'. \nWhat do you want to do?"
 	var no_label = "Go Back"
 	var yes_label = "Overwrite it"
 	$popUP2_Dupe.pop_yesNo(title, message, no_label, yes_label)

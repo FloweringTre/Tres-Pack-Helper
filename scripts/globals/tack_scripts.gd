@@ -325,7 +325,7 @@ func bridle_save(item : String, artist : String, inspo : String, coin : String, 
 			ErrorManager.error_print("Couldn't save the new " + type_fancy + ". The ./json/tack/" + type + "/ folder wouldn't open. Check to see if it exists.")
 			GlobalScripts.report("Failed to save the new " + type_fancy + ", '" + item + "' to " + path)
 
-func halter_save(item : String, artist : String, inspo : String, coin : String, red : int, green : int , blue : int, adv: bool, preloaded_icon: bool, preloaded_render : bool, preloaded_rack : bool, amount : int = cost_halter) -> void:
+func halter_save(item : String, artist : String, inspo : String, coin : String, adv: bool, preloaded_icon: bool, preloaded_render : bool, preloaded_rack : bool, amount : int = cost_halter) -> void:
 	if ErrorManager.is_error:
 		return
 	else:
@@ -366,7 +366,7 @@ func halter_save(item : String, artist : String, inspo : String, coin : String, 
 			}
 			var horse = {"legacy" = legacy}
 			var data = {
-				"color" = [red, green, blue],
+				"color" = [255, 255, 255],
 				"can_wear_armor" = adv
 			}
 			var rack = {
@@ -681,7 +681,7 @@ func armor_save(item : String, artist : String, inspo : String, coin : String, t
 			ErrorManager.error_print("Couldn't save the new " + type_fancy + ". The ./json/tack/" + type + "/ folder wouldn't open. Check to see if it exists.")
 			GlobalScripts.report("Failed to save the new " + type_fancy + ", '" + item + "' to " + path)
 
-func saddle_bag_save(item : String, artist : String, inspo : String, coin : String, red : int, green : int , blue : int, preloaded_icon: bool, preloaded_render : bool, amount : int = cost_saddle_bag) -> void:
+func saddle_bag_save(item : String, artist : String, inspo : String, coin : String, preloaded_icon: bool, preloaded_render : bool, amount : int = cost_saddle_bag) -> void:
 	if ErrorManager.is_error:
 		return
 	else:
@@ -721,7 +721,7 @@ func saddle_bag_save(item : String, artist : String, inspo : String, coin : Stri
 			}
 			var horse = {"legacy" = legacy}
 			var data = {
-				"color" = [red, green, blue]
+				"color" = [255, 255, 255]
 			}
 			var rack = {
 			}

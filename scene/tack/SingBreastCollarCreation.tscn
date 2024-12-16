@@ -209,7 +209,7 @@ custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 focus_neighbor_top = NodePath("../../HBoxContainer3/artist/artistText")
 focus_previous = NodePath("../../HBoxContainer3/inspiration/inspoText")
-placeholder_text = "Rose"
+placeholder_text = "Indigo"
 
 [node name="Container" type="Container" parent="NinePatchRect/VBoxContainer/tackName"]
 custom_minimum_size = Vector2(49, 0)
@@ -242,7 +242,6 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(151, 0)
 layout_mode = 2
 theme = ExtResource("5_apt1l")
-text = "Rose Breast Collar"
 text_overrun_behavior = 3
 
 [node name="dataBoxContainer2" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/previewBox"]
@@ -259,7 +258,6 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 theme = ExtResource("5_apt1l")
-text = "rose_breast_collar"
 text_overrun_behavior = 3
 
 [node name="Spacer" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
@@ -286,11 +284,12 @@ vertical_alignment = 1
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(210, 96)
+custom_minimum_size = Vector2(210, 105)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 theme_override_constants/separation = 9
+alignment = 1
 
 [node name="armorCheck" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2

@@ -112,7 +112,7 @@ func _on_tack_text_text_changed(new_text: String) -> void:
 func update_name_previews() -> void:
 	var text = ""
 	if %tackText.text == "":
-		text = "Butterfly Morpho"
+		text = "Indigo"
 	else:
 		text = %tackText.text
 	%inGameLabel.text = text + " Halter"
@@ -160,8 +160,8 @@ func _on_confirm_button_pressed() -> void:
 		_save_tack()
 
 func dupe_exists() -> void:
-	var title = "This halter already exists!"
-	var message = "There already exists a halter named '" + %tackText.text + " Halter'. \nWhat do you want to do?"
+	var title = "This item already exists!"
+	var message = "There already exists an item named '" + %tackText.text + " Halter'. \nWhat do you want to do?"
 	var no_label = "Go Back"
 	var yes_label = "Overwrite it"
 	$popUP2_Dupe.pop_yesNo(title, message, no_label, yes_label)
@@ -169,7 +169,7 @@ func dupe_exists() -> void:
 
 func _save_tack() -> void:
 	var save_path = GlobalScripts.join_paths(GlobalScripts.textures_root, "tack/halter")
-	TackScripts.halter_save(%tackText.text, %artistText.text, %inspoText.text, coin, 255, 255, 255, adventure, text_icon, text_render, text_rack, %halterSpinBox.value)
+	TackScripts.halter_save(%tackText.text, %artistText.text, %inspoText.text, coin, adventure, text_icon, text_render, text_rack, %halterSpinBox.value)
 	
 	if text_icon:
 		icon_save_path = save_path + "/" + GlobalScripts.text_clean(%tackText.text) + "_halter_icon.png"

@@ -102,7 +102,7 @@ func _on_tack_text_text_changed(new_text: String) -> void:
 func update_name_previews() -> void:
 	var text = ""
 	if %tackText.text == "":
-		text = "Rose"
+		text = "Indigo"
 	else:
 		text = %tackText.text
 	%inGameLabel.text = text + " Saddle Bag"
@@ -142,16 +142,16 @@ func _on_confirm_button_pressed() -> void:
 		_save_tack()
 
 func dupe_exists() -> void:
-	var title = "This saddle bag already exists!"
-	var message = "There already exists a saddle bag named '" + %tackText.text + " Saddle Bag'. \nWhat do you want to do?"
+	var title = "This item already exists!"
+	var message = "There already exists an item named '" + %tackText.text + " Saddle Bag'. \nWhat do you want to do?"
 	var no_label = "Go Back"
 	var yes_label = "Overwrite it"
 	$popUP2_Dupe.pop_yesNo(title, message, no_label, yes_label)
 	disable_interaction()
 
 func _save_tack() -> void:
-	var save_path = GlobalScripts.join_paths(GlobalScripts.textures_root, "tack/breast_collar")
-	TackScripts.saddle_bag_save(%tackText.text, %artistText.text, %inspoText.text, coin, 255, 255, 255, text_icon, text_render, %saddlebagSpinBox.value)
+	var save_path = GlobalScripts.join_paths(GlobalScripts.textures_root, "tack/saddle_bag")
+	TackScripts.saddle_bag_save(%tackText.text, %artistText.text, %inspoText.text, coin, text_icon, text_render, %saddlebagSpinBox.value)
 	
 	if text_icon:
 		icon_save_path = save_path + "/" + GlobalScripts.text_clean(%tackText.text) + "_saddle_bag_icon.png"
@@ -202,7 +202,7 @@ func on_popup_exit_confirmed() -> void:
 ###########################################################
 
 func starting_coin_values() -> void:
-	%saddlebagSpinBox.value = TackScripts.cost_breast_collar
+	%saddlebagSpinBox.value = TackScripts.cost_saddle_bag
 
 func _on_file_dialog_file_selected(path: String) -> void:
 	var target_line : LineEdit

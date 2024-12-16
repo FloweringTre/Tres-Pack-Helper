@@ -53,6 +53,7 @@ func _ready() -> void:
 	$helpscreen.visible = true
 	$FileDialog.current_dir = GlobalScripts.directory_root
 	starting_coin_values()
+	update_name_previews()
 	if GlobalScripts.artist != "":
 		%artistText.text = GlobalScripts.artist
 		artist = true
@@ -134,7 +135,7 @@ func _on_tack_text_text_changed(new_text: String) -> void:
 func update_name_previews() -> void:
 	var text = ""
 	if %tackText.text == "":
-		text = "Butterfly Morpho"
+		text = "Indigo"
 	else:
 		text = %tackText.text
 	%inGameLabel.text = text + " Blanket"
@@ -217,8 +218,8 @@ func _on_confirm_button_pressed() -> void:
 		_save_tack()
 
 func dupe_exists() -> void:
-	var title = "This blanket already exists!"
-	var message = "There already exists a blanket named '" + %tackText.text + " Blanket'. \nWhat do you want to do?"
+	var title = "This item already exists!"
+	var message = "There already exists an item named '" + %tackText.text + " Blanket'. \nWhat do you want to do?"
 	var no_label = "Go Back"
 	var yes_label = "Overwrite it"
 	$popUP2_Dupe.pop_yesNo(title, message, no_label, yes_label)

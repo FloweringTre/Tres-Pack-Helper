@@ -119,7 +119,7 @@ func _on_tack_text_text_changed(new_text: String) -> void:
 func update_name_previews() -> void:
 	var text = ""
 	if %tackText.text == "":
-		text = "Rose"
+		text = "Indigo"
 	else:
 		text = %tackText.text
 	%inGameLabel.text = text + " Horse Armor"
@@ -174,8 +174,8 @@ func _on_confirm_button_pressed() -> void:
 		_save_tack()
 
 func dupe_exists() -> void:
-	var title = "This armor already exists!"
-	var message = "There already exists an armor named '" + %tackText.text + " Horse Armor'. \nWhat do you want to do?"
+	var title = "This item already exists!"
+	var message = "There already exists an item named '" + %tackText.text + " Horse Armor'. \nWhat do you want to do?"
 	var no_label = "Go Back"
 	var yes_label = "Overwrite it"
 	$popUP2_Dupe.pop_yesNo(title, message, no_label, yes_label)
@@ -291,7 +291,7 @@ func _on_render_button_button_pressed() -> void:
 func _on_rack_button_button_pressed() -> void:
 	file_opened = "rack"
 	$FileDialog.visible = true
-	$FileDialog.title = "Select the Armor Rack Texture"
+	$FileDialog.title = "Select the Rack Texture"
 
 func _on_render_wings_button_button_pressed() -> void:
 	file_opened = "render_wings"
