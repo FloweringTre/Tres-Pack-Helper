@@ -404,7 +404,9 @@ width = 0.5
 default_color = Color(0.811765, 0.67451, 0.490196, 1)
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(0, 110)
 layout_mode = 2
+alignment = 1
 
 [node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
@@ -427,6 +429,7 @@ layout_mode = 2
 
 [node name="hoofButton" parent="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer2" instance=ExtResource("9_c2rbm")]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
@@ -448,6 +451,7 @@ editable = false
 
 [node name="hoofLineEdit" type="LineEdit" parent="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer3"]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(175, 0)
 layout_mode = 2
 placeholder_text = " Hoof Texture"
@@ -591,6 +595,10 @@ dialog_hide_on_ok = true
 file_mode = 0
 access = 2
 filters = PackedStringArray("*.png;PNG Image")
+
+[node name="popUPload" parent="." instance=ExtResource("12_2yjgx")]
+visible = false
+layout_mode = 1
 
 [connection signal="text_changed" from="NinePatchRect/VBoxContainer/HBoxContainer3/artist/artistText" to="." method="_on_artist_text_text_changed"]
 [connection signal="text_changed" from="NinePatchRect/VBoxContainer/HBoxContainer3/inspiration/inspoText" to="." method="_on_inspo_text_text_changed"]

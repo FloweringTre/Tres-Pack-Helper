@@ -9,17 +9,13 @@ var adventure : bool = false
 
 var text_icon : bool = false
 var text_render : bool = false
-var text_hoof : bool = false
 
 var image_icon : Image
 var image_render : Image
-var image_hoof : Image
 var icon_save_path : String
 var render_save_path : String
-var hoof_save_path : String
 var icon_source : String
 var render_source : String
-var hoof_source : String
 
 var coin : String
 
@@ -50,12 +46,13 @@ func _ready() -> void:
 
 func on_error() -> void:
 	disable_interaction()
+	$popUPload.stop_loading()
 
 func on_error_continue() -> void:
 	enable_interaction()
 
 func _on_back_button_pressed() -> void:
-	if %artistText.text != "" or %inspoText.text != "" or %tackText.text != "" or text_icon or text_render or text_hoof:
+	if %artistText.text != "" or %inspoText.text != "" or %tackText.text != "" or text_icon or text_render:
 		are_you_sure()
 	else:
 		get_tree().change_scene_to_file("res://scene/tackMenuGUI.tscn")
@@ -153,8 +150,10 @@ func ready_to_save() -> void:
 
 #########################################################
 func _on_confirm_button_pressed() -> void:
+	$popUPload.loading("Checking for duplicates")
 	disable_interaction()
 	if TackScripts.tack_dupe_check("leg_wraps", %tackText.text):
+		$popUPload.stop_loading()
 		dupe_exists()
 	else:
 		_save_tack()
@@ -168,25 +167,28 @@ func dupe_exists() -> void:
 	disable_interaction()
 
 func _save_tack() -> void:
+	$popUPload.loading("Saving Leg Wraps")
 	var save_path = GlobalScripts.join_paths(GlobalScripts.textures_root, "tack/leg_wraps")
-	TackScripts.leg_wraps_save(%tackText.text, %artistText.text, %inspoText.text, coin, adventure, text_icon, text_render, text_hoof, %legWrapsSpinBox.value)
+	TackScripts.leg_wraps_save(%tackText.text, %artistText.text, %inspoText.text, coin, adventure, text_icon, text_render, %legWrapsSpinBox.value)
 	
 	if text_icon:
 		icon_save_path = save_path + "/" + GlobalScripts.text_clean(%tackText.text) + "_leg_wraps_icon.png"
 		image_icon.save_png(icon_save_path)
 		GlobalScripts.report("Saved user selected image: " + icon_source + "  to the file location: " + icon_save_path)
 	if text_render:
+		#save it the first time as the normal tack texture variant
 		render_save_path = save_path + "/" + GlobalScripts.text_clean(%tackText.text) + "_leg_wraps_legacy.png"
 		image_render.save_png(render_save_path)
 		GlobalScripts.report("Saved user selected image: " + render_source + "  to the file location: " + render_save_path)
-	if text_hoof:
-		hoof_save_path = save_path + "/rack_halter_lead_" + GlobalScripts.text_clean(%tackText.text) + "_leg_wraps_legacy.png"
-		image_hoof.save_png(hoof_save_path)
-		GlobalScripts.report("Saved user selected image: " + hoof_source + "  to the file location: " + hoof_save_path)
+		#save it again as the hoof variant
+		render_save_path = save_path + "/" + GlobalScripts.text_clean(%tackText.text) + "_leg_wraps_hoof_legacy.png"
+		image_render.save_png(render_save_path)
+		GlobalScripts.report("Saved user selected image: " + render_source + "  to the file location: " + render_save_path)
 	
 	if ErrorManager.is_error:
 			return
 	else:
+		$popUPload.stop_loading()
 		new_tack_saved.emit()
 
 func on_popup_dupe_back() -> void:
@@ -241,13 +243,6 @@ func _on_file_dialog_file_selected(path: String) -> void:
 		render_source = path
 		image_render = Image.load_from_file(path)
 		%renderButton.button_label.text = "Tack"
-	
-	if file_opened == "hoof":
-		target_line = %hoofLineEdit
-		text_hoof = true
-		hoof_source = path
-		image_hoof = Image.load_from_file(path)
-		%hoofButton.button_label.text = "Hoof"
 
 	var image_file_name = path.split("/")
 	image_file_name = image_file_name[-1]
@@ -262,8 +257,3 @@ func _on_render_button_button_pressed() -> void:
 	file_opened = "render"
 	$FileDialog.visible = true
 	$FileDialog.title = "Select the Tack Texture"
-
-func _on_rack_button_button_pressed() -> void:
-	file_opened = "hoof"
-	$FileDialog.visible = true
-	$FileDialog.title = "Select the Hoof Texture"

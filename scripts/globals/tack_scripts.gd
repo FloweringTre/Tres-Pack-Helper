@@ -414,7 +414,7 @@ func halter_save(item : String, artist : String, inspo : String, coin : String, 
 			ErrorManager.error_print("Couldn't save the new " + type_fancy + ". The ./json/tack/" + type + "/ folder wouldn't open. Check to see if it exists.")
 			GlobalScripts.report("Failed to save the new " + type_fancy + ", '" + item + "' to " + path)
 
-func leg_wraps_save(item : String, artist : String, inspo : String, coin : String, adv: bool, preloaded_icon: bool, preloaded_render_horse : bool, preloaded_render_hoof : bool, amount : int = cost_leg_wraps) -> void:
+func leg_wraps_save(item : String, artist : String, inspo : String, coin : String, adv: bool, preloaded_icon: bool, preloaded_render_horse : bool, amount : int = cost_leg_wraps) -> void:
 	if ErrorManager.is_error:
 		return
 	else:
@@ -486,13 +486,12 @@ func leg_wraps_save(item : String, artist : String, inspo : String, coin : Strin
 				text_1 = "    Icon Texture: " + icon + "\n" 
 			if !preloaded_render_horse:
 				text_2 = "    Horse Main Texture: " + leg_texture + "\n" 
-			if !preloaded_render_hoof:
 				text_3 = "    Horse Hoof Texture: " + leg_hoof_texture + "\n" 
 			
 			var text_list =  text_1 + text_2 + text_3
 			var text_path = GlobalScripts.join_paths(text_dir, type)
 			
-			if preloaded_icon && preloaded_render_horse && preloaded_render_hoof:
+			if preloaded_icon && preloaded_render_horse:
 				pass
 			else:
 				GlobalScripts.instructions_tack(type_fancy, item, text_list, text_path)
