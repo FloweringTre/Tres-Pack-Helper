@@ -310,7 +310,7 @@ custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
 theme = ExtResource("5_wev1s")
 theme_override_constants/line_spacing = -2
-text = "You will need to add the textures according to the INSTRUCTIONS.txt document that is generated in the pack folder. 
+text = "If you didn't preload your textures, you will need to add the textures according to the INSTRUCTIONS.txt document that is generated in the pack folder. 
 "
 horizontal_alignment = 1
 autowrap_mode = 2
@@ -370,7 +370,7 @@ custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 theme = ExtResource("5_wev1s")
 theme_override_constants/line_spacing = -2
-text = "Saddle Rack and Armor Rack textures are the exact same texture, just with different names."
+text = "For the saddle, the Saddle Rack and Armor Rack textures are the exact same texture, just with different names."
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -388,20 +388,22 @@ custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
 theme = ExtResource("5_wev1s")
 theme_override_constants/line_spacing = -2
-text = "Both the 'Normal' and 'Hoof' textures are the same for leg wraps, just with different names."
+text = "For leg wraps, both the 'Normal' and 'Hoof' textures are the same, just with different names."
 horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="spacer4" type="Container" parent="NinePatchRect/VBoxContainer"]
-custom_minimum_size = Vector2(0, 9)
+custom_minimum_size = Vector2(0, 3)
 layout_mode = 2
 theme = ExtResource("5_wev1s")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 
 [node name="HelperLabel9" type="Label" parent="NinePatchRect/VBoxContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 theme = ExtResource("6_ijdgy")
 theme_override_colors/font_color = Color(0.113924, 0.41665, 0.289974, 1)
 text = "If you have more questions or experience bugs,
@@ -410,6 +412,7 @@ horizontal_alignment = 1
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 alignment = 1
 
 [node name="HelperLabel7" type="Label" parent="NinePatchRect/VBoxContainer/VBoxContainer/HBoxContainer3"]
