@@ -45,6 +45,7 @@ func _ready() -> void:
 		ready_to_save()
 
 func on_error() -> void:
+	$popUPload.stop_loading()
 	disable_interaction()
 
 func on_error_continue() -> void:
@@ -148,7 +149,9 @@ func ready_to_save() -> void:
 #########################################################
 func _on_confirm_button_pressed() -> void:
 	disable_interaction()
+	$popUPload.loading("Checking for duplicates")
 	if TackScripts.tack_dupe_check("breast_collar", %tackText.text):
+		$popUPload.stop_loading()
 		dupe_exists()
 	else:
 		_save_tack()
@@ -162,6 +165,7 @@ func dupe_exists() -> void:
 	disable_interaction()
 
 func _save_tack() -> void:
+	$popUPload.loading("Saving Breast Collar")
 	var save_path = GlobalScripts.join_paths(GlobalScripts.textures_root, "tack/breast_collar")
 	TackScripts.breast_collar_save(%tackText.text, %artistText.text, %inspoText.text, coin, adventure, text_icon, text_render, %breastcollarSpinBox.value)
 	
@@ -177,6 +181,7 @@ func _save_tack() -> void:
 	if ErrorManager.is_error:
 			return
 	else:
+		$popUPload.stop_loading()
 		new_tack_saved.emit()
 
 func on_popup_dupe_back() -> void:

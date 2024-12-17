@@ -38,6 +38,7 @@ func _ready() -> void:
 		ready_to_save()
 
 func on_error() -> void:
+	$popUPload.stop_loading()
 	disable_interaction()
 
 func on_error_continue() -> void:
@@ -187,8 +188,10 @@ func ready_to_save() -> void:
 #########################################################
 func _on_confirm_button_pressed() -> void:
 	disable_interaction()
+	$popUPload.loading("Checking for duplicates")
 	var found_dupes = check_for_duplicates()
 	if found_dupes != 0:
+		$popUPload.stop_loading()
 		dupe_exists(found_dupes)
 	else:
 		_save_complete_tack_set()
@@ -221,26 +224,34 @@ func _save_complete_tack_set() -> void:
 		if ErrorManager.is_error:
 			return
 		else:
+			$popUPload.loading("Saving Pasture Blanket")
 			TackScripts.pasture_blanket_save(%tackText.text, %artistText.text, %inspoText.text, coin, false, false, false, false, %PBSpinBox.value)
+			$popUPload.loading("Saving Armored Pasture Blanket")
 			TackScripts.ar_pasture_blanket_save(%tackText.text, %artistText.text, %inspoText.text, coin, false, false, false, false, %armoredPBSpinBox.value)
 	else:
 		if ErrorManager.is_error:
 			return
 		else:
+			$popUPload.loading("Saving Pasture Blanket")
 			TackScripts.colored_pasture_blanket_save(%Past_5Long, %Past_3Short, %tackText.text, %artistText.text, %inspoText.text, coin, red, green, blue, false, false, %PBSpinBox.value)
+			$popUPload.loading("Saving Armored Pasture Blanket")
 			TackScripts.colored_ar_pasture_blanket_save(%ArmPast_5Long, %ArmPast_3Short, %tackText.text, %artistText.text, %inspoText.text, coin, red, green, blue, false, false, %armoredPBSpinBox.value)
 	
 	#ONE OFFS & OPTIONAL
 	if ErrorManager.is_error:
 		return
 	else:
+		$popUPload.loading("Saving Armor")
 		TackScripts.armor_save(%tackText.text, %artistText.text, %inspoText.text, coin, armor, false, false, false, false, %ArmorSpinBox.value)
-		TackScripts.saddle_bag_save(%tackText.text, %artistText.text, %inspoText.text, coin, red, green, blue, false, false, %saddleBagSpinBox.value)
-		TackScripts.halter_save(%tackText.text, %artistText.text, %inspoText.text, coin, red, green, blue, true, false, false, false, %halterSpinBox.value)
+		$popUPload.loading("Saving Saddle Bag")
+		TackScripts.saddle_bag_save(%tackText.text, %artistText.text, %inspoText.text, coin, false, false, %saddleBagSpinBox.value)
+		$popUPload.loading("Saving Halter")
+		TackScripts.halter_save(%tackText.text, %artistText.text, %inspoText.text, coin, true, false, false, false, %halterSpinBox.value)
 
 	if ErrorManager.is_error:
 			return
 	else:
+		$popUPload.stop_loading()
 		new_tack_saved.emit()
 
 func on_popup_dupe_back() -> void:

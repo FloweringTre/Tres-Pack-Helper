@@ -49,6 +49,7 @@ func _ready() -> void:
 		ready_to_save()
 
 func on_error() -> void:
+	$popUPload.stop_loading()
 	disable_interaction()
 
 func on_error_continue() -> void:
@@ -309,8 +310,10 @@ func ready_to_save() -> void:
 #########################################################
 func _on_confirm_button_pressed() -> void:
 	disable_interaction()
+	$popUPload.loading("Checking for duplicates.")
 	var found_dupes = check_for_duplicates()
 	if found_dupes != 0:
+		$popUPload.stop_loading()
 		dupe_exists(found_dupes)
 	else:
 		_save_complete_tack_set()
@@ -407,16 +410,20 @@ func _save_complete_tack_set() -> void:
 			return
 		else:
 			if pb:
+				$popUPload.loading("Saving Pasture Blanket")
 				TackScripts.pasture_blanket_save(%tackText.text, %artistText.text, %inspoText.text, coin, false, false, false, false)
 			if arpb:
+				$popUPload.loading("Saving Armored Pasture Blanket")
 				TackScripts.ar_pasture_blanket_save(%tackText.text, %artistText.text, %inspoText.text, coin, false, false, false, false)
 	else:
 		if ErrorManager.is_error:
 			return
 		else:
 			if pb:
+				$popUPload.loading("Saving Pasture Blanket")
 				TackScripts.colored_pasture_blanket_save(%Past_5Long, %Past_3Short, %tackText.text, %artistText.text, %inspoText.text, coin, red, green, blue, false, false)
 			if arpb:
+				$popUPload.loading("Saving Armored Pasture Blanket")
 				TackScripts.colored_ar_pasture_blanket_save(%ArmPast_5Long, %ArmPast_3Short, %tackText.text, %artistText.text, %inspoText.text, coin, red, green, blue, false, false)
 	
 	#ONE OFFS & OPTIONAL
@@ -424,30 +431,37 @@ func _save_complete_tack_set() -> void:
 		return
 	else:
 		if ar: # armor
+			$popUPload.loading("Saving Armor")
 			TackScripts.armor_save(%tackText.text, %artistText.text, %inspoText.text, coin, armor, false, false, false, false)
 		
 		if sb: #saddle bag
-			TackScripts.saddle_bag_save(%tackText.text, %artistText.text, %inspoText.text, coin, red, green, blue, false, false)
+			$popUPload.loading("Saving Saddle Bag")
+			TackScripts.saddle_bag_save(%tackText.text, %artistText.text, %inspoText.text, coin, false, false)
 		
 		if hal: #halter
-			TackScripts.halter_save(%tackText.text, %artistText.text, %inspoText.text, coin, red, green, blue, adventure, false, false, false)
+			$popUPload.loading("Saving Halter")
+			TackScripts.halter_save(%tackText.text, %artistText.text, %inspoText.text, coin, adventure, false, false, false)
 	if ErrorManager.is_error:
 		return
 	else:
+		$popUPload.stop_loading()
 		new_tack_saved.emit()
 
 func western_tack() -> void:
 	if ErrorManager.is_error:
 		return
 	else:
+		$popUPload.loading("Saving Saddle and Bridle")
 		TackScripts.saddle_save(west_name, %artistText.text, %inspoText.text, coin, "western", adventure, false, false, false)
 		TackScripts.bridle_save(west_name, %artistText.text, %inspoText.text, coin, "western", adventure, false, false, false, false)
 	if ErrorManager.is_error:
 		return
 	else:
+		$popUPload.loading("Saving Breast Collar and Leg Wraps")
 		TackScripts.breast_collar_save(west_name, %artistText.text, %inspoText.text, coin, adventure, false, false)
 		TackScripts.leg_wraps_save(west_name, %artistText.text, %inspoText.text, coin, adventure, false, false, false)
 	
+	$popUPload.loading("Saving Saddle Blanket and Girth Strap")
 	if custom_rack:
 		if ErrorManager.is_error:
 			return
@@ -465,14 +479,17 @@ func english_tack() -> void:
 	if ErrorManager.is_error:
 		return
 	else:
+		$popUPload.loading("Saving Saddle and Bridle")
 		TackScripts.saddle_save(eng_name, %artistText.text, %inspoText.text, coin, "english", adventure, false, false, false)
 		TackScripts.bridle_save(eng_name, %artistText.text, %inspoText.text, coin, "english", adventure, false, false, false, false,)
 	if ErrorManager.is_error:
 		return
 	else:
+		$popUPload.loading("Saving Breast Collar and Leg Wraps")
 		TackScripts.breast_collar_save(eng_name, %artistText.text, %inspoText.text, coin, adventure, false, false)
 		TackScripts.leg_wraps_save(eng_name, %artistText.text, %inspoText.text, coin, adventure, false, false, false)
 	
+	$popUPload.loading("Saving Saddle Blanket and Girth Strap")
 	if custom_rack:
 		if ErrorManager.is_error:
 			return

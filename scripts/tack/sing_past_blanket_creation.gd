@@ -58,6 +58,7 @@ func _ready() -> void:
 		ready_to_save()
 
 func on_error() -> void:
+	$popUPload.stop_loading()
 	disable_interaction()
 
 func on_error_continue() -> void:
@@ -217,14 +218,17 @@ func update_color_preview() -> void:
 
 #########################################################
 func _on_confirm_button_pressed() -> void:
+	$popUPload.loading("Checking for duplicates")
 	disable_interaction()
 	if adventure:
 		if TackScripts.tack_dupe_check("pasture blanket_armored", %tackText.text):
+			$popUPload.stop_loading()
 			dupe_exists()
 		else:
 			_save_tack()
 	else:
 		if TackScripts.tack_dupe_check("pasture_blanket", %tackText.text):
+			$popUPload.stop_loading()
 			dupe_exists()
 		else:
 			_save_tack()
@@ -247,12 +251,14 @@ func _save_tack() -> void:
 	var save_path = GlobalScripts.join_paths(GlobalScripts.textures_root, "tack/pasture_blanket")
 	var type = ""
 	if adventure:
+		$popUPload.loading("Saving Armored Pasture Blanket")
 		type = "_pasture_blanket_armored"
 		if custom_rack:
 			TackScripts.ar_pasture_blanket_save(%tackText.text, %artistText.text, %inspoText.text, coin, text_icon, text_render, text_rack_short, text_rack_long, %armoredblanketSpinBox.value)
 		else:
 			TackScripts.colored_ar_pasture_blanket_save(%ArmPast_5Long, %ArmPast_3Short, %tackText.text, %artistText.text, %inspoText.text, coin, red, green, blue, text_icon, text_render, %armoredblanketSpinBox.value)
 	else:
+		$popUPload.loading("Saving Pasture Blanket")
 		type = "_pasture_blanket"
 		if custom_rack:
 			TackScripts.pasture_blanket_save(%tackText.text, %artistText.text, %inspoText.text, coin, text_icon, text_render, text_rack_short, text_rack_long, %blanketSpinBox.value)
@@ -279,6 +285,7 @@ func _save_tack() -> void:
 	if ErrorManager.is_error:
 			return
 	else:
+		$popUPload.stop_loading()
 		new_tack_saved.emit()
 
 func on_popup_dupe_back() -> void:

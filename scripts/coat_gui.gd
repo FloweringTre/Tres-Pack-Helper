@@ -81,6 +81,7 @@ func enable_interaction () -> void:
 	%chestnutCheckBox7.disabled = false
 
 func on_error() -> void:
+	$popUPload.stop_loading()
 	disable_interaction()
 
 func on_error_continue() -> void:
@@ -204,6 +205,8 @@ func ready_to_save() -> void:
 		%confirmButton.disabled = true
 
 func _on_confirm_button_pressed() -> void:
+	$popUPload.loading("Checking for duplicates")
+	disable_interaction()
 	GlobalScripts.setup_coats()
 	on_name_check()
 	file_name = %coatText.text + ".json"
@@ -211,11 +214,13 @@ func _on_confirm_button_pressed() -> void:
 	path = GlobalScripts.join_paths(path, file_name)
 	
 	if GlobalScripts.check_file_exists(path):
+		$popUPload.stop_loading()
 		coat_exists()
 	else:
 		save_coat()
 
 func save_coat() -> void:
+	$popUPload.loading("Saving coat")
 	var save_path = GlobalScripts.join_paths(GlobalScripts.textures_root, "coats/legacy")
 	var file = FileAccess.open(path, FileAccess.WRITE)
 	if file:
@@ -243,9 +248,11 @@ func save_coat() -> void:
 			GlobalScripts.report("Saved user selected image: " + coat_source + "  to the file location: " + coat_save_path)
 		else:
 			GlobalScripts.instructions_coat(%coatText.text, GlobalScripts.join_paths(GlobalScripts.textures_root, "coats/legacy") )
+		$popUPload.stop_loading()
 		new_coat_saved.emit()
 	
 	else:
+		$popUPload.stop_loading()
 		ErrorManager.error_print("I couldn't save the new coat. The ./json/coat/ folder wouldn't open. Check to see if it exists.")
 		GlobalScripts.report("Failed to save the new coat, '" + %coatText.text + "' to " + path)
 

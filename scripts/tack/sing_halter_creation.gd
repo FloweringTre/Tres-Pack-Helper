@@ -49,6 +49,7 @@ func _ready() -> void:
 		ready_to_save()
 
 func on_error() -> void:
+	$popUPload.stop_loading()
 	disable_interaction()
 
 func on_error_continue() -> void:
@@ -153,8 +154,10 @@ func ready_to_save() -> void:
 
 #########################################################
 func _on_confirm_button_pressed() -> void:
+	$popUPload.loading("Checking for duplicates")
 	disable_interaction()
 	if TackScripts.tack_dupe_check("halter", %tackText.text):
+		$popUPload.stop_loading()
 		dupe_exists()
 	else:
 		_save_tack()
@@ -168,6 +171,7 @@ func dupe_exists() -> void:
 	disable_interaction()
 
 func _save_tack() -> void:
+	$popUPload.loading("Saving Halter")
 	var save_path = GlobalScripts.join_paths(GlobalScripts.textures_root, "tack/halter")
 	TackScripts.halter_save(%tackText.text, %artistText.text, %inspoText.text, coin, adventure, text_icon, text_render, text_rack, %halterSpinBox.value)
 	
@@ -187,6 +191,7 @@ func _save_tack() -> void:
 	if ErrorManager.is_error:
 			return
 	else:
+		$popUPload.stop_loading()
 		new_tack_saved.emit()
 
 func on_popup_dupe_back() -> void:

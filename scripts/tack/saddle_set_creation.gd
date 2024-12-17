@@ -42,6 +42,7 @@ func _ready() -> void:
 		ready_to_save()
 
 func on_error() -> void:
+	$popUPload.stop_loading()
 	disable_interaction()
 
 func on_error_continue() -> void:
@@ -192,8 +193,10 @@ func ready_to_save() -> void:
 #########################################################
 func _on_confirm_button_pressed() -> void:
 	disable_interaction()
+	$popUPload.loading("Checking for duplicate tack items.")
 	var found_dupes = check_for_duplicates()
 	if found_dupes != 0:
+		$popUPload.stop_loading()
 		dupe_exists(found_dupes)
 	else:
 		_save_complete_tack_set()
@@ -224,24 +227,26 @@ func check_for_duplicates():
 
 func _save_complete_tack_set() -> void:
 	# DUPE SETS FOR ENG AND WESTERN
+	$popUPload.loading("Saving Saddle")
 	if sad_western:
 			TackScripts.saddle_save(%tackText.text, %artistText.text, %inspoText.text, coin, "western", adventure, false, false, false, %saddleSpinBox.value,)
 
 	if sad_english:
 			TackScripts.saddle_save(%tackText.text, %artistText.text, %inspoText.text, coin, "english", adventure, false, false, false, %saddleSpinBox.value)
-
+	
+	$popUPload.loading("Saving Bridle")
 	if bri_western:
 		if ErrorManager.is_error:
 			return
 		else:
 			TackScripts.bridle_save(%tackText.text, %artistText.text, %inspoText.text, coin, "western", adventure, false, false, false, %bridleSpinBox.value)
-
 	if bri_english:
 		if ErrorManager.is_error:
 			return
 		else:
 			TackScripts.bridle_save(%tackText.text, %artistText.text, %inspoText.text, coin, "english", adventure, false, false, false, %bridleSpinBox.value)
-
+	
+	$popUPload.loading("Saving Blanket & Girth Strap")
 	if bla_western:
 		if custom_rack:
 			if ErrorManager.is_error:
@@ -271,11 +276,13 @@ func _save_complete_tack_set() -> void:
 	if ErrorManager.is_error:
 		return
 	else:
+		$popUPload.loading("Saving Breast Collar & Leg Wraps")
 		TackScripts.breast_collar_save(%tackText.text, %artistText.text, %inspoText.text, coin, adventure, false, false, %breastCollarSpinBox.value)
-		TackScripts.leg_wraps_save(%tackText.text, %artistText.text, %inspoText.text, coin, adventure, false, false, false, %legWrapsSpinBox.value)
+		TackScripts.leg_wraps_save(%tackText.text, %artistText.text, %inspoText.text, coin, adventure, false, false, %legWrapsSpinBox.value)
 	if ErrorManager.is_error:
 			return
 	else:
+		$popUPload.stop_loading()
 		new_tack_saved.emit()
 
 func on_popup_dupe_back() -> void:

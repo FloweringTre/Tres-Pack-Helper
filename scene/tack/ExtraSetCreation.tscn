@@ -811,6 +811,10 @@ unique_name_in_owner = true
 position = Vector2(759, 64)
 texture = ExtResource("17_jjydr")
 
+[node name="popUPload" parent="." instance=ExtResource("9_qo3yb")]
+visible = false
+layout_mode = 1
+
 [connection signal="text_changed" from="NinePatchRect/VBoxContainer/HBoxContainer3/artist/artistText" to="." method="_on_artist_text_text_changed"]
 [connection signal="text_changed" from="NinePatchRect/VBoxContainer/HBoxContainer3/inspiration/inspoText" to="." method="_on_inspo_text_text_changed"]
 [connection signal="text_changed" from="NinePatchRect/VBoxContainer/tackName/tackText" to="." method="_on_tack_text_text_changed"]
