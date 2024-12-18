@@ -8,7 +8,6 @@
 [ext_resource type="Theme" uid="uid://cf6ttsgxwgavd" path="res://assets/UI_theme_blue.tres" id="5_o5bxr"]
 [ext_resource type="PackedScene" uid="uid://cp0jrapb6x6a2" path="res://scene/components/buttonSMOL.tscn" id="5_uwvmr"]
 [ext_resource type="PackedScene" uid="uid://b3cou3ndcs75h" path="res://scene/components/error_message.tscn" id="6_iaop6"]
-[ext_resource type="Theme" uid="uid://db3wwmhf400fw" path="res://assets/UI_theme_dark_big.tres" id="7_7bhpy"]
 [ext_resource type="Theme" uid="uid://vjxbkxdwdxu4" path="res://assets/UI_theme_alert.tres" id="7_7ylay"]
 [ext_resource type="Theme" uid="uid://d1f8o0u5d7nrp" path="res://assets/UI_theme_green.tres" id="8_e2603"]
 [ext_resource type="PackedScene" uid="uid://cdigxro282sfm" path="res://scene/components/checkAlert.tscn" id="9_xnwmn"]
@@ -16,6 +15,7 @@
 [ext_resource type="Theme" uid="uid://cof5u4dam7c2t" path="res://assets/UI_theme_shadowed.tres" id="10_p8xtw"]
 [ext_resource type="PackedScene" uid="uid://bpgiy2j33slge" path="res://scene/components/pop_up.tscn" id="12_kwseo"]
 [ext_resource type="PackedScene" uid="uid://clixcby1mmxr3" path="res://scene/helpScreen.tscn" id="13_g6yan"]
+[ext_resource type="Texture2D" uid="uid://diy8htskfybtd" path="res://assets/moon_bg.png" id="17_6xagu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kx556"]
 atlas = ExtResource("1_lx5dw")
@@ -63,6 +63,32 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_3an53")
+
+[node name="background" type="Control" parent="."]
+anchors_preset = 0
+offset_left = -640.0
+offset_top = -360.0
+offset_right = -600.0
+offset_bottom = -320.0
+
+[node name="TextureRect2" type="TextureRect" parent="background"]
+z_index = -3
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 32.6
+anchor_bottom = 18.65
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 1260.0
+offset_bottom = 700.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("17_6xagu")
+stretch_mode = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 layout_mode = 1
@@ -199,31 +225,43 @@ button_text = "Clean"
 layout_mode = 2
 
 [node name="HelperLabel2" type="Label" parent="NinePatchRect/VBoxContainer/Stage1BoxContainer"]
-custom_minimum_size = Vector2(0, 28)
+custom_minimum_size = Vector2(500, 28)
 layout_mode = 2
+size_flags_horizontal = 4
 theme = ExtResource("5_o5bxr")
-text = "This is what the new pack folder will be named or the folder that will be opened.
-The name needs to only include lower case letters, numbers, and underscores. 
-The 'Clean' button will ensure it is java compliant for you!"
+text = "This is what the new pack folder will be named The name needs to only include lower case letters, numbers, and underscores. The 'Clean' button will ensure it is java compliant for you!"
 horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="HelperLabel4" type="Label" parent="NinePatchRect/VBoxContainer/Stage1BoxContainer"]
 custom_minimum_size = Vector2(0, 14)
 layout_mode = 2
 theme = ExtResource("8_e2603")
-text = "Each pack needs to have a unique name... so keep that in mind while naming this pack!"
+text = "Each pack needs to have a unique name. If two packs or tack items have the same name, errors will occur."
 horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="HelperLabel3" type="Label" parent="NinePatchRect/VBoxContainer/Stage1BoxContainer"]
 custom_minimum_size = Vector2(0, 56)
 layout_mode = 2
-theme = ExtResource("7_7bhpy")
-text = "Press the check mark below to generate or open your pack folder and get started on the process!"
+theme = ExtResource("2_em82s")
+text = "Press the buttons to earn a chech mark on each line.
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="HelperLabel6" type="Label" parent="NinePatchRect/VBoxContainer/Stage1BoxContainer"]
+layout_mode = 2
+theme = ExtResource("10_5yckn")
+text = "After you have a check mark in each required field above, you will be able to press the checkmark
+below and start generating your SWEM Community Pack!"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="HelperLabel5" type="Label" parent="NinePatchRect/VBoxContainer/Stage1BoxContainer"]
+visible = false
 custom_minimum_size = Vector2(380, 15)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -425,6 +463,7 @@ ok_button_text = "Select Current Folder"
 dialog_hide_on_ok = true
 file_mode = 2
 access = 2
+use_native_dialog = true
 
 [connection signal="focus_exited" from="NinePatchRect/VBoxContainer/Hbox/locationText" to="." method="_on_location_text_focus_exited"]
 [connection signal="text_changed" from="NinePatchRect/VBoxContainer/Hbox/locationText" to="." method="_on_location_text_text_changed"]
