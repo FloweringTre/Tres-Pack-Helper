@@ -93,7 +93,7 @@ func blanket_save(item : String, artist : String, inspo : String, coin : String,
 			
 			var save_file = {"display" = display, "cost" = cost, "meta" = meta}
 			
-			var string_1 = JSON.stringify(save_file, "\t")
+			var string_1 = JSON.stringify(save_file, "   ")
 			
 			file.store_string(string_1)
 			file.close()
@@ -198,7 +198,7 @@ func saddle_save(item : String, artist : String, inspo : String, coin : String, 
 			
 			var save_file = {"display" = display, "cost" = cost, "meta" = meta}
 			
-			var string_1 = JSON.stringify(save_file, "\t")
+			var string_1 = JSON.stringify(save_file, "   ")
 			
 			file.store_string(string_1)
 			file.close()
@@ -291,7 +291,7 @@ func bridle_save(item : String, artist : String, inspo : String, coin : String, 
 			
 			var save_file = {"display" = display, "cost" = cost, "meta" = meta}
 			
-			var string_1 = JSON.stringify(save_file, "\t")
+			var string_1 = JSON.stringify(save_file, "   ")
 			
 			file.store_string(string_1)
 			file.close()
@@ -384,7 +384,7 @@ func halter_save(item : String, artist : String, inspo : String, coin : String, 
 			
 			var save_file = {"display" = display, "cost" = cost, "meta" = meta}
 			
-			var string_1 = JSON.stringify(save_file, "\t")
+			var string_1 = JSON.stringify(save_file, "   ")
 			
 			file.store_string(string_1)
 			file.close()
@@ -473,7 +473,7 @@ func leg_wraps_save(item : String, artist : String, inspo : String, coin : Strin
 			
 			var save_file = {"display" = display, "cost" = cost, "meta" = meta}
 			
-			var string_1 = JSON.stringify(save_file, "\t")
+			var string_1 = JSON.stringify(save_file, "   ")
 			
 			file.store_string(string_1)
 			file.close()
@@ -559,7 +559,7 @@ func breast_collar_save(item : String, artist : String, inspo : String, coin : S
 			
 			var save_file = {"display" = display, "cost" = cost, "meta" = meta}
 			
-			var string_1 = JSON.stringify(save_file, "\t")
+			var string_1 = JSON.stringify(save_file, "   ")
 			
 			file.store_string(string_1)
 			file.close()
@@ -646,7 +646,7 @@ func armor_save(item : String, artist : String, inspo : String, coin : String, t
 			
 			var save_file = {"display" = display, "cost" = cost, "meta" = meta}
 			
-			var string_1 = JSON.stringify(save_file, "\t")
+			var string_1 = JSON.stringify(save_file, "   ")
 			
 			file.store_string(string_1)
 			file.close()
@@ -736,7 +736,7 @@ func saddle_bag_save(item : String, artist : String, inspo : String, coin : Stri
 			
 			var save_file = {"display" = display, "cost" = cost, "meta" = meta}
 			
-			var string_1 = JSON.stringify(save_file, "\t")
+			var string_1 = JSON.stringify(save_file, "   ")
 			
 			file.store_string(string_1)
 			file.close()
@@ -822,7 +822,7 @@ func girth_straps_save(item : String, artist : String, inspo : String, coin : St
 			
 			var save_file = {"display" = display, "cost" = cost, "meta" = meta}
 			
-			var string_1 = JSON.stringify(save_file, "\t")
+			var string_1 = JSON.stringify(save_file, "   ")
 			
 			file.store_string(string_1)
 			file.close()
@@ -913,7 +913,7 @@ func pasture_blanket_save(item : String, artist : String, inspo : String, coin :
 			
 			var save_file = {"display" = display, "cost" = cost, "meta" = meta}
 			
-			var string_1 = JSON.stringify(save_file, "\t")
+			var string_1 = JSON.stringify(save_file, "   ")
 			
 			file.store_string(string_1)
 			file.close()
@@ -1009,7 +1009,7 @@ func ar_pasture_blanket_save(item : String, artist : String, inspo : String, coi
 			
 			var save_file = {"display" = display, "cost" = cost, "meta" = meta}
 			
-			var string_1 = JSON.stringify(save_file, "\t")
+			var string_1 = JSON.stringify(save_file, "   ")
 			
 			file.store_string(string_1)
 			file.close()
@@ -1114,7 +1114,7 @@ func colored_blanket_save(rack_5 : Sprite2D, rack_saddle : Sprite2D, item : Stri
 			
 			var save_file = {"display" = display, "cost" = cost, "meta" = meta}
 			
-			var string_1 = JSON.stringify(save_file, "\t")
+			var string_1 = JSON.stringify(save_file, "   ")
 			
 			file.store_string(string_1)
 			file.close()
@@ -1205,7 +1205,7 @@ func colored_girth_strap_save(rack_saddle : Sprite2D, item : String, artist : St
 			
 			var save_file = {"display" = display, "cost" = cost, "meta" = meta}
 			
-			var string_1 = JSON.stringify(save_file, "\t")
+			var string_1 = JSON.stringify(save_file, "   ")
 			
 			file.store_string(string_1)
 			file.close()
@@ -1302,7 +1302,7 @@ func colored_pasture_blanket_save(rack_long : Sprite2D, rack_short : Sprite2D, i
 			
 			var save_file = {"display" = display, "cost" = cost, "meta" = meta}
 			
-			var string_1 = JSON.stringify(save_file, "\t")
+			var string_1 = JSON.stringify(save_file, "   ")
 			
 			file.store_string(string_1)
 			file.close()
@@ -1401,7 +1401,7 @@ func colored_ar_pasture_blanket_save(rack_long : Sprite2D, rack_short : Sprite2D
 			
 			var save_file = {"display" = display, "cost" = cost, "meta" = meta}
 			
-			var string_1 = JSON.stringify(save_file, "\t")
+			var string_1 = JSON.stringify(save_file, "   ")
 			
 			file.store_string(string_1)
 			file.close()
