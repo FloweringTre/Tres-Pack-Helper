@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cryve85pre2tf"]
+[gd_scene load_steps=29 format=3 uid="uid://cryve85pre2tf"]
 
 [ext_resource type="Script" path="res://scripts/tack/extra_set_creation.gd" id="1_4ow3j"]
 [ext_resource type="Texture2D" uid="uid://8f0rfohmniwa" path="res://assets/menuUI.png" id="2_cmvyj"]
@@ -22,6 +22,10 @@
 [sub_resource type="AtlasTexture" id="AtlasTexture_kx556"]
 atlas = ExtResource("2_cmvyj")
 region = Rect2(58, 10, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ppd50"]
+atlas = ExtResource("2_cmvyj")
+region = Rect2(10, 58, 28, 28)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ytf6o"]
 atlas = ExtResource("2_cmvyj")
@@ -127,6 +131,7 @@ theme_override_constants/separation = 3
 alignment = 1
 
 [node name="TitleContainer" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
+custom_minimum_size = Vector2(598, 0)
 layout_mode = 2
 theme_override_constants/separation = 130
 alignment = 1
@@ -288,7 +293,7 @@ text = "butterfly_morpho_bridle"
 text_overrun_behavior = 3
 
 [node name="Spacer" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
-custom_minimum_size = Vector2(0, 5)
+custom_minimum_size = Vector2(0, 9)
 layout_mode = 2
 alignment = 1
 
@@ -299,71 +304,90 @@ points = PackedVector2Array(176.296, 2, -1, 2)
 width = 1.0
 default_color = Color(0.811765, 0.67451, 0.490196, 1)
 
-[node name="Container2" type="Container" parent="NinePatchRect/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="TabBar" type="TabBar" parent="NinePatchRect/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+current_tab = 0
+tab_count = 5
+tab_0/title = "Armor"
+tab_1/title = "Saddle Bag"
+tab_2/title = "Halter"
+tab_3/title = "Pasture Blanket"
+tab_4/title = "Armored Pasture Blanket"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Container2" type="Container" parent="NinePatchRect/VBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 3)
 layout_mode = 2
 
-[node name="helperLabel7" type="Label" parent="NinePatchRect/VBoxContainer"]
+[node name="helperLabel7" type="Label" parent="NinePatchRect/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("7_7iklp")
 text = "~~ Set Tack Information ~~"
 horizontal_alignment = 1
 
-[node name="Container3" type="Container" parent="NinePatchRect/VBoxContainer"]
+[node name="Container3" type="Container" parent="NinePatchRect/VBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 3)
 layout_mode = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Container2" type="Container" parent="NinePatchRect/VBoxContainer/HBoxContainer2"]
+[node name="Container2" type="Container" parent="NinePatchRect/VBoxContainer/VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(39, 0)
 layout_mode = 2
 
-[node name="custCheck" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer2"]
+[node name="custCheck" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 theme_override_constants/separation = -1
 
-[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer2/custCheck"]
+[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/VBoxContainer/HBoxContainer2/custCheck"]
 layout_mode = 2
 theme = ExtResource("6_s5vfx")
 text = "Custom Pasture Blanket Racks?"
 horizontal_alignment = 2
 
-[node name="custCheckBox" type="CheckBox" parent="NinePatchRect/VBoxContainer/HBoxContainer2/custCheck"]
+[node name="custCheckBox" type="CheckBox" parent="NinePatchRect/VBoxContainer/VBoxContainer/HBoxContainer2/custCheck"]
 unique_name_in_owner = true
 layout_mode = 2
-focus_neighbor_top = NodePath("../../../tackName/tackText")
+focus_neighbor_top = NodePath("../../../../tackName/tackText")
 focus_neighbor_bottom = NodePath("../../VBoxContainer2/EDITBoxContainer/redSpinBox")
 
-[node name="custLabel" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer2/custCheck"]
+[node name="custLabel" type="Label" parent="NinePatchRect/VBoxContainer/VBoxContainer/HBoxContainer2/custCheck"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(21, 0)
 layout_mode = 2
 theme = ExtResource("5_jy6up")
 text = "No"
 
-[node name="Container" type="Container" parent="NinePatchRect/VBoxContainer/HBoxContainer2/custCheck"]
+[node name="Container" type="Container" parent="NinePatchRect/VBoxContainer/VBoxContainer/HBoxContainer2/custCheck"]
 visible = false
 custom_minimum_size = Vector2(-2, 0)
 layout_mode = 2
 
-[node name="EDITBoxContainer" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer2/custCheck"]
+[node name="EDITBoxContainer" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/VBoxContainer/HBoxContainer2/custCheck"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 2
 
-[node name="Container" type="Container" parent="NinePatchRect/VBoxContainer/HBoxContainer2/custCheck/EDITBoxContainer"]
+[node name="Container" type="Container" parent="NinePatchRect/VBoxContainer/VBoxContainer/HBoxContainer2/custCheck/EDITBoxContainer"]
 custom_minimum_size = Vector2(13, 0)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer2/custCheck/EDITBoxContainer"]
+[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/VBoxContainer/HBoxContainer2/custCheck/EDITBoxContainer"]
 layout_mode = 2
 theme = ExtResource("6_s5vfx")
 text = "Rack Color:"
 horizontal_alignment = 2
 
-[node name="redSpinBox" type="SpinBox" parent="NinePatchRect/VBoxContainer/HBoxContainer2/custCheck/EDITBoxContainer"]
+[node name="redSpinBox" type="SpinBox" parent="NinePatchRect/VBoxContainer/VBoxContainer/HBoxContainer2/custCheck/EDITBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
@@ -377,14 +401,14 @@ max_value = 255.0
 step = 0.1
 value = 255.0
 
-[node name="Label2" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer2/custCheck/EDITBoxContainer"]
+[node name="Label2" type="Label" parent="NinePatchRect/VBoxContainer/VBoxContainer/HBoxContainer2/custCheck/EDITBoxContainer"]
 layout_mode = 2
 theme = ExtResource("6_s5vfx")
 theme_override_colors/font_color = Color(0.605674, 1.66051e-06, 3.85046e-07, 1)
 text = "Red  "
 horizontal_alignment = 2
 
-[node name="greenSpinBox" type="SpinBox" parent="NinePatchRect/VBoxContainer/HBoxContainer2/custCheck/EDITBoxContainer"]
+[node name="greenSpinBox" type="SpinBox" parent="NinePatchRect/VBoxContainer/VBoxContainer/HBoxContainer2/custCheck/EDITBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
@@ -399,14 +423,14 @@ max_value = 255.0
 step = 0.1
 value = 255.0
 
-[node name="Label3" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer2/custCheck/EDITBoxContainer"]
+[node name="Label3" type="Label" parent="NinePatchRect/VBoxContainer/VBoxContainer/HBoxContainer2/custCheck/EDITBoxContainer"]
 layout_mode = 2
 theme = ExtResource("6_s5vfx")
 theme_override_colors/font_color = Color(1.92523e-06, 0.41793, 1.92523e-07, 1)
 text = "Green  "
 horizontal_alignment = 2
 
-[node name="blueSpinBox" type="SpinBox" parent="NinePatchRect/VBoxContainer/HBoxContainer2/custCheck/EDITBoxContainer"]
+[node name="blueSpinBox" type="SpinBox" parent="NinePatchRect/VBoxContainer/VBoxContainer/HBoxContainer2/custCheck/EDITBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
@@ -420,40 +444,40 @@ max_value = 255.0
 step = 0.1
 value = 255.0
 
-[node name="Label4" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer2/custCheck/EDITBoxContainer"]
+[node name="Label4" type="Label" parent="NinePatchRect/VBoxContainer/VBoxContainer/HBoxContainer2/custCheck/EDITBoxContainer"]
 layout_mode = 2
 theme = ExtResource("6_s5vfx")
 theme_override_colors/font_color = Color(0.0936844, 0.321806, 0.95922, 1)
 text = "Blue"
 horizontal_alignment = 2
 
-[node name="Polygon2D" type="Polygon2D" parent="NinePatchRect/VBoxContainer/HBoxContainer2/custCheck/EDITBoxContainer"]
+[node name="Polygon2D" type="Polygon2D" parent="NinePatchRect/VBoxContainer/VBoxContainer/HBoxContainer2/custCheck/EDITBoxContainer"]
 position = Vector2(299, -1.5)
 color = Color(0.337255, 0.27451, 0.203922, 1)
 polygon = PackedVector2Array(0, 0, 26, 0, 26, 26, 0, 26)
 
-[node name="colorPreview" type="Polygon2D" parent="NinePatchRect/VBoxContainer/HBoxContainer2/custCheck/EDITBoxContainer"]
+[node name="colorPreview" type="Polygon2D" parent="NinePatchRect/VBoxContainer/VBoxContainer/HBoxContainer2/custCheck/EDITBoxContainer"]
 unique_name_in_owner = true
 position = Vector2(300, -0.5)
 polygon = PackedVector2Array(0, 0, 24, 0, 24, 24, 0, 24)
 
-[node name="STATICBoxContainer" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer2/custCheck"]
+[node name="STATICBoxContainer" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/VBoxContainer/HBoxContainer2/custCheck"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 theme_override_constants/separation = 2
 
-[node name="Container" type="Container" parent="NinePatchRect/VBoxContainer/HBoxContainer2/custCheck/STATICBoxContainer"]
+[node name="Container" type="Container" parent="NinePatchRect/VBoxContainer/VBoxContainer/HBoxContainer2/custCheck/STATICBoxContainer"]
 custom_minimum_size = Vector2(13, 0)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer2/custCheck/STATICBoxContainer"]
+[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/VBoxContainer/HBoxContainer2/custCheck/STATICBoxContainer"]
 layout_mode = 2
 theme = ExtResource("6_s5vfx")
 text = "Rack Color:"
 horizontal_alignment = 2
 
-[node name="redSpinBoxs" type="SpinBox" parent="NinePatchRect/VBoxContainer/HBoxContainer2/custCheck/STATICBoxContainer"]
+[node name="redSpinBoxs" type="SpinBox" parent="NinePatchRect/VBoxContainer/VBoxContainer/HBoxContainer2/custCheck/STATICBoxContainer"]
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 theme = ExtResource("4_ud3xd")
@@ -462,14 +486,14 @@ step = 0.1
 value = 255.0
 editable = false
 
-[node name="Label2" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer2/custCheck/STATICBoxContainer"]
+[node name="Label2" type="Label" parent="NinePatchRect/VBoxContainer/VBoxContainer/HBoxContainer2/custCheck/STATICBoxContainer"]
 layout_mode = 2
 theme = ExtResource("6_s5vfx")
 theme_override_colors/font_color = Color(0.45038, 0.249676, 0.237129, 1)
 text = "Red  "
 horizontal_alignment = 2
 
-[node name="greenSpinBoxs" type="SpinBox" parent="NinePatchRect/VBoxContainer/HBoxContainer2/custCheck/STATICBoxContainer"]
+[node name="greenSpinBoxs" type="SpinBox" parent="NinePatchRect/VBoxContainer/VBoxContainer/HBoxContainer2/custCheck/STATICBoxContainer"]
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 theme = ExtResource("4_ud3xd")
@@ -478,14 +502,14 @@ step = 0.1
 value = 255.0
 editable = false
 
-[node name="Label3" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer2/custCheck/STATICBoxContainer"]
+[node name="Label3" type="Label" parent="NinePatchRect/VBoxContainer/VBoxContainer/HBoxContainer2/custCheck/STATICBoxContainer"]
 layout_mode = 2
 theme = ExtResource("6_s5vfx")
 theme_override_colors/font_color = Color(0.363304, 0.402131, 0.317398, 1)
 text = "Green  "
 horizontal_alignment = 2
 
-[node name="blueSpinBoxs" type="SpinBox" parent="NinePatchRect/VBoxContainer/HBoxContainer2/custCheck/STATICBoxContainer"]
+[node name="blueSpinBoxs" type="SpinBox" parent="NinePatchRect/VBoxContainer/VBoxContainer/HBoxContainer2/custCheck/STATICBoxContainer"]
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 theme = ExtResource("4_ud3xd")
@@ -494,50 +518,50 @@ step = 0.1
 value = 255.0
 editable = false
 
-[node name="Label4" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer2/custCheck/STATICBoxContainer"]
+[node name="Label4" type="Label" parent="NinePatchRect/VBoxContainer/VBoxContainer/HBoxContainer2/custCheck/STATICBoxContainer"]
 layout_mode = 2
 theme = ExtResource("6_s5vfx")
 theme_override_colors/font_color = Color(0.383492, 0.452497, 0.609917, 1)
 text = "Blue"
 horizontal_alignment = 2
 
-[node name="Polygon2D" type="Polygon2D" parent="NinePatchRect/VBoxContainer/HBoxContainer2/custCheck/STATICBoxContainer"]
+[node name="Polygon2D" type="Polygon2D" parent="NinePatchRect/VBoxContainer/VBoxContainer/HBoxContainer2/custCheck/STATICBoxContainer"]
 position = Vector2(299, -1.5)
 color = Color(0.337255, 0.27451, 0.203922, 1)
 polygon = PackedVector2Array(0, 0, 26, 0, 26, 26, 0, 26)
 
-[node name="colorPreviews" type="Polygon2D" parent="NinePatchRect/VBoxContainer/HBoxContainer2/custCheck/STATICBoxContainer"]
+[node name="colorPreviews" type="Polygon2D" parent="NinePatchRect/VBoxContainer/VBoxContainer/HBoxContainer2/custCheck/STATICBoxContainer"]
 position = Vector2(300, -0.5)
 polygon = PackedVector2Array(0, 0, 24, 0, 24, 24, 0, 24)
 
-[node name="Container" type="Container" parent="NinePatchRect/VBoxContainer"]
+[node name="Container" type="Container" parent="NinePatchRect/VBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 3)
 layout_mode = 2
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
+[node name="HBoxContainer4" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(598, 0)
 layout_mode = 2
 
-[node name="Container" type="Container" parent="NinePatchRect/VBoxContainer/HBoxContainer4"]
+[node name="Container" type="Container" parent="NinePatchRect/VBoxContainer/VBoxContainer/HBoxContainer4"]
 custom_minimum_size = Vector2(39, 0)
 layout_mode = 2
 
-[node name="armorType" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer4"]
+[node name="armorType" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/VBoxContainer/HBoxContainer4"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer4/armorType"]
+[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/VBoxContainer/HBoxContainer4/armorType"]
 layout_mode = 2
 theme = ExtResource("6_s5vfx")
 text = "Armor Tier"
 horizontal_alignment = 2
 
-[node name="required" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer4/armorType"]
+[node name="required" type="Label" parent="NinePatchRect/VBoxContainer/VBoxContainer/HBoxContainer4/armorType"]
 layout_mode = 2
 theme = ExtResource("6_ugyjf")
 text = "*"
 horizontal_alignment = 2
 
-[node name="armorOptions" type="OptionButton" parent="NinePatchRect/VBoxContainer/HBoxContainer4/armorType"]
+[node name="armorOptions" type="OptionButton" parent="NinePatchRect/VBoxContainer/VBoxContainer/HBoxContainer4/armorType"]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_top = NodePath("../../../HBoxContainer2/custCheck/custCheckBox")
@@ -557,27 +581,27 @@ popup/item_3/id = 3
 popup/item_4/text = "Amethyst"
 popup/item_4/id = 4
 
-[node name="Container2" type="Container" parent="NinePatchRect/VBoxContainer/HBoxContainer4"]
+[node name="Container2" type="Container" parent="NinePatchRect/VBoxContainer/VBoxContainer/HBoxContainer4"]
 custom_minimum_size = Vector2(144, 0)
 layout_mode = 2
 
-[node name="moneyCheck" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer4"]
+[node name="moneyCheck" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/VBoxContainer/HBoxContainer4"]
 layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer4/moneyCheck"]
+[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/VBoxContainer/HBoxContainer4/moneyCheck"]
 layout_mode = 2
 theme = ExtResource("6_s5vfx")
 text = "Purchasing Coin"
 horizontal_alignment = 2
 
-[node name="required" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer4/moneyCheck"]
+[node name="required" type="Label" parent="NinePatchRect/VBoxContainer/VBoxContainer/HBoxContainer4/moneyCheck"]
 layout_mode = 2
 theme = ExtResource("6_ugyjf")
 text = "*"
 horizontal_alignment = 2
 
-[node name="coinOptions" type="OptionButton" parent="NinePatchRect/VBoxContainer/HBoxContainer4/moneyCheck"]
+[node name="coinOptions" type="OptionButton" parent="NinePatchRect/VBoxContainer/VBoxContainer/HBoxContainer4/moneyCheck"]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_top = NodePath("../../../HBoxContainer2/custCheck/EDITBoxContainer/greenSpinBox")
@@ -600,30 +624,30 @@ popup/item_5/id = 5
 popup/item_6/text = "Amethyst"
 popup/item_6/id = 6
 
-[node name="Container" type="Container" parent="NinePatchRect/VBoxContainer/HBoxContainer4/moneyCheck"]
+[node name="Container" type="Container" parent="NinePatchRect/VBoxContainer/VBoxContainer/HBoxContainer4/moneyCheck"]
 custom_minimum_size = Vector2(13, 0)
 layout_mode = 2
 
-[node name="Label3" type="Label" parent="NinePatchRect/VBoxContainer"]
+[node name="Label3" type="Label" parent="NinePatchRect/VBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 theme = ExtResource("7_7iklp")
 text = "Set Coin Costs"
 horizontal_alignment = 1
 
-[node name="HBoxContainer5" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
+[node name="HBoxContainer5" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="halBox" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer5"]
+[node name="halBox" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/VBoxContainer/HBoxContainer5"]
 layout_mode = 2
 alignment = 2
 
-[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer5/halBox"]
+[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/VBoxContainer/HBoxContainer5/halBox"]
 layout_mode = 2
 text = "Halters:"
 
-[node name="halterSpinBox" type="SpinBox" parent="NinePatchRect/VBoxContainer/HBoxContainer5/halBox"]
+[node name="halterSpinBox" type="SpinBox" parent="NinePatchRect/VBoxContainer/VBoxContainer/HBoxContainer5/halBox"]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_right = NodePath("../../bagBox/saddleBagSpinBox")
@@ -635,15 +659,15 @@ max_value = 64.0
 value = 16.0
 alignment = 1
 
-[node name="bagBox" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer5"]
+[node name="bagBox" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/VBoxContainer/HBoxContainer5"]
 layout_mode = 2
 alignment = 2
 
-[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer5/bagBox"]
+[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/VBoxContainer/HBoxContainer5/bagBox"]
 layout_mode = 2
 text = "Saddle Bags:"
 
-[node name="saddleBagSpinBox" type="SpinBox" parent="NinePatchRect/VBoxContainer/HBoxContainer5/bagBox"]
+[node name="saddleBagSpinBox" type="SpinBox" parent="NinePatchRect/VBoxContainer/VBoxContainer/HBoxContainer5/bagBox"]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_left = NodePath("../../halBox/halterSpinBox")
@@ -656,15 +680,15 @@ max_value = 64.0
 value = 5.0
 alignment = 1
 
-[node name="arBox" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer5"]
+[node name="arBox" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/VBoxContainer/HBoxContainer5"]
 layout_mode = 2
 alignment = 2
 
-[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer5/arBox"]
+[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/VBoxContainer/HBoxContainer5/arBox"]
 layout_mode = 2
 text = "Horse Armor:"
 
-[node name="ArmorSpinBox" type="SpinBox" parent="NinePatchRect/VBoxContainer/HBoxContainer5/arBox"]
+[node name="ArmorSpinBox" type="SpinBox" parent="NinePatchRect/VBoxContainer/VBoxContainer/HBoxContainer5/arBox"]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_left = NodePath("../../bagBox/saddleBagSpinBox")
@@ -677,15 +701,15 @@ max_value = 64.0
 value = 5.0
 alignment = 1
 
-[node name="pbBox" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer5"]
+[node name="pbBox" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/VBoxContainer/HBoxContainer5"]
 layout_mode = 2
 alignment = 2
 
-[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer5/pbBox"]
+[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/VBoxContainer/HBoxContainer5/pbBox"]
 layout_mode = 2
 text = "Pasture Blankets:"
 
-[node name="PBSpinBox" type="SpinBox" parent="NinePatchRect/VBoxContainer/HBoxContainer5/pbBox"]
+[node name="PBSpinBox" type="SpinBox" parent="NinePatchRect/VBoxContainer/VBoxContainer/HBoxContainer5/pbBox"]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_left = NodePath("../../arBox/ArmorSpinBox")
@@ -699,15 +723,15 @@ max_value = 64.0
 value = 4.0
 alignment = 1
 
-[node name="arpbBox" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer5"]
+[node name="arpbBox" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/VBoxContainer/HBoxContainer5"]
 layout_mode = 2
 alignment = 2
 
-[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer5/arpbBox"]
+[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/VBoxContainer/HBoxContainer5/arpbBox"]
 layout_mode = 2
 text = "Armored P. Blankets:"
 
-[node name="armoredPBSpinBox" type="SpinBox" parent="NinePatchRect/VBoxContainer/HBoxContainer5/arpbBox"]
+[node name="armoredPBSpinBox" type="SpinBox" parent="NinePatchRect/VBoxContainer/VBoxContainer/HBoxContainer5/arpbBox"]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_left = NodePath("../../pbBox/PBSpinBox")
@@ -718,6 +742,34 @@ min_value = 1.0
 max_value = 64.0
 value = 10.0
 alignment = 1
+
+[node name="TackBox" type="NinePatchRect" parent="NinePatchRect"]
+modulate = Color(0.426379, 0.379683, 0.294652, 1)
+layout_mode = 2
+offset_left = 41.0
+offset_top = 194.0
+offset_right = 563.0
+offset_bottom = 312.0
+texture = SubResource("AtlasTexture_ppd50")
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect/TackBox"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 5.0
+offset_right = 518.0
+offset_bottom = 114.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/TackBox/HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="NinePatchRect/TackBox/HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
 
 [node name="backButton" type="TextureButton" parent="NinePatchRect"]
 unique_name_in_owner = true
@@ -840,11 +892,11 @@ layout_mode = 1
 [connection signal="text_changed" from="NinePatchRect/VBoxContainer/HBoxContainer3/artist/artistText" to="." method="_on_artist_text_text_changed"]
 [connection signal="text_changed" from="NinePatchRect/VBoxContainer/HBoxContainer3/inspiration/inspoText" to="." method="_on_inspo_text_text_changed"]
 [connection signal="text_changed" from="NinePatchRect/VBoxContainer/tackName/tackText" to="." method="_on_tack_text_text_changed"]
-[connection signal="pressed" from="NinePatchRect/VBoxContainer/HBoxContainer2/custCheck/custCheckBox" to="." method="_on_cust_check_box_pressed"]
-[connection signal="value_changed" from="NinePatchRect/VBoxContainer/HBoxContainer2/custCheck/EDITBoxContainer/redSpinBox" to="." method="_on_red_spin_box_value_changed"]
-[connection signal="value_changed" from="NinePatchRect/VBoxContainer/HBoxContainer2/custCheck/EDITBoxContainer/greenSpinBox" to="." method="_on_green_spin_box_value_changed"]
-[connection signal="value_changed" from="NinePatchRect/VBoxContainer/HBoxContainer2/custCheck/EDITBoxContainer/blueSpinBox" to="." method="_on_blue_spin_box_value_changed"]
-[connection signal="item_selected" from="NinePatchRect/VBoxContainer/HBoxContainer4/armorType/armorOptions" to="." method="_on_armor_options_item_selected"]
-[connection signal="item_selected" from="NinePatchRect/VBoxContainer/HBoxContainer4/moneyCheck/coinOptions" to="." method="_on_coin_options_item_selected"]
+[connection signal="pressed" from="NinePatchRect/VBoxContainer/VBoxContainer/HBoxContainer2/custCheck/custCheckBox" to="." method="_on_cust_check_box_pressed"]
+[connection signal="value_changed" from="NinePatchRect/VBoxContainer/VBoxContainer/HBoxContainer2/custCheck/EDITBoxContainer/redSpinBox" to="." method="_on_red_spin_box_value_changed"]
+[connection signal="value_changed" from="NinePatchRect/VBoxContainer/VBoxContainer/HBoxContainer2/custCheck/EDITBoxContainer/greenSpinBox" to="." method="_on_green_spin_box_value_changed"]
+[connection signal="value_changed" from="NinePatchRect/VBoxContainer/VBoxContainer/HBoxContainer2/custCheck/EDITBoxContainer/blueSpinBox" to="." method="_on_blue_spin_box_value_changed"]
+[connection signal="item_selected" from="NinePatchRect/VBoxContainer/VBoxContainer/HBoxContainer4/armorType/armorOptions" to="." method="_on_armor_options_item_selected"]
+[connection signal="item_selected" from="NinePatchRect/VBoxContainer/VBoxContainer/HBoxContainer4/moneyCheck/coinOptions" to="." method="_on_coin_options_item_selected"]
 [connection signal="pressed" from="NinePatchRect/backButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="NinePatchRect/confirmButton" to="." method="_on_confirm_button_pressed"]
