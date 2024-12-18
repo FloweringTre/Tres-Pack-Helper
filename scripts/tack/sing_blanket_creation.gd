@@ -281,7 +281,7 @@ func are_you_sure() -> void:
 	var title = "Wait a moment!"
 	var message = "Are you sure you want to return to the Tack Menu?"
 	var no_label = "Go Back"
-	var yes_label = "Continue to Tack Menu"
+	var yes_label = "Continue to Menu"
 	$popUPexit.pop_yesNo(title, message, no_label, yes_label)
 	disable_interaction()
 
