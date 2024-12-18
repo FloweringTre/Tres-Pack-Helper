@@ -12,14 +12,6 @@ func _on_continue_button_pressed() -> void:
 	go_on.emit()
 	$".".visible = false
 
-func _on_confirm_button_pressed() -> void:
-	confirm.emit()
-	$".".visible = false
-
-func _on_back_button_pressed() -> void:
-	deny.emit()
-	$".".visible = false
-
 func pop_continue(title : String, message : String, continue_message : String = "Lets try that again...") -> void:
 	$".".visible = true
 	%loadingBoxContainer.visible = false
@@ -35,12 +27,11 @@ func pop_yesNo(title : String, message : String, no_label : String = "Back", yes
 	$".".visible = true
 	$continue.visible = false
 	%loadingBoxContainer.visible = false
-	$yesOrNo.visible = true
-	$yesOrNoLabel.visible = true
+	$buttons.visible = true
 	%titleLabel.text = title
 	%popUpText.text = message
-	%noLabel.text = no_label
-	%yesLabel.text = yes_label
+	%cancelButton.button_label.text = no_label
+	%primaryButton.button_label.text = yes_label
 	opened.emit()
 
 func loading(process : String) -> void:
@@ -56,4 +47,12 @@ func loading(process : String) -> void:
 
 func stop_loading() -> void:
 	$AnimationPlayer.stop()
+	$".".visible = false
+
+func _on_cancel_button_button_pressed() -> void:
+	deny.emit()
+	$".".visible = false
+
+func _on_primary_button_button_pressed() -> void:
+	confirm.emit()
 	$".".visible = false
