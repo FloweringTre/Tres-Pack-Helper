@@ -13,7 +13,6 @@ var dark_brown_coat : bool = false
 var chestnut_coat : bool = false
 
 var artist : bool = false
-var inspo : bool = false
 var coat_name : bool = false
 
 var file_name : String
@@ -87,6 +86,8 @@ func on_error() -> void:
 func on_error_continue() -> void:
 	enable_interaction()
 
+########### BUTTON LOGGING ################
+
 func _on_back_button_pressed() -> void:
 	if %artistText.text != "" or %inspoText.text != "" or %coatText.text != "" or text_coat:
 		are_you_sure()
@@ -99,14 +100,6 @@ func _on_artist_text_text_changed(new_text: String) -> void:
 		ready_to_save()
 	else:
 		artist = false
-		ready_to_save()
-
-func _on_inspo_text_text_changed(new_text: String) -> void:
-	if %inspoText.text != "":
-		inspo = true
-		ready_to_save()
-	else:
-		inspo = false
 		ready_to_save()
 
 func _on_coat_text_text_changed(new_text: String) -> void:
@@ -199,10 +192,12 @@ func _on_chestnut_check_box_7_pressed() -> void:
 		basecolors.append("chestnut")
 
 func ready_to_save() -> void:
-	if artist && inspo && coat_name:
+	if artist && coat_name:
 		%confirmButton.disabled = false
 	else:
 		%confirmButton.disabled = true
+
+#################### SAVING PROCESS ######################
 
 func _on_confirm_button_pressed() -> void:
 	$popUPload.loading("Checking for duplicates")
@@ -221,6 +216,8 @@ func _on_confirm_button_pressed() -> void:
 
 func save_coat() -> void:
 	$popUPload.loading("Saving coat")
+	if %inspoText.text == "":
+		%inspoText.text = "N/a"
 	var save_path = GlobalScripts.join_paths(GlobalScripts.textures_root, "coats/legacy")
 	var file = FileAccess.open(path, FileAccess.WRITE)
 	if file:
@@ -236,7 +233,7 @@ func save_coat() -> void:
 			"base_colors" = basecolors
 		}
 		
-		var string_1 = JSON.stringify(part_1, "/t")
+		var string_1 = JSON.stringify(part_1, "   ")
 		
 		file.store_string(string_1)
 		file.close()
@@ -263,6 +260,8 @@ func coat_exists() -> void:
 	var yes_label = "Overwrite it"
 	$popUP2_Dupe.pop_yesNo(title, message, no_label, yes_label)
 	disable_interaction()
+
+############### POP UP HANDLING ##########################
 
 func on_popup_dupe_back() -> void:
 	enable_interaction()

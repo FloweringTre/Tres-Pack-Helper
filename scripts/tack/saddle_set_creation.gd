@@ -1,7 +1,6 @@
 extends Control
 
 var artist : bool = false
-var inspo : bool = false
 var set_name : bool = false
 var set_coin : bool = false
 
@@ -32,7 +31,7 @@ func _ready() -> void:
 	$popUP_Saved.confirm.connect(on_popup_saved_confirmed)
 	$popUP2_Dupe.deny.connect(on_popup_dupe_back)
 	$popUP2_Dupe.confirm.connect(on_popup_dupe_confirmed)
-	$popUPexit.deny.connect(on_popup_saved_back)
+	$popUPexit.deny.connect(on_popup_exit_denied)
 	$popUPexit.confirm.connect(on_popup_exit_confirmed)
 	$helpscreen.visible = true
 	starting_coin_values()
@@ -104,13 +103,6 @@ func _on_artist_text_text_changed(new_text: String) -> void:
 		artist = true
 	else:
 		artist = false
-	ready_to_save()
-
-func _on_inspo_text_text_changed(new_text: String) -> void:
-	if %inspoText.text != "":
-		inspo = true
-	else:
-		inspo = false
 	ready_to_save()
 
 func _on_tack_text_text_changed(new_text: String) -> void:
@@ -185,7 +177,7 @@ func _on_coin_options_item_selected(index: int) -> void:
 			coin = "amethyst"
 
 func ready_to_save() -> void:
-	if artist && inspo && set_name && set_coin:
+	if artist && set_name && set_coin:
 		%confirmButton.disabled = false
 	else:
 		%confirmButton.disabled = true
@@ -193,6 +185,8 @@ func ready_to_save() -> void:
 #########################################################
 func _on_confirm_button_pressed() -> void:
 	disable_interaction()
+	if %inspoText.text == "":
+		%inspoText.text = "N/a"
 	$popUPload.loading("Checking for duplicate tack items.")
 	var found_dupes = check_for_duplicates()
 	if found_dupes != 0:
@@ -313,6 +307,9 @@ func are_you_sure() -> void:
 	var yes_label = "Continue to Tack Menu"
 	$popUPexit.pop_yesNo(title, message, no_label, yes_label)
 	disable_interaction()
+
+func on_popup_exit_denied() -> void:
+	enable_interaction()
 
 func on_popup_exit_confirmed() -> void:
 	get_tree().change_scene_to_file("res://scene/tackMenuGUI.tscn")
