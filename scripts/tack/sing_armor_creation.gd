@@ -124,14 +124,24 @@ func _on_armor_options_item_selected(index: int) -> void:
 	match index:
 		0:
 			armor = "cloth"
+			%renderWingsButton.visible = false
+			%renderWingsLineEdit.visible = false
 		1:
 			armor = "iron"
+			%renderWingsButton.visible = false
+			%renderWingsLineEdit.visible = false
 		2:
 			armor = "gold"
+			%renderWingsButton.visible = false
+			%renderWingsLineEdit.visible = false
 		3:
 			armor = "diamond"
+			%renderWingsButton.visible = false
+			%renderWingsLineEdit.visible = false
 		4:
 			armor = "amethyst"
+			%renderWingsButton.visible = true
+			%renderWingsLineEdit.visible = true
 
 func _on_coin_options_item_selected(index: int) -> void:
 	set_coin = true

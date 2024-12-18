@@ -622,11 +622,18 @@ func armor_save(item : String, artist : String, inspo : String, coin : String, t
 				"coin" = coin,
 				"amount" = amount
 			}
+			var legacy
+			if tier != "amethyst":
+				legacy = {
+					"armor" = root + leg_texture,
+					"wings" = ""
+				}
+			else:
+				legacy = {
+					"armor" = root + leg_texture,
+					"wings" = root + leg_wing_texture
+				}
 			
-			var legacy = {
-				"armor" = root + leg_texture,
-				"wings" = root + leg_wing_texture
-			}
 			var horse = {"legacy" = legacy}
 			var data = {
 				"tier" = tier
@@ -660,7 +667,7 @@ func armor_save(item : String, artist : String, inspo : String, coin : String, t
 				text_1 = "    Icon Texture: " + icon + "\n" 
 			if !preloaded_render_armor:
 				text_2 = "    Horse Armor Texture: " + leg_texture + "\n" 
-			if !preloaded_render_wings:
+			if !preloaded_render_wings && tier == "amethyst":
 				text_3 = "    Horse Wings Texture: " + leg_wing_texture + "\n"
 			if !preloaded_rack:
 				text_4 = "    Armor Rack Texture: " + rack_armor + "\n"

@@ -430,6 +430,7 @@ width = 0.5
 default_color = Color(0.811765, 0.67451, 0.490196, 1)
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(0, 137)
 layout_mode = 2
 theme_override_constants/separation = 0
 
@@ -452,12 +453,13 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="renderWingsButton" parent="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer2" instance=ExtResource("9_jnbw7")]
+[node name="rackButton" parent="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer2" instance=ExtResource("9_jnbw7")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="rackButton" parent="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer2" instance=ExtResource("9_jnbw7")]
+[node name="renderWingsButton" parent="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer2" instance=ExtResource("9_jnbw7")]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
@@ -477,18 +479,19 @@ layout_mode = 2
 placeholder_text = " Armor Texture"
 editable = false
 
-[node name="renderWingsLineEdit" type="LineEdit" parent="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer3"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(175, 0)
-layout_mode = 2
-placeholder_text = " Wings Texture"
-editable = false
-
 [node name="rackLineEdit" type="LineEdit" parent="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer3"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(175, 0)
 layout_mode = 2
 placeholder_text = " Rack Texture"
+editable = false
+
+[node name="renderWingsLineEdit" type="LineEdit" parent="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer3"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(175, 0)
+layout_mode = 2
+placeholder_text = " Wings Texture"
 editable = false
 
 [node name="Label2" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer2"]
@@ -611,8 +614,8 @@ layout_mode = 1
 [connection signal="item_selected" from="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer/moneyCheck/coinOptions" to="." method="_on_coin_options_item_selected"]
 [connection signal="button_pressed" from="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer2/iconButton" to="." method="_on_icon_button_button_pressed"]
 [connection signal="button_pressed" from="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer2/renderButton" to="." method="_on_render_button_button_pressed"]
-[connection signal="button_pressed" from="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer2/renderWingsButton" to="." method="_on_render_wings_button_button_pressed"]
 [connection signal="button_pressed" from="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer2/rackButton" to="." method="_on_rack_button_button_pressed"]
+[connection signal="button_pressed" from="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer2/renderWingsButton" to="." method="_on_render_wings_button_button_pressed"]
 [connection signal="pressed" from="NinePatchRect/backButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="NinePatchRect/confirmButton" to="." method="_on_confirm_button_pressed"]
 [connection signal="file_selected" from="FileDialog" to="." method="_on_file_dialog_file_selected"]
