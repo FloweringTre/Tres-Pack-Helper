@@ -42,6 +42,7 @@ func _ready() -> void:
 	$popUPexit.deny.connect(on_popup_exit_denied)
 	$popUPexit.confirm.connect(on_popup_exit_confirmed)
 	$helpscreen.visible = true
+	update_name_previews()
 	if GlobalScripts.artist != "":
 		%artistText.text = GlobalScripts.artist
 		artist = true
@@ -122,7 +123,7 @@ func _on_tack_text_text_changed(new_text: String) -> void:
 func update_name_previews() -> void:
 	var text = ""
 	if %tackText.text == "":
-		text = "Butterfly Morpho"
+		text = "Indigo"
 	else:
 		text = %tackText.text
 	if both_sets:

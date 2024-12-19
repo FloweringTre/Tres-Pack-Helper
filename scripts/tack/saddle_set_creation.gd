@@ -35,6 +35,7 @@ func _ready() -> void:
 	$popUPexit.confirm.connect(on_popup_exit_confirmed)
 	$helpscreen.visible = true
 	starting_coin_values()
+	update_name_previews()
 	if GlobalScripts.artist != "":
 		%artistText.text = GlobalScripts.artist
 		artist = true
@@ -116,11 +117,11 @@ func _on_tack_text_text_changed(new_text: String) -> void:
 func update_name_previews() -> void:
 	var text = ""
 	if %tackText.text == "":
-		text = "Butterfly Morpho"
+		text = "Indigo"
 	else:
 		text = %tackText.text
-	%inGameLabel.text = text + " Bridle"
-	%dataLabel.text = GlobalScripts.text_clean(text) + "_bridle"
+	%inGameLabel.text = text + " Saddle"
+	%dataLabel.text = GlobalScripts.text_clean(text) + "_saddle"
 
 func _on_armor_check_box_pressed() -> void:
 	if adventure:
