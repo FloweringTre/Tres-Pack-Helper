@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://c2mcpghq36d4e"]
+[gd_scene load_steps=22 format=3 uid="uid://c2mcpghq36d4e"]
 
 [ext_resource type="Script" path="res://scripts/tack_menu_gui.gd" id="1_7ssmw"]
 [ext_resource type="Texture2D" uid="uid://8f0rfohmniwa" path="res://assets/menuUI.png" id="2_ch7cg"]
@@ -7,9 +7,7 @@
 [ext_resource type="Theme" uid="uid://clxftkhcliti8" path="res://assets/UI_theme.tres" id="4_tkq3h"]
 [ext_resource type="PackedScene" uid="uid://cp0jrapb6x6a2" path="res://scene/components/buttonSMOL.tscn" id="5_nykae"]
 [ext_resource type="Theme" uid="uid://cf6ttsgxwgavd" path="res://assets/UI_theme_blue.tres" id="6_63gio"]
-[ext_resource type="PackedScene" uid="uid://bicshr65lr0n1" path="res://scene/components/button.tscn" id="6_ibjxg"]
 [ext_resource type="Theme" uid="uid://dm4jlnbmnj4eb" path="res://assets/UI_theme_dark.tres" id="8_xsab8"]
-[ext_resource type="PackedScene" uid="uid://eexrhh8cyqwa" path="res://scene/components/buttonLONG.tscn" id="9_5u002"]
 [ext_resource type="PackedScene" uid="uid://b3cou3ndcs75h" path="res://scene/components/error_message.tscn" id="10_551ul"]
 [ext_resource type="Theme" uid="uid://cof5u4dam7c2t" path="res://assets/UI_theme_shadowed.tres" id="10_j1nv2"]
 [ext_resource type="PackedScene" uid="uid://bpgiy2j33slge" path="res://scene/components/pop_up.tscn" id="11_71188"]
@@ -147,7 +145,8 @@ flip_h = true
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 theme = ExtResource("8_xsab8")
-text = "You can choose to make a whole set of items at once or just one item at a time!"
+text = "These one-off item building sheets will allow you to add the textures too, 
+making this a complete pack, all in one step!"
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -155,24 +154,59 @@ autowrap_mode = 2
 layout_mode = 2
 alignment = 1
 
-[node name="GridContainer" type="GridContainer" parent="NinePatchRect/VBoxContainer/setsBoxContainer"]
+[node name="GridContainer2" type="GridContainer" parent="NinePatchRect/VBoxContainer/setsBoxContainer"]
 layout_mode = 2
-columns = 3
+columns = 5
 
-[node name="full_set" parent="NinePatchRect/VBoxContainer/setsBoxContainer/GridContainer" instance=ExtResource("6_ibjxg")]
+[node name="saddles" parent="NinePatchRect/VBoxContainer/setsBoxContainer/GridContainer2" instance=ExtResource("5_nykae")]
 unique_name_in_owner = true
 layout_mode = 2
-button_text = "Full Set"
+button_text = "Saddles"
 
-[node name="saddle_set" parent="NinePatchRect/VBoxContainer/setsBoxContainer/GridContainer" instance=ExtResource("6_ibjxg")]
+[node name="bridles" parent="NinePatchRect/VBoxContainer/setsBoxContainer/GridContainer2" instance=ExtResource("5_nykae")]
 unique_name_in_owner = true
 layout_mode = 2
-button_text = "Saddle Set"
+button_text = "Bridles"
 
-[node name="extras_set" parent="NinePatchRect/VBoxContainer/setsBoxContainer/GridContainer" instance=ExtResource("6_ibjxg")]
+[node name="blankets" parent="NinePatchRect/VBoxContainer/setsBoxContainer/GridContainer2" instance=ExtResource("5_nykae")]
 unique_name_in_owner = true
 layout_mode = 2
-button_text = "Extras Set"
+button_text = "Saddle Blankets"
+
+[node name="girth_straps" parent="NinePatchRect/VBoxContainer/setsBoxContainer/GridContainer2" instance=ExtResource("5_nykae")]
+unique_name_in_owner = true
+layout_mode = 2
+button_text = "Girth Straps"
+
+[node name="breast_collars" parent="NinePatchRect/VBoxContainer/setsBoxContainer/GridContainer2" instance=ExtResource("5_nykae")]
+unique_name_in_owner = true
+layout_mode = 2
+button_text = "Breast Collars"
+
+[node name="leg_wraps" parent="NinePatchRect/VBoxContainer/setsBoxContainer/GridContainer2" instance=ExtResource("5_nykae")]
+unique_name_in_owner = true
+layout_mode = 2
+button_text = "Leg Wraps"
+
+[node name="halters" parent="NinePatchRect/VBoxContainer/setsBoxContainer/GridContainer2" instance=ExtResource("5_nykae")]
+unique_name_in_owner = true
+layout_mode = 2
+button_text = "Halters"
+
+[node name="saddle_bags" parent="NinePatchRect/VBoxContainer/setsBoxContainer/GridContainer2" instance=ExtResource("5_nykae")]
+unique_name_in_owner = true
+layout_mode = 2
+button_text = "Saddle Bags"
+
+[node name="armors" parent="NinePatchRect/VBoxContainer/setsBoxContainer/GridContainer2" instance=ExtResource("5_nykae")]
+unique_name_in_owner = true
+layout_mode = 2
+button_text = "Armors"
+
+[node name="pasture_blankets" parent="NinePatchRect/VBoxContainer/setsBoxContainer/GridContainer2" instance=ExtResource("5_nykae")]
+unique_name_in_owner = true
+layout_mode = 2
+button_text = "Pasture Blankets"
 
 [node name="Spacer" type="Label" parent="NinePatchRect/VBoxContainer"]
 layout_mode = 2
@@ -470,72 +504,29 @@ default_color = Color(0.811765, 0.67451, 0.490196, 1)
 
 [node name="buttonGrid" type="VBoxContainer" parent="NinePatchRect/VBoxContainer/BoxContainer"]
 layout_mode = 2
-alignment = 1
 
 [node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/BoxContainer/buttonGrid"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 theme = ExtResource("6_63gio")
-text = "Make one-off items"
+text = "Build a Complete Set!"
 horizontal_alignment = 1
 
 [node name="GridContainer" type="GridContainer" parent="NinePatchRect/VBoxContainer/BoxContainer/buttonGrid"]
 layout_mode = 2
 columns = 3
 
-[node name="saddles" parent="NinePatchRect/VBoxContainer/BoxContainer/buttonGrid/GridContainer" instance=ExtResource("5_nykae")]
+[node name="full_set" parent="NinePatchRect/VBoxContainer/BoxContainer/buttonGrid/GridContainer" instance=ExtResource("5_nykae")]
 unique_name_in_owner = true
 layout_mode = 2
-button_text = "Saddles"
 
-[node name="bridles" parent="NinePatchRect/VBoxContainer/BoxContainer/buttonGrid/GridContainer" instance=ExtResource("5_nykae")]
+[node name="saddle_set" parent="NinePatchRect/VBoxContainer/BoxContainer/buttonGrid/GridContainer" instance=ExtResource("5_nykae")]
 unique_name_in_owner = true
 layout_mode = 2
-button_text = "Bridles"
 
-[node name="blankets" parent="NinePatchRect/VBoxContainer/BoxContainer/buttonGrid/GridContainer" instance=ExtResource("5_nykae")]
+[node name="extras_set" parent="NinePatchRect/VBoxContainer/BoxContainer/buttonGrid/GridContainer" instance=ExtResource("5_nykae")]
 unique_name_in_owner = true
 layout_mode = 2
-button_text = "Saddle Blankets"
-
-[node name="girth_straps" parent="NinePatchRect/VBoxContainer/BoxContainer/buttonGrid/GridContainer" instance=ExtResource("5_nykae")]
-unique_name_in_owner = true
-layout_mode = 2
-button_text = "Girth Straps"
-
-[node name="breast_collars" parent="NinePatchRect/VBoxContainer/BoxContainer/buttonGrid/GridContainer" instance=ExtResource("5_nykae")]
-unique_name_in_owner = true
-layout_mode = 2
-button_text = "Breast Collars"
-
-[node name="leg_wraps" parent="NinePatchRect/VBoxContainer/BoxContainer/buttonGrid/GridContainer" instance=ExtResource("5_nykae")]
-unique_name_in_owner = true
-layout_mode = 2
-button_text = "Leg Wraps"
-
-[node name="halters" parent="NinePatchRect/VBoxContainer/BoxContainer/buttonGrid/GridContainer" instance=ExtResource("5_nykae")]
-unique_name_in_owner = true
-layout_mode = 2
-button_text = "Halters"
-
-[node name="saddle_bags" parent="NinePatchRect/VBoxContainer/BoxContainer/buttonGrid/GridContainer" instance=ExtResource("5_nykae")]
-unique_name_in_owner = true
-layout_mode = 2
-button_text = "Saddle Bags"
-
-[node name="armors" parent="NinePatchRect/VBoxContainer/BoxContainer/buttonGrid/GridContainer" instance=ExtResource("5_nykae")]
-unique_name_in_owner = true
-layout_mode = 2
-button_text = "Armors"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/BoxContainer/buttonGrid"]
-layout_mode = 2
-alignment = 1
-
-[node name="pasture_blankets" parent="NinePatchRect/VBoxContainer/BoxContainer/buttonGrid/HBoxContainer" instance=ExtResource("9_5u002")]
-unique_name_in_owner = true
-layout_mode = 2
-button_text = "Both Pasture Blankets"
 
 [node name="continue" type="Label" parent="NinePatchRect"]
 unique_name_in_owner = true
