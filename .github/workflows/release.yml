@@ -16,7 +16,10 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
-
+    
+    - run: |
+        mkdir build
+      
     - name: Build
       id: build
       uses: felix-schindler/build-godot-action@v2.0.0
