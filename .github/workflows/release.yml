@@ -19,7 +19,7 @@ jobs:
 
     - name: Build
       id: build
-      uses: felix-schindler/build-godot-action@v2
+      uses: felix-schindler/build-godot-action@v2.0.0
       with:
         name: "Tres Pack Helper ${{ github.event.release.tag_name }} (${{ matrix.platform }})"
         preset: ${{ matrix.platform }}
