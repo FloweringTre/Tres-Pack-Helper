@@ -29,6 +29,7 @@ jobs:
         mkdir -v -p ~/.config/
         mv /root/.config/godot ~/.config/godot
         mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
+        git config --global --add safe.directory /__w/Tres-Pack-Helper/Tres-Pack-Helper # Fix detected dubious ownership.
     
     - name: Windows Build
       run: |
@@ -43,6 +44,8 @@ jobs:
         gh-cli-version: 2.64.0 
 
     - name: Upload to release
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: gh release upload ${{ github.event.release.tag_name }} build/windows/*
 
   export-mac:
@@ -63,6 +66,7 @@ jobs:
         mkdir -v -p ~/.config/
         mv /root/.config/godot ~/.config/godot
         mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
+        git config --global --add safe.directory /__w/Tres-Pack-Helper/Tres-Pack-Helper # Fix detected dubious ownership.
     
     - name: MacOS Build
       run: |
