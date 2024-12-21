@@ -40,7 +40,7 @@ jobs:
         mkdir -v -p build/windows
         EXPORT_DIR="$(readlink -f build)"
         cd $PROJECT_PATH
-        godot --headless --verbose --export-release "Windows Desktop" "$EXPORT_DIR/windows/$EXPORT_NAME.exe"
+        godot --headless --verbose --export-release "Windows Desktop" "$EXPORT_DIR/windows/$EXPORT_NAME-Windows.exe"
 
     - name: Install GH CLI
       uses: dev-hanz-ops/install-gh-cli-action@v0.2.0
@@ -81,7 +81,7 @@ jobs:
         mkdir -v -p build/mac
         EXPORT_DIR="$(readlink -f build)"
         cd $PROJECT_PATH
-        godot --headless --verbose --export-release "macOS" "$EXPORT_DIR/mac/$EXPORT_NAME.zip"
+        godot --headless --verbose --export-release "macOS" "$EXPORT_DIR/mac/$EXPORT_NAME-Mac.zip"
 
     - name: Install GH CLI
       uses: dev-hanz-ops/install-gh-cli-action@v0.2.0
