@@ -305,10 +305,10 @@ func _on_file_dialog_file_selected(selected_path: String) -> void:
 	image_coat = Image.load_from_file(selected_path)
 	%renderButton.button_label.text = "Coat"
 
-	var image_file_name = selected_path.split("/")
+	var image_file_name = selected_path.split("\\")
 	image_file_name = image_file_name[-1]
 	%renderLineEdit.text = " " + image_file_name
 
 func _on_render_button_button_pressed() -> void:
-	$FileDialog.visible = true
 	$FileDialog.title = "Select the Coat Texture"
+	$FileDialog.visible = true
