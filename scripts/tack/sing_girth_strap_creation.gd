@@ -5,9 +5,9 @@ var set_name : bool = false
 var set_coin : bool = false
 
 var custom_rack : bool = false
-var red : int = 255
-var green : int = 255
-var blue : int = 255
+var red : float = 255.0
+var green : float = 255.0
+var blue : float = 255.0
 
 var adventure : bool = false
 
