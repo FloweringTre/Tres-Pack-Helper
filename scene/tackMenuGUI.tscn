@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://c2mcpghq36d4e"]
+[gd_scene load_steps=21 format=3 uid="uid://c2mcpghq36d4e"]
 
 [ext_resource type="Script" path="res://scripts/tack_menu_gui.gd" id="1_7ssmw"]
 [ext_resource type="Texture2D" uid="uid://8f0rfohmniwa" path="res://assets/menuUI.png" id="2_ch7cg"]
@@ -7,10 +7,13 @@
 [ext_resource type="Theme" uid="uid://clxftkhcliti8" path="res://assets/UI_theme.tres" id="4_tkq3h"]
 [ext_resource type="PackedScene" uid="uid://cp0jrapb6x6a2" path="res://scene/components/buttonSMOL.tscn" id="5_nykae"]
 [ext_resource type="Theme" uid="uid://cf6ttsgxwgavd" path="res://assets/UI_theme_blue.tres" id="6_63gio"]
+[ext_resource type="PackedScene" uid="uid://eexrhh8cyqwa" path="res://scene/components/buttonLONG.tscn" id="8_cbiur"]
 [ext_resource type="Theme" uid="uid://dm4jlnbmnj4eb" path="res://assets/UI_theme_dark.tres" id="8_xsab8"]
 [ext_resource type="PackedScene" uid="uid://b3cou3ndcs75h" path="res://scene/components/error_message.tscn" id="10_551ul"]
 [ext_resource type="Theme" uid="uid://cof5u4dam7c2t" path="res://assets/UI_theme_shadowed.tres" id="10_j1nv2"]
+[ext_resource type="Theme" uid="uid://d1f8o0u5d7nrp" path="res://assets/UI_theme_green.tres" id="11_27hxk"]
 [ext_resource type="PackedScene" uid="uid://bpgiy2j33slge" path="res://scene/components/pop_up.tscn" id="11_71188"]
+[ext_resource type="PackedScene" uid="uid://s4coqphlup24" path="res://scene/components/buttonSMOL2.tscn" id="12_nkgi2"]
 [ext_resource type="PackedScene" uid="uid://clixcby1mmxr3" path="res://scene/helpScreen.tscn" id="13_218np"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kx556"]
@@ -32,22 +35,6 @@ region = Rect2(160, 16, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_00yw3"]
 atlas = ExtResource("2_ch7cg")
 region = Rect2(160, 48, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7adk4"]
-atlas = ExtResource("2_ch7cg")
-region = Rect2(176, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kkneh"]
-atlas = ExtResource("2_ch7cg")
-region = Rect2(176, 32, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8mqg6"]
-atlas = ExtResource("2_ch7cg")
-region = Rect2(176, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_m7l3u"]
-atlas = ExtResource("2_ch7cg")
-region = Rect2(176, 48, 16, 16)
 
 [node name="tackmenuGUI" type="Control"]
 layout_mode = 3
@@ -125,6 +112,7 @@ theme_override_constants/separation = 115
 alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="NinePatchRect/VBoxContainer/TitleContainer"]
+visible = false
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
 texture = ExtResource("3_np7ds")
@@ -136,17 +124,16 @@ theme_override_colors/font_color = Color(0.178263, 0.423711, 0.665043, 1)
 text = "Create New Tack Items"
 
 [node name="TextureRect2" type="TextureRect" parent="NinePatchRect/VBoxContainer/TitleContainer"]
+visible = false
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
 texture = ExtResource("3_np7ds")
 flip_h = true
 
 [node name="HelperLabel2" type="Label" parent="NinePatchRect/VBoxContainer"]
-custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 theme = ExtResource("8_xsab8")
-text = "These one-off item building sheets will allow you to add the textures too, 
-making this a complete pack, all in one step!"
+text = "What tack item do you want to add to your pack?"
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -156,7 +143,7 @@ alignment = 1
 
 [node name="GridContainer2" type="GridContainer" parent="NinePatchRect/VBoxContainer/setsBoxContainer"]
 layout_mode = 2
-columns = 5
+columns = 6
 
 [node name="saddles" parent="NinePatchRect/VBoxContainer/setsBoxContainer/GridContainer2" instance=ExtResource("5_nykae")]
 unique_name_in_owner = true
@@ -203,10 +190,10 @@ unique_name_in_owner = true
 layout_mode = 2
 button_text = "Armors"
 
-[node name="pasture_blankets" parent="NinePatchRect/VBoxContainer/setsBoxContainer/GridContainer2" instance=ExtResource("5_nykae")]
+[node name="pasture_blankets" parent="NinePatchRect/VBoxContainer/setsBoxContainer/GridContainer2" instance=ExtResource("8_cbiur")]
 unique_name_in_owner = true
 layout_mode = 2
-button_text = "Pasture Blankets"
+button_text = ""
 
 [node name="Spacer" type="Label" parent="NinePatchRect/VBoxContainer"]
 layout_mode = 2
@@ -227,12 +214,20 @@ alignment = 1
 
 [node name="defaults" type="VBoxContainer" parent="NinePatchRect/VBoxContainer/BoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 3
 
 [node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/BoxContainer/defaults"]
 layout_mode = 2
 theme = ExtResource("6_63gio")
 text = "      Set Default Coin Costs"
 horizontal_alignment = 1
+
+[node name="HelperLabel2" type="Label" parent="NinePatchRect/VBoxContainer/BoxContainer/defaults"]
+layout_mode = 2
+theme = ExtResource("10_j1nv2")
+text = "These values will be preloaded in the tack pages."
+horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/BoxContainer/defaults"]
 layout_mode = 2
@@ -503,14 +498,25 @@ width = 0.5
 default_color = Color(0.811765, 0.67451, 0.490196, 1)
 
 [node name="buttonGrid" type="VBoxContainer" parent="NinePatchRect/VBoxContainer/BoxContainer"]
+custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
+theme_override_constants/separation = 2
+alignment = 1
 
 [node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/BoxContainer/buttonGrid"]
-custom_minimum_size = Vector2(0, 20)
+custom_minimum_size = Vector2(0, 21)
 layout_mode = 2
 theme = ExtResource("6_63gio")
 text = "Build a Complete Set!"
 horizontal_alignment = 1
+
+[node name="HelperLabel2" type="Label" parent="NinePatchRect/VBoxContainer/BoxContainer/buttonGrid"]
+visible = false
+layout_mode = 2
+theme = ExtResource("8_xsab8")
+text = "Generate a whold set at one time."
+horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="GridContainer" type="GridContainer" parent="NinePatchRect/VBoxContainer/BoxContainer/buttonGrid"]
 layout_mode = 2
@@ -519,14 +525,33 @@ columns = 3
 [node name="full_set" parent="NinePatchRect/VBoxContainer/BoxContainer/buttonGrid/GridContainer" instance=ExtResource("5_nykae")]
 unique_name_in_owner = true
 layout_mode = 2
+button_text = "Full Set"
 
 [node name="saddle_set" parent="NinePatchRect/VBoxContainer/BoxContainer/buttonGrid/GridContainer" instance=ExtResource("5_nykae")]
 unique_name_in_owner = true
 layout_mode = 2
+button_text = "Saddle Set"
 
 [node name="extras_set" parent="NinePatchRect/VBoxContainer/BoxContainer/buttonGrid/GridContainer" instance=ExtResource("5_nykae")]
 unique_name_in_owner = true
 layout_mode = 2
+button_text = "Extras Set"
+
+[node name="Label2" type="Label" parent="NinePatchRect/VBoxContainer/BoxContainer/buttonGrid"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme = ExtResource("11_27hxk")
+text = "~~ NOTE ~~"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="HelperLabel3" type="Label" parent="NinePatchRect/VBoxContainer/BoxContainer/buttonGrid"]
+layout_mode = 2
+theme = ExtResource("8_xsab8")
+theme_override_font_sizes/font_size = 13
+text = "This method will not allow for as much customization for the tack items and you will have to manually name and add the textures to the pack after generating the json files."
+horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="continue" type="Label" parent="NinePatchRect"]
 unique_name_in_owner = true
@@ -561,36 +586,46 @@ texture_hover = SubResource("AtlasTexture_m7vgm")
 texture_disabled = SubResource("AtlasTexture_00yw3")
 stretch_mode = 0
 
-[node name="backButton" type="TextureButton" parent="NinePatchRect"]
-unique_name_in_owner = true
+[node name="backButton" parent="NinePatchRect" instance=ExtResource("12_nkgi2")]
 layout_mode = 0
 offset_left = 7.0
-offset_top = 297.0
-offset_right = 23.0
-offset_bottom = 313.0
-scale = Vector2(2, 2)
-texture_normal = SubResource("AtlasTexture_7adk4")
-texture_pressed = SubResource("AtlasTexture_kkneh")
-texture_hover = SubResource("AtlasTexture_8mqg6")
-texture_disabled = SubResource("AtlasTexture_m7l3u")
+offset_top = 305.5
+offset_right = 71.0
+offset_bottom = 327.5
+button_text = "Main Menu"
 
-[node name="HelperLabel5" type="Label" parent="NinePatchRect"]
-layout_mode = 0
-offset_left = 41.0
-offset_top = 313.0
-offset_right = 65.0
-offset_bottom = 327.0
-size_flags_horizontal = 4
-theme = ExtResource("10_j1nv2")
-theme_override_colors/font_color = Color(0.493728, 0.364523, 0.227402, 1)
-text = "Return to the Main Menu"
-vertical_alignment = 2
+[node name="butterflys" type="Control" parent="NinePatchRect"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 5.0
+offset_top = 5.5
+offset_right = 45.0
+offset_bottom = 45.5
 
-[node name="errorMessage" parent="." instance=ExtResource("10_551ul")]
+[node name="TextureRect" type="TextureRect" parent="NinePatchRect/butterflys"]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+offset_left = 60.0
+offset_top = 3.0
+offset_right = 90.0
+offset_bottom = 33.0
+texture = ExtResource("3_np7ds")
+
+[node name="TextureRect2" type="TextureRect" parent="NinePatchRect/butterflys"]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+offset_left = 509.0
+offset_top = 3.0
+offset_right = 539.0
+offset_bottom = 33.0
+texture = ExtResource("3_np7ds")
+flip_h = true
+
+[node name="popUP" parent="." instance=ExtResource("11_71188")]
 visible = false
 layout_mode = 1
 
-[node name="popUP" parent="." instance=ExtResource("11_71188")]
+[node name="errorMessage" parent="." instance=ExtResource("10_551ul")]
 visible = false
 layout_mode = 1
 
@@ -610,4 +645,4 @@ layout_mode = 1
 [connection signal="value_changed" from="NinePatchRect/VBoxContainer/BoxContainer/defaults/HBoxContainer/GridContainer/pastureBlanketBox/pastureBlanketSpinBox" to="." method="_on_pasture_blanket_spin_box_value_changed"]
 [connection signal="value_changed" from="NinePatchRect/VBoxContainer/BoxContainer/defaults/HBoxContainer/GridContainer/arPastureBlanketBox/arpastureBlanketSpinBox" to="." method="_on_arpasture_blanket_spin_box_value_changed"]
 [connection signal="pressed" from="NinePatchRect/confirmButton" to="." method="_on_confirm_button_pressed"]
-[connection signal="pressed" from="NinePatchRect/backButton" to="." method="_on_back_button_pressed"]
+[connection signal="button_pressed" from="NinePatchRect/backButton" to="." method="_on_back_button_pressed"]

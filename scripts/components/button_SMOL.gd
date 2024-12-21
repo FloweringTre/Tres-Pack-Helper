@@ -1,12 +1,16 @@
 extends Panel
 
 @export var button_text : String
+@export var long : bool
 @onready var button_label: Label = %buttonLabel
 
 signal button_pressed()
 
 func _ready() -> void:
-	button_label.text = button_text
+	if long:
+		pass
+	else:
+		button_label.text = button_text
 	button_label.add_theme_color_override("font_color", Color(0.306, 0.271, 0.133) )
 
 func _on_button_pressed() -> void:

@@ -675,7 +675,7 @@ func armor_save(item : String, artist : String, inspo : String, coin : String, t
 			var text_list =  text_1 + text_2 + text_3 + text_4
 			var text_path = GlobalScripts.join_paths(text_dir, type)
 			
-			if preloaded_icon && preloaded_render_armor && preloaded_render_wings && preloaded_rack:
+			if preloaded_icon && preloaded_render_armor && preloaded_rack && text_3 == "":
 				pass
 			else:
 				GlobalScripts.instructions_tack(type_fancy, item, text_list, text_path)

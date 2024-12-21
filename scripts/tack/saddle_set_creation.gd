@@ -3,13 +3,13 @@ extends Control
 var artist : bool = false
 var set_name : bool = false
 var set_coin : bool = false
+var set_saddle : bool = false
+var set_bridle : bool = false
+var set_blanket : bool = false
 
-var sad_western : bool = true
-var sad_english : bool = false
-var bri_western : bool = true
-var bri_english : bool = false
-var bla_western : bool = true
-var bla_english : bool = false
+var type_saddle : String
+var type_bridle : String
+var type_blanket : String
 var adventure : bool = false
 
 var custom_rack : bool = false
@@ -39,13 +39,14 @@ func _ready() -> void:
 	if GlobalScripts.artist != "":
 		%artistText.text = GlobalScripts.artist
 		artist = true
-		ready_to_save()
+	ready_to_save()
 
 func on_error() -> void:
 	$popUPload.stop_loading()
 	disable_interaction()
 
 func on_error_continue() -> void:
+	$popUPload.stop_loading()
 	enable_interaction()
 
 func _on_back_button_pressed() -> void:
@@ -55,8 +56,8 @@ func _on_back_button_pressed() -> void:
 		get_tree().change_scene_to_file("res://scene/tackMenuGUI.tscn")
 
 func disable_interaction() -> void:
-	%confirmButton.disabled = true
-	%backButton.disabled = true
+	%confirmButton.set_disabled()
+	%backButton.set_disabled()
 	%artistText.editable = false
 	%inspoText.editable = false
 	%tackText.editable = false
@@ -77,8 +78,8 @@ func disable_interaction() -> void:
 	%girthStrapSpinBox.editable = false
 
 func enable_interaction() -> void:
-	%confirmButton.disabled = false
-	%backButton.disabled = false
+	%confirmButton.reenable_button()
+	%backButton.reenable_button()
 	%artistText.editable = true
 	%inspoText.editable = true
 	%tackText.editable = true
@@ -137,11 +138,16 @@ func _on_cust_check_box_pressed() -> void:
 		%custLabel.text = "No"
 		%STATICBoxContainer.visible = false
 		%EDITBoxContainer.visible = true
+		%BlanketCheckButton.disabled = false
+		%blanketrequired.text = "*"
 	else:
 		custom_rack = true
 		%custLabel.text = "Yes"
 		%STATICBoxContainer.visible = true
 		%EDITBoxContainer.visible = false
+		%BlanketCheckButton.disabled = true
+		%blanketrequired.text = ""
+	ready_to_save()
 
 func _on_red_spin_box_value_changed(value: float) -> void:
 	red = %redSpinBox.value
@@ -178,10 +184,13 @@ func _on_coin_options_item_selected(index: int) -> void:
 			coin = "amethyst"
 
 func ready_to_save() -> void:
-	if artist && set_name && set_coin:
-		%confirmButton.disabled = false
+	if artist && set_name && set_coin && set_saddle && set_bridle:
+		if custom_rack or set_blanket:
+			%confirmButton.reenable_button()
+		else:
+			%confirmButton.set_disabled()
 	else:
-		%confirmButton.disabled = true
+		%confirmButton.set_disabled()
 
 #########################################################
 func _on_confirm_button_pressed() -> void:
@@ -223,51 +232,30 @@ func check_for_duplicates():
 func _save_complete_tack_set() -> void:
 	# DUPE SETS FOR ENG AND WESTERN
 	$popUPload.loading("Saving Saddle")
-	if sad_western:
-			TackScripts.saddle_save(%tackText.text, %artistText.text, %inspoText.text, coin, "western", adventure, false, false, false, %saddleSpinBox.value,)
-
-	if sad_english:
-			TackScripts.saddle_save(%tackText.text, %artistText.text, %inspoText.text, coin, "english", adventure, false, false, false, %saddleSpinBox.value)
+	TackScripts.saddle_save(%tackText.text, %artistText.text, %inspoText.text, coin, type_saddle, adventure, false, false, false, %saddleSpinBox.value,)
 	
 	$popUPload.loading("Saving Bridle")
-	if bri_western:
-		if ErrorManager.is_error:
-			return
-		else:
-			TackScripts.bridle_save(%tackText.text, %artistText.text, %inspoText.text, coin, "western", adventure, false, false, false, %bridleSpinBox.value)
-	if bri_english:
-		if ErrorManager.is_error:
-			return
-		else:
-			TackScripts.bridle_save(%tackText.text, %artistText.text, %inspoText.text, coin, "english", adventure, false, false, false, %bridleSpinBox.value)
-	
+	if ErrorManager.is_error:
+		return
+	else:
+		TackScripts.bridle_save(%tackText.text, %artistText.text, %inspoText.text, coin, type_bridle, adventure, false, false, false, %bridleSpinBox.value)
 	$popUPload.loading("Saving Blanket & Girth Strap")
-	if bla_western:
+	if ErrorManager.is_error:
+		return
+	else:
 		if custom_rack:
-			if ErrorManager.is_error:
-				return
-			else:
-				TackScripts.girth_straps_save(%tackText.text, %artistText.text, %inspoText.text, coin, adventure, false, false, false, %girthStrapSpinBox.value)
-				TackScripts.blanket_save(%tackText.text, %artistText.text, %inspoText.text, coin, adventure, false, false, false, false, %blanketSpinBox.value)
+			TackScripts.girth_straps_save(%tackText.text, %artistText.text, %inspoText.text, coin, adventure, false, false, false, %girthStrapSpinBox.value)
+			TackScripts.blanket_save(%tackText.text, %artistText.text, %inspoText.text, coin, adventure, false, false, false, false, %blanketSpinBox.value)
 		else:
 			if ErrorManager.is_error:
 				return
 			else:
 				TackScripts.colored_girth_strap_save(%Girth_Saddle, %tackText.text, %artistText.text, %inspoText.text, coin, red, green, blue, adventure, false, false, %girthStrapSpinBox.value)
-				TackScripts.colored_blanket_save(%West_Blanket5, %West_Saddle, %tackText.text, %artistText.text, %inspoText.text, coin, red, green, blue, adventure, false, false, %blanketSpinBox.value)
-	if bla_english:
-		if custom_rack:
-			if ErrorManager.is_error:
-				return
-			else:
-				TackScripts.girth_straps_save(%tackText.text, %artistText.text, %inspoText.text, coin, adventure, false, false, false, %girthStrapSpinBox.value)
-				TackScripts.blanket_save(%tackText.text, %artistText.text, %inspoText.text, coin, adventure, false, false, false, false, %blanketSpinBox.value)
-		else:
-			if ErrorManager.is_error:
-				return
-			else:
-				TackScripts.colored_girth_strap_save(%Girth_Saddle, %tackText.text, %artistText.text, %inspoText.text, coin, red, green, blue, adventure, false, false, %girthStrapSpinBox.value)
-				TackScripts.colored_blanket_save(%Eng_Blanket5, %Eng_Saddle, %tackText.text, %artistText.text, %inspoText.text, coin, red, green, blue, adventure, false, false, %blanketSpinBox.value)
+				if type_blanket == "western":
+					TackScripts.colored_blanket_save(%West_Blanket5, %West_Saddle, %tackText.text, %artistText.text, %inspoText.text, coin, red, green, blue, adventure, false, false, %blanketSpinBox.value)
+				if type_blanket == "english":
+					TackScripts.colored_blanket_save(%Eng_Blanket5, %Eng_Saddle, %tackText.text, %artistText.text, %inspoText.text, coin, red, green, blue, adventure, false, false, %blanketSpinBox.value)
+			
 	if ErrorManager.is_error:
 		return
 	else:
@@ -317,42 +305,6 @@ func on_popup_exit_confirmed() -> void:
 
 ###########################################################
 
-func _on_saddle_check_button_pressed() -> void:
-	if sad_western:
-		sad_western = false
-		sad_english = true
-		%WestSadLabel.add_theme_color_override("font_color", Color(0.49, 0.36, 0.22))
-		%EngSadLabel.add_theme_color_override("font_color", Color(0.306, 0.271, 0.133))
-	else:
-		sad_western = true
-		sad_english = false
-		%WestSadLabel.add_theme_color_override("font_color", Color(0.306, 0.271, 0.133))
-		%EngSadLabel.add_theme_color_override("font_color", Color(0.49, 0.36, 0.22))
-
-func _on_bridle_check_button_pressed() -> void:
-	if bri_western:
-		bri_western = false
-		bri_english = true
-		%WestBriLabel.add_theme_color_override("font_color", Color(0.49, 0.36, 0.22))
-		%EngBriLabel.add_theme_color_override("font_color", Color(0.306, 0.271, 0.133))
-	else:
-		bri_western = true
-		bri_english = false
-		%WestBriLabel.add_theme_color_override("font_color", Color(0.306, 0.271, 0.133))
-		%EngBriLabel.add_theme_color_override("font_color", Color(0.49, 0.36, 0.22))
-
-func _on_blanket_check_button_pressed() -> void:
-	if bla_western:
-		bla_western = false
-		bla_english = true
-		%WestBlaLabel.add_theme_color_override("font_color", Color(0.49, 0.36, 0.22))
-		%EngBlaLabel.add_theme_color_override("font_color", Color(0.306, 0.271, 0.133))
-	else:
-		bla_western = true
-		bla_english = false
-		%WestBlaLabel.add_theme_color_override("font_color", Color(0.306, 0.271, 0.133))
-		%EngBlaLabel.add_theme_color_override("font_color", Color(0.49, 0.36, 0.22))
-
 func starting_coin_values() -> void:
 	%saddleSpinBox.value = TackScripts.cost_saddle
 	%bridleSpinBox.value = TackScripts.cost_bridle
@@ -360,4 +312,40 @@ func starting_coin_values() -> void:
 	%legWrapsSpinBox.value = TackScripts.cost_leg_wraps
 	%breastCollarSpinBox.value = TackScripts.cost_breast_collar
 	%girthStrapSpinBox.value = TackScripts.cost_girth_straps
-	
+
+func _on_saddle_button_item_selected(index: int) -> void:
+	set_saddle = true
+	ready_to_save()
+	match index:
+		0:
+			type_saddle = "western"
+			%armorCheckBox.disabled = false
+		1:
+			type_saddle = "english"
+			%armorCheckBox.disabled = false
+		2:
+			type_saddle = "adventure"
+			adventure = true
+			%armorLabel.text = "Yes"
+			%armorCheckBox.button_pressed = true
+			%armorCheckBox.disabled = true
+
+func _on_bridle_button_item_selected(index: int) -> void:
+	set_bridle = true
+	ready_to_save()
+	match index:
+		0:
+			type_bridle = "western"
+		1:
+			type_bridle = "english"
+		2:
+			type_bridle = "adventure"
+
+func _on_blanket_button_item_selected(index: int) -> void:
+	set_blanket = true
+	ready_to_save()
+	match index:
+		0:
+			type_blanket = "western"
+		1:
+			type_blanket = "english"

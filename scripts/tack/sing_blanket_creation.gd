@@ -5,9 +5,9 @@ var set_name : bool = false
 var set_coin : bool = false
 
 var custom_rack : bool = false
-var red : int = 255
-var green : int = 255
-var blue : int = 255
+var red : float = 255.0
+var green : float = 255.0
+var blue : float = 255.0
 
 var bla_western : bool = true
 var bla_english : bool = false
@@ -56,13 +56,14 @@ func _ready() -> void:
 	if GlobalScripts.artist != "":
 		%artistText.text = GlobalScripts.artist
 		artist = true
-		ready_to_save()
+	ready_to_save()
 
 func on_error() -> void:
 	$popUPload.stop_loading()
 	disable_interaction()
 
 func on_error_continue() -> void:
+	$popUPload.stop_loading()
 	enable_interaction()
 
 func _on_back_button_pressed() -> void:
@@ -72,8 +73,8 @@ func _on_back_button_pressed() -> void:
 		get_tree().change_scene_to_file("res://scene/tackMenuGUI.tscn")
 
 func disable_interaction() -> void:
-	%confirmButton.disabled = true
-	%backButton.disabled = true
+	%confirmButton.set_disabled()
+	%backButton.set_disabled()
 	%artistText.editable = false
 	%inspoText.editable = false
 	%tackText.editable = false
@@ -91,8 +92,8 @@ func disable_interaction() -> void:
 	%custCheckBox.disabled = true
 
 func enable_interaction() -> void:
-	%confirmButton.disabled = false
-	%backButton.disabled = false
+	%confirmButton.reenable_button()
+	%backButton.reenable_button()
 	%artistText.editable = true
 	%inspoText.editable = true
 	%tackText.editable = true
@@ -163,9 +164,9 @@ func _on_coin_options_item_selected(index: int) -> void:
 
 func ready_to_save() -> void:
 	if artist && set_name && set_coin:
-		%confirmButton.disabled = false
+		%confirmButton.reenable_button()
 	else:
-		%confirmButton.disabled = true
+		%confirmButton.set_disabled()
 
 func _on_cust_check_box_pressed() -> void:
 	if custom_rack:
@@ -338,26 +339,26 @@ func _on_file_dialog_file_selected(path: String) -> void:
 		image_rack_5 = Image.load_from_file(path)
 		%rack_5Button.button_label.text = "5 Blanket"
 
-	var image_file_name = path.split("/")
+	var image_file_name = path.split("\\")
 	image_file_name = image_file_name[-1]
 	target_line.text = " " + image_file_name
 
 func _on_icon_button_button_pressed() -> void:
 	file_opened = "icon"
-	$FileDialog.visible = true
 	$FileDialog.title = "Select the Icon Texture"
+	$FileDialog.visible = true
 
 func _on_render_button_button_pressed() -> void:
 	file_opened = "render"
-	$FileDialog.visible = true
 	$FileDialog.title = "Select the Tack Texture"
+	$FileDialog.visible = true
 
 func _on_rack_sad_button_button_pressed() -> void:
 	file_opened = "rack_sad"
-	$FileDialog.visible = true
 	$FileDialog.title = "Select the Saddle Rack Texture"
+	$FileDialog.visible = true
 
 func _on_rack_5_button_button_pressed() -> void:
 	file_opened = "rack_5"
-	$FileDialog.visible = true
 	$FileDialog.title = "Select the 5 Blanket Rack Texture"
+	$FileDialog.visible = true

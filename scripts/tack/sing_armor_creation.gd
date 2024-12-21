@@ -50,13 +50,14 @@ func _ready() -> void:
 	if GlobalScripts.artist != "":
 		%artistText.text = GlobalScripts.artist
 		artist = true
-		ready_to_save()
+	ready_to_save()
 
 func on_error() -> void:
 	$popUPload.stop_loading()
 	disable_interaction()
 
 func on_error_continue() -> void:
+	$popUPload.stop_loading()
 	enable_interaction()
 
 func _on_back_button_pressed() -> void:
@@ -66,8 +67,8 @@ func _on_back_button_pressed() -> void:
 		get_tree().change_scene_to_file("res://scene/tackMenuGUI.tscn")
 
 func disable_interaction() -> void:
-	%confirmButton.disabled = true
-	%backButton.disabled = true
+	%confirmButton.set_disabled()
+	%backButton.set_disabled()
 	%artistText.editable = false
 	%inspoText.editable = false
 	%tackText.editable = false
@@ -80,8 +81,8 @@ func disable_interaction() -> void:
 	%rackButton.set_disabled()
 
 func enable_interaction() -> void:
-	%confirmButton.disabled = false
-	%backButton.disabled = false
+	%confirmButton.reenable_button()
+	%backButton.reenable_button()
 	%artistText.editable = true
 	%inspoText.editable = true
 	%tackText.editable = true
@@ -164,9 +165,9 @@ func _on_coin_options_item_selected(index: int) -> void:
 
 func ready_to_save() -> void:
 	if artist && set_name && set_coin && set_armor:
-		%confirmButton.disabled = false
+		%confirmButton.reenable_button()
 	else:
-		%confirmButton.disabled = true
+		%confirmButton.set_disabled()
 
 #########################################################
 func _on_confirm_button_pressed() -> void:
@@ -286,26 +287,26 @@ func _on_file_dialog_file_selected(path: String) -> void:
 		image_rack = Image.load_from_file(path)
 		%rackButton.button_label.text = "Rack"
 	
-	var image_file_name = path.split("/")
+	var image_file_name = path.split("\\")
 	image_file_name = image_file_name[-1]
 	target_line.text = " " + image_file_name
 
 func _on_icon_button_button_pressed() -> void:
 	file_opened = "icon"
-	$FileDialog.visible = true
 	$FileDialog.title = "Select the Icon Texture"
+	$FileDialog.visible = true
 
 func _on_render_button_button_pressed() -> void:
 	file_opened = "render_armor"
-	$FileDialog.visible = true
 	$FileDialog.title = "Select the Armor Texture"
+	$FileDialog.visible = true
 
 func _on_rack_button_button_pressed() -> void:
 	file_opened = "rack"
-	$FileDialog.visible = true
 	$FileDialog.title = "Select the Rack Texture"
+	$FileDialog.visible = true
 
 func _on_render_wings_button_button_pressed() -> void:
 	file_opened = "render_wings"
-	$FileDialog.visible = true
 	$FileDialog.title = "Select the Wings Texture"
+	$FileDialog.visible = true

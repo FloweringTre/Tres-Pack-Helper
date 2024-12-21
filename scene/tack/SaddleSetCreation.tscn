@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://csx4f04hhg1bp"]
+[gd_scene load_steps=23 format=3 uid="uid://csx4f04hhg1bp"]
 
 [ext_resource type="Script" path="res://scripts/tack/saddle_set_creation.gd" id="1_i57yo"]
 [ext_resource type="Texture2D" uid="uid://diy8htskfybtd" path="res://assets/moon_bg.png" id="2_bc2tp"]
@@ -14,7 +14,9 @@
 [ext_resource type="Theme" uid="uid://cof5u4dam7c2t" path="res://assets/UI_theme_shadowed.tres" id="9_ijbno"]
 [ext_resource type="PackedScene" uid="uid://cdigxro282sfm" path="res://scene/components/checkAlert.tscn" id="10_moihw"]
 [ext_resource type="PackedScene" uid="uid://clixcby1mmxr3" path="res://scene/helpScreen.tscn" id="11_bpiip"]
+[ext_resource type="PackedScene" uid="uid://wonyaiea8tn2" path="res://scene/components/buttonSMOL2_blue.tscn" id="11_hhc6g"]
 [ext_resource type="Texture2D" uid="uid://gmchkp7i7m5e" path="res://assets/rackResources/rack_blanket_5_english_blanket.png" id="12_bx8sb"]
+[ext_resource type="PackedScene" uid="uid://s4coqphlup24" path="res://scene/components/buttonSMOL2.tscn" id="12_iu2hw"]
 [ext_resource type="Texture2D" uid="uid://btrg0jid24lsi" path="res://assets/rackResources/rack_blanket_5_western_blanket.png" id="13_qfa46"]
 [ext_resource type="Texture2D" uid="uid://b2rxjq35frach" path="res://assets/rackResources/rack_saddle_english_blanket.png" id="18_skpnq"]
 [ext_resource type="Texture2D" uid="uid://dq0pu42fpexq8" path="res://assets/rackResources/rack_saddle_girth_strap.png" id="19_q8o76"]
@@ -23,38 +25,6 @@
 [sub_resource type="AtlasTexture" id="AtlasTexture_kx556"]
 atlas = ExtResource("2_pggdn")
 region = Rect2(58, 10, 28, 28)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ytf6o"]
-atlas = ExtResource("2_pggdn")
-region = Rect2(176, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8k5rt"]
-atlas = ExtResource("2_pggdn")
-region = Rect2(176, 32, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ajnw7"]
-atlas = ExtResource("2_pggdn")
-region = Rect2(176, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_a8fa8"]
-atlas = ExtResource("2_pggdn")
-region = Rect2(176, 48, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wirbh"]
-atlas = ExtResource("2_pggdn")
-region = Rect2(160, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_apwef"]
-atlas = ExtResource("2_pggdn")
-region = Rect2(160, 32, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7aqcs"]
-atlas = ExtResource("2_pggdn")
-region = Rect2(160, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_71y0a"]
-atlas = ExtResource("2_pggdn")
-region = Rect2(160, 48, 16, 16)
 
 [node name="saddleSetCreation" type="Control"]
 layout_mode = 3
@@ -133,6 +103,7 @@ theme_override_constants/separation = 130
 alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="NinePatchRect/VBoxContainer/TitleContainer"]
+visible = false
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
 texture = ExtResource("3_sxpko")
@@ -144,6 +115,7 @@ theme_override_colors/font_color = Color(0.178263, 0.423711, 0.665043, 1)
 text = "Saddle Tack Set"
 
 [node name="TextureRect2" type="TextureRect" parent="NinePatchRect/VBoxContainer/TitleContainer"]
+visible = false
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
 texture = ExtResource("3_sxpko")
@@ -232,7 +204,6 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 focus_neighbor_top = NodePath("../../HBoxContainer3/artist/artistText")
-focus_next = NodePath("../../HBoxContainer/VBoxContainer/tackType/SaddleCheckButton")
 focus_previous = NodePath("../../HBoxContainer3/inspiration/inspoText")
 placeholder_text = "Indigo"
 
@@ -309,6 +280,7 @@ layout_mode = 2
 theme_override_constants/separation = 18
 
 [node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(207, 0)
 layout_mode = 2
 theme_override_constants/separation = 3
 
@@ -319,31 +291,28 @@ size_flags_horizontal = 0
 [node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer/tackType"]
 layout_mode = 2
 theme = ExtResource("6_qgv75")
-text = "Saddle Model: "
+text = "Saddle Type:"
 
-[node name="WestSadLabel" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer/tackType"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(44, 0)
+[node name="required" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer/tackType"]
 layout_mode = 2
-theme = ExtResource("5_ri0vv")
-text = "Western"
+theme = ExtResource("6_7dh00")
+text = "*"
 horizontal_alignment = 2
 
-[node name="SaddleCheckButton" type="CheckButton" parent="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer/tackType"]
-unique_name_in_owner = true
+[node name="Container" type="Container" parent="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer/tackType"]
+custom_minimum_size = Vector2(7, 3)
 layout_mode = 2
-focus_neighbor_top = NodePath("../../../../tackName/tackText")
-focus_neighbor_right = NodePath("../../../VBoxContainer2/HBoxContainer/custCheck/custCheckBox")
-focus_next = NodePath("../../tackType2/BridleCheckButton")
-focus_previous = NodePath("../../../../tackName/tackText")
 
-[node name="EngSadLabel" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer/tackType"]
+[node name="SaddleCheckButton" type="OptionButton" parent="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer/tackType"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(85, 0)
 layout_mode = 2
-theme = ExtResource("5_ri0vv")
-theme_override_colors/font_color = Color(0.494118, 0.364706, 0.227451, 1)
-text = "English"
-horizontal_alignment = 2
+item_count = 3
+popup/item_0/text = "Western"
+popup/item_1/text = "English"
+popup/item_1/id = 1
+popup/item_2/text = "Adventure"
+popup/item_2/id = 2
 
 [node name="tackType2" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -352,35 +321,28 @@ size_flags_horizontal = 0
 [node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer/tackType2"]
 layout_mode = 2
 theme = ExtResource("6_qgv75")
-text = "Bridle Model: "
+text = "Bridle Type:"
+
+[node name="required" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer/tackType2"]
+layout_mode = 2
+theme = ExtResource("6_7dh00")
+text = "*"
+horizontal_alignment = 2
 
 [node name="Container" type="Container" parent="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer/tackType2"]
-custom_minimum_size = Vector2(3, 0)
+custom_minimum_size = Vector2(11, 0)
 layout_mode = 2
 
-[node name="WestBriLabel" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer/tackType2"]
+[node name="BridleCheckButton" type="OptionButton" parent="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer/tackType2"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(85, 0)
 layout_mode = 2
-theme = ExtResource("5_ri0vv")
-text = "Western"
-horizontal_alignment = 2
-
-[node name="BridleCheckButton" type="CheckButton" parent="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer/tackType2"]
-unique_name_in_owner = true
-layout_mode = 2
-focus_neighbor_top = NodePath("../../tackType/SaddleCheckButton")
-focus_neighbor_right = NodePath("../../../VBoxContainer2/EDITBoxContainer/redSpinBox")
-focus_neighbor_bottom = NodePath("../../tackType3/BlanketCheckButton")
-focus_next = NodePath("../../tackType3/BlanketCheckButton")
-focus_previous = NodePath("../../tackType/SaddleCheckButton")
-
-[node name="EngBriLabel" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer/tackType2"]
-unique_name_in_owner = true
-layout_mode = 2
-theme = ExtResource("5_ri0vv")
-theme_override_colors/font_color = Color(0.494118, 0.364706, 0.227451, 1)
-text = "English"
-horizontal_alignment = 2
+item_count = 3
+popup/item_0/text = "Western"
+popup/item_1/text = "English"
+popup/item_1/id = 1
+popup/item_2/text = "Adventure"
+popup/item_2/id = 2
 
 [node name="tackType3" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -389,34 +351,31 @@ size_flags_horizontal = 0
 [node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer/tackType3"]
 layout_mode = 2
 theme = ExtResource("6_qgv75")
-text = "Blanket Model: "
+text = "Blanket Type:"
 
-[node name="WestBlaLabel" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer/tackType3"]
+[node name="blanketrequired" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer/tackType3"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(6, 0)
 layout_mode = 2
-theme = ExtResource("5_ri0vv")
-text = "Western"
+theme = ExtResource("6_7dh00")
+text = "*"
 horizontal_alignment = 2
 
-[node name="BlanketCheckButton" type="CheckButton" parent="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer/tackType3"]
-unique_name_in_owner = true
+[node name="Container" type="Container" parent="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer/tackType3"]
+custom_minimum_size = Vector2(3, 3)
 layout_mode = 2
-focus_neighbor_top = NodePath("../../tackType2/BridleCheckButton")
-focus_neighbor_right = NodePath("../../../VBoxContainer2/moneyCheck/coinOptions")
-focus_neighbor_bottom = NodePath("../../../../HBoxContainer5/saddleBox/saddleSpinBox")
-focus_next = NodePath("../../../VBoxContainer2/HBoxContainer/custCheck/custCheckBox")
-focus_previous = NodePath("../../tackType2/BridleCheckButton")
 
-[node name="EngBlaLabel" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer/tackType3"]
+[node name="BlanketCheckButton" type="OptionButton" parent="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer/tackType3"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(85, 0)
 layout_mode = 2
-theme = ExtResource("5_ri0vv")
-theme_override_colors/font_color = Color(0.494118, 0.364706, 0.227451, 1)
-text = "English"
-horizontal_alignment = 2
+item_count = 2
+popup/item_0/text = "Western"
+popup/item_1/text = "English"
+popup/item_1/id = 1
 
 [node name="Line2D" type="Line2D" parent="NinePatchRect/VBoxContainer/HBoxContainer"]
-position = Vector2(219.267, 5.33334)
+position = Vector2(205.267, 5.33334)
 scale = Vector2(9.23273, 6.83333)
 points = PackedVector2Array(0, 0, 0, 10)
 width = 0.1
@@ -444,12 +403,10 @@ horizontal_alignment = 2
 [node name="custCheckBox" type="CheckBox" parent="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/custCheck"]
 unique_name_in_owner = true
 layout_mode = 2
-focus_neighbor_left = NodePath("../../../../VBoxContainer/tackType/SaddleCheckButton")
 focus_neighbor_top = NodePath("../../../../../tackName/tackText")
 focus_neighbor_right = NodePath("../../armorCheck/armorCheckBox")
 focus_neighbor_bottom = NodePath("../../../EDITBoxContainer/redSpinBox")
 focus_next = NodePath("../../armorCheck/armorCheckBox")
-focus_previous = NodePath("../../../../VBoxContainer/tackType3/BlanketCheckButton")
 
 [node name="custLabel" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/custCheck"]
 unique_name_in_owner = true
@@ -507,7 +464,6 @@ horizontal_alignment = 2
 unique_name_in_owner = true
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
-focus_neighbor_left = NodePath("../../../VBoxContainer/tackType2/BridleCheckButton")
 focus_neighbor_top = NodePath("../../HBoxContainer/custCheck/custCheckBox")
 focus_neighbor_right = NodePath("../greenSpinBox")
 focus_neighbor_bottom = NodePath("../../moneyCheck/coinOptions")
@@ -670,7 +626,6 @@ horizontal_alignment = 2
 [node name="coinOptions" type="OptionButton" parent="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer2/moneyCheck"]
 unique_name_in_owner = true
 layout_mode = 2
-focus_neighbor_left = NodePath("../../../VBoxContainer/tackType3/BlanketCheckButton")
 focus_neighbor_top = NodePath("../../EDITBoxContainer/greenSpinBox")
 focus_neighbor_bottom = NodePath("../../../../HBoxContainer5/breastCollarBox/breastCollarSpinBox")
 focus_next = NodePath("../../../../HBoxContainer5/saddleBox/saddleSpinBox")
@@ -716,7 +671,6 @@ text = "Saddles:"
 [node name="saddleSpinBox" type="SpinBox" parent="NinePatchRect/VBoxContainer/HBoxContainer5/saddleBox"]
 unique_name_in_owner = true
 layout_mode = 2
-focus_neighbor_top = NodePath("../../../HBoxContainer/VBoxContainer/tackType3/BlanketCheckButton")
 focus_neighbor_right = NodePath("../../bridleBox/bridleSpinBox")
 focus_next = NodePath("../../bridleBox/bridleSpinBox")
 focus_previous = NodePath("../../../HBoxContainer/VBoxContainer2/moneyCheck/coinOptions")
@@ -738,7 +692,6 @@ text = "Bridles:"
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_left = NodePath("../../saddleBox/saddleSpinBox")
-focus_neighbor_top = NodePath("../../../HBoxContainer/VBoxContainer/tackType3/BlanketCheckButton")
 focus_neighbor_right = NodePath("../../blanketBox/blanketSpinBox")
 focus_next = NodePath("../../blanketBox/blanketSpinBox")
 focus_previous = NodePath("../../saddleBox/saddleSpinBox")
@@ -760,7 +713,6 @@ text = "Blankets:"
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_left = NodePath("../../bridleBox/bridleSpinBox")
-focus_neighbor_top = NodePath("../../../HBoxContainer/VBoxContainer/tackType3/BlanketCheckButton")
 focus_neighbor_right = NodePath("../../bridleBox/bridleSpinBox")
 focus_next = NodePath("../../legWrapsBox/legWrapsSpinBox")
 focus_previous = NodePath("../../bridleBox/bridleSpinBox")
@@ -826,56 +778,12 @@ text = "Grith Straps:"
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_left = NodePath("../../breastCollarBox/breastCollarSpinBox")
-focus_neighbor_right = NodePath("../../../../confirmButton")
-focus_neighbor_bottom = NodePath("../../../../confirmButton")
-focus_next = NodePath("../../../../confirmButton")
 focus_previous = NodePath("../../breastCollarBox/breastCollarSpinBox")
 theme = ExtResource("4_d8m3x")
 min_value = 1.0
 max_value = 64.0
 value = 3.0
 alignment = 1
-
-[node name="backButton" type="TextureButton" parent="NinePatchRect"]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 7.0
-offset_top = 297.0
-offset_right = 23.0
-offset_bottom = 313.0
-scale = Vector2(2, 2)
-texture_normal = SubResource("AtlasTexture_ytf6o")
-texture_pressed = SubResource("AtlasTexture_8k5rt")
-texture_hover = SubResource("AtlasTexture_ajnw7")
-texture_disabled = SubResource("AtlasTexture_a8fa8")
-
-[node name="HelperLabel5" type="Label" parent="NinePatchRect"]
-layout_mode = 0
-offset_left = 41.0
-offset_top = 313.0
-offset_right = 65.0
-offset_bottom = 327.0
-size_flags_horizontal = 4
-theme = ExtResource("9_ijbno")
-theme_override_colors/font_color = Color(0.493728, 0.364523, 0.227402, 1)
-text = "Return to the Tack Main Menu"
-vertical_alignment = 2
-
-[node name="confirmButton" type="TextureButton" parent="NinePatchRect"]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 569.0
-offset_top = 296.5
-offset_right = 585.0
-offset_bottom = 312.5
-scale = Vector2(2, 2)
-focus_neighbor_left = NodePath("../backButton")
-focus_previous = NodePath("../VBoxContainer/Hbox2/nameCheck")
-disabled = true
-texture_normal = SubResource("AtlasTexture_wirbh")
-texture_pressed = SubResource("AtlasTexture_apwef")
-texture_hover = SubResource("AtlasTexture_7aqcs")
-texture_disabled = SubResource("AtlasTexture_71y0a")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect"]
 layout_mode = 0
@@ -895,9 +803,50 @@ layout_mode = 2
 theme = ExtResource("9_ijbno")
 text = "= required field"
 
-[node name="errorMessage" parent="." instance=ExtResource("8_fc084")]
-visible = false
-layout_mode = 1
+[node name="confirmButton" parent="NinePatchRect" instance=ExtResource("11_hhc6g")]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 537.0
+offset_top = 306.0
+offset_right = 601.0
+offset_bottom = 328.0
+button_text = "Generate"
+
+[node name="backButton" parent="NinePatchRect" instance=ExtResource("12_iu2hw")]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 7.0
+offset_top = 306.5
+offset_right = 71.0
+offset_bottom = 328.5
+button_text = "Tack Menu"
+
+[node name="butterflys" type="Control" parent="NinePatchRect"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 5.0
+offset_top = 5.5
+offset_right = 45.0
+offset_bottom = 45.5
+
+[node name="TextureRect" type="TextureRect" parent="NinePatchRect/butterflys"]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+offset_left = 60.0
+offset_top = 3.0
+offset_right = 90.0
+offset_bottom = 33.0
+texture = ExtResource("3_sxpko")
+
+[node name="TextureRect2" type="TextureRect" parent="NinePatchRect/butterflys"]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+offset_left = 509.0
+offset_top = 3.0
+offset_right = 539.0
+offset_bottom = 33.0
+texture = ExtResource("3_sxpko")
+flip_h = true
 
 [node name="popUP_Saved" parent="." instance=ExtResource("9_esgrn")]
 visible = false
@@ -912,6 +861,10 @@ visible = false
 layout_mode = 1
 
 [node name="popUPload" parent="." instance=ExtResource("9_esgrn")]
+visible = false
+layout_mode = 1
+
+[node name="errorMessage" parent="." instance=ExtResource("8_fc084")]
 visible = false
 layout_mode = 1
 
@@ -961,14 +914,14 @@ texture = ExtResource("20_1j3a8")
 [connection signal="text_changed" from="NinePatchRect/VBoxContainer/HBoxContainer3/artist/artistText" to="." method="_on_artist_text_text_changed"]
 [connection signal="text_changed" from="NinePatchRect/VBoxContainer/HBoxContainer3/inspiration/inspoText" to="." method="_on_inspo_text_text_changed"]
 [connection signal="text_changed" from="NinePatchRect/VBoxContainer/tackName/tackText" to="." method="_on_tack_text_text_changed"]
-[connection signal="pressed" from="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer/tackType/SaddleCheckButton" to="." method="_on_saddle_check_button_pressed"]
-[connection signal="pressed" from="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer/tackType2/BridleCheckButton" to="." method="_on_bridle_check_button_pressed"]
-[connection signal="pressed" from="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer/tackType3/BlanketCheckButton" to="." method="_on_blanket_check_button_pressed"]
+[connection signal="item_selected" from="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer/tackType/SaddleCheckButton" to="." method="_on_saddle_button_item_selected"]
+[connection signal="item_selected" from="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer/tackType2/BridleCheckButton" to="." method="_on_bridle_button_item_selected"]
+[connection signal="item_selected" from="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer/tackType3/BlanketCheckButton" to="." method="_on_blanket_button_item_selected"]
 [connection signal="pressed" from="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/custCheck/custCheckBox" to="." method="_on_cust_check_box_pressed"]
 [connection signal="pressed" from="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/armorCheck/armorCheckBox" to="." method="_on_armor_check_box_pressed"]
 [connection signal="value_changed" from="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer2/EDITBoxContainer/redSpinBox" to="." method="_on_red_spin_box_value_changed"]
 [connection signal="value_changed" from="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer2/EDITBoxContainer/greenSpinBox" to="." method="_on_green_spin_box_value_changed"]
 [connection signal="value_changed" from="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer2/EDITBoxContainer/blueSpinBox" to="." method="_on_blue_spin_box_value_changed"]
 [connection signal="item_selected" from="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer2/moneyCheck/coinOptions" to="." method="_on_coin_options_item_selected"]
-[connection signal="pressed" from="NinePatchRect/backButton" to="." method="_on_back_button_pressed"]
-[connection signal="pressed" from="NinePatchRect/confirmButton" to="." method="_on_confirm_button_pressed"]
+[connection signal="button_pressed" from="NinePatchRect/confirmButton" to="." method="_on_confirm_button_pressed"]
+[connection signal="button_pressed" from="NinePatchRect/backButton" to="." method="_on_back_button_pressed"]

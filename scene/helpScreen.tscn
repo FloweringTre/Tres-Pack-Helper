@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://clixcby1mmxr3"]
+[gd_scene load_steps=25 format=3 uid="uid://clixcby1mmxr3"]
 
 [ext_resource type="Script" path="res://scripts/help_screen.gd" id="1_u7n5r"]
 [ext_resource type="Texture2D" uid="uid://8f0rfohmniwa" path="res://assets/menuUI.png" id="2_xqowa"]
@@ -96,60 +96,32 @@ tracks/3/keys = {
 "values": [Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_e453m"]
-resource_name = "open_faq"
+[sub_resource type="Animation" id="Animation_aic7a"]
+resource_name = "exit_credits"
 length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("FAQ:modulate")
+tracks/0/path = NodePath("CREDITS:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.6),
-"transitions": PackedFloat32Array(1, 2.37841),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("FAQ:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_1ian2"]
-resource_name = "open_credits"
-length = 0.6
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CREDITS:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("CREDITS:modulate")
+tracks/1/path = NodePath("CREDITS:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.6),
 "transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="Animation" id="Animation_q7hml"]
@@ -180,32 +152,60 @@ tracks/1/keys = {
 "values": [true, false]
 }
 
-[sub_resource type="Animation" id="Animation_aic7a"]
-resource_name = "exit_credits"
+[sub_resource type="Animation" id="Animation_1ian2"]
+resource_name = "open_credits"
 length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CREDITS:modulate")
+tracks/0/path = NodePath("CREDITS:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.6),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CREDITS:visible")
+tracks/1/path = NodePath("CREDITS:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.6),
 "transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_e453m"]
+resource_name = "open_faq"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FAQ:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 2.37841),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FAQ:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true, false]
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_07tyb"]
@@ -216,6 +216,8 @@ _data = {
 "open_credits": SubResource("Animation_1ian2"),
 "open_faq": SubResource("Animation_e453m")
 }
+
+[sub_resource type="Theme" id="Theme_ooxh2"]
 
 [node name="helpscreen" type="Control"]
 z_index = 3
@@ -280,6 +282,7 @@ theme_override_constants/separation = 82
 alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="FAQ/VBoxContainer/HBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
 texture = ExtResource("3_rno1h")
@@ -293,6 +296,7 @@ theme_override_font_sizes/font_size = 32
 text = "Frequently Asked Questions"
 
 [node name="TextureRect2" type="TextureRect" parent="FAQ/VBoxContainer/HBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
 texture = ExtResource("3_rno1h")
@@ -312,7 +316,11 @@ layout_mode = 2
 custom_minimum_size = Vector2(275, 0)
 layout_mode = 2
 
-[node name="title3" type="Label" parent="FAQ/VBoxContainer/HBoxContainer2/VBoxContainer"]
+[node name="VBoxContainer4" type="VBoxContainer" parent="FAQ/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="title3" type="Label" parent="FAQ/VBoxContainer/HBoxContainer2/VBoxContainer/VBoxContainer4"]
 layout_mode = 2
 theme = ExtResource("7_3nugk")
 theme_override_constants/line_spacing = -1
@@ -321,12 +329,12 @@ text = "I don't have all the rack textures for the new blankets and girth straps
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="HelperLabel5" type="Label" parent="FAQ/VBoxContainer/HBoxContainer2/VBoxContainer"]
+[node name="HelperLabel5" type="Label" parent="FAQ/VBoxContainer/HBoxContainer2/VBoxContainer/VBoxContainer4"]
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
 theme = ExtResource("5_wev1s")
 theme_override_constants/line_spacing = -2
-text = "It's okay, you can select \"No\" for custom rack textures and the rack textures I made for saddle blankets, girth straps, and pasture blankets, will be saved in your pack folder. "
+text = "Select \"No\" for custom rack textures and premade rack textures for saddle blankets, girth straps, and pasture blankets, will be saved in your pack. "
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -335,7 +343,11 @@ custom_minimum_size = Vector2(0, 3)
 layout_mode = 2
 theme = ExtResource("5_wev1s")
 
-[node name="title4" type="Label" parent="FAQ/VBoxContainer/HBoxContainer2/VBoxContainer"]
+[node name="VBoxContainer3" type="VBoxContainer" parent="FAQ/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = -2
+
+[node name="title4" type="Label" parent="FAQ/VBoxContainer/HBoxContainer2/VBoxContainer/VBoxContainer3"]
 layout_mode = 2
 theme = ExtResource("7_3nugk")
 theme_override_font_sizes/font_size = 16
@@ -343,7 +355,7 @@ text = "What if I want to update the rack textures later?"
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="HelperLabel6" type="Label" parent="FAQ/VBoxContainer/HBoxContainer2/VBoxContainer"]
+[node name="HelperLabel6" type="Label" parent="FAQ/VBoxContainer/HBoxContainer2/VBoxContainer/VBoxContainer3"]
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
 theme = ExtResource("5_wev1s")
@@ -357,7 +369,11 @@ custom_minimum_size = Vector2(0, 3)
 layout_mode = 2
 theme = ExtResource("5_wev1s")
 
-[node name="title5" type="Label" parent="FAQ/VBoxContainer/HBoxContainer2/VBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="FAQ/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = -2
+
+[node name="title5" type="Label" parent="FAQ/VBoxContainer/HBoxContainer2/VBoxContainer/VBoxContainer2"]
 layout_mode = 2
 theme = ExtResource("7_3nugk")
 theme_override_font_sizes/font_size = 16
@@ -365,7 +381,7 @@ text = "I got an error message!"
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="HelperLabel7" type="Label" parent="FAQ/VBoxContainer/HBoxContainer2/VBoxContainer"]
+[node name="HelperLabel7" type="Label" parent="FAQ/VBoxContainer/HBoxContainer2/VBoxContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
 theme = ExtResource("5_wev1s")
@@ -374,11 +390,41 @@ text = "Most times it is related to your file path, check and make sure the file
 horizontal_alignment = 1
 autowrap_mode = 2
 
+[node name="spacer7" type="Container" parent="FAQ/VBoxContainer/HBoxContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 3)
+layout_mode = 2
+theme = ExtResource("5_wev1s")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="FAQ/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = -2
+
+[node name="title6" type="Label" parent="FAQ/VBoxContainer/HBoxContainer2/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("7_3nugk")
+theme_override_font_sizes/font_size = 16
+text = "My icons are all dark and weird..."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="HelperLabel8" type="Label" parent="FAQ/VBoxContainer/HBoxContainer2/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+theme = ExtResource("5_wev1s")
+theme_override_constants/line_spacing = -2
+text = "Remove the Instructions and Reporting documents from your pack folder to fix this."
+horizontal_alignment = 1
+autowrap_mode = 2
+
 [node name="VBoxContainer2" type="VBoxContainer" parent="FAQ/VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(275, 0)
 layout_mode = 2
 
-[node name="title2" type="Label" parent="FAQ/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="FAQ/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = -2
+
+[node name="title2" type="Label" parent="FAQ/VBoxContainer/HBoxContainer2/VBoxContainer2/VBoxContainer2"]
 layout_mode = 2
 theme = ExtResource("7_3nugk")
 theme_override_constants/line_spacing = -1
@@ -388,7 +434,7 @@ files in this application?"
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="HelperLabel4" type="Label" parent="FAQ/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+[node name="HelperLabel4" type="Label" parent="FAQ/VBoxContainer/HBoxContainer2/VBoxContainer2/VBoxContainer2"]
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
 theme = ExtResource("5_wev1s")
@@ -403,7 +449,11 @@ custom_minimum_size = Vector2(0, 3)
 layout_mode = 2
 theme = ExtResource("5_wev1s")
 
-[node name="title3" type="Label" parent="FAQ/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+[node name="VBoxContainer3" type="VBoxContainer" parent="FAQ/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = -2
+
+[node name="title3" type="Label" parent="FAQ/VBoxContainer/HBoxContainer2/VBoxContainer2/VBoxContainer3"]
 layout_mode = 2
 theme = ExtResource("7_3nugk")
 theme_override_constants/line_spacing = -1
@@ -412,7 +462,7 @@ text = "Where do I put the pack folder? "
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="HelperLabel5" type="Label" parent="FAQ/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+[node name="HelperLabel5" type="Label" parent="FAQ/VBoxContainer/HBoxContainer2/VBoxContainer2/VBoxContainer3"]
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
 theme = ExtResource("5_wev1s")
@@ -559,6 +609,33 @@ theme_override_colors/font_color = Color(0.493728, 0.364523, 0.227402, 1)
 text = "Return to page"
 vertical_alignment = 2
 
+[node name="butterflys" type="Control" parent="FAQ"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 5.0
+offset_top = 5.5
+offset_right = 45.0
+offset_bottom = 45.5
+
+[node name="TextureRect" type="TextureRect" parent="FAQ/butterflys"]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+offset_left = 60.0
+offset_top = 3.0
+offset_right = 90.0
+offset_bottom = 33.0
+texture = ExtResource("3_rno1h")
+
+[node name="TextureRect2" type="TextureRect" parent="FAQ/butterflys"]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+offset_left = 509.0
+offset_top = 3.0
+offset_right = 539.0
+offset_bottom = 33.0
+texture = ExtResource("3_rno1h")
+flip_h = true
+
 [node name="CREDITS" type="NinePatchRect" parent="."]
 self_modulate = Color(0.906223, 0.838196, 0.788158, 1)
 layout_mode = 1
@@ -597,6 +674,7 @@ theme_override_constants/separation = 123
 alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="CREDITS/VBoxContainer/HBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
 texture = ExtResource("3_rno1h")
@@ -610,6 +688,7 @@ theme_override_font_sizes/font_size = 32
 text = "Pack Helper Credits"
 
 [node name="TextureRect2" type="TextureRect" parent="CREDITS/VBoxContainer/HBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
 texture = ExtResource("3_rno1h")
@@ -846,10 +925,49 @@ theme_override_colors/font_color = Color(0.493728, 0.364523, 0.227402, 1)
 text = "Back to FAQ page"
 vertical_alignment = 2
 
+[node name="butterflys" type="Control" parent="CREDITS"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 5.0
+offset_top = 5.5
+offset_right = 45.0
+offset_bottom = 45.5
+
+[node name="TextureRect" type="TextureRect" parent="CREDITS/butterflys"]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+offset_left = 60.0
+offset_top = 3.0
+offset_right = 90.0
+offset_bottom = 33.0
+texture = ExtResource("3_rno1h")
+
+[node name="TextureRect2" type="TextureRect" parent="CREDITS/butterflys"]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+offset_left = 509.0
+offset_top = 3.0
+offset_right = 539.0
+offset_bottom = 33.0
+texture = ExtResource("3_rno1h")
+flip_h = true
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_07tyb")
 }
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+offset_left = 247.0
+offset_top = -159.0
+offset_right = 296.0
+offset_bottom = -145.0
+theme = SubResource("Theme_ooxh2")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -3
+text = "V1.0.3"
+horizontal_alignment = 2
 
 [connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
 [connection signal="button_pressed" from="FAQ/creditsbutton" to="." method="_on_creditsbutton_button_pressed"]

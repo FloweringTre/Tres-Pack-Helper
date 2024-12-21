@@ -24,7 +24,7 @@ func _ready() -> void:
 		on_done()
 	setup_done.connect(on_done)
 	ErrorManager.error_alert.connect(on_error)
-	%confirmButton.disabled = true
+	%confirmButton.set_disabled()
 	%pathOpenButton.button_pressed.connect(on_path_button_pressed)
 	%coatsButton.button_pressed.connect(on_coats_selected)
 	%tackButton.button_pressed.connect(on_tack_selected)
@@ -39,6 +39,7 @@ func _ready() -> void:
 		%artistNametext.text = GlobalScripts.artist
 
 func _on_confirm_button_pressed() -> void:
+	$popUPload.loading("Checking pack path")
 	var Root = location_text.text
 	var folder = folder_nametext.text
 	Root = GlobalScripts.path_clean(Root)
@@ -48,13 +49,16 @@ func _on_confirm_button_pressed() -> void:
 	directory = GlobalScripts.join_paths(Root, folder)
 	
 	if GlobalScripts.check_folder(directory):
+		$popUPload.stop_loading()
 		folder_exists()
 	else:
+		$popUPload.loading("Creating new pack")
 		GlobalScripts.new_pack_setup(directory)
 		old_pack = false
 		setup_done.emit()
 
 func on_done() -> void:
+	$popUPload.stop_loading()
 	if ErrorManager.is_error:
 		pass
 	else:
@@ -76,7 +80,7 @@ func on_done() -> void:
 			GlobalScripts.folder + " folder has been generated!"
 
 func disable_interaction() -> void:
-	%confirmButton.disabled = true
+	%confirmButton.set_disabled()
 	%backButton.disabled = true
 	%nameCheck.set_disabled()
 	%pathOpenButton.set_disabled()
@@ -86,7 +90,7 @@ func disable_interaction() -> void:
 	%tackButton.set_disabled()
 
 func enable_interaction() -> void:
-	%confirmButton.disabled = false
+	%confirmButton.reenable_button()
 	%backButton.disabled = false
 	%nameCheck.reenable_button()
 	%pathOpenButton.reenable_button()
@@ -104,24 +108,26 @@ func on_tack_selected() -> void:
 func _on_location_text_text_changed(new_text: String) -> void:
 	$checkPathLOCA.awaiting_check()
 	root_changed = false
-	%confirmButton.disabled = true 
+	%confirmButton.set_disabled() 
 
 func _on_folder_nametext_text_changed(new_text: String) -> void:
 	$checkPathFOLD.awaiting_check()
 	folder_changed = false
-	%confirmButton.disabled = true 
+	%confirmButton.set_disabled()
 
 func on_error() -> void:
+	$popUPload.stop_loading()
 	root_changed = false
-	%confirmButton.disabled = true
+	%confirmButton.set_disabled()
 	%backButton.disabled = true
 
 func on_error_continue() -> void:
+	$popUPload.stop_loading()
 	$checkPathFOLD.set_check(false)
 	$checkPathLOCA.set_check(false)
 	root_changed = false
 	folder_changed = false
-	%confirmButton.disabled = true
+	%confirmButton.set_disabled()
 	%backButton.disabled = false
 	
 func _on_back_button_pressed() -> void:
@@ -146,7 +152,7 @@ func on_name_check() -> void:
 		$checkPathFOLD.set_check(true)
 		folder_changed = true
 		if root_changed == true:
-			%confirmButton.disabled = false
+			%confirmButton.reenable_button()
 		else:
 			pass
 
@@ -162,6 +168,7 @@ func on_popup_back() -> void:
 	enable_interaction()
 
 func on_popup_confirmed() -> void:
+	$popUPload.loading("Opening up pack")
 	var opened_dir= DirAccess.open(directory)
 	GlobalScripts.old_pack_setup(directory)
 	old_pack = true
@@ -183,7 +190,7 @@ func _on_location_text_focus_exited() -> void:
 		$checkPathLOCA.set_check(true)
 		root_changed = true
 		if folder_changed == true:
-			%confirmButton.disabled = false
+			%confirmButton.reenable_button()
 		else:
 			pass
 	else:

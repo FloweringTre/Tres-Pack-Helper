@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://c7f637oqram5g"]
+[gd_scene load_steps=23 format=3 uid="uid://c7f637oqram5g"]
 
 [ext_resource type="Script" path="res://scripts/starting_gui.gd" id="1_3an53"]
 [ext_resource type="Texture2D" uid="uid://8f0rfohmniwa" path="res://assets/menuUI.png" id="1_lx5dw"]
@@ -14,6 +14,7 @@
 [ext_resource type="Theme" uid="uid://dm4jlnbmnj4eb" path="res://assets/UI_theme_dark.tres" id="10_5yckn"]
 [ext_resource type="Theme" uid="uid://cof5u4dam7c2t" path="res://assets/UI_theme_shadowed.tres" id="10_p8xtw"]
 [ext_resource type="PackedScene" uid="uid://bpgiy2j33slge" path="res://scene/components/pop_up.tscn" id="12_kwseo"]
+[ext_resource type="PackedScene" uid="uid://c18of0dynnf7n" path="res://scene/components/buttonSMOLBLUE.tscn" id="13_6su5t"]
 [ext_resource type="PackedScene" uid="uid://clixcby1mmxr3" path="res://scene/helpScreen.tscn" id="13_g6yan"]
 [ext_resource type="Texture2D" uid="uid://diy8htskfybtd" path="res://assets/moon_bg.png" id="17_6xagu"]
 
@@ -36,22 +37,6 @@ region = Rect2(176, 16, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_8xqp5"]
 atlas = ExtResource("1_lx5dw")
 region = Rect2(176, 48, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7qkcx"]
-atlas = ExtResource("1_lx5dw")
-region = Rect2(160, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ug12d"]
-atlas = ExtResource("1_lx5dw")
-region = Rect2(160, 32, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_yfjb1"]
-atlas = ExtResource("1_lx5dw")
-region = Rect2(160, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_scopy"]
-atlas = ExtResource("1_lx5dw")
-region = Rect2(160, 48, 16, 16)
 
 [node name="StartingGUI" type="Control"]
 layout_mode = 3
@@ -127,6 +112,7 @@ theme_override_constants/separation = 130
 alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="NinePatchRect/VBoxContainer/TitleContainer"]
+visible = false
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
 texture = ExtResource("3_kp27u")
@@ -138,6 +124,7 @@ theme_override_colors/font_color = Color(0.178263, 0.423711, 0.665043, 1)
 text = "Tre's Pack Helper"
 
 [node name="TextureRect2" type="TextureRect" parent="NinePatchRect/VBoxContainer/TitleContainer"]
+visible = false
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
 texture = ExtResource("3_kp27u")
@@ -206,7 +193,6 @@ custom_minimum_size = Vector2(360, 0)
 layout_mode = 2
 focus_neighbor_top = NodePath("../../Hbox/locationText")
 focus_neighbor_right = NodePath("../nameCheck")
-focus_neighbor_bottom = NodePath("../../../confirmButton")
 focus_next = NodePath("../nameCheck")
 focus_previous = NodePath("../../Hbox/pathOpenButton")
 
@@ -215,9 +201,6 @@ unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_left = NodePath("../folderNametext")
 focus_neighbor_top = NodePath("../../Hbox/pathOpenButton")
-focus_neighbor_right = NodePath("../../../confirmButton")
-focus_neighbor_bottom = NodePath("../../../confirmButton")
-focus_next = NodePath("../../../confirmButton")
 focus_previous = NodePath("../folderNametext")
 button_text = "Clean"
 
@@ -234,7 +217,7 @@ horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="HelperLabel4" type="Label" parent="NinePatchRect/VBoxContainer/Stage1BoxContainer"]
-custom_minimum_size = Vector2(0, 14)
+custom_minimum_size = Vector2(0, 18)
 layout_mode = 2
 theme = ExtResource("8_e2603")
 text = "Each pack needs to have a unique name. If two packs or tack items have the same name, errors will occur."
@@ -242,7 +225,7 @@ horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="HelperLabel3" type="Label" parent="NinePatchRect/VBoxContainer/Stage1BoxContainer"]
-custom_minimum_size = Vector2(0, 56)
+custom_minimum_size = Vector2(0, 49)
 layout_mode = 2
 theme = ExtResource("2_em82s")
 text = "Press the buttons to earn a chech mark on each line.
@@ -254,22 +237,10 @@ autowrap_mode = 2
 [node name="HelperLabel6" type="Label" parent="NinePatchRect/VBoxContainer/Stage1BoxContainer"]
 layout_mode = 2
 theme = ExtResource("10_5yckn")
-text = "After you have a check mark in each required field above, you will be able to press the checkmark
-below and start generating your SWEM Community Pack!"
+text = "After you have a check mark in each required field above,
+you will be able to press the button below and start generating your SWEM Community Pack!"
 horizontal_alignment = 1
 vertical_alignment = 1
-autowrap_mode = 2
-
-[node name="HelperLabel5" type="Label" parent="NinePatchRect/VBoxContainer/Stage1BoxContainer"]
-visible = false
-custom_minimum_size = Vector2(380, 15)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 8
-theme = ExtResource("10_p8xtw")
-text = "Press the buttons above to gain a checkmark on each line to proceed..."
-horizontal_alignment = 2
-vertical_alignment = 2
 
 [node name="Stage2BoxContainer" type="VBoxContainer" parent="NinePatchRect/VBoxContainer"]
 visible = false
@@ -345,7 +316,6 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(360, 0)
 layout_mode = 2
 focus_neighbor_top = NodePath("../../../Hbox/locationText")
-focus_neighbor_bottom = NodePath("../../../../confirmButton")
 focus_previous = NodePath("../../../Hbox/pathOpenButton")
 placeholder_text = "This name will pre-populate on all the generators to save time!"
 
@@ -406,24 +376,41 @@ theme_override_colors/font_color = Color(0.493728, 0.364523, 0.227402, 1)
 text = "Exit "
 vertical_alignment = 2
 
-[node name="confirmButton" type="TextureButton" parent="NinePatchRect"]
+[node name="confirmButton" parent="NinePatchRect" instance=ExtResource("13_6su5t")]
 unique_name_in_owner = true
-layout_mode = 2
-offset_left = 569.0
-offset_top = 296.5
-offset_right = 585.0
-offset_bottom = 312.5
-scale = Vector2(2, 2)
-focus_neighbor_left = NodePath("../backButton")
-focus_previous = NodePath("../VBoxContainer/Hbox2/nameCheck")
-texture_normal = SubResource("AtlasTexture_7qkcx")
-texture_pressed = SubResource("AtlasTexture_ug12d")
-texture_hover = SubResource("AtlasTexture_yfjb1")
-texture_disabled = SubResource("AtlasTexture_scopy")
+layout_mode = 0
+offset_left = 537.0
+offset_top = 295.5
+offset_right = 601.0
+offset_bottom = 327.5
+button_text = "Open the Pack!"
 
-[node name="errorMessage" parent="." instance=ExtResource("6_iaop6")]
-visible = false
-layout_mode = 1
+[node name="butterflys" type="Control" parent="NinePatchRect"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 5.0
+offset_top = 5.5
+offset_right = 45.0
+offset_bottom = 45.5
+
+[node name="TextureRect" type="TextureRect" parent="NinePatchRect/butterflys"]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+offset_left = 60.0
+offset_top = 3.0
+offset_right = 90.0
+offset_bottom = 33.0
+texture = ExtResource("3_kp27u")
+
+[node name="TextureRect2" type="TextureRect" parent="NinePatchRect/butterflys"]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+offset_left = 509.0
+offset_top = 3.0
+offset_right = 539.0
+offset_bottom = 33.0
+texture = ExtResource("3_kp27u")
+flip_h = true
 
 [node name="checkPathLOCA" parent="." instance=ExtResource("9_xnwmn")]
 layout_mode = 0
@@ -449,6 +436,10 @@ layout_mode = 1
 visible = false
 layout_mode = 1
 
+[node name="popUPload" parent="." instance=ExtResource("12_kwseo")]
+visible = false
+layout_mode = 1
+
 [node name="helpscreen" parent="." instance=ExtResource("13_g6yan")]
 visible = false
 layout_mode = 1
@@ -465,10 +456,14 @@ file_mode = 2
 access = 2
 use_native_dialog = true
 
+[node name="errorMessage" parent="." instance=ExtResource("6_iaop6")]
+visible = false
+layout_mode = 1
+
 [connection signal="focus_exited" from="NinePatchRect/VBoxContainer/Hbox/locationText" to="." method="_on_location_text_focus_exited"]
 [connection signal="text_changed" from="NinePatchRect/VBoxContainer/Hbox/locationText" to="." method="_on_location_text_text_changed"]
 [connection signal="text_changed" from="NinePatchRect/VBoxContainer/Hbox2/folderNametext" to="." method="_on_folder_nametext_text_changed"]
 [connection signal="text_changed" from="NinePatchRect/VBoxContainer/Stage2BoxContainer/Hbox3/artistNametext" to="." method="_on_artist_nametext_text_changed"]
 [connection signal="pressed" from="NinePatchRect/backButton" to="." method="_on_back_button_pressed"]
-[connection signal="pressed" from="NinePatchRect/confirmButton" to="." method="_on_confirm_button_pressed"]
+[connection signal="button_pressed" from="NinePatchRect/confirmButton" to="." method="_on_confirm_button_pressed"]
 [connection signal="dir_selected" from="FileDialog" to="." method="_on_file_dialog_dir_selected"]

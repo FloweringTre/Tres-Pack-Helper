@@ -4,10 +4,9 @@ var artist : bool = false
 var set_name : bool = false
 var set_armor : bool = false
 var set_coin : bool = false
+var set_tack : bool = false
 
-var western : bool = false
-var english : bool = false
-var both_sets : bool = false
+var type_tack : String
 var adventure : bool = false
 
 var custom_rack : bool = false
@@ -26,9 +25,6 @@ var hal : bool = true
 var file_name : String
 var path : String
 
-var west_name : String
-var eng_name : String
-
 signal new_tack_saved
 
 func _ready() -> void:
@@ -46,7 +42,7 @@ func _ready() -> void:
 	if GlobalScripts.artist != "":
 		%artistText.text = GlobalScripts.artist
 		artist = true
-		ready_to_save()
+	ready_to_save()
 
 func on_error() -> void:
 	$popUPload.stop_loading()
@@ -62,8 +58,8 @@ func _on_back_button_pressed() -> void:
 		get_tree().change_scene_to_file("res://scene/tackMenuGUI.tscn")
 
 func disable_interaction() -> void:
-	%confirmButton.disabled = true
-	%backButton.disabled = true
+	%confirmButton.set_disabled()
+	%backButton.set_disabled()
 	%artistText.editable = false
 	%inspoText.editable = false
 	%tackText.editable = false
@@ -83,8 +79,8 @@ func disable_interaction() -> void:
 	%halCheckBox.disabled = true
 
 func enable_interaction() -> void:
-	%confirmButton.disabled = false
-	%backButton.disabled = false
+	%confirmButton.reenable_button()
+	%backButton.reenable_button()
 	%artistText.editable = true
 	%inspoText.editable = true
 	%tackText.editable = true
@@ -126,54 +122,8 @@ func update_name_previews() -> void:
 		text = "Indigo"
 	else:
 		text = %tackText.text
-	if both_sets:
-		%inGameLabel.text = text + " English Bridle"
-		%dataLabel.text = GlobalScripts.text_clean(text) + "_english_bridle"
-	else:
-		%inGameLabel.text = text + " Bridle"
-		%dataLabel.text = GlobalScripts.text_clean(text) + "_bridle"
-
-func _on_west_check_box_pressed() -> void:
-	if western:
-		western = false
-		if both_sets:
-			both_sets = false
-			on_both_sets()
-		else:
-			pass
-	else:
-		western = true
-		if english:
-			both_sets = true
-			on_both_sets()
-		else:
-			pass
-	ready_to_save()
-
-func _on_eng_check_box_pressed() -> void:
-	if english:
-		english = false
-		if both_sets:
-			both_sets = false
-			on_both_sets()
-		else:
-			pass
-	else:
-		english = true
-		if western:
-			both_sets = true
-			on_both_sets()
-		else:
-			pass
-	ready_to_save()
-
-func on_both_sets() -> void:
-	if both_sets:
-		update_name_previews()
-		%AlertLabel.text = "Both Tack Models have been selected - A full set of 'English' and 'Western' set will be generated."
-	else:
-		update_name_previews()
-		%AlertLabel.text = ""
+	%inGameLabel.text = text + " Bridle"
+	%dataLabel.text = GlobalScripts.text_clean(text) + "_bridle"
 
 func _on_armor_check_box_pressed() -> void:
 	if adventure:
@@ -265,10 +215,12 @@ func _on_ar_check_box_pressed() -> void:
 		ar = false
 		%arLabel.text = "No"
 		%armorOptions.disabled = true
+		%armoredrequired.text = ""
 	else:
 		ar = true
 		%arLabel.text = "Yes"
 		%armorOptions.disabled = false
+		%armoredrequired.text = "*"
 	ready_to_save()
 
 func _on_sb_check_box_pressed() -> void:
@@ -289,16 +241,13 @@ func _on_hal_check_box_pressed() -> void:
 
 func ready_to_save() -> void:
 	#print("run ready_to_save")
-	if artist && set_name && set_coin:
-		if western or english:
-			if !ar or set_armor:
-				%confirmButton.disabled = false
-			else:
-				%confirmButton.disabled = true
+	if artist && set_name && set_coin && set_tack:
+		if !ar or set_armor:
+			%confirmButton.reenable_button()
 		else:
-			%confirmButton.disabled = true
+			%confirmButton.set_disabled()
 	else:
-		%confirmButton.disabled = true
+		%confirmButton.set_disabled()
 
 #########################################################
 func _on_confirm_button_pressed() -> void:
@@ -323,18 +272,7 @@ func dupe_exists(duplicates_found : int) -> void:
 
 func check_for_duplicates():
 	var duplicate_exists : int
-	if both_sets:
-		eng_name = %tackText.text + " English"
-		west_name = %tackText.text + " Western"
-		duplicate_exists += dupe_western()
-		duplicate_exists += dupe_english()
-	else:
-		if western:
-			west_name = %tackText.text
-			duplicate_exists += dupe_western()
-		if english:
-			eng_name = %tackText.text
-			duplicate_exists += dupe_english()
+	duplicate_exists += dupe_tack()
 	if pb:
 		if TackScripts.tack_dupe_check("pasture_blanket", %tackText.text):
 			duplicate_exists += 1
@@ -352,52 +290,25 @@ func check_for_duplicates():
 			duplicate_exists += 1
 	return duplicate_exists
 
-func dupe_western():
+func dupe_tack():
 	var duplicate_exists : int
-	if TackScripts.tack_dupe_check("saddle", west_name):
+	if TackScripts.tack_dupe_check("saddle", %tackText.text):
 		duplicate_exists += 1
-	if TackScripts.tack_dupe_check("bridle", west_name):
+	if TackScripts.tack_dupe_check("bridle", %tackText.text):
 		duplicate_exists += 1
-	if TackScripts.tack_dupe_check("blanket", west_name):
+	if TackScripts.tack_dupe_check("blanket", %tackText.text):
 		duplicate_exists += 1
-	if TackScripts.tack_dupe_check("leg_wraps", west_name):
+	if TackScripts.tack_dupe_check("leg_wraps", %tackText.text):
 		duplicate_exists += 1
-	if TackScripts.tack_dupe_check("girth_strap", west_name):
+	if TackScripts.tack_dupe_check("girth_strap", %tackText.text):
 		duplicate_exists += 1
-	if TackScripts.tack_dupe_check("breast_collar", west_name):
-		duplicate_exists += 1
-	return duplicate_exists
-
-func dupe_english():
-	var duplicate_exists : int
-	if TackScripts.tack_dupe_check("saddle", eng_name):
-		duplicate_exists += 1
-	if TackScripts.tack_dupe_check("bridle", eng_name):
-		duplicate_exists += 1
-	if TackScripts.tack_dupe_check("blanket", eng_name):
-		duplicate_exists += 1
-	if TackScripts.tack_dupe_check("leg_wraps", eng_name):
-		duplicate_exists += 1
-	if TackScripts.tack_dupe_check("girth_strap", eng_name):
-		duplicate_exists += 1
-	if TackScripts.tack_dupe_check("breast_collar", eng_name):
+	if TackScripts.tack_dupe_check("breast_collar", %tackText.text):
 		duplicate_exists += 1
 	return duplicate_exists
 
 func _save_complete_tack_set() -> void:
-	# DUPE SETS FOR ENG AND WESTERN
-	if both_sets:
-		eng_name = %tackText.text + " English"
-		west_name = %tackText.text + " Western"
-		western_tack()
-		english_tack()
-	else:
-		if western:
-			west_name = %tackText.text
-			western_tack()
-		if english:
-			eng_name = %tackText.text
-			english_tack()
+	# THE TACK SETS
+	save_tack()
 		
 	#CUSTOM RACK TEXTURES
 	if custom_rack:
@@ -442,61 +353,36 @@ func _save_complete_tack_set() -> void:
 		$popUPload.stop_loading()
 		new_tack_saved.emit()
 
-func western_tack() -> void:
+func save_tack() -> void:
 	if ErrorManager.is_error:
 		return
 	else:
 		$popUPload.loading("Saving Saddle and Bridle")
-		TackScripts.saddle_save(west_name, %artistText.text, %inspoText.text, coin, "western", adventure, false, false, false)
-		TackScripts.bridle_save(west_name, %artistText.text, %inspoText.text, coin, "western", adventure, false, false, false, false)
+		TackScripts.saddle_save(%tackText.text, %artistText.text, %inspoText.text, coin, type_tack, adventure, false, false, false)
+		TackScripts.bridle_save(%tackText.text, %artistText.text, %inspoText.text, coin, type_tack, adventure, false, false, false, false)
 	if ErrorManager.is_error:
 		return
 	else:
 		$popUPload.loading("Saving Breast Collar and Leg Wraps")
-		TackScripts.breast_collar_save(west_name, %artistText.text, %inspoText.text, coin, adventure, false, false)
-		TackScripts.leg_wraps_save(west_name, %artistText.text, %inspoText.text, coin, adventure, false, false, false)
+		TackScripts.breast_collar_save(%tackText.text, %artistText.text, %inspoText.text, coin, adventure, false, false)
+		TackScripts.leg_wraps_save(%tackText.text, %artistText.text, %inspoText.text, coin, adventure, false, false, false)
 	
 	$popUPload.loading("Saving Saddle Blanket and Girth Strap")
 	if custom_rack:
 		if ErrorManager.is_error:
 			return
 		else:
-			TackScripts.girth_straps_save(west_name, %artistText.text, %inspoText.text, coin, adventure, false, false, false)
-			TackScripts.blanket_save(west_name, %artistText.text, %inspoText.text, coin, adventure, false, false, false, false)
+			TackScripts.girth_straps_save(%tackText.text, %artistText.text, %inspoText.text, coin, adventure, false, false, false)
+			TackScripts.blanket_save(%tackText.text, %artistText.text, %inspoText.text, coin, adventure, false, false, false, false)
 	else:
 		if ErrorManager.is_error:
 			return
 		else:
-			TackScripts.colored_girth_strap_save(%Girth_Saddle, west_name, %artistText.text, %inspoText.text, coin, red, green, blue, adventure, false, false)
-			TackScripts.colored_blanket_save(%West_Blanket5, %West_Saddle, west_name, %artistText.text, %inspoText.text, coin, red, green, blue, adventure, false, false)
-
-func english_tack() -> void:
-	if ErrorManager.is_error:
-		return
-	else:
-		$popUPload.loading("Saving Saddle and Bridle")
-		TackScripts.saddle_save(eng_name, %artistText.text, %inspoText.text, coin, "english", adventure, false, false, false)
-		TackScripts.bridle_save(eng_name, %artistText.text, %inspoText.text, coin, "english", adventure, false, false, false, false,)
-	if ErrorManager.is_error:
-		return
-	else:
-		$popUPload.loading("Saving Breast Collar and Leg Wraps")
-		TackScripts.breast_collar_save(eng_name, %artistText.text, %inspoText.text, coin, adventure, false, false)
-		TackScripts.leg_wraps_save(eng_name, %artistText.text, %inspoText.text, coin, adventure, false, false, false)
-	
-	$popUPload.loading("Saving Saddle Blanket and Girth Strap")
-	if custom_rack:
-		if ErrorManager.is_error:
-			return
-		else:
-			TackScripts.girth_straps_save(eng_name, %artistText.text, %inspoText.text, coin, adventure, false, false, false)
-			TackScripts.blanket_save(eng_name, %artistText.text, %inspoText.text, coin, adventure, false, false, false, false)
-	else:
-		if ErrorManager.is_error:
-			return
-		else:
-			TackScripts.colored_girth_strap_save(%Girth_Saddle, eng_name, %artistText.text, %inspoText.text, coin, red, green, blue, adventure, false, false)
-			TackScripts.colored_blanket_save(%Eng_Blanket5, %Eng_Saddle, eng_name, %artistText.text, %inspoText.text, coin, red, green, blue, adventure, false, false)
+			TackScripts.colored_girth_strap_save(%Girth_Saddle, %tackText.text, %artistText.text, %inspoText.text, coin, red, green, blue, adventure, false, false)
+			if type_tack == "english":
+				TackScripts.colored_blanket_save(%Eng_Blanket5, %Eng_Saddle, %tackText.text, %artistText.text, %inspoText.text, coin, red, green, blue, adventure, false, false)
+			else:
+				TackScripts.colored_blanket_save(%West_Blanket5, %West_Saddle, %tackText.text, %artistText.text, %inspoText.text, coin, red, green, blue, adventure, false, false)
 
 func on_popup_dupe_back() -> void:
 	enable_interaction()
@@ -534,3 +420,20 @@ func on_popup_exit_confirmed() -> void:
 	get_tree().change_scene_to_file("res://scene/tackMenuGUI.tscn")
 
 ###########################################################
+
+func _on_tack_check_button_item_selected(index: int) -> void:
+	set_tack = true
+	ready_to_save()
+	match index:
+		0:
+			type_tack = "western"
+			%armorCheckBox.disabled = false
+		1:
+			type_tack = "english"
+			%armorCheckBox.disabled = false
+		2:
+			type_tack = "adventure"
+			adventure = true
+			%armorLabel.text = "Yes"
+			%armorCheckBox.button_pressed = true
+			%armorCheckBox.disabled = true

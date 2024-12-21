@@ -3,9 +3,9 @@ extends Control
 var artist : bool = false
 var set_name : bool = false
 var set_coin : bool = false
+var set_saddle : bool = false
 
-var sad_western : bool = true
-var sad_english : bool = false
+var type_saddle : String
 var adventure : bool = false
 
 var text_icon : bool = false
@@ -47,13 +47,14 @@ func _ready() -> void:
 	if GlobalScripts.artist != "":
 		%artistText.text = GlobalScripts.artist
 		artist = true
-		ready_to_save()
+	ready_to_save()
 
 func on_error() -> void:
 	$popUPload.stop_loading()
 	disable_interaction()
 
 func on_error_continue() -> void:
+	$popUPload.stop_loading()
 	enable_interaction()
 
 func _on_back_button_pressed() -> void:
@@ -63,8 +64,8 @@ func _on_back_button_pressed() -> void:
 		get_tree().change_scene_to_file("res://scene/tackMenuGUI.tscn")
 
 func disable_interaction() -> void:
-	%confirmButton.disabled = true
-	%backButton.disabled = true
+	%confirmButton.set_disabled()
+	%backButton.set_disabled()
 	%artistText.editable = false
 	%inspoText.editable = false
 	%tackText.editable = false
@@ -77,8 +78,8 @@ func disable_interaction() -> void:
 	%rackButton.set_disabled()
 
 func enable_interaction() -> void:
-	%confirmButton.disabled = false
-	%backButton.disabled = false
+	%confirmButton.reenable_button()
+	%backButton.reenable_button()
 	%artistText.editable = true
 	%inspoText.editable = true
 	%tackText.editable = true
@@ -143,10 +144,10 @@ func _on_coin_options_item_selected(index: int) -> void:
 			coin = "amethyst"
 
 func ready_to_save() -> void:
-	if artist && set_name && set_coin:
-		%confirmButton.disabled = false
+	if artist && set_name && set_coin && set_saddle:
+		%confirmButton.reenable_button()
 	else:
-		%confirmButton.disabled = true
+		%confirmButton.set_disabled()
 
 #########################################################
 func _on_confirm_button_pressed() -> void:
@@ -171,10 +172,7 @@ func dupe_exists() -> void:
 func _save_tack() -> void:
 	$popUPload.loading("Saving Saddle")
 	var save_path = GlobalScripts.join_paths(GlobalScripts.textures_root, "tack/saddle")
-	if sad_western:
-			TackScripts.saddle_save(%tackText.text, %artistText.text, %inspoText.text, coin, "western", adventure, text_icon, text_render, text_rack, %saddleSpinBox.value)
-	if sad_english:
-			TackScripts.saddle_save(%tackText.text, %artistText.text, %inspoText.text, coin, "english", adventure, text_icon, text_render, text_rack, %saddleSpinBox.value)
+	TackScripts.saddle_save(%tackText.text, %artistText.text, %inspoText.text, coin, type_saddle, adventure, text_icon, text_render, text_rack, %saddleSpinBox.value)
 	
 	if text_icon:
 		icon_save_path = save_path + "/" + GlobalScripts.text_clean(%tackText.text) + "_saddle_icon.png"
@@ -185,9 +183,15 @@ func _save_tack() -> void:
 		image_render.save_png(render_save_path)
 		GlobalScripts.report("Saved user selected image: " + render_source + "  to the file location: " + render_save_path)
 	if text_rack:
-		rack_save_path = save_path + "/rack_horse_armor_" + GlobalScripts.text_clean(%tackText.text) + "_saddle.png"
+		#armor rack
+		rack_save_path = save_path + "/rack_saddle_" + GlobalScripts.text_clean(%tackText.text) + "_saddle.png"
 		image_rack.save_png(rack_save_path)
 		GlobalScripts.report("Saved user selected image: " + rack_source + "  to the file location: " + rack_save_path)
+		#armor rack
+		if adventure:
+			rack_save_path = save_path + "/rack_horse_armor_" + GlobalScripts.text_clean(%tackText.text) + "_saddle.png"
+			image_rack.save_png(rack_save_path)
+			GlobalScripts.report("Saved user selected image: " + rack_source + "  to the file location: " + rack_save_path)
 	
 	if ErrorManager.is_error:
 			return
@@ -232,18 +236,6 @@ func on_popup_exit_confirmed() -> void:
 
 ###########################################################
 
-func _on_saddle_check_button_pressed() -> void:
-	if sad_western:
-		sad_western = false
-		sad_english = true
-		%WestSadLabel.add_theme_color_override("font_color", Color(0.49, 0.36, 0.22))
-		%EngSadLabel.add_theme_color_override("font_color", Color(0.306, 0.271, 0.133))
-	else:
-		sad_western = true
-		sad_english = false
-		%WestSadLabel.add_theme_color_override("font_color", Color(0.306, 0.271, 0.133))
-		%EngSadLabel.add_theme_color_override("font_color", Color(0.49, 0.36, 0.22))
-
 func starting_coin_values() -> void:
 	%saddleSpinBox.value = TackScripts.cost_saddle
 
@@ -270,21 +262,38 @@ func _on_file_dialog_file_selected(path: String) -> void:
 		image_rack = Image.load_from_file(path)
 		%rackButton.button_label.text = "Rack"
 
-	var image_file_name = path.split("/")
+	var image_file_name = path.split("\\")
 	image_file_name = image_file_name[-1]
 	target_line.text = " " + image_file_name
 
 func _on_icon_button_button_pressed() -> void:
 	file_opened = "icon"
-	$FileDialog.visible = true
 	$FileDialog.title = "Select the Icon Texture"
+	$FileDialog.visible = true
 
 func _on_render_button_button_pressed() -> void:
 	file_opened = "render"
-	$FileDialog.visible = true
 	$FileDialog.title = "Select the Tack Texture"
+	$FileDialog.visible = true
 
 func _on_rack_button_button_pressed() -> void:
 	file_opened = "rack"
-	$FileDialog.visible = true
 	$FileDialog.title = "Select the Saddle Rack Texture"
+	$FileDialog.visible = true
+
+func _on_saddle_check_button_item_selected(index: int) -> void:
+	set_saddle = true
+	ready_to_save()
+	match index:
+		0:
+			type_saddle = "western"
+			%armorCheckBox.disabled = false
+		1:
+			type_saddle = "english"
+			%armorCheckBox.disabled = false
+		2:
+			type_saddle = "adventure"
+			adventure = true
+			%armorLabel.text = "Yes"
+			%armorCheckBox.button_pressed = true
+			%armorCheckBox.disabled = true

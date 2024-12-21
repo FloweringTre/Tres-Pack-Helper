@@ -38,11 +38,11 @@ texture_hover = SubResource("AtlasTexture_v6oo8")
 texture_disabled = SubResource("AtlasTexture_6qyx5")
 
 [node name="textContainer" type="VBoxContainer" parent="."]
-custom_minimum_size = Vector2(60, 9)
+custom_minimum_size = Vector2(58, 9)
 layout_mode = 0
-offset_left = 2.0
+offset_left = 3.0
 offset_top = 2.0
-offset_right = 62.0
+offset_right = 61.0
 offset_bottom = 17.0
 mouse_filter = 2
 theme_override_constants/separation = 3
