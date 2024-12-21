@@ -299,21 +299,21 @@ func _on_file_dialog_file_selected(path: String) -> void:
 		image_rack = Image.load_from_file(path)
 		%rackButton.button_label.text = "Rack"
 
-	var image_file_name = path.split("/")
+	var image_file_name = path.split("\\")
 	image_file_name = image_file_name[-1]
 	target_line.text = " " + image_file_name
 
 func _on_icon_button_button_pressed() -> void:
 	file_opened = "icon"
-	$FileDialog.visible = true
 	$FileDialog.title = "Select the Icon Texture"
+	$FileDialog.visible = true
 
 func _on_render_button_button_pressed() -> void:
 	file_opened = "render"
-	$FileDialog.visible = true
 	$FileDialog.title = "Select the Tack Texture"
+	$FileDialog.visible = true
 
 func _on_rack_button_button_pressed() -> void:
 	file_opened = "rack"
-	$FileDialog.visible = true
 	$FileDialog.title = "Select the Rack Texture"
+	$FileDialog.visible = true
