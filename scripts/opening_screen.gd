@@ -8,6 +8,8 @@ func _ready() -> void:
 	$TextureRect.visible = true
 	$Timer.start(1)
 	%confirmButton.set_disabled()
+	
+	GlobalScripts.replace_version_placeholder(%spacer)
 	#print("starting timer")
 
 func _on_back_button_pressed() -> void:
