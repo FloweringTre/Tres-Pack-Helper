@@ -48,7 +48,7 @@ func disabled_buttons() -> void:
 	%saddle_bags.set_disabled()
 	%armors.set_disabled()
 	%pasture_blankets.set_disabled()
-	%backButton.disabled = true
+	%backButton.set_disabled()
 	%full_set.set_disabled()
 	%confirmButton.disabled = true
 
@@ -66,7 +66,7 @@ func reenabled_buttons() -> void:
 	%armors.reenable_button()
 	%pasture_blankets.reenable_button()
 	update_save_button()
-	%backButton.disabled = false
+	%backButton.reenable_button()
 	%full_set.reenable_button()
 
 #################### SCENE MOVING ####################
