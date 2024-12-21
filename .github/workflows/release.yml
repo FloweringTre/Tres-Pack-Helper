@@ -31,6 +31,10 @@ jobs:
         mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
         git config --global --add safe.directory /__w/Tres-Pack-Helper/Tres-Pack-Helper # Fix detected dubious ownership.
     
+    - name: Inject version into export preset
+      run: |
+        sed -i'.bak'  "s/\$VERSION/${{ github.event.release.tag_name }}/" export_presets.cfg
+
     - name: Windows Build
       run: |
         mkdir -v -p build/windows
@@ -68,6 +72,10 @@ jobs:
         mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
         git config --global --add safe.directory /__w/Tres-Pack-Helper/Tres-Pack-Helper # Fix detected dubious ownership.
     
+    - name: Inject version into export preset
+      run: |
+        sed -i'.bak'  "s/\$VERSION/${{ github.event.release.tag_name }}/" export_presets.cfg
+
     - name: MacOS Build
       run: |
         mkdir -v -p build/mac
