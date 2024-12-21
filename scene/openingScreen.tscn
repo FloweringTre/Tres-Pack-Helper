@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cn7ut62jxmgnl"]
+[gd_scene load_steps=25 format=3 uid="uid://cn7ut62jxmgnl"]
 
 [ext_resource type="Script" path="res://scripts/opening_screen.gd" id="1_su0nw"]
 [ext_resource type="Texture2D" uid="uid://diy8htskfybtd" path="res://assets/moon_bg.png" id="2_1k85t"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://b3cou3ndcs75h" path="res://scene/components/error_message.tscn" id="7_8xlpx"]
 [ext_resource type="Theme" uid="uid://vjxbkxdwdxu4" path="res://assets/UI_theme_alert.tres" id="7_33s8g"]
 [ext_resource type="Texture2D" uid="uid://d1ykhw1sfpi48" path="res://assets/boot_screen.png" id="9_vg3x7"]
+[ext_resource type="PackedScene" uid="uid://c18of0dynnf7n" path="res://scene/components/buttonSMOLBLUE.tscn" id="10_73o4v"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kx556"]
 atlas = ExtResource("2_fs84d")
@@ -329,6 +330,7 @@ vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="continue" type="Label" parent="NinePatchRect"]
+visible = false
 custom_minimum_size = Vector2(150, 14)
 layout_mode = 2
 offset_left = 415.0
@@ -355,8 +357,18 @@ texture_pressed = SubResource("AtlasTexture_2lxfb")
 texture_hover = SubResource("AtlasTexture_ifa6c")
 texture_disabled = SubResource("AtlasTexture_me2im")
 
-[node name="confirmButton" type="TextureButton" parent="NinePatchRect"]
+[node name="confirmButton" parent="NinePatchRect" instance=ExtResource("10_73o4v")]
 unique_name_in_owner = true
+layout_mode = 0
+offset_left = 535.0
+offset_top = 294.5
+offset_right = 599.0
+offset_bottom = 326.5
+button_text = "Continue"
+
+[node name="confirmButton2" type="TextureButton" parent="NinePatchRect"]
+unique_name_in_owner = true
+visible = false
 layout_mode = 0
 offset_left = 569.0
 offset_top = 296.5
@@ -403,5 +415,6 @@ autostart = true
 
 [connection signal="pressed" from="NinePatchRect/VBoxContainer/HBoxContainer2/CheckBox" to="." method="_on_check_box_pressed"]
 [connection signal="pressed" from="NinePatchRect/backButton" to="." method="_on_back_button_pressed"]
-[connection signal="pressed" from="NinePatchRect/confirmButton" to="." method="_on_confirm_button_pressed"]
+[connection signal="button_pressed" from="NinePatchRect/confirmButton" to="." method="_on_confirm_button_button_pressed"]
+[connection signal="pressed" from="NinePatchRect/confirmButton2" to="." method="_on_confirm_button_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
