@@ -316,7 +316,11 @@ layout_mode = 2
 custom_minimum_size = Vector2(275, 0)
 layout_mode = 2
 
-[node name="title3" type="Label" parent="FAQ/VBoxContainer/HBoxContainer2/VBoxContainer"]
+[node name="VBoxContainer4" type="VBoxContainer" parent="FAQ/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="title3" type="Label" parent="FAQ/VBoxContainer/HBoxContainer2/VBoxContainer/VBoxContainer4"]
 layout_mode = 2
 theme = ExtResource("7_3nugk")
 theme_override_constants/line_spacing = -1
@@ -325,12 +329,12 @@ text = "I don't have all the rack textures for the new blankets and girth straps
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="HelperLabel5" type="Label" parent="FAQ/VBoxContainer/HBoxContainer2/VBoxContainer"]
+[node name="HelperLabel5" type="Label" parent="FAQ/VBoxContainer/HBoxContainer2/VBoxContainer/VBoxContainer4"]
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
 theme = ExtResource("5_wev1s")
 theme_override_constants/line_spacing = -2
-text = "It's okay, you can select \"No\" for custom rack textures and the rack textures I made for saddle blankets, girth straps, and pasture blankets, will be saved in your pack folder. "
+text = "Select \"No\" for custom rack textures and premade rack textures for saddle blankets, girth straps, and pasture blankets, will be saved in your pack. "
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -339,7 +343,11 @@ custom_minimum_size = Vector2(0, 3)
 layout_mode = 2
 theme = ExtResource("5_wev1s")
 
-[node name="title4" type="Label" parent="FAQ/VBoxContainer/HBoxContainer2/VBoxContainer"]
+[node name="VBoxContainer3" type="VBoxContainer" parent="FAQ/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = -2
+
+[node name="title4" type="Label" parent="FAQ/VBoxContainer/HBoxContainer2/VBoxContainer/VBoxContainer3"]
 layout_mode = 2
 theme = ExtResource("7_3nugk")
 theme_override_font_sizes/font_size = 16
@@ -347,7 +355,7 @@ text = "What if I want to update the rack textures later?"
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="HelperLabel6" type="Label" parent="FAQ/VBoxContainer/HBoxContainer2/VBoxContainer"]
+[node name="HelperLabel6" type="Label" parent="FAQ/VBoxContainer/HBoxContainer2/VBoxContainer/VBoxContainer3"]
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
 theme = ExtResource("5_wev1s")
@@ -361,7 +369,11 @@ custom_minimum_size = Vector2(0, 3)
 layout_mode = 2
 theme = ExtResource("5_wev1s")
 
-[node name="title5" type="Label" parent="FAQ/VBoxContainer/HBoxContainer2/VBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="FAQ/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = -2
+
+[node name="title5" type="Label" parent="FAQ/VBoxContainer/HBoxContainer2/VBoxContainer/VBoxContainer2"]
 layout_mode = 2
 theme = ExtResource("7_3nugk")
 theme_override_font_sizes/font_size = 16
@@ -369,7 +381,7 @@ text = "I got an error message!"
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="HelperLabel7" type="Label" parent="FAQ/VBoxContainer/HBoxContainer2/VBoxContainer"]
+[node name="HelperLabel7" type="Label" parent="FAQ/VBoxContainer/HBoxContainer2/VBoxContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
 theme = ExtResource("5_wev1s")
@@ -378,11 +390,41 @@ text = "Most times it is related to your file path, check and make sure the file
 horizontal_alignment = 1
 autowrap_mode = 2
 
+[node name="spacer7" type="Container" parent="FAQ/VBoxContainer/HBoxContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 3)
+layout_mode = 2
+theme = ExtResource("5_wev1s")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="FAQ/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = -2
+
+[node name="title6" type="Label" parent="FAQ/VBoxContainer/HBoxContainer2/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("7_3nugk")
+theme_override_font_sizes/font_size = 16
+text = "My icons are all dark and weird..."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="HelperLabel8" type="Label" parent="FAQ/VBoxContainer/HBoxContainer2/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+theme = ExtResource("5_wev1s")
+theme_override_constants/line_spacing = -2
+text = "Remove the Instructions and Reporting documents from your pack folder to fix this."
+horizontal_alignment = 1
+autowrap_mode = 2
+
 [node name="VBoxContainer2" type="VBoxContainer" parent="FAQ/VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(275, 0)
 layout_mode = 2
 
-[node name="title2" type="Label" parent="FAQ/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="FAQ/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = -2
+
+[node name="title2" type="Label" parent="FAQ/VBoxContainer/HBoxContainer2/VBoxContainer2/VBoxContainer2"]
 layout_mode = 2
 theme = ExtResource("7_3nugk")
 theme_override_constants/line_spacing = -1
@@ -392,7 +434,7 @@ files in this application?"
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="HelperLabel4" type="Label" parent="FAQ/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+[node name="HelperLabel4" type="Label" parent="FAQ/VBoxContainer/HBoxContainer2/VBoxContainer2/VBoxContainer2"]
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
 theme = ExtResource("5_wev1s")
@@ -407,7 +449,11 @@ custom_minimum_size = Vector2(0, 3)
 layout_mode = 2
 theme = ExtResource("5_wev1s")
 
-[node name="title3" type="Label" parent="FAQ/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+[node name="VBoxContainer3" type="VBoxContainer" parent="FAQ/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = -2
+
+[node name="title3" type="Label" parent="FAQ/VBoxContainer/HBoxContainer2/VBoxContainer2/VBoxContainer3"]
 layout_mode = 2
 theme = ExtResource("7_3nugk")
 theme_override_constants/line_spacing = -1
@@ -416,7 +462,7 @@ text = "Where do I put the pack folder? "
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="HelperLabel5" type="Label" parent="FAQ/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+[node name="HelperLabel5" type="Label" parent="FAQ/VBoxContainer/HBoxContainer2/VBoxContainer2/VBoxContainer3"]
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
 theme = ExtResource("5_wev1s")
