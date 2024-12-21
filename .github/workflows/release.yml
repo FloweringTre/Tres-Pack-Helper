@@ -5,31 +5,64 @@ on:
     types:
       - published 
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+env:
+  GODOT_VERSION: 4.3
+  EXPORT_NAME: "Tres Pack Helper ${{ github.event.release.tag_name }}"
+  PROJECT_PATH: .
 
-    strategy:
-      matrix:
-        platform: [linux, windows, mac]
+jobs:
+  export-windows:
+    name: Windows Export
+    runs-on: ubuntu-latest
+    container:
+      image: barichello/godot-ci:4.3
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
-    
-    - run: |
-        mkdir build
-      
-    - name: Build
-      id: build
-      uses: felix-schindler/build-godot-action@v2.0.0
       with:
-        name: "Tres Pack Helper ${{ github.event.release.tag_name }} (${{ matrix.platform }})"
-        preset: ${{ matrix.platform }}
+        lfs: true
+    
+    - name: Setup
+      run: |
+        mkdir -v -p ~/.local/share/godot/export_templates/
+        mkdir -v -p ~/.config/
+    
+    - name: Windows Build
+      run: |
+        mkdir -v -p build/windows
+        EXPORT_DIR="$(readlink -f build)"
+        cd $PROJECT_PATH
+        godot --headless --verbose --export-release "Windows Desktop" "$EXPORT_DIR/windows/$EXPORT_NAME.exe"
 
     - name: Upload to release
-      uses: softprops/action-gh-release@v2
+      run: gh release upload ${{ github.event.release.tag_name }} build/windows/*
+
+  export-mac:
+    name: MacOS Export
+    runs-on: ubuntu-latest
+    container:
+      image: barichello/godot-ci:4.3
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
       with:
-        files: ${{ github.workspace }}/${{ steps.build.outputs.build }}
+        lfs: true
+    
+    - name: Setup
+      run: |
+        mkdir -v -p ~/.local/share/godot/export_templates/
+        mkdir -v -p ~/.config/
+    
+    - name: MacOS Build
+      run: |
+        mkdir -v -p build/mac
+        EXPORT_DIR="$(readlink -f build)"
+        cd $PROJECT_PATH
+        godot --headless --verbose --export-release "macOS" "$EXPORT_DIR/mac/$EXPORT_NAME.zip"
+
+    - name: Upload to release
+      run: gh release upload ${{ github.event.release.tag_name }} build/mac/*
 
         
