@@ -920,8 +920,7 @@ offset_bottom = -145.0
 theme = SubResource("Theme_ooxh2")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = -3
-text = "V0.8 
-BETA"
+text = "V1.0.3"
 horizontal_alignment = 2
 
 [connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]

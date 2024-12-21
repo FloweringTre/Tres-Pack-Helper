@@ -208,7 +208,7 @@ flip_h = true
 layout_mode = 2
 theme = ExtResource("4_uf3dj")
 theme_override_font_sizes/font_size = 16
-text = "Version 0.8 BETA made for SWEM version 1.5.2"
+text = "Version 1.0.3 made for SWEM version 1.5.2"
 horizontal_alignment = 1
 
 [node name="HelperLabel4" type="Label" parent="NinePatchRect/VBoxContainer"]
