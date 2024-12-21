@@ -3,12 +3,6 @@ extends Node
 var directory_root : String = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP)
 #store and start with the desktop directory no matter what system
 
-var export_config = ConfigFile.new()
-var export_config_path = "res://export_presets.cfg"
-var config_error = export_config.load(export_config_path)
-
-var app_version = export_config.get_value("preset.0.options", "application/product_version")
-
 var root : String = ""
 var folder: String = ""
 var artist : String = ""
@@ -229,4 +223,4 @@ func instructions_tack(type : String, item : String, tack_textures : String , pa
 
 
 func replace_version_placeholder(textLabel: Label):
-	textLabel.text = textLabel.text.replace("$VERSION", app_version)
+	textLabel.text = textLabel.text.replace("$VERSION", ProjectSettings.get_setting("application/config/version"))
