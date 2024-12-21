@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dbe2db8aq7d6h"]
+[gd_scene load_steps=18 format=3 uid="uid://dbe2db8aq7d6h"]
 
 [ext_resource type="Script" path="res://scripts/tack/sing_leg_wraps_creation.gd" id="1_uhr1n"]
 [ext_resource type="Texture2D" uid="uid://diy8htskfybtd" path="res://assets/moon_bg.png" id="2_8qofu"]
@@ -13,44 +13,13 @@
 [ext_resource type="Theme" uid="uid://cof5u4dam7c2t" path="res://assets/UI_theme_shadowed.tres" id="10_bk1gt"]
 [ext_resource type="PackedScene" uid="uid://b3cou3ndcs75h" path="res://scene/components/error_message.tscn" id="11_m3vbq"]
 [ext_resource type="PackedScene" uid="uid://bpgiy2j33slge" path="res://scene/components/pop_up.tscn" id="12_2yjgx"]
+[ext_resource type="PackedScene" uid="uid://wonyaiea8tn2" path="res://scene/components/buttonSMOL2_blue.tscn" id="12_m1gi7"]
 [ext_resource type="PackedScene" uid="uid://cdigxro282sfm" path="res://scene/components/checkAlert.tscn" id="13_ykkcs"]
 [ext_resource type="PackedScene" uid="uid://clixcby1mmxr3" path="res://scene/helpScreen.tscn" id="14_j62u5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kx556"]
 atlas = ExtResource("2_44igv")
 region = Rect2(58, 10, 28, 28)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ytf6o"]
-atlas = ExtResource("2_44igv")
-region = Rect2(176, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8k5rt"]
-atlas = ExtResource("2_44igv")
-region = Rect2(176, 32, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ajnw7"]
-atlas = ExtResource("2_44igv")
-region = Rect2(176, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_a8fa8"]
-atlas = ExtResource("2_44igv")
-region = Rect2(176, 48, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wirbh"]
-atlas = ExtResource("2_44igv")
-region = Rect2(160, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_apwef"]
-atlas = ExtResource("2_44igv")
-region = Rect2(160, 32, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7aqcs"]
-atlas = ExtResource("2_44igv")
-region = Rect2(160, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_71y0a"]
-atlas = ExtResource("2_44igv")
-region = Rect2(160, 48, 16, 16)
 
 [node name="legWrapsSetCreation" type="Control"]
 layout_mode = 3
@@ -482,47 +451,6 @@ text = "The selected textures will be copied to the pack. If left blank, you wil
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="backButton" type="TextureButton" parent="NinePatchRect"]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 7.0
-offset_top = 297.0
-offset_right = 23.0
-offset_bottom = 313.0
-scale = Vector2(2, 2)
-texture_normal = SubResource("AtlasTexture_ytf6o")
-texture_pressed = SubResource("AtlasTexture_8k5rt")
-texture_hover = SubResource("AtlasTexture_ajnw7")
-texture_disabled = SubResource("AtlasTexture_a8fa8")
-
-[node name="HelperLabel5" type="Label" parent="NinePatchRect"]
-layout_mode = 0
-offset_left = 41.0
-offset_top = 313.0
-offset_right = 65.0
-offset_bottom = 327.0
-size_flags_horizontal = 4
-theme = ExtResource("10_bk1gt")
-theme_override_colors/font_color = Color(0.493728, 0.364523, 0.227402, 1)
-text = "Return to the Tack Main Menu"
-vertical_alignment = 2
-
-[node name="confirmButton" type="TextureButton" parent="NinePatchRect"]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 569.0
-offset_top = 296.5
-offset_right = 585.0
-offset_bottom = 312.5
-scale = Vector2(2, 2)
-focus_neighbor_left = NodePath("../backButton")
-focus_previous = NodePath("../VBoxContainer/Hbox2/nameCheck")
-disabled = true
-texture_normal = SubResource("AtlasTexture_wirbh")
-texture_pressed = SubResource("AtlasTexture_apwef")
-texture_hover = SubResource("AtlasTexture_7aqcs")
-texture_disabled = SubResource("AtlasTexture_71y0a")
-
 [node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect"]
 layout_mode = 0
 offset_left = 467.0
@@ -541,9 +469,23 @@ layout_mode = 2
 theme = ExtResource("10_bk1gt")
 text = "= required field"
 
-[node name="errorMessage" parent="." instance=ExtResource("11_m3vbq")]
-visible = false
-layout_mode = 1
+[node name="confirmButton" parent="NinePatchRect" instance=ExtResource("12_m1gi7")]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 537.0
+offset_top = 306.0
+offset_right = 601.0
+offset_bottom = 328.0
+button_text = "Generate"
+
+[node name="backButton" parent="NinePatchRect" instance=ExtResource("9_c2rbm")]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 7.0
+offset_top = 306.0
+offset_right = 71.0
+offset_bottom = 328.0
+button_text = "Tack Menu"
 
 [node name="popUP_Saved" parent="." instance=ExtResource("12_2yjgx")]
 visible = false
@@ -587,6 +529,10 @@ use_native_dialog = true
 visible = false
 layout_mode = 1
 
+[node name="errorMessage" parent="." instance=ExtResource("11_m3vbq")]
+visible = false
+layout_mode = 1
+
 [connection signal="text_changed" from="NinePatchRect/VBoxContainer/HBoxContainer3/artist/artistText" to="." method="_on_artist_text_text_changed"]
 [connection signal="text_changed" from="NinePatchRect/VBoxContainer/HBoxContainer3/inspiration/inspoText" to="." method="_on_inspo_text_text_changed"]
 [connection signal="text_changed" from="NinePatchRect/VBoxContainer/tackName/tackText" to="." method="_on_tack_text_text_changed"]
@@ -595,6 +541,6 @@ layout_mode = 1
 [connection signal="button_pressed" from="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer2/iconButton" to="." method="_on_icon_button_button_pressed"]
 [connection signal="button_pressed" from="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer2/renderButton" to="." method="_on_render_button_button_pressed"]
 [connection signal="button_pressed" from="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer2/hoofButton" to="." method="_on_rack_button_button_pressed"]
-[connection signal="pressed" from="NinePatchRect/backButton" to="." method="_on_back_button_pressed"]
-[connection signal="pressed" from="NinePatchRect/confirmButton" to="." method="_on_confirm_button_pressed"]
+[connection signal="button_pressed" from="NinePatchRect/confirmButton" to="." method="_on_confirm_button_pressed"]
+[connection signal="button_pressed" from="NinePatchRect/backButton" to="." method="_on_back_button_pressed"]
 [connection signal="file_selected" from="FileDialog" to="." method="_on_file_dialog_file_selected"]
