@@ -206,8 +206,6 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 focus_neighbor_top = NodePath("../../HBoxContainer3/artist/artistText")
-focus_neighbor_bottom = NodePath("../../HBoxContainer/tackType/westCheckBox")
-focus_next = NodePath("../../HBoxContainer/tackType/westCheckBox")
 focus_previous = NodePath("../../HBoxContainer3/inspiration/inspoText")
 placeholder_text = "Indigo"
 
@@ -293,11 +291,10 @@ visible = false
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer/tackType"]
+[node name="Label2" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer/tackType"]
 layout_mode = 2
 theme = ExtResource("9_fguin")
-text = "Tack Models to Generate"
-horizontal_alignment = 2
+text = "Tack Type: "
 
 [node name="required" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer/tackType"]
 layout_mode = 2
@@ -305,41 +302,20 @@ theme = ExtResource("6_riofi")
 text = "*"
 horizontal_alignment = 2
 
-[node name="westCheckBox" type="CheckBox" parent="NinePatchRect/VBoxContainer/HBoxContainer/tackType"]
-unique_name_in_owner = true
-layout_mode = 2
-focus_neighbor_top = NodePath("../../../tackName/tackText")
-focus_neighbor_right = NodePath("../engCheckBox")
-focus_neighbor_bottom = NodePath("../../../HBoxContainer2/custCheck/custCheckBox")
-focus_next = NodePath("../engCheckBox")
-focus_previous = NodePath("../../../tackName/tackText")
-
-[node name="Label2" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer/tackType"]
-layout_mode = 2
-theme = ExtResource("8_e8y18")
-text = "Western"
-horizontal_alignment = 2
-
 [node name="Container2" type="Container" parent="NinePatchRect/VBoxContainer/HBoxContainer/tackType"]
 custom_minimum_size = Vector2(6, 0)
 layout_mode = 2
 
-[node name="engCheckBox" type="CheckBox" parent="NinePatchRect/VBoxContainer/HBoxContainer/tackType"]
+[node name="TackCheckButton" type="OptionButton" parent="NinePatchRect/VBoxContainer/HBoxContainer/tackType"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(85, 0)
 layout_mode = 2
-focus_neighbor_left = NodePath("../westCheckBox")
-focus_neighbor_top = NodePath("../../../HBoxContainer3/artist/artistText")
-focus_neighbor_right = NodePath("../../armorCheck/armorCheckBox")
-focus_neighbor_bottom = NodePath("../../../HBoxContainer2/custCheck/custCheckBox")
-focus_next = NodePath("../../armorCheck/armorCheckBox")
-focus_previous = NodePath("../westCheckBox")
-theme = ExtResource("8_e8y18")
-
-[node name="Label3" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer/tackType"]
-layout_mode = 2
-theme = ExtResource("8_e8y18")
-text = "English"
-horizontal_alignment = 2
+item_count = 3
+popup/item_0/text = "Western"
+popup/item_1/text = "English"
+popup/item_1/id = 1
+popup/item_2/text = "Adventure"
+popup/item_2/id = 2
 
 [node name="armorCheck" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(258, 0)
@@ -354,24 +330,15 @@ horizontal_alignment = 2
 [node name="armorCheckBox" type="CheckBox" parent="NinePatchRect/VBoxContainer/HBoxContainer/armorCheck"]
 unique_name_in_owner = true
 layout_mode = 2
-focus_neighbor_left = NodePath("../../tackType/engCheckBox")
 focus_neighbor_top = NodePath("../../../tackName/tackText")
 focus_neighbor_bottom = NodePath("../../../HBoxContainer2/EDITBoxContainer/redSpinBox")
 focus_next = NodePath("../../../HBoxContainer2/custCheck/custCheckBox")
-focus_previous = NodePath("../../tackType/engCheckBox")
 
 [node name="armorLabel" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer/armorCheck"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("8_e8y18")
 text = "No"
-
-[node name="AlertLabel" type="Label" parent="NinePatchRect/VBoxContainer"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-theme = ExtResource("8_e8y18")
-horizontal_alignment = 1
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
 layout_mode = 2
@@ -390,7 +357,6 @@ horizontal_alignment = 2
 [node name="custCheckBox" type="CheckBox" parent="NinePatchRect/VBoxContainer/HBoxContainer2/custCheck"]
 unique_name_in_owner = true
 layout_mode = 2
-focus_neighbor_top = NodePath("../../../HBoxContainer/tackType/westCheckBox")
 focus_neighbor_right = NodePath("../../EDITBoxContainer/redSpinBox")
 focus_neighbor_bottom = NodePath("../../../HBoxContainer4/armorType/armorOptions")
 focus_next = NodePath("../../EDITBoxContainer/redSpinBox")
@@ -570,7 +536,9 @@ theme = ExtResource("9_fguin")
 text = "Armor Tier"
 horizontal_alignment = 2
 
-[node name="required" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer4/armorType"]
+[node name="armoredrequired" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer4/armorType"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(6, 0)
 layout_mode = 2
 theme = ExtResource("6_riofi")
 text = "*"
@@ -645,6 +613,15 @@ layout_mode = 2
 theme = ExtResource("8_e8y18")
 text = "  Default purchase values will be used."
 horizontal_alignment = 2
+
+[node name="helperLabel8" type="Label" parent="NinePatchRect/VBoxContainer"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("6_28gow")
+text = "Select the 'extra items' want generated in this set"
+horizontal_alignment = 1
+vertical_alignment = 2
 
 [node name="HBoxContainer5" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
 layout_mode = 2
@@ -774,13 +751,6 @@ layout_mode = 2
 theme = ExtResource("8_e8y18")
 text = "Yes"
 
-[node name="helperLabel8" type="Label" parent="NinePatchRect/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme = ExtResource("6_28gow")
-text = "^^^ Select the 'extra items' want generated in this set ^^^"
-horizontal_alignment = 1
-
 [node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect"]
 layout_mode = 0
 offset_left = 467.0
@@ -815,11 +785,7 @@ offset_left = 7.0
 offset_top = 306.0
 offset_right = 71.0
 offset_bottom = 328.0
-button_text = "Main Menu"
-
-[node name="errorMessage" parent="." instance=ExtResource("10_xcubv")]
-visible = false
-layout_mode = 1
+button_text = "Tack Menu"
 
 [node name="popUP_Saved" parent="." instance=ExtResource("11_1qftn")]
 visible = false
@@ -900,11 +866,14 @@ texture = ExtResource("19_o8h8t")
 visible = false
 layout_mode = 1
 
+[node name="errorMessage" parent="." instance=ExtResource("10_xcubv")]
+visible = false
+layout_mode = 1
+
 [connection signal="text_changed" from="NinePatchRect/VBoxContainer/HBoxContainer3/artist/artistText" to="." method="_on_artist_text_text_changed"]
 [connection signal="text_changed" from="NinePatchRect/VBoxContainer/HBoxContainer3/inspiration/inspoText" to="." method="_on_inspo_text_text_changed"]
 [connection signal="text_changed" from="NinePatchRect/VBoxContainer/tackName/tackText" to="." method="_on_tack_text_text_changed"]
-[connection signal="pressed" from="NinePatchRect/VBoxContainer/HBoxContainer/tackType/westCheckBox" to="." method="_on_west_check_box_pressed"]
-[connection signal="pressed" from="NinePatchRect/VBoxContainer/HBoxContainer/tackType/engCheckBox" to="." method="_on_eng_check_box_pressed"]
+[connection signal="item_selected" from="NinePatchRect/VBoxContainer/HBoxContainer/tackType/TackCheckButton" to="." method="_on_tack_check_button_item_selected"]
 [connection signal="pressed" from="NinePatchRect/VBoxContainer/HBoxContainer/armorCheck/armorCheckBox" to="." method="_on_armor_check_box_pressed"]
 [connection signal="pressed" from="NinePatchRect/VBoxContainer/HBoxContainer2/custCheck/custCheckBox" to="." method="_on_cust_check_box_pressed"]
 [connection signal="value_changed" from="NinePatchRect/VBoxContainer/HBoxContainer2/EDITBoxContainer/redSpinBox" to="." method="_on_red_spin_box_value_changed"]

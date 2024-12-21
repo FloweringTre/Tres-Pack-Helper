@@ -3,9 +3,9 @@ extends Control
 var artist : bool = false
 var set_name : bool = false
 var set_coin : bool = false
+var set_bridle : bool = false
 
-var bri_western : bool = true
-var bri_english : bool = false
+var type_bridle : String
 var adventure : bool = false
 
 var text_icon : bool = false
@@ -58,6 +58,7 @@ func on_error() -> void:
 	disable_interaction()
 
 func on_error_continue() -> void:
+	$popUPload.stop_loading()
 	enable_interaction()
 
 func _on_back_button_pressed() -> void:
@@ -149,7 +150,7 @@ func _on_coin_options_item_selected(index: int) -> void:
 			coin = "amethyst"
 
 func ready_to_save() -> void:
-	if artist && set_name && set_coin:
+	if artist && set_name && set_coin && set_bridle:
 		%confirmButton.reenable_button()
 	else:
 		%confirmButton.set_disabled()
@@ -177,10 +178,7 @@ func dupe_exists() -> void:
 func _save_tack() -> void:
 	$popUPload.loading("Saving Bridle")
 	var save_path = GlobalScripts.join_paths(GlobalScripts.textures_root, "tack/bridle")
-	if bri_western:
-			TackScripts.bridle_save(%tackText.text, %artistText.text, %inspoText.text, coin, "western", adventure, text_icon, text_render_head, text_render_reins, text_rack, %bridleSpinBox.value)
-	if bri_english:
-			TackScripts.bridle_save(%tackText.text, %artistText.text, %inspoText.text, coin, "english", adventure, text_icon, text_render_head, text_render_reins, text_rack, %bridleSpinBox.value)
+	TackScripts.bridle_save(%tackText.text, %artistText.text, %inspoText.text, coin, type_bridle, adventure, text_icon, text_render_head, text_render_reins, text_rack, %bridleSpinBox.value)
 	
 	if text_icon:
 		icon_save_path = save_path + "/" + GlobalScripts.text_clean(%tackText.text) + "_bridle_icon.png"
@@ -242,18 +240,6 @@ func on_popup_exit_confirmed() -> void:
 
 ###########################################################
 
-func _on_saddle_check_button_pressed() -> void:
-	if bri_western:
-		bri_western = false
-		bri_english = true
-		%WestSadLabel.add_theme_color_override("font_color", Color(0.49, 0.36, 0.22))
-		%EngSadLabel.add_theme_color_override("font_color", Color(0.306, 0.271, 0.133))
-	else:
-		bri_western = true
-		bri_english = false
-		%WestSadLabel.add_theme_color_override("font_color", Color(0.306, 0.271, 0.133))
-		%EngSadLabel.add_theme_color_override("font_color", Color(0.49, 0.36, 0.22))
-
 func starting_coin_values() -> void:
 	%bridleSpinBox.value = TackScripts.cost_bridle
 
@@ -310,3 +296,17 @@ func _on_render_reins_button_button_pressed() -> void:
 	file_opened = "render_reins"
 	$FileDialog.visible = true
 	$FileDialog.title = "Select the Bridle Reins Texture"
+
+func _on_bridle_check_button_item_selected(index: int) -> void:
+	set_bridle = true
+	ready_to_save()
+	match index:
+		0:
+			type_bridle = "western"
+		1:
+			type_bridle = "english"
+		2:
+			type_bridle = "adventure"
+			%armorLabel.text = "Yes"
+			%armorCheckBox.button_pressed = true
+			%armorCheckBox.disabled = true

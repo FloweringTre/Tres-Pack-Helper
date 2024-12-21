@@ -194,7 +194,6 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 focus_neighbor_top = NodePath("../../HBoxContainer3/artist/artistText")
-focus_next = NodePath("../../HBoxContainer/VBoxContainer/tackType/SaddleCheckButton")
 focus_previous = NodePath("../../HBoxContainer3/inspiration/inspoText")
 placeholder_text = "Indigo"
 
@@ -287,29 +286,28 @@ layout_mode = 2
 [node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer/tackType"]
 layout_mode = 2
 theme = ExtResource("6_cjnu4")
-text = "Bridle Model: "
+text = "Bridle Type:"
 
-[node name="WestSadLabel" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer/tackType"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(44, 0)
+[node name="required" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer/tackType"]
 layout_mode = 2
-theme = ExtResource("5_5yy8n")
-text = "Western"
+theme = ExtResource("7_v4fwa")
+text = "*"
 horizontal_alignment = 2
 
-[node name="SaddleCheckButton" type="CheckButton" parent="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer/tackType"]
-unique_name_in_owner = true
+[node name="Container2" type="Container" parent="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer/tackType"]
+custom_minimum_size = Vector2(11, 0)
 layout_mode = 2
-focus_neighbor_top = NodePath("../../../../tackName/tackText")
-focus_previous = NodePath("../../../../tackName/tackText")
 
-[node name="EngSadLabel" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer/tackType"]
+[node name="BridleCheckButton" type="OptionButton" parent="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer/tackType"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(85, 0)
 layout_mode = 2
-theme = ExtResource("5_5yy8n")
-theme_override_colors/font_color = Color(0.494118, 0.364706, 0.227451, 1)
-text = "English"
-horizontal_alignment = 2
+item_count = 3
+popup/item_0/text = "Western"
+popup/item_1/text = "English"
+popup/item_1/id = 1
+popup/item_2/text = "Adventure"
+popup/item_2/id = 2
 
 [node name="armorCheck" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -514,6 +512,7 @@ text = "= required field"
 
 [node name="confirmButton" parent="NinePatchRect" instance=ExtResource("12_vi2cg")]
 unique_name_in_owner = true
+layout_mode = 0
 offset_left = 537.0
 offset_top = 306.0
 offset_right = 601.0
@@ -522,15 +521,12 @@ button_text = "Generate"
 
 [node name="backButton" parent="NinePatchRect" instance=ExtResource("9_ecc3a")]
 unique_name_in_owner = true
+layout_mode = 0
 offset_left = 7.0
 offset_top = 306.0
 offset_right = 71.0
 offset_bottom = 328.0
-button_text = "Main Menu"
-
-[node name="errorMessage" parent="." instance=ExtResource("11_exo3o")]
-visible = false
-layout_mode = 1
+button_text = "Tack Menu"
 
 [node name="popUP_Saved" parent="." instance=ExtResource("12_05mw5")]
 visible = false
@@ -574,10 +570,14 @@ use_native_dialog = true
 visible = false
 layout_mode = 1
 
+[node name="errorMessage" parent="." instance=ExtResource("11_exo3o")]
+visible = false
+layout_mode = 1
+
 [connection signal="text_changed" from="NinePatchRect/VBoxContainer/HBoxContainer3/artist/artistText" to="." method="_on_artist_text_text_changed"]
 [connection signal="text_changed" from="NinePatchRect/VBoxContainer/HBoxContainer3/inspiration/inspoText" to="." method="_on_inspo_text_text_changed"]
 [connection signal="text_changed" from="NinePatchRect/VBoxContainer/tackName/tackText" to="." method="_on_tack_text_text_changed"]
-[connection signal="pressed" from="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer/tackType/SaddleCheckButton" to="." method="_on_saddle_check_button_pressed"]
+[connection signal="item_selected" from="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer/tackType/BridleCheckButton" to="." method="_on_bridle_check_button_item_selected"]
 [connection signal="pressed" from="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer/armorCheck/armorCheckBox" to="." method="_on_armor_check_box_pressed"]
 [connection signal="item_selected" from="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer/moneyCheck/coinOptions" to="." method="_on_coin_options_item_selected"]
 [connection signal="button_pressed" from="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer2/iconButton" to="." method="_on_icon_button_button_pressed"]

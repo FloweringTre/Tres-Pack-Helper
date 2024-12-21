@@ -666,6 +666,7 @@ text = "= required field"
 
 [node name="confirmButton" parent="NinePatchRect" instance=ExtResource("12_x5r75")]
 unique_name_in_owner = true
+layout_mode = 0
 offset_left = 537.0
 offset_top = 306.0
 offset_right = 601.0
@@ -674,15 +675,12 @@ button_text = "Generate"
 
 [node name="backButton" parent="NinePatchRect" instance=ExtResource("9_spl2b")]
 unique_name_in_owner = true
+layout_mode = 0
 offset_left = 7.0
 offset_top = 306.0
 offset_right = 71.0
 offset_bottom = 328.0
-button_text = "Main Menu"
-
-[node name="errorMessage" parent="." instance=ExtResource("11_lqjdc")]
-visible = false
-layout_mode = 1
+button_text = "Tack Menu"
 
 [node name="popUP_Saved" parent="." instance=ExtResource("12_h3qxj")]
 visible = false
@@ -749,6 +747,10 @@ filters = PackedStringArray("*.png;PNG Image")
 use_native_dialog = true
 
 [node name="popUPload" parent="." instance=ExtResource("12_h3qxj")]
+visible = false
+layout_mode = 1
+
+[node name="errorMessage" parent="." instance=ExtResource("11_lqjdc")]
 visible = false
 layout_mode = 1
 
