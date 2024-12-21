@@ -7,7 +7,7 @@ on:
 
 env:
   GODOT_VERSION: 4.3
-  EXPORT_NAME: "Tres\ Pack\ Helper\ ${{ github.event.release.tag_name }}"
+  EXPORT_NAME: "tres-pack-helper-${{ github.event.release.tag_name }}"
   PROJECT_PATH: .
 
 jobs:
