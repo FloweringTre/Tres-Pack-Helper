@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dum14k8byt87m"]
+[gd_scene load_steps=19 format=3 uid="uid://dum14k8byt87m"]
 
 [ext_resource type="Script" path="res://scripts/coat_gui.gd" id="1_bgw28"]
 [ext_resource type="Texture2D" uid="uid://diy8htskfybtd" path="res://assets/moon_bg.png" id="2_ugfvs"]
@@ -15,43 +15,12 @@
 [ext_resource type="Theme" uid="uid://d1f8o0u5d7nrp" path="res://assets/UI_theme_green.tres" id="9_yn7pw"]
 [ext_resource type="PackedScene" uid="uid://bpgiy2j33slge" path="res://scene/components/pop_up.tscn" id="10_75oqe"]
 [ext_resource type="Theme" uid="uid://cof5u4dam7c2t" path="res://assets/UI_theme_shadowed.tres" id="10_d6poe"]
+[ext_resource type="PackedScene" uid="uid://wonyaiea8tn2" path="res://scene/components/buttonSMOL2_blue.tscn" id="13_1pstn"]
 [ext_resource type="PackedScene" uid="uid://clixcby1mmxr3" path="res://scene/helpScreen.tscn" id="13_f6knk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kx556"]
 atlas = ExtResource("2_ypuxh")
 region = Rect2(58, 10, 28, 28)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_e0xqp"]
-atlas = ExtResource("2_ypuxh")
-region = Rect2(176, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wnf13"]
-atlas = ExtResource("2_ypuxh")
-region = Rect2(176, 32, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_y5o6h"]
-atlas = ExtResource("2_ypuxh")
-region = Rect2(176, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_auchi"]
-atlas = ExtResource("2_ypuxh")
-region = Rect2(176, 48, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_sb6pb"]
-atlas = ExtResource("2_ypuxh")
-region = Rect2(160, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_silx2"]
-atlas = ExtResource("2_ypuxh")
-region = Rect2(160, 32, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mfow1"]
-atlas = ExtResource("2_ypuxh")
-region = Rect2(160, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_nt2nv"]
-atlas = ExtResource("2_ypuxh")
-region = Rect2(160, 48, 16, 16)
 
 [node name="coatGUI" type="Control"]
 layout_mode = 3
@@ -384,7 +353,7 @@ horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="Container2" type="Container" parent="NinePatchRect/VBoxContainer"]
-custom_minimum_size = Vector2(0, 6)
+visible = false
 layout_mode = 2
 
 [node name="Line2D" type="Line2D" parent="NinePatchRect/VBoxContainer/Container2"]
@@ -541,46 +510,6 @@ theme = ExtResource("5_0f6da")
 text = "Chestnut
 "
 
-[node name="backButton" type="TextureButton" parent="NinePatchRect"]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 7.0
-offset_top = 297.0
-offset_right = 23.0
-offset_bottom = 313.0
-scale = Vector2(2, 2)
-texture_normal = SubResource("AtlasTexture_e0xqp")
-texture_pressed = SubResource("AtlasTexture_wnf13")
-texture_hover = SubResource("AtlasTexture_y5o6h")
-texture_disabled = SubResource("AtlasTexture_auchi")
-
-[node name="HelperLabel5" type="Label" parent="NinePatchRect"]
-layout_mode = 0
-offset_left = 41.0
-offset_top = 313.0
-offset_right = 65.0
-offset_bottom = 327.0
-size_flags_horizontal = 4
-theme = ExtResource("10_d6poe")
-theme_override_colors/font_color = Color(0.493728, 0.364523, 0.227402, 1)
-text = "Return to the Main Menu"
-vertical_alignment = 2
-
-[node name="confirmButton" type="TextureButton" parent="NinePatchRect"]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 569.0
-offset_top = 296.5
-offset_right = 585.0
-offset_bottom = 312.5
-scale = Vector2(2, 2)
-focus_neighbor_left = NodePath("../backButton")
-focus_previous = NodePath("../VBoxContainer/Hbox2/nameCheck")
-texture_normal = SubResource("AtlasTexture_sb6pb")
-texture_pressed = SubResource("AtlasTexture_silx2")
-texture_hover = SubResource("AtlasTexture_mfow1")
-texture_disabled = SubResource("AtlasTexture_nt2nv")
-
 [node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect"]
 layout_mode = 0
 offset_left = 467.0
@@ -599,9 +528,23 @@ layout_mode = 2
 theme = ExtResource("10_d6poe")
 text = "= required field"
 
-[node name="errorMessage" parent="." instance=ExtResource("6_m2onb")]
-visible = false
-layout_mode = 1
+[node name="confirmButton" parent="NinePatchRect" instance=ExtResource("13_1pstn")]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 537.0
+offset_top = 306.0
+offset_right = 601.0
+offset_bottom = 328.0
+button_text = "Generate"
+
+[node name="backButton" parent="NinePatchRect" instance=ExtResource("7_tgfnp")]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 7.0
+offset_top = 306.0
+offset_right = 71.0
+offset_bottom = 328.0
+button_text = "Main Menu"
 
 [node name="popUP_Saved" parent="." instance=ExtResource("10_75oqe")]
 visible = false
@@ -646,6 +589,10 @@ use_native_dialog = true
 visible = false
 layout_mode = 1
 
+[node name="errorMessage" parent="." instance=ExtResource("6_m2onb")]
+visible = false
+layout_mode = 1
+
 [connection signal="text_changed" from="NinePatchRect/VBoxContainer/HBoxContainer2/artist/artistText" to="." method="_on_artist_text_text_changed"]
 [connection signal="text_changed" from="NinePatchRect/VBoxContainer/HBoxContainer2/inspiration/inspoText" to="." method="_on_inspo_text_text_changed"]
 [connection signal="text_changed" from="NinePatchRect/VBoxContainer/coatName/coatText" to="." method="_on_coat_text_text_changed"]
@@ -659,6 +606,6 @@ layout_mode = 1
 [connection signal="pressed" from="NinePatchRect/VBoxContainer/baseColorp2/Brown/brownCheckBox5" to="." method="_on_brown_check_box_5_pressed"]
 [connection signal="pressed" from="NinePatchRect/VBoxContainer/baseColorp2/DBrown/d_brownCheckBox6" to="." method="_on_d_brown_check_box_6_pressed"]
 [connection signal="pressed" from="NinePatchRect/VBoxContainer/baseColorp2/Chestnut/chestnutCheckBox7" to="." method="_on_chestnut_check_box_7_pressed"]
-[connection signal="pressed" from="NinePatchRect/backButton" to="." method="_on_back_button_pressed"]
-[connection signal="pressed" from="NinePatchRect/confirmButton" to="." method="_on_confirm_button_pressed"]
+[connection signal="button_pressed" from="NinePatchRect/confirmButton" to="." method="_on_confirm_button_pressed"]
+[connection signal="button_pressed" from="NinePatchRect/backButton" to="." method="_on_back_button_pressed"]
 [connection signal="file_selected" from="FileDialog" to="." method="_on_file_dialog_file_selected"]

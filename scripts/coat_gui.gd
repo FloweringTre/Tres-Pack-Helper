@@ -44,8 +44,8 @@ func _ready() -> void:
 	ready_to_save()
 
 func disable_interaction () -> void:
-	%confirmButton.disabled = true
-	%backButton.disabled = true
+	%confirmButton.set_disabled()
+	%backButton.set_disabled()
 	%artistText.editable = false
 	%inspoText.editable = false
 	%coatText.editable = false
@@ -62,8 +62,8 @@ func disable_interaction () -> void:
 	%chestnutCheckBox7.disabled = true
 
 func enable_interaction () -> void:
-	%confirmButton.disabled = false
-	%backButton.disabled = false
+	%confirmButton.reenable_button()
+	%backButton.reenable_button()
 	%artistText.editable = true
 	%inspoText.editable = true
 	%coatText.editable = true
@@ -84,6 +84,7 @@ func on_error() -> void:
 	disable_interaction()
 
 func on_error_continue() -> void:
+	$popUPload.stop_loading()
 	enable_interaction()
 
 ########### BUTTON LOGGING ################
@@ -193,9 +194,9 @@ func _on_chestnut_check_box_7_pressed() -> void:
 
 func ready_to_save() -> void:
 	if artist && coat_name:
-		%confirmButton.disabled = false
+		%confirmButton.reenable_button()
 	else:
-		%confirmButton.disabled = true
+		%confirmButton.set_disabled()
 
 #################### SAVING PROCESS ######################
 
