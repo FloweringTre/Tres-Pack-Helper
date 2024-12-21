@@ -504,11 +504,7 @@ offset_left = 7.0
 offset_top = 306.0
 offset_right = 71.0
 offset_bottom = 328.0
-button_text = "Main Menu"
-
-[node name="errorMessage" parent="." instance=ExtResource("11_1tpt5")]
-visible = false
-layout_mode = 1
+button_text = "Tack Menu"
 
 [node name="popUP_Saved" parent="." instance=ExtResource("12_3ufm8")]
 visible = false
@@ -549,6 +545,10 @@ filters = PackedStringArray("*.png;PNG Image")
 use_native_dialog = true
 
 [node name="popUPload" parent="." instance=ExtResource("12_3ufm8")]
+visible = false
+layout_mode = 1
+
+[node name="errorMessage" parent="." instance=ExtResource("11_1tpt5")]
 visible = false
 layout_mode = 1
 

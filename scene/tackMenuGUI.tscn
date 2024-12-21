@@ -592,11 +592,11 @@ offset_right = 71.0
 offset_bottom = 327.5
 button_text = "Main Menu"
 
-[node name="errorMessage" parent="." instance=ExtResource("10_551ul")]
+[node name="popUP" parent="." instance=ExtResource("11_71188")]
 visible = false
 layout_mode = 1
 
-[node name="popUP" parent="." instance=ExtResource("11_71188")]
+[node name="errorMessage" parent="." instance=ExtResource("10_551ul")]
 visible = false
 layout_mode = 1
 

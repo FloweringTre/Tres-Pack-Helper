@@ -711,6 +711,7 @@ text = "= required field"
 
 [node name="confirmButton" parent="NinePatchRect" instance=ExtResource("11_xpl4i")]
 unique_name_in_owner = true
+layout_mode = 0
 offset_left = 537.0
 offset_top = 306.0
 offset_right = 601.0
@@ -719,15 +720,12 @@ button_text = "Generate"
 
 [node name="backButton" parent="NinePatchRect" instance=ExtResource("12_rwma2")]
 unique_name_in_owner = true
+layout_mode = 0
 offset_left = 7.0
 offset_top = 306.0
 offset_right = 71.0
 offset_bottom = 328.0
-button_text = "Main Menu"
-
-[node name="errorMessage" parent="." instance=ExtResource("8_cv1ds")]
-visible = false
-layout_mode = 1
+button_text = "Tack Menu"
 
 [node name="popUP_Saved" parent="." instance=ExtResource("9_qo3yb")]
 visible = false
@@ -780,6 +778,10 @@ position = Vector2(759, 64)
 texture = ExtResource("17_jjydr")
 
 [node name="popUPload" parent="." instance=ExtResource("9_qo3yb")]
+visible = false
+layout_mode = 1
+
+[node name="errorMessage" parent="." instance=ExtResource("8_cv1ds")]
 visible = false
 layout_mode = 1
 

@@ -7,6 +7,11 @@ signal opened
 
 func _ready() -> void:
 	$".".visible = false
+	ErrorManager.error_alert.connect(on_error)
+
+func on_error() -> void:
+	stop_loading()
+	$".".visible = false
 
 func _on_continue_button_pressed() -> void:
 	go_on.emit()

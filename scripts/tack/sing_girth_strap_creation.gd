@@ -57,6 +57,7 @@ func on_error() -> void:
 	$popUPload.stop_loading()
 
 func on_error_continue() -> void:
+	$popUPload.stop_loading()
 	enable_interaction()
 
 func _on_back_button_pressed() -> void:
