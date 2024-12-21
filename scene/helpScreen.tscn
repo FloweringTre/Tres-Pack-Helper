@@ -957,7 +957,7 @@ libraries = {
 "": SubResource("AnimationLibrary_07tyb")
 }
 
-[node name="Label" type="Label" parent="."]
+[node name="versionLabel" type="Label" parent="."]
 layout_mode = 1
 offset_left = 247.0
 offset_top = -159.0
@@ -966,7 +966,7 @@ offset_bottom = -145.0
 theme = SubResource("Theme_ooxh2")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = -3
-text = "V1.0.3"
+text = "$VERSION"
 horizontal_alignment = 2
 
 [connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
