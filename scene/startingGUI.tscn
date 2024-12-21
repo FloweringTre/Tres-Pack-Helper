@@ -112,6 +112,7 @@ theme_override_constants/separation = 130
 alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="NinePatchRect/VBoxContainer/TitleContainer"]
+visible = false
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
 texture = ExtResource("3_kp27u")
@@ -123,6 +124,7 @@ theme_override_colors/font_color = Color(0.178263, 0.423711, 0.665043, 1)
 text = "Tre's Pack Helper"
 
 [node name="TextureRect2" type="TextureRect" parent="NinePatchRect/VBoxContainer/TitleContainer"]
+visible = false
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
 texture = ExtResource("3_kp27u")
@@ -382,6 +384,33 @@ offset_top = 295.5
 offset_right = 601.0
 offset_bottom = 327.5
 button_text = "Open the Pack!"
+
+[node name="butterflys" type="Control" parent="NinePatchRect"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 5.0
+offset_top = 5.5
+offset_right = 45.0
+offset_bottom = 45.5
+
+[node name="TextureRect" type="TextureRect" parent="NinePatchRect/butterflys"]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+offset_left = 60.0
+offset_top = 3.0
+offset_right = 90.0
+offset_bottom = 33.0
+texture = ExtResource("3_kp27u")
+
+[node name="TextureRect2" type="TextureRect" parent="NinePatchRect/butterflys"]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+offset_left = 509.0
+offset_top = 3.0
+offset_right = 539.0
+offset_bottom = 33.0
+texture = ExtResource("3_kp27u")
+flip_h = true
 
 [node name="checkPathLOCA" parent="." instance=ExtResource("9_xnwmn")]
 layout_mode = 0

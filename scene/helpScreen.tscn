@@ -282,6 +282,7 @@ theme_override_constants/separation = 82
 alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="FAQ/VBoxContainer/HBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
 texture = ExtResource("3_rno1h")
@@ -295,6 +296,7 @@ theme_override_font_sizes/font_size = 32
 text = "Frequently Asked Questions"
 
 [node name="TextureRect2" type="TextureRect" parent="FAQ/VBoxContainer/HBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
 texture = ExtResource("3_rno1h")
@@ -561,6 +563,33 @@ theme_override_colors/font_color = Color(0.493728, 0.364523, 0.227402, 1)
 text = "Return to page"
 vertical_alignment = 2
 
+[node name="butterflys" type="Control" parent="FAQ"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 5.0
+offset_top = 5.5
+offset_right = 45.0
+offset_bottom = 45.5
+
+[node name="TextureRect" type="TextureRect" parent="FAQ/butterflys"]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+offset_left = 60.0
+offset_top = 3.0
+offset_right = 90.0
+offset_bottom = 33.0
+texture = ExtResource("3_rno1h")
+
+[node name="TextureRect2" type="TextureRect" parent="FAQ/butterflys"]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+offset_left = 509.0
+offset_top = 3.0
+offset_right = 539.0
+offset_bottom = 33.0
+texture = ExtResource("3_rno1h")
+flip_h = true
+
 [node name="CREDITS" type="NinePatchRect" parent="."]
 self_modulate = Color(0.906223, 0.838196, 0.788158, 1)
 layout_mode = 1
@@ -599,6 +628,7 @@ theme_override_constants/separation = 123
 alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="CREDITS/VBoxContainer/HBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
 texture = ExtResource("3_rno1h")
@@ -612,6 +642,7 @@ theme_override_font_sizes/font_size = 32
 text = "Pack Helper Credits"
 
 [node name="TextureRect2" type="TextureRect" parent="CREDITS/VBoxContainer/HBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
 texture = ExtResource("3_rno1h")
@@ -847,6 +878,33 @@ theme = ExtResource("6_ijdgy")
 theme_override_colors/font_color = Color(0.493728, 0.364523, 0.227402, 1)
 text = "Back to FAQ page"
 vertical_alignment = 2
+
+[node name="butterflys" type="Control" parent="CREDITS"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 5.0
+offset_top = 5.5
+offset_right = 45.0
+offset_bottom = 45.5
+
+[node name="TextureRect" type="TextureRect" parent="CREDITS/butterflys"]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+offset_left = 60.0
+offset_top = 3.0
+offset_right = 90.0
+offset_bottom = 33.0
+texture = ExtResource("3_rno1h")
+
+[node name="TextureRect2" type="TextureRect" parent="CREDITS/butterflys"]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+offset_left = 509.0
+offset_top = 3.0
+offset_right = 539.0
+offset_bottom = 33.0
+texture = ExtResource("3_rno1h")
+flip_h = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
