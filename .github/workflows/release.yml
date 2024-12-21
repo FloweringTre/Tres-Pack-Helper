@@ -67,6 +67,8 @@ jobs:
         godot --headless --verbose --export-release "macOS" "$EXPORT_DIR/mac/$EXPORT_NAME.zip"
 
     - name: Upload to release
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: gh release upload ${{ github.event.release.tag_name }} build/mac/*
 
         
