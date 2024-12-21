@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cryve85pre2tf"]
+[gd_scene load_steps=22 format=3 uid="uid://cryve85pre2tf"]
 
 [ext_resource type="Script" path="res://scripts/tack/extra_set_creation.gd" id="1_4ow3j"]
 [ext_resource type="Texture2D" uid="uid://8f0rfohmniwa" path="res://assets/menuUI.png" id="2_cmvyj"]
@@ -14,6 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://bpgiy2j33slge" path="res://scene/components/pop_up.tscn" id="9_qo3yb"]
 [ext_resource type="PackedScene" uid="uid://cdigxro282sfm" path="res://scene/components/checkAlert.tscn" id="10_kd6wl"]
 [ext_resource type="PackedScene" uid="uid://clixcby1mmxr3" path="res://scene/helpScreen.tscn" id="11_qdt5k"]
+[ext_resource type="PackedScene" uid="uid://wonyaiea8tn2" path="res://scene/components/buttonSMOL2_blue.tscn" id="11_xpl4i"]
+[ext_resource type="PackedScene" uid="uid://s4coqphlup24" path="res://scene/components/buttonSMOL2.tscn" id="12_rwma2"]
 [ext_resource type="Texture2D" uid="uid://e0mn4j7b2dax" path="res://assets/rackResources/rack_pasture_blanket_3_short.png" id="14_hboqm"]
 [ext_resource type="Texture2D" uid="uid://dkwtl87phvntc" path="res://assets/rackResources/rack_pasture_blanket_3_short_armored.png" id="15_57pl8"]
 [ext_resource type="Texture2D" uid="uid://ds2lsiv8ibp6h" path="res://assets/rackResources/rack_pasture_blanket_5_long.png" id="16_c2vac"]
@@ -22,38 +24,6 @@
 [sub_resource type="AtlasTexture" id="AtlasTexture_kx556"]
 atlas = ExtResource("2_cmvyj")
 region = Rect2(58, 10, 28, 28)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ytf6o"]
-atlas = ExtResource("2_cmvyj")
-region = Rect2(176, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8k5rt"]
-atlas = ExtResource("2_cmvyj")
-region = Rect2(176, 32, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ajnw7"]
-atlas = ExtResource("2_cmvyj")
-region = Rect2(176, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_a8fa8"]
-atlas = ExtResource("2_cmvyj")
-region = Rect2(176, 48, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wirbh"]
-atlas = ExtResource("2_cmvyj")
-region = Rect2(160, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_apwef"]
-atlas = ExtResource("2_cmvyj")
-region = Rect2(160, 32, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7aqcs"]
-atlas = ExtResource("2_cmvyj")
-region = Rect2(160, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_71y0a"]
-atlas = ExtResource("2_cmvyj")
-region = Rect2(160, 48, 16, 16)
 
 [node name="extraSetCreation" type="Control"]
 layout_mode = 3
@@ -720,47 +690,6 @@ max_value = 64.0
 value = 10.0
 alignment = 1
 
-[node name="backButton" type="TextureButton" parent="NinePatchRect"]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 7.0
-offset_top = 297.0
-offset_right = 23.0
-offset_bottom = 313.0
-scale = Vector2(2, 2)
-texture_normal = SubResource("AtlasTexture_ytf6o")
-texture_pressed = SubResource("AtlasTexture_8k5rt")
-texture_hover = SubResource("AtlasTexture_ajnw7")
-texture_disabled = SubResource("AtlasTexture_a8fa8")
-
-[node name="HelperLabel5" type="Label" parent="NinePatchRect"]
-layout_mode = 0
-offset_left = 41.0
-offset_top = 313.0
-offset_right = 65.0
-offset_bottom = 327.0
-size_flags_horizontal = 4
-theme = ExtResource("9_7ca1i")
-theme_override_colors/font_color = Color(0.493728, 0.364523, 0.227402, 1)
-text = "Return to the Tack Main Menu"
-vertical_alignment = 2
-
-[node name="confirmButton" type="TextureButton" parent="NinePatchRect"]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 569.0
-offset_top = 296.5
-offset_right = 585.0
-offset_bottom = 312.5
-scale = Vector2(2, 2)
-focus_neighbor_left = NodePath("../backButton")
-focus_previous = NodePath("../VBoxContainer/Hbox2/nameCheck")
-disabled = true
-texture_normal = SubResource("AtlasTexture_wirbh")
-texture_pressed = SubResource("AtlasTexture_apwef")
-texture_hover = SubResource("AtlasTexture_7aqcs")
-texture_disabled = SubResource("AtlasTexture_71y0a")
-
 [node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect"]
 layout_mode = 0
 offset_left = 467.0
@@ -779,6 +708,22 @@ horizontal_alignment = 2
 layout_mode = 2
 theme = ExtResource("9_7ca1i")
 text = "= required field"
+
+[node name="confirmButton" parent="NinePatchRect" instance=ExtResource("11_xpl4i")]
+unique_name_in_owner = true
+offset_left = 537.0
+offset_top = 306.0
+offset_right = 601.0
+offset_bottom = 328.0
+button_text = "Generate"
+
+[node name="backButton" parent="NinePatchRect" instance=ExtResource("12_rwma2")]
+unique_name_in_owner = true
+offset_left = 7.0
+offset_top = 306.0
+offset_right = 71.0
+offset_bottom = 328.0
+button_text = "Main Menu"
 
 [node name="errorMessage" parent="." instance=ExtResource("8_cv1ds")]
 visible = false
@@ -847,5 +792,5 @@ layout_mode = 1
 [connection signal="value_changed" from="NinePatchRect/VBoxContainer/VBoxContainer/HBoxContainer2/custCheck/EDITBoxContainer/blueSpinBox" to="." method="_on_blue_spin_box_value_changed"]
 [connection signal="item_selected" from="NinePatchRect/VBoxContainer/VBoxContainer/HBoxContainer4/armorType/armorOptions" to="." method="_on_armor_options_item_selected"]
 [connection signal="item_selected" from="NinePatchRect/VBoxContainer/VBoxContainer/HBoxContainer4/moneyCheck/coinOptions" to="." method="_on_coin_options_item_selected"]
-[connection signal="pressed" from="NinePatchRect/backButton" to="." method="_on_back_button_pressed"]
-[connection signal="pressed" from="NinePatchRect/confirmButton" to="." method="_on_confirm_button_pressed"]
+[connection signal="button_pressed" from="NinePatchRect/confirmButton" to="." method="_on_confirm_button_pressed"]
+[connection signal="button_pressed" from="NinePatchRect/backButton" to="." method="_on_back_button_pressed"]

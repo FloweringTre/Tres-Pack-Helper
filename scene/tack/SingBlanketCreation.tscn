@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dptg31hkvdxg7"]
+[gd_scene load_steps=22 format=3 uid="uid://dptg31hkvdxg7"]
 
 [ext_resource type="Script" path="res://scripts/tack/sing_blanket_creation.gd" id="1_eoom4"]
 [ext_resource type="Texture2D" uid="uid://diy8htskfybtd" path="res://assets/moon_bg.png" id="2_a3xbf"]
@@ -13,6 +13,7 @@
 [ext_resource type="Theme" uid="uid://cof5u4dam7c2t" path="res://assets/UI_theme_shadowed.tres" id="10_tbk2p"]
 [ext_resource type="PackedScene" uid="uid://b3cou3ndcs75h" path="res://scene/components/error_message.tscn" id="11_lqjdc"]
 [ext_resource type="PackedScene" uid="uid://bpgiy2j33slge" path="res://scene/components/pop_up.tscn" id="12_h3qxj"]
+[ext_resource type="PackedScene" uid="uid://wonyaiea8tn2" path="res://scene/components/buttonSMOL2_blue.tscn" id="12_x5r75"]
 [ext_resource type="PackedScene" uid="uid://cdigxro282sfm" path="res://scene/components/checkAlert.tscn" id="13_jhgjj"]
 [ext_resource type="PackedScene" uid="uid://clixcby1mmxr3" path="res://scene/helpScreen.tscn" id="14_al7hl"]
 [ext_resource type="Texture2D" uid="uid://gmchkp7i7m5e" path="res://assets/rackResources/rack_blanket_5_english_blanket.png" id="15_2rykg"]
@@ -23,38 +24,6 @@
 [sub_resource type="AtlasTexture" id="AtlasTexture_kx556"]
 atlas = ExtResource("2_upbrk")
 region = Rect2(58, 10, 28, 28)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ytf6o"]
-atlas = ExtResource("2_upbrk")
-region = Rect2(176, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8k5rt"]
-atlas = ExtResource("2_upbrk")
-region = Rect2(176, 32, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ajnw7"]
-atlas = ExtResource("2_upbrk")
-region = Rect2(176, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_a8fa8"]
-atlas = ExtResource("2_upbrk")
-region = Rect2(176, 48, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wirbh"]
-atlas = ExtResource("2_upbrk")
-region = Rect2(160, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_apwef"]
-atlas = ExtResource("2_upbrk")
-region = Rect2(160, 32, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7aqcs"]
-atlas = ExtResource("2_upbrk")
-region = Rect2(160, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_71y0a"]
-atlas = ExtResource("2_upbrk")
-region = Rect2(160, 48, 16, 16)
 
 [node name="blanketSetCreation" type="Control"]
 layout_mode = 3
@@ -238,7 +207,6 @@ custom_minimum_size = Vector2(49, 0)
 layout_mode = 2
 
 [node name="HelperLabel2" type="Label" parent="NinePatchRect/VBoxContainer"]
-custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 theme = ExtResource("8_oehq5")
 text = "Below is how the item will appear in game as well as the texture/data name used in /give commands"
@@ -283,19 +251,19 @@ theme = ExtResource("5_1luqk")
 text_overrun_behavior = 3
 
 [node name="Spacer" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
-custom_minimum_size = Vector2(0, 9)
+custom_minimum_size = Vector2(0, 3)
 layout_mode = 2
 alignment = 1
 
 [node name="Line2D" type="Line2D" parent="NinePatchRect/VBoxContainer/Spacer"]
-position = Vector2(-0.657455, 6)
+position = Vector2(-0.657455, 3)
 scale = Vector2(3.0766, 1)
 points = PackedVector2Array(176.296, 2, -1, 2)
 width = 1.0
 default_color = Color(0.811765, 0.67451, 0.490196, 1)
 
 [node name="helperLabel7" type="Label" parent="NinePatchRect/VBoxContainer"]
-custom_minimum_size = Vector2(0, 22)
+custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 theme = ExtResource("8_oehq5")
 text = "~~ Set Tack Information ~~"
@@ -678,47 +646,6 @@ theme_override_colors/font_color = Color(0.0936844, 0.321806, 0.95922, 1)
 text = "Blue"
 horizontal_alignment = 2
 
-[node name="backButton" type="TextureButton" parent="NinePatchRect"]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 7.0
-offset_top = 297.0
-offset_right = 23.0
-offset_bottom = 313.0
-scale = Vector2(2, 2)
-texture_normal = SubResource("AtlasTexture_ytf6o")
-texture_pressed = SubResource("AtlasTexture_8k5rt")
-texture_hover = SubResource("AtlasTexture_ajnw7")
-texture_disabled = SubResource("AtlasTexture_a8fa8")
-
-[node name="HelperLabel5" type="Label" parent="NinePatchRect"]
-layout_mode = 0
-offset_left = 41.0
-offset_top = 313.0
-offset_right = 65.0
-offset_bottom = 327.0
-size_flags_horizontal = 4
-theme = ExtResource("10_tbk2p")
-theme_override_colors/font_color = Color(0.493728, 0.364523, 0.227402, 1)
-text = "Return to the Tack Main Menu"
-vertical_alignment = 2
-
-[node name="confirmButton" type="TextureButton" parent="NinePatchRect"]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 569.0
-offset_top = 296.5
-offset_right = 585.0
-offset_bottom = 312.5
-scale = Vector2(2, 2)
-focus_neighbor_left = NodePath("../backButton")
-focus_previous = NodePath("../VBoxContainer/Hbox2/nameCheck")
-disabled = true
-texture_normal = SubResource("AtlasTexture_wirbh")
-texture_pressed = SubResource("AtlasTexture_apwef")
-texture_hover = SubResource("AtlasTexture_7aqcs")
-texture_disabled = SubResource("AtlasTexture_71y0a")
-
 [node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect"]
 layout_mode = 0
 offset_left = 467.0
@@ -736,6 +663,22 @@ horizontal_alignment = 2
 layout_mode = 2
 theme = ExtResource("10_tbk2p")
 text = "= required field"
+
+[node name="confirmButton" parent="NinePatchRect" instance=ExtResource("12_x5r75")]
+unique_name_in_owner = true
+offset_left = 537.0
+offset_top = 306.0
+offset_right = 601.0
+offset_bottom = 328.0
+button_text = "Generate"
+
+[node name="backButton" parent="NinePatchRect" instance=ExtResource("9_spl2b")]
+unique_name_in_owner = true
+offset_left = 7.0
+offset_top = 306.0
+offset_right = 71.0
+offset_bottom = 328.0
+button_text = "Main Menu"
 
 [node name="errorMessage" parent="." instance=ExtResource("11_lqjdc")]
 visible = false
@@ -823,6 +766,6 @@ layout_mode = 1
 [connection signal="value_changed" from="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer2/ColorBoxContainer/HBoxContainer/redSpinBox" to="." method="_on_red_spin_box_value_changed"]
 [connection signal="value_changed" from="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer2/ColorBoxContainer/HBoxContainer/greenSpinBox" to="." method="_on_green_spin_box_value_changed"]
 [connection signal="value_changed" from="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer2/ColorBoxContainer/HBoxContainer/blueSpinBox" to="." method="_on_blue_spin_box_value_changed"]
-[connection signal="pressed" from="NinePatchRect/backButton" to="." method="_on_back_button_pressed"]
-[connection signal="pressed" from="NinePatchRect/confirmButton" to="." method="_on_confirm_button_pressed"]
+[connection signal="button_pressed" from="NinePatchRect/confirmButton" to="." method="_on_confirm_button_pressed"]
+[connection signal="button_pressed" from="NinePatchRect/backButton" to="." method="_on_back_button_pressed"]
 [connection signal="file_selected" from="FileDialog" to="." method="_on_file_dialog_file_selected"]
