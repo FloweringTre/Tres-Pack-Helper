@@ -15,8 +15,7 @@ func _on_continue_button_pressed() -> void:
 func pop_continue(title : String, message : String, continue_message : String = "Lets try that again...") -> void:
 	$".".visible = true
 	%loadingBoxContainer.visible = false
-	$yesOrNo.visible = false
-	$yesOrNoLabel.visible = false
+	$buttons.visible = false
 	$continue.visible = true
 	%titleLabel.text = title
 	%popUpText.text = message
@@ -37,8 +36,7 @@ func pop_yesNo(title : String, message : String, no_label : String = "Back", yes
 func loading(process : String) -> void:
 	$".".visible = true
 	$continue.visible = false
-	$yesOrNo.visible = false
-	$yesOrNoLabel.visible = false
+	$buttons.visible = false
 	%loadingBoxContainer.visible = true
 	%titleLabel.text = "Thank you for waiting!"
 	%popUpText.text = process
