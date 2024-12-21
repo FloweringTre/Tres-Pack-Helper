@@ -22,11 +22,12 @@ region = Rect2(0, 32, 200, 32)
 
 [node name="buttonLong" type="Panel"]
 self_modulate = Color(1, 1, 1, 0)
-custom_minimum_size = Vector2(200, 32)
+custom_minimum_size = Vector2(64, 32)
 offset_right = 64.0
 offset_bottom = 32.0
 script = ExtResource("1_hefb7")
 button_text = "button"
+long = true
 
 [node name="Button" type="TextureButton" parent="."]
 layout_mode = 0
@@ -54,7 +55,8 @@ custom_minimum_size = Vector2(60, 25)
 layout_mode = 2
 theme = ExtResource("3_c7m5k")
 theme_override_constants/line_spacing = -5
-text = "button"
+text = "Normal and Armored
+Pasture Blankets"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
