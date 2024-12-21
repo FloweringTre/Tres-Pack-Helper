@@ -6,7 +6,8 @@ func _ready() -> void:
 	$CREDITS.visible = false
 	ErrorManager.error_alert.connect(on_error)
 	ErrorManager.error_passed.connect(on_error_passed)
-
+	$Label.visible = true
+	$TextureButton.visible = true
 
 func _on_texture_button_pressed() -> void:
 	$AnimationPlayer.play("open_faq")
