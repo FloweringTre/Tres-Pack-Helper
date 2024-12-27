@@ -220,3 +220,7 @@ func instructions_tack(type : String, item : String, tack_textures : String , pa
 			file.store_string(instruction_string)
 			file.close()
 			report("Updated the instruction document with information for " + item)
+
+
+func replace_version_placeholder(textLabel: Label):
+	textLabel.text = textLabel.text.replace("$VERSION", ProjectSettings.get_setting("application/config/version"))
