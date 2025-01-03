@@ -183,7 +183,7 @@ alignment = 1
 [node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/tackName"]
 layout_mode = 2
 theme = ExtResource("6_ovmy2")
-text = "Saddle Blanket Name"
+text = "Girth Strap Name"
 horizontal_alignment = 2
 
 [node name="required" type="Label" parent="NinePatchRect/VBoxContainer/tackName"]
@@ -510,7 +510,7 @@ theme_override_constants/separation = 2
 [node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer2/ColorBoxContainer/HBoxContainer2"]
 layout_mode = 2
 theme = ExtResource("6_ovmy2")
-text = "Saddle Blanket Color:"
+text = "Girth Strap Color:"
 horizontal_alignment = 2
 
 [node name="Label2" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer2/ColorBoxContainer/HBoxContainer2"]
