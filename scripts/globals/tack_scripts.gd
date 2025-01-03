@@ -1261,8 +1261,8 @@ func colored_pasture_blanket_save(rack_long : Sprite2D, rack_short : Sprite2D, i
 		var root = type + "/"
 		var icon = java_name + "_icon.png"
 		var leg_texture = java_name + "_legacy.png"
-		var rack_short_3 = "rack_pasture_blanket_3_short_" + original_item + "_armored.png"
-		var rack_long_5 = "rack_pasture_blanket_5_long_" + original_item + "_armored.png"
+		var rack_short_3 = "rack_pasture_blanket_3_short_" + original_item + ".png"
+		var rack_long_5 = "rack_pasture_blanket_5_long_" + original_item + ".png"
 		
 		var long_path = GlobalScripts.join_paths(text_dir, root + rack_long_5)
 		var short_path = GlobalScripts.join_paths(text_dir, root + rack_short_3)
@@ -1359,8 +1359,8 @@ func colored_ar_pasture_blanket_save(rack_long : Sprite2D, rack_short : Sprite2D
 		var root = type + "/"
 		var icon = java_name + "_icon.png"
 		var leg_texture = java_name + "_legacy.png"
-		var rack_short_3 = "rack_pasture_blanket_3_short_" + original_item + ".png"
-		var rack_long_5 = "rack_pasture_blanket_5_long_" + original_item + ".png"
+		var rack_short_3 = "rack_pasture_blanket_3_short_" + original_item + "_armored.png"
+		var rack_long_5 = "rack_pasture_blanket_5_long_" + original_item + "_armored.png"
 		
 		var long_path = GlobalScripts.join_paths(text_dir, root + rack_long_5)
 		var short_path = GlobalScripts.join_paths(text_dir, root + rack_short_3)
