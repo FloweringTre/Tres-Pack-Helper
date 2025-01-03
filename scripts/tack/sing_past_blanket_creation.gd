@@ -245,9 +245,11 @@ func dupe_exists() -> void:
 func _save_tack() -> void:
 	var save_path = GlobalScripts.join_paths(GlobalScripts.textures_root, "tack/pasture_blanket")
 	var type = ""
+	var rack_type = ""
 	if adventure:
 		$popUPload.loading("Saving Armored Pasture Blanket")
 		type = "_pasture_blanket_armored"
+		rack_type = "_armored"
 		if custom_rack:
 			TackScripts.ar_pasture_blanket_save(%tackText.text, %artistText.text, %inspoText.text, coin, text_icon, text_render, text_rack_short, text_rack_long, %armoredblanketSpinBox.value)
 		else:
@@ -255,6 +257,7 @@ func _save_tack() -> void:
 	else:
 		$popUPload.loading("Saving Pasture Blanket")
 		type = "_pasture_blanket"
+		rack_type = ""
 		if custom_rack:
 			TackScripts.pasture_blanket_save(%tackText.text, %artistText.text, %inspoText.text, coin, text_icon, text_render, text_rack_short, text_rack_long, %blanketSpinBox.value)
 		else:
@@ -269,11 +272,11 @@ func _save_tack() -> void:
 		image_render.save_png(render_save_path)
 		GlobalScripts.report("Saved user selected image: " + render_source + "  to the file location: " + render_save_path)
 	if text_rack_short:
-		rack_save_path_short = save_path + "/rack_pasture_blanket_3_short_" + GlobalScripts.text_clean(%tackText.text) + type + ".png"
+		rack_save_path_short = save_path + "/rack_pasture_blanket_3_short_" + GlobalScripts.text_clean(%tackText.text) + rack_type + ".png"
 		image_rack_short.save_png(rack_save_path_short)
 		GlobalScripts.report("Saved user selected image: " + rack_source_short + "  to the file location: " + rack_save_path_short)
 	if text_rack_long:
-		rack_save_path_long = save_path + "/rack_pasture_blanket_5_long_" + GlobalScripts.text_clean(%tackText.text) + type + ".png"
+		rack_save_path_long = save_path + "/rack_pasture_blanket_5_long_" + GlobalScripts.text_clean(%tackText.text) + rack_type + ".png"
 		image_rack_long.save_png(rack_save_path_long)
 		GlobalScripts.report("Saved user selected image: " + rack_source_long + "  to the file location: " + rack_save_path_long)
 	
