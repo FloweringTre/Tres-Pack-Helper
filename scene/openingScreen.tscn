@@ -209,7 +209,7 @@ unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("4_uf3dj")
 theme_override_font_sizes/font_size = 16
-text = "Version $VERSION BETA made for SWEM version 1.5.2"
+text = "Version $VERSION made for SWEM version 1.5.2"
 horizontal_alignment = 1
 
 [node name="HelperLabel4" type="Label" parent="NinePatchRect/VBoxContainer"]
