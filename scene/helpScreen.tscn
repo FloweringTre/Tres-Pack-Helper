@@ -1,6 +1,6 @@
 [gd_scene load_steps=25 format=3 uid="uid://clixcby1mmxr3"]
 
-[ext_resource type="Script" path="res://scripts/help_screen.gd" id="1_u7n5r"]
+[ext_resource type="Script" uid="uid://cl7t66bw2snal" path="res://scripts/help_screen.gd" id="1_u7n5r"]
 [ext_resource type="Texture2D" uid="uid://8f0rfohmniwa" path="res://assets/menuUI.png" id="2_xqowa"]
 [ext_resource type="PackedScene" uid="uid://s4coqphlup24" path="res://scene/components/buttonSMOL2.tscn" id="3_rg2fc"]
 [ext_resource type="Texture2D" uid="uid://dm1bh2yywotao" path="res://assets/icon.png" id="3_rno1h"]
@@ -210,11 +210,11 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_07tyb"]
 _data = {
-"RESET": SubResource("Animation_pgs46"),
-"exit_credits": SubResource("Animation_aic7a"),
-"exit_faq": SubResource("Animation_q7hml"),
-"open_credits": SubResource("Animation_1ian2"),
-"open_faq": SubResource("Animation_e453m")
+&"RESET": SubResource("Animation_pgs46"),
+&"exit_credits": SubResource("Animation_aic7a"),
+&"exit_faq": SubResource("Animation_q7hml"),
+&"open_credits": SubResource("Animation_1ian2"),
+&"open_faq": SubResource("Animation_e453m")
 }
 
 [sub_resource type="Theme" id="Theme_ooxh2"]
@@ -533,14 +533,14 @@ theme = ExtResource("5_wev1s")
 [node name="VBoxContainer" type="VBoxContainer" parent="FAQ/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_constants/separation = -2
 
 [node name="HelperLabel9" type="Label" parent="FAQ/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("6_ijdgy")
 theme_override_colors/font_color = Color(0.113924, 0.41665, 0.289974, 1)
-text = "If you have more questions or experience bugs,
-"
+text = "If you have more questions or experience bugs,"
 horizontal_alignment = 1
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="FAQ/VBoxContainer/VBoxContainer"]
@@ -552,8 +552,7 @@ alignment = 1
 layout_mode = 2
 theme = ExtResource("6_ijdgy")
 theme_override_colors/font_color = Color(0.113924, 0.41665, 0.289974, 1)
-text = "please join my
-"
+text = "please join my"
 horizontal_alignment = 1
 
 [node name="LinkButton" type="LinkButton" parent="FAQ/VBoxContainer/VBoxContainer/HBoxContainer3"]
@@ -793,7 +792,8 @@ layout_mode = 2
 theme = ExtResource("5_wev1s")
 theme_override_constants/line_spacing = -2
 text = "He did a lot of bug testing for this application and provided a ton of suggestions to make it better! He was the main coder for the inital releases of SWEM and helped get each iteration of the Tack Shop off the ground. 
-"
+
+He did the 1.2.0 update to make pegasus horse coats work!"
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -821,7 +821,7 @@ text = "projects on Github!"
 uri = "https://moon-flower-info.carrd.co/"
 
 [node name="spacer4" type="Container" parent="CREDITS/VBoxContainer/HBoxContainer2/VBoxContainer2"]
-custom_minimum_size = Vector2(0, 45)
+custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 theme = ExtResource("5_wev1s")
 
@@ -859,14 +859,14 @@ theme = ExtResource("5_wev1s")
 [node name="VBoxContainer" type="VBoxContainer" parent="CREDITS/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_constants/separation = 0
 
 [node name="HelperLabel9" type="Label" parent="CREDITS/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("6_ijdgy")
 theme_override_colors/font_color = Color(0.113924, 0.41665, 0.289974, 1)
-text = "If you have more questions or experience bugs,
-"
+text = "If you have more questions or experience bugs,"
 horizontal_alignment = 1
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="CREDITS/VBoxContainer/VBoxContainer"]
@@ -878,8 +878,7 @@ alignment = 1
 layout_mode = 2
 theme = ExtResource("6_ijdgy")
 theme_override_colors/font_color = Color(0.113924, 0.41665, 0.289974, 1)
-text = "please join my
-"
+text = "please join my"
 horizontal_alignment = 1
 
 [node name="LinkButton" type="LinkButton" parent="CREDITS/VBoxContainer/VBoxContainer/HBoxContainer3"]
@@ -954,7 +953,7 @@ flip_h = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_07tyb")
+&"": SubResource("AnimationLibrary_07tyb")
 }
 
 [node name="versionLabel" type="Label" parent="."]
