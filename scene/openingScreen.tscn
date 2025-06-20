@@ -1,6 +1,6 @@
 [gd_scene load_steps=25 format=3 uid="uid://cn7ut62jxmgnl"]
 
-[ext_resource type="Script" path="res://scripts/opening_screen.gd" id="1_su0nw"]
+[ext_resource type="Script" uid="uid://vfmn74psi6gx" path="res://scripts/opening_screen.gd" id="1_su0nw"]
 [ext_resource type="Texture2D" uid="uid://diy8htskfybtd" path="res://assets/moon_bg.png" id="2_1k85t"]
 [ext_resource type="Texture2D" uid="uid://8f0rfohmniwa" path="res://assets/menuUI.png" id="2_fs84d"]
 [ext_resource type="Texture2D" uid="uid://dm1bh2yywotao" path="res://assets/icon.png" id="3_oba0u"]
@@ -106,8 +106,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_n73lu"]
 _data = {
-"RESET": SubResource("Animation_1ftwx"),
-"fade": SubResource("Animation_fhgur")
+&"RESET": SubResource("Animation_1ftwx"),
+&"fade": SubResource("Animation_fhgur")
 }
 
 [node name="openingscreen" type="Control"]
@@ -406,7 +406,7 @@ texture = ExtResource("9_vg3x7")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_n73lu")
+&"": SubResource("AnimationLibrary_n73lu")
 }
 
 [node name="Timer" type="Timer" parent="."]

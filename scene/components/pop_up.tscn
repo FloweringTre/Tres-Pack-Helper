@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://bpgiy2j33slge"]
 
 [ext_resource type="Texture2D" uid="uid://8f0rfohmniwa" path="res://assets/menuUI.png" id="1_6x5xs"]
-[ext_resource type="Script" path="res://scripts/components/pop_up.gd" id="2_0cii8"]
+[ext_resource type="Script" uid="uid://b7x050qo5ygsp" path="res://scripts/components/pop_up.gd" id="2_0cii8"]
 [ext_resource type="Theme" uid="uid://dm4jlnbmnj4eb" path="res://assets/UI_theme_dark.tres" id="3_kx8fm"]
 [ext_resource type="PackedScene" uid="uid://cp0jrapb6x6a2" path="res://scene/components/buttonSMOL.tscn" id="4_8gsbi"]
 [ext_resource type="PackedScene" uid="uid://c18of0dynnf7n" path="res://scene/components/buttonSMOLBLUE.tscn" id="5_p00mt"]
@@ -68,8 +68,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6ylsm"]
 _data = {
-"RESET": SubResource("Animation_ihynm"),
-"loading": SubResource("Animation_4m8n4")
+&"RESET": SubResource("Animation_ihynm"),
+&"loading": SubResource("Animation_4m8n4")
 }
 
 [node name="popUP" type="NinePatchRect"]

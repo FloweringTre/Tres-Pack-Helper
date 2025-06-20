@@ -1,6 +1,6 @@
 [gd_scene load_steps=23 format=3 uid="uid://csx4f04hhg1bp"]
 
-[ext_resource type="Script" path="res://scripts/tack/saddle_set_creation.gd" id="1_i57yo"]
+[ext_resource type="Script" uid="uid://cd66utt7klksp" path="res://scripts/tack/saddle_set_creation.gd" id="1_i57yo"]
 [ext_resource type="Texture2D" uid="uid://diy8htskfybtd" path="res://assets/moon_bg.png" id="2_bc2tp"]
 [ext_resource type="Texture2D" uid="uid://8f0rfohmniwa" path="res://assets/menuUI.png" id="2_pggdn"]
 [ext_resource type="Texture2D" uid="uid://dm1bh2yywotao" path="res://assets/icon.png" id="3_sxpko"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://dy63fdsjblfmt"]
 
-[ext_resource type="Script" path="res://scripts/tack/sing_saddle_bag_creation.gd" id="1_tygou"]
+[ext_resource type="Script" uid="uid://chh750vv67fgi" path="res://scripts/tack/sing_saddle_bag_creation.gd" id="1_tygou"]
 [ext_resource type="Texture2D" uid="uid://8f0rfohmniwa" path="res://assets/menuUI.png" id="2_g3bxx"]
 [ext_resource type="Texture2D" uid="uid://diy8htskfybtd" path="res://assets/moon_bg.png" id="2_uii40"]
 [ext_resource type="Texture2D" uid="uid://dm1bh2yywotao" path="res://assets/icon.png" id="3_flkh8"]

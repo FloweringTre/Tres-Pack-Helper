@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://c18of0dynnf7n"]
 
-[ext_resource type="Script" path="res://scripts/components/button_SMO_blueL.gd" id="1_bipxi"]
+[ext_resource type="Script" uid="uid://ccduf18se7ew0" path="res://scripts/components/button_SMO_blueL.gd" id="1_bipxi"]
 [ext_resource type="Texture2D" uid="uid://bgbtahk53utec" path="res://assets/largeButtons_blue.png" id="2_lvj87"]
 [ext_resource type="Theme" uid="uid://dix1yxdlw8hbv" path="res://assets/UI_theme_smol.tres" id="3_oy4ys"]
 

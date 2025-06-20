@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://bicshr65lr0n1"]
 
-[ext_resource type="Script" path="res://scripts/components/button.gd" id="1_jb3lb"]
+[ext_resource type="Script" uid="uid://2u2ewdgib3gm" path="res://scripts/components/button.gd" id="1_jb3lb"]
 [ext_resource type="Texture2D" uid="uid://cntyepmdbtbq5" path="res://assets/largeButtons.png" id="1_ksaby"]
 [ext_resource type="Theme" uid="uid://db3wwmhf400fw" path="res://assets/UI_theme_dark_big.tres" id="3_wvssa"]
 

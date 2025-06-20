@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://bejyqc3wxje5u"]
 
-[ext_resource type="Script" path="res://scripts/tack/sing_breast_collar_creation.gd" id="1_ulyt7"]
+[ext_resource type="Script" uid="uid://bi8wqhnrwmxde" path="res://scripts/tack/sing_breast_collar_creation.gd" id="1_ulyt7"]
 [ext_resource type="Texture2D" uid="uid://diy8htskfybtd" path="res://assets/moon_bg.png" id="2_nep8m"]
 [ext_resource type="Texture2D" uid="uid://8f0rfohmniwa" path="res://assets/menuUI.png" id="2_pj45q"]
 [ext_resource type="Texture2D" uid="uid://dm1bh2yywotao" path="res://assets/icon.png" id="3_71kin"]

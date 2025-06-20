@@ -1,6 +1,6 @@
 [gd_scene load_steps=27 format=3 uid="uid://eb3brbdum74l"]
 
-[ext_resource type="Script" path="res://scripts/tack/full_set_creation.gd" id="1_id3ft"]
+[ext_resource type="Script" uid="uid://bq5gkudovyaaa" path="res://scripts/tack/full_set_creation.gd" id="1_id3ft"]
 [ext_resource type="Texture2D" uid="uid://8f0rfohmniwa" path="res://assets/menuUI.png" id="2_t4x1h"]
 [ext_resource type="Texture2D" uid="uid://diy8htskfybtd" path="res://assets/moon_bg.png" id="2_uin7a"]
 [ext_resource type="Texture2D" uid="uid://dm1bh2yywotao" path="res://assets/icon.png" id="3_3u56n"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://ec7d64hoymce"]
 
-[ext_resource type="Script" path="res://scripts/tack/sing_armor_creation.gd" id="1_28krs"]
+[ext_resource type="Script" uid="uid://cke7m7x27spyx" path="res://scripts/tack/sing_armor_creation.gd" id="1_28krs"]
 [ext_resource type="Texture2D" uid="uid://8f0rfohmniwa" path="res://assets/menuUI.png" id="2_dh15j"]
 [ext_resource type="Texture2D" uid="uid://diy8htskfybtd" path="res://assets/moon_bg.png" id="2_dsfvu"]
 [ext_resource type="Texture2D" uid="uid://dm1bh2yywotao" path="res://assets/icon.png" id="3_lpcdy"]
