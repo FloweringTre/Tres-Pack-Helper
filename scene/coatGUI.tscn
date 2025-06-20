@@ -264,6 +264,30 @@ alignment = 1
 layout_mode = 2
 alignment = 1
 
+[node name="wings" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer/wings"]
+layout_mode = 2
+theme = ExtResource("5_fupdb")
+text = "Has wings?"
+horizontal_alignment = 2
+
+[node name="wingsCheckBox" type="CheckBox" parent="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer/wings"]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_left = NodePath("../../cycling/lapisCheckBox")
+focus_neighbor_bottom = NodePath("../../../../baseColorp2/Chestnut/chestnutCheckBox7")
+focus_next = NodePath("../../../../baseColorp2/Black/blackCheckBox")
+focus_previous = NodePath("../../cycling/lapisCheckBox")
+
+[node name="wingsLabel" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer/wings"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(18, 0)
+layout_mode = 2
+theme = ExtResource("5_0f6da")
+text = "No"
+
 [node name="breeding" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
@@ -625,6 +649,7 @@ layout_mode = 1
 [connection signal="text_changed" from="NinePatchRect/VBoxContainer/HBoxContainer2/artist/artistText" to="." method="_on_artist_text_text_changed"]
 [connection signal="text_changed" from="NinePatchRect/VBoxContainer/HBoxContainer2/inspiration/inspoText" to="." method="_on_inspo_text_text_changed"]
 [connection signal="text_changed" from="NinePatchRect/VBoxContainer/coatName/coatText" to="." method="_on_coat_text_text_changed"]
+[connection signal="pressed" from="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer/wings/wingsCheckBox" to="." method="_on_wings_check_box_pressed"]
 [connection signal="pressed" from="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer/breeding/breedingCheckBox" to="." method="_on_breeding_check_box_pressed"]
 [connection signal="pressed" from="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer/cycling/lapisCheckBox" to="." method="_on_lapis_check_box_pressed"]
 [connection signal="button_pressed" from="NinePatchRect/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer2/renderButton" to="." method="_on_render_button_button_pressed"]

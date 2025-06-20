@@ -2,6 +2,7 @@ extends Control
 
 var breedable : bool = true
 var cyclable : bool = true
+var has_wings : bool = false
 
 var basecolors : Array
 var black_coat : bool = false
@@ -53,6 +54,7 @@ func disable_interaction () -> void:
 	%nameCheck.set_disabled()
 	%lapisCheckBox.disabled = true
 	%breedingCheckBox.disabled = true
+	%wingsCheckBox.disabled = true
 	%blackCheckBox.disabled = true
 	%grayCheckBox2.disabled = true
 	%whiteCheckBox3.disabled = true
@@ -71,6 +73,7 @@ func enable_interaction () -> void:
 	%nameCheck.reenable_button()
 	%lapisCheckBox.disabled = false
 	%breedingCheckBox.disabled = false
+	%wingsCheckBox.disabled = false
 	%blackCheckBox.disabled = false
 	%grayCheckBox2.disabled = false
 	%whiteCheckBox3.disabled = false
@@ -106,7 +109,7 @@ func _on_artist_text_text_changed(new_text: String) -> void:
 func _on_coat_text_text_changed(new_text: String) -> void:
 	$checkPath.awaiting_check()
 	coat_name = false
-	%confirmButton.disabled = true
+	%confirmButton.set_disabled()
 	ready_to_save()
 
 func on_name_check() -> void:
@@ -135,6 +138,13 @@ func _on_lapis_check_box_pressed() -> void:
 	else:
 		cyclable = true
 		%lapisLabel.text = "Yes"
+
+func _on_wings_check_box_pressed() -> void:
+	if has_wings:
+		has_wings = false
+	else:
+		has_wings = true
+	%wingsLabel.text = "Yes" if has_wings else "No"
 
 func _on_black_check_box_pressed() -> void:
 	if black_coat:
@@ -231,6 +241,7 @@ func save_coat() -> void:
 			"models" = models,
 			"lapis_cyclable" = cyclable,
 			"obtainable_by_breeding" = breedable,
+			"wings" = has_wings,
 			"base_colors" = basecolors
 		}
 		

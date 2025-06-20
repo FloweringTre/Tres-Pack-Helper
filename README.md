@@ -1,5 +1,5 @@
 <h2><i>Tre's Pack Helper</i></h2> 
-<img src="./assets/icon.png" alt="Helper Pack Logo" width="30"/> This new application is designed to help write the json files for your community tack and coat packs for SWEM 1.5.2
+<img src="./assets/icon.png" alt="Helper Pack Logo" width="30"/> This new application is designed to help write the json files for your community tack and coat packs for SWEM 1.6.0
 <br><br>
 This software will create the file folder system for you as well as the json files needed to make your community pack work. All you will need to do is name the image files correctly and add them to the folders. 
 <br><br>
